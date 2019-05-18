@@ -1,5 +1,8 @@
 # Univerzális stílus útmutató
 
+## Kezdő lépések
+Kezdésnek olvasd el [ezt a kommentet](https://github.com/reactjs/hu.reactjs.org/issues/1#issue-445691844)
+
 ## Fejléc azonosítók
 
 Minden fejlécnek van egy saját azonosítója:
@@ -94,19 +97,23 @@ A React egy [JavaScript keretrendszer](https://hu.wikipedia.org/wiki/JavaScript_
 
 Egyéb esetben (pl.: Stack Overflow, YouTube videók, stb.), linkelj az angol forráshoz.
 
-## A gyakori technikai, vagy React specifikus kifejezések szótárát itt találod:
+## Gyakori technikai, vagy React specifikus kifejezések:
 [ Glossary 📚 #2](https://github.com/reactjs/hu.reactjs.org/issues/2)
 
 ## Hasznos források:
 
 1. [Angol-magyar informatikai szótár](https://www.tankonyvtar.hu/hu/tartalom/tkt/angol-magyar/index.html)
 2. [IT-Szótár](http://www.itszotar.hu/)
-(Tippeket elfogadunk 😉)
+3. Tippeket elfogadunk 😉
+
 
 **Annak érdekében, hogy külsős - magyarul nem beszélő - karbantartók is követni tudják a fordítási folyamatot, a forráskódban és Giten/GitHubon (pl.: Git commit üzenetben, Git issue hozzászólásokban) használd az angolt, amennyiben az nem akadályoz meg a tiszta, egyértelmű kommunikációban.**
+
 
 ### Egyéb
 - Az olvasót egyes szám második személyként (tegeződő) formában szólítsd meg. (Nincs szükség formalitásra. 🚫🧐)
 - Ahol lehet, ragaszkodj az eredeti kis-nagy betűíráshoz.
 - Figyelj az egyes- és többeszámokra.
-- Ha kérdésed van, nyiss egy issue-t GitHubon, vagy írj @balazsorban44-nek, vagy @FeherMarcell-nek.
+- Ha kérdésed van, nyiss egy [issue](https://github.com/reactjs/hu.reactjs.org/issues/new)-t GitHubon, vagy írj [@balazsorban44](https://github.com/balazsorban44)-nek, vagy [@FeherMarcell](http://github.com/FeherMarcell)-nek.
+
+Sok szerencsét a fordítóknak! 🍀
