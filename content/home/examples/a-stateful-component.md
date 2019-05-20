@@ -1,7 +1,7 @@
 ---
-title: A Stateful Component
+title: Állapot-teljes komponens
 order: 1
 domid: timer-example
 ---
 
-In addition to taking input data (accessed via `this.props`), a component can maintain internal state data (accessed via `this.state`). When a component's state data changes, the rendered markup will be updated by re-invoking `render()`.
+Az beviteli adaton kívül (ami `this.props`-ként érhető el), egy komponens saját belső állapotát is kezelni tudja (ez `this.state`-ként érhető el). Ha egy komponens állapota megváltozik, a renderelt tartalom frissítve lesz a `render()` metódus újrahívásával.

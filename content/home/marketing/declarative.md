@@ -1,8 +1,8 @@
 ---
-title: Declarative
+title: Deklaratív
 order: 0
 ---
 
-React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+A React segítségével könnyen készíthetsz interaktív felhasználói felületeket. Tervezz egyszerű nézeteket az applikáció minden egyes állapotához, és a React gondoskodik arról, hogy adatváltozáskor csak a megfelelő komponensek frissüljenek és legyenek újrarenderelve.
 
-Declarative views make your code more predictable and easier to debug.
+A deklaratív nézetek kiszámíthatóbbá teszik a kódot, valamint megkönnyítik a hibakeresést is.
