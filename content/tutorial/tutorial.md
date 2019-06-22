@@ -40,70 +40,71 @@ Itt megnézheted, hogy mit is készítünk: **[Végeredmény](https://codepen.io
 
 Ajánljuk, hogy mielőtt folytatnád ezt a tutoriált, olvass utána a tic-tac-toe játéknak. Egy funkció amit felfedezhetsz az az, hogy a jobb oldalon van egy számozott lista a játék táblájáról. Ez egy az összes korábbi lépést tartalmazó lista, ami a játék menete során folyamatosan frissítve van.
 
-You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+Ha megismerkedtél a tic-tac-toe játékkal, nyugodtan zárd be. Ez a tutoriál egy egyszerű sablont használ kiindulópontnak. A következő lépés felkészíteni téged, hogy elkezdhessük fejleszteni a játékot.
 
 ### Előfeltételek {#prerequisites}
 
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
+Feltételezzük, hogy van már valami tapasztalatod a HTML-el és Javascript-tel, de a tutoriál követése akkor sem lehet probléma, ha egy másik programózi nyelvből jösz. Továbbá feltételezzük, hogy olyan programozói koncepciók mint a függvények, objektumok, tömbök és - egy bizonyos fokig - az osztályok is ismertek számodra.
 
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
+Ha először szeretnéd átnézni a JavaScript-et akkor [ezt az útmutatót](https://developer.mozilla.org/hu/docs/Web/JavaScript/a_javascript_ujboli_bemutatasa) ajánljuk. Megjegyzés: Ebben a tutoriálban pár ES6 (a JavaScript jelenlegi verziója) funkciót is használunk, többek között [nyílfunkciókat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [osztályokat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), és [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) utasításokat. A [Babel REPL](babel://es5-syntax-example) segítségével leellenőrízheted, hogy az ES6 mivé lesz lefordítva.
 
 ## Beállítások a Tutoriálhoz {#setup-for-the-tutorial}
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+Ezt a tutoriált két féle képpen is elvégezheted: kódolhatsz a böngésződből, vagy felállíthatsz egy helyi fejlesztői környezetet.
 
 ### "1. Opció: Kódolj a Böngésződben" {#setup-option-1-write-code-in-the-browser}
 
-This is the quickest way to get started!
+A leggyorsabban így kezdhetsz neki!
 
-First, open this **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
+<!-- REVIEW: -Maybe translate codepen? -->
+Először is nyisd meg a **[Kezdő kódot](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** egy új fülben. Az új fül egy új, üres tic-tac-toe táblát és a React kódot kell hogy mutassa. Ez a React az amit ebben a tutoriálban szerkeszteni fogunk.
 
-You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
+Ugord át a második opciót, és a React áttekintéséhez menj az [Áttekintés](#overview) szekcióhoz.
 
-### "2. Opció: Helyi Fejlesztői Környezet"t {#setup-option-2-local-development-environment}
+### "2. Opció: Helyi Fejlesztői Környezet" {#setup-option-2-local-development-environment}
 
-This is completely optional and not required for this tutorial!
+Ez az opció szabadon választható, és nem kötelező a tutoriál elvégzéséhez!
 
 <br>
 
 <details>
 
-<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
+<summary><b>Választható: Instrukciók helyi környezetből való követéshez, a kedvenc szövegszerkesztődhöz</b></summary>
 
-This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
+Ahhoz hogy követni tudd a tutoriált egy általad választott szerkesztőből, ez az opció kicsivel több beállítást igényel. Íme a lépések:
 
-1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
+1. Győzödj meg róla, hogy a [Node.js](https://nodejs.org/en/) egy jelenlegi verziója telepítve van.
+2. Kövesd a [Create React App telepítési útmutatóját](/docs/create-a-new-react-app.html#create-react-app) egy új projekt létrehozásához.
 
 ```bash
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Törölj minden fájlt az új projekt `src/` mappábjában 
 
-> Note:
+> Megjegyzés:
 >
->**Don't delete the entire `src` folder, just the original source files inside it.** We'll replace the default source files with examples for this project in the next step.
+>**Ne töröld az egész `src` mappát, csak az eredeti forrásfájlokat a mappában.** A következő lépésben ki fogjuk cserélni az alap forrásfájlokat ebben a projektben.
 
 ```bash
 cd my-app
 cd src
 
-# If you're using a Mac or Linux:
+# Ha Mac-et vagy Linux-ot használsz:
 rm -f *
 
-# Or, if you're on Windows:
+# Vagy ha Windows-on vagy:
 del *
 
-# Then, switch back to the project folder
+# Ezután lépj vissza a projekt mappára
 cd ..
 ```
 
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. Hozz létre egy `index.css` fájlt a `src/` mappában, tartalma pedig legyen [ez a CSS kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+5. Hozz létre egy `index.js` fájlt a `src/` mappában, tartalma pedig legyen [ez a JS kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
-6. Add these three lines to the top of `index.js` in the `src/` folder:
+6. Add hozzá a következő három sort az `index.js` fájl tetejéhez a `src/` mappában:
 
 ```js
 import React from 'react';
@@ -111,32 +112,32 @@ import ReactDOM from 'react-dom';
 import './index.css';
 ```
 
-Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
+Ha mindent jól csináltál, és most lefuttatod az `npm start` parancsot a projekt mappájában és megnyitod a `http://localhost:3000`-t a böngészőben, egy üres tic-tac-toe mezőt kell, hogy láss.
 
-We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
+Szintaxis kiemeléshez a következő [instrukciókat](https://babeljs.io/docs/editors) ajánljuk.
 
 </details>
 
 ### Segítség, Elakadtam! {#help-im-stuck}
 
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+Ha bármikor elekadsz, a [közösségi támogatási források](/community/support.html) segíthet. Különösen a [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) lehet hasznos, ha gyorsan szeretnél segítséget kapni. Ha nem érkezik válasz, vagy még mindig el vagy akadva, nyiss egy issue-t és segítünk.
 
 ## Áttekintés {#overview}
 
-Now that you're set up, let's get an overview of React!
+Most hogy minden készen áll, kezdjük a React áttekintésével!
 
 ### Mi az a React? {#what-is-react}
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
+A React egy deklaratív, effektív, és rugalmas JavaScript könyvtár felhasználói felületek készítéséhez. Lehetővé teszi komplex felhasználói felületek összeállítását izolált kódrészletekből, amiket "komponenseknek" hívunk.
 
-React has a few different kinds of components, but we'll start with `React.Component` subclasses:
+A React rendelkezik egy pár komponens típussal, de most kezdjük a `React.Comoponent` aloszállyal:
 
 ```javascript
 class ShoppingList extends React.Component {
   render() {
     return (
       <div className="shopping-list">
-        <h1>Shopping List for {this.props.name}</h1>
+        <h1>{this.props.name} bevásárlólistája</h1>
         <ul>
           <li>Instagram</li>
           <li>WhatsApp</li>
@@ -147,51 +148,51 @@ class ShoppingList extends React.Component {
   }
 }
 
-// Example usage: <ShoppingList name="Mark" />
+// Példa használata: <ShoppingList name="Mark" />
 ```
 
-We'll get to the funny XML-like tags soon. We use components to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
+Nemsokára beszélünk a vicces XML szerű tag-ek ről is. A komponsensek segítségével mondjuk meg a React-nek, hogy mit szeretnénk látni a képernyőn. Ha az adatunk megváltozik, a React hatékonyan frissíti és újrarendereli a komponensünket.
 
-Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props` (short for "properties"), and returns a hierarchy of views to display via the `render` method.
+Itt a ShoppingList egy **React komponens osztály**, vagy **React komponens típus**. Egy komponens paramétereket fogad, amiket **props**-nak hívunk (angol "properties" rövidítése), és egy nézet hierarchiát ad vissza a `render` metóduson keresztül.
 
-The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
+A `render` metódus egy *leírását* adja vissza annak, amit a képernyőn szeretnél látni. A React fogja a leírást és megjeleníti az eredményt. Pontosabban a `render` metódus egy **React elem**-et ad vissza, ami egy könnyűsúlyú leírása annak, amit renderelni kell. A legtöbb React fejlesztő egy speciális szintaxist használ, ezt "JSX"-nek hívják, ami könnyebbé teszi ezen a struktúrák írását. A `<div />` szintaxist `React.createEelement('div')`-é transzformáljuk kompiláláskor. A fenti példa egyenértékű az alábbival:
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
-  React.createElement('h1', /* ... h1 children ... */),
-  React.createElement('ul', /* ... ul children ... */)
+  React.createElement('h1', /* ... h1 gyermekei ... */),
+  React.createElement('ul', /* ... ul gyermekei ... */)
 );
 ```
 
-[See full expanded version.](babel://tutorial-expanded-version)
+[Nézd meg a teljes verziót.](babel://tutorial-expanded-version)
 
-If you're curious, `createElement()` is described in more detail in the [API reference](/docs/react-api.html#createelement), but we won't be using it in this tutorial. Instead, we will keep using JSX.
+Ha érdekel a `createElement()` részletesebb leírása, nézd meg az [API referenciát](/docs/react-api.html#createelement), de ebben a tutoriálban ezt nem fogjuk használni. A JSX-et viszont igen.
 
-JSX comes with the full power of JavaScript. You can put *any* JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
+A JSX rendelkezik a JavaScript minden erejével. A JSX-ben *bármilyen* JavaScript kifejezést tehetsz kapcsos zárójelek közé. Minden React elem egy JavaScript objektum amit váltózokban tárolhatsz, vagy körbeküldhetsz a programodban.
 
-The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+A fenti `ShoppingList` komponens csak beépített DOM komponenseket renderel, mint a `<div />` és az `<li />`. De összeállíthatsz és renderelhetsz egyedi React komponenseket is. Például a `<ShoppingList />` írásával utalhatunk az egész bevásárlólistára. Minden React komponens elzártan és függetlenül operálhat; ez lehetővé teszi számodra komplex felhasználói kezelőfelületek építését egyszerű komponensekből.
 
 ## Kezdő Kód Ellenőrzése {#inspecting-the-starter-code}
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+Ha a tutoriálon a **böngésződből** fogsz dolgozni, nyisd meg ezt a kódot egy új fülön: **[Kezdő Kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Ha **helyi környezetben** fogsz dolgozni, nyisd meg a `src/index.js` fájlt a projekt mappádban (már korábban szerkesztetted a fájlt a [beállítások](#setup-option-2-local-development-environment) részben).
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+Ez a Kezdő Kód szolgál alapul ahhoz amit készítünk. A CSS stíluslapot megadtuk, hogy csak a React-re és a tic-tac-toe játék programozására kelljen fókuszálnod.
 
-By inspecting the code, you'll notice that we have three React components:
+A kód tanulmányozásával megállapíthatod, hogy három féle React komponensünk van:
 
 * Square
 * Board
 * Game
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+A Square komponens egy egyszerű `<button>`-t renderel, amíg a Board 9 Square-t. A Game komponens egy játéktáblát renderel helyörző értékekkel, amiket később módosítunk. Jelenleg nincs egyetlen interaktív komponens sem.
 
 ### Adattovábbítás Prop-okkal {#passing-data-through-props}
 
-To get our feet wet, let's try passing some data from our Board component to our Square component.
+Hogy végre bemocskoljuk a kezünk, küldjük adatot a Board komponensből a Square komponensnek.
 
-We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
+Erősen ajánljuk, hogy minden kódot kézzel írj a tutoriál során, és ne használj másolás/beillszetést. Ez hozzá fog járulni ahhoz, hogy jobban megértsd mi is történik, és később minden magától jön majd.
 
-In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
+A Board `renderSquare` metódusában változtasd meg a kódot, hogy egy `value` prop-ot tudj küldeni a Square komponensnek:
 
 ```js{3}
 class Board extends React.Component {
@@ -200,7 +201,7 @@ class Board extends React.Component {
   }
 ```
 
-Change Square's `render` method to show that value by replacing `{/* TODO */}` with `{this.props.value}`:
+Változtasd meg a Square komponens `render` metódusát úgy, hogy átírod a `{/* TODO */}` részt `{this.props.value}`-ra:
 
 ```js{5}
 class Square extends React.Component {
@@ -214,28 +215,28 @@ class Square extends React.Component {
 }
 ```
 
-Before:
+Előtte:
 
 ![React Devtools](../images/tutorial/tictac-empty.png)
 
-After: You should see a number in each square in the rendered output.
+Utána: Egy számot kell láss minden négyzetben a renderelés során.
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+Gratulálunk! Sikeresen "leküldtél egy prop-ot" egy szülő Board komponensből egy gyermek Square komponensnek. React alkalmazásokban a prop-ok leküldésével tudsz információt mozgatni szülőktől gyermek komponenseknek.
 
 ### Készíts egy Interaktív Komponenst {#making-an-interactive-component}
 
-Let's fill the Square component with an "X" when we click it.
-First, change the button tag that is returned from the Square component's `render()` function to this:
+Töltsük ki a Square komponenst egy "X"-el, ha rákattintunk.
+Először is változtasd meg a button taget a `render()` metódus visszatérésében erre:
 
 ```javascript{4}
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { alert('kattintás'); }}>
         {this.props.value}
       </button>
     );
@@ -243,17 +244,17 @@ class Square extends React.Component {
 }
 ```
 
-If you click on a Square now, you should see an alert in your browser.
+Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 
->Note
+>Megjegyzés
 >
->To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>A kevesebb gépelés és a [`this` félreérthető viselkedésének](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) elkerülése érdekében, innentől a [nyílfunkció szintaxist](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) fogjuk használni az eseménykezelőkhöz:
 >
 >```javascript{4}
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => alert('kattintás')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,13 +262,13 @@ If you click on a Square now, you should see an alert in your browser.
 >}
 >```
 >
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+>Vedd észre hogy, az `onClick={() => alert('kattintás')}` segítségével *egy függvényt* küldünk le prop-ként `onClick` néven. A React csak kattintás után fogja meghívni ezt a függvényt. Gyakori hiba csak ennyit írni `onClick={alert('kattintás')}`, és elfelejteni `() =>` részt. Ez meghívná a függvényt a komponens minden újrarenderelésénél.
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+Következő lépésként azt próbáljuk elérni, hogy a Square komponens "emlékezzen" arra hogy rá lett kattintva, és töltse ki magát egy "X"-el. Ahhoz hogy komponensek "emlékezni" tudjanak, **state**-t (állapotot) használnak.
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+React komponensekben állapotot a `this.state` segítségével deklarálhatunk a konstruktorban. A `this.state` állapotra úgy kell tekintenünk, hogy az privát legyen abban az osztályban amiben az definálva lett. Tároljuk a Square jelenlegi értékét a `this.state` objektumban, és változtassuk azt meg, ha a Square-re kattintunk.
 
-First, we'll add a constructor to the class to initialize the state:
+Először is adjunk hozzá egy konstruktort az osztályhoz, hogy inicializáljuk az állapotot:
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -280,7 +281,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => alert('kattintás')}>
         {this.props.value}
       </button>
     );
@@ -288,17 +289,17 @@ class Square extends React.Component {
 }
 ```
 
->Note
+>Megjegyzés
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start it with a `super(props)` call.
+>[JavaScript osztályokban](https://developer.mozilla.org/hu/docs/Web/JavaScript/Reference/Classes), mindig meg kell hívnod `super` metódust amikor definiálod a konstruktort egy alosztályban. Minden React komponens osztály ami rendelkezik egy `constructor`-al, egy `super(props)` hívással kell, hogy kezdődjön.
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+Most pedig változtassuk meg a Square `render` metódusát, hogy az állapot jelenlegi értékét mutassa:
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
-* Put the `className` and `onClick` props on separate lines for better readability.
+* Cseréld ki `this.props.value`-t `this.state.value`-ra a `<button>` tag-ben.
+* Cseréld ki az `onClick={...}` eseménykezelőt erre: `onClick={() => this.setState({value: 'X'})}`.
+* Tedd `className` és `onClick` prop-okat külön sorokba a jobb olvashatóság érdekében.
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+Ezen változtatások után a `<button>` tag amit a Square `render` metódusa visszatérít így néz ki:
 
 ```javascript{12-13,15}
 class Square extends React.Component {
@@ -322,38 +323,39 @@ class Square extends React.Component {
 }
 ```
 
-By calling `this.setState` from an `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+Amikor a Square komponens `render` metódusában az `onClick` kezelő meghívja a `this.setState` metódust, a React újrarendereli a Square komponenst minden alkalommal amikor a `<button>` elemre rákattintunk. A frissítés után a Square `this.state.value` értéke `'X'` lesz, tehát egy `X`-et fogunk látni a játéktáblán. Ha bármelyik Square-re kattintasz, egy `X` kell hogy megjelenjen.
 
-When you call `setState` in a component, React automatically updates the child components inside of it too.
+Amikor a `setState` metódust megívjuk egy komponensben, a React automatikusan frissíti annak minden gyermek komponensét is.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
 ### Fejlesztői Eszközök {#developer-tools}
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+A React Devtools fejlesztői eszközök kiegészítő [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)-hoz és [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)-hoz segít a React komponens fa vizsgálatában a böngésződ fejlesztői eszközeivel.
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+A React DevTools segít ellenőrizni a React komponenseid prop-jait és állapotait (state).
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tab will appear as the last tab to the right.
+<!-- TODO: Translate Inspect -->
+A React DevTools telepítése után kattints bármelyik elemre jobb egérgombbal az oldalon, majd kattitnts az "Inspect"-re a fejlesztői eszközök megnyitásához. Ekkor egy React fül nyílik meg utolsó fülként a jobb oldalon.
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**Ha azonban a CodePen-en dolgozol, egy pár extra lépésre szükség van ahhoz, hogy egy műküdjön:**
 
-1. Log in or register and confirm your email (required to prevent spam).
-2. Click the "Fork" button.
-3. Click "Change View" and then choose "Debug mode".
-4. In the new tab that opens, the devtools should now have a React tab.
+1. Jelentkezz be vagy regisztálj, és erősítsd meg az e-mail-ed (spam elkerülése érdekében).
+2. Kattints a "Fork" gombra.
+3. Kattints a "Change View"-ra, majd válaszd a "Debug mode"-t.
+4. Az új megnyíló fülön, a fejleszői eszközökben lesz egy React fül.
 
 ## Játék Befejezése {#completing-the-game}
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
+Kész vagyunk a tic-tac-toe játék alap építőelemeivel. Egy teljes játékhoz azonban az "X"-ek és "O"-k elhelyezésének a váltakozására van szükségünk a játéktáblán, és szüségünk van egy módra, hogy megállapíthassuk a győztest.
 
 ### Állapot Felemelése {#lifting-state-up}
 
-Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+Jelenleg minden Square komponens külön kezeli a játék állapotát. A győztes ellenőrzéséhez mind a 9 négyzet értékét egy helyen fogjuk kezelni.
 
-We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
+Azt gondolhatnánk, hogy a Board komponens csak egyszerűen végig kérdezi minden Square állapotát. Bár ez lehetséges a React-ben, nem támogatjuk, mert így a kód nehezen érthetővé válik, fogékony lesz hibákra, és nehéz lesz újraírni. Ehelyett a legjobb módszer ha a játék állapotát a szülő Board komponensben tároljuk minden Square komponens helyett. A Board komponens meg tudja mondani minden Square komponensnek mit mutasson prop-ok leküldésével, [ahogyan egy számot is leküldtünk minden Square komponensnek](#passing-data-through-props)
 
 **To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
 
@@ -403,7 +405,7 @@ We will now use the prop passing mechanism again. We will modify the Board to in
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
 Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
 
@@ -514,7 +516,7 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
 After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
 
@@ -584,7 +586,7 @@ function Square(props) {
 
 We have changed `this.props` to `props` both times it appears.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
 >Note
 >
@@ -689,7 +691,7 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
 
 ### Győztes Kinevezése {#declaring-a-winner}
 
@@ -751,7 +753,7 @@ We can now change the Board's `handleClick` function to return early by ignoring
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
 Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you're* probably the real winner here.
 
@@ -983,7 +985,7 @@ Finally, we need to move the `handleClick` method from the Board component to th
 
 At this point, the Board component only needs the `renderSquare` and `render` methods. The game's state and the `handleClick` method should be in the Game component.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
 
 ### Korábbi Lépések Mutatása {#showing-the-past-moves}
 
@@ -1043,7 +1045,7 @@ Let's `map` over the `history` in the Game's `render` method:
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
 For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
 
@@ -1107,7 +1109,7 @@ In the Game component's `render` method, we can add the key as `<li key={move}>`
     });
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
 
 Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
 
@@ -1184,7 +1186,7 @@ Finally, we will modify the Game component's `render` method from always renderi
 
 If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
 ### Összegzés {#wrapping-up}
 
