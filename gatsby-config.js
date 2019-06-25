@@ -8,8 +8,8 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'React: JavaScript keretrendszer felhasználói felületek létrehozásához',
-    siteUrl: 'https://reactjs.org',
+    title: 'React: A JavaScript library for building user interfaces',
+    siteUrl: 'https://hu.reactjs.org',
     rssFeedTitle: 'React',
     rssFeedDescription: 'JavaScript keretrendszer felhasználói felületek létrehozásához',
   },
