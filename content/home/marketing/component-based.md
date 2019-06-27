@@ -1,8 +1,8 @@
 ---
-title: Component-Based
+title: Komponens alapú
 order: 1
 ---
 
-Build encapsulated components that manage their own state, then compose them to make complex UIs.
+Hogy komplex felhasználói felületeket tudj létrehozni, építs egységbefoglalt komponenseket amik gondoskodnak a saját állapotukról és kombináld őket.
 
-Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
+Mivel a komponens logikáját sémák helyett JavaScriptben írod, könnyedén tudsz adatot mozgatni az alkalmazásban, és így az állapotok a DOM-on kívül maradnak.
