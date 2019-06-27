@@ -11,7 +11,7 @@ import {urlRoot} from 'site-constants';
 // $FlowFixMe This is a valid path
 import languages from '../../../content/languages.yml';
 
-const defaultDescription = 'JavaScript keretrendszer felhasználói felületek létrehozásához';
+const defaultDescription = 'JavaScript könyvtár felhasználói felületek létrehozásához';
 
 type Props = {
   title: string,

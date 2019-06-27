@@ -50,7 +50,7 @@ class Home extends Component {
     return (
       <Layout location={location}>
         <TitleAndMetaTags
-          title="React &ndash; JavaScript keretrendszer felhasználói felületek létrehozásához"
+          title="React &ndash; JavaScript könyvtár felhasználói felületek létrehozásához"
           canonicalUrl={createCanonicalUrl('/')}
         />
         <div css={{width: '100%'}}>
@@ -133,7 +133,7 @@ class Home extends Component {
                         fontSize: 30,
                       },
                     }}>
-                    JavaScript keretrendszer felhasználói felületek létrehozásához
+                    JavaScript könyvtár felhasználói felületek létrehozásához
                   </p>
                   <Flex
                     valign="center"

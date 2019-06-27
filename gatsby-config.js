@@ -11,7 +11,7 @@ module.exports = {
     title: 'React: A JavaScript library for building user interfaces',
     siteUrl: 'https://hu.reactjs.org',
     rssFeedTitle: 'React',
-    rssFeedDescription: 'JavaScript keretrendszer felhasználói felületek létrehozásához',
+    rssFeedDescription: 'JavaScript könyvtár felhasználói felületek létrehozásához',
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
