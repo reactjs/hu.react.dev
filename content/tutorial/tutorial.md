@@ -355,13 +355,13 @@ Kész vagyunk a tic-tac-toe játék alap építőelemeivel. Egy teljes játékho
 
 Jelenleg minden Square komponens külön kezeli a játék állapotát. A győztes ellenőrzéséhez mind a 9 négyzet értékét egy helyen fogjuk kezelni.
 
-Azt gondolhatnánk, hogy a Board komponens csak egyszerűen végig kérdezi minden Square állapotát. Bár ez lehetséges a React-ben, nem támogatjuk, mert így a kód nehezen érthetővé válik, fogékony lesz hibákra, és nehéz lesz újraírni. Ehelyett a legjobb módszer ha a játék állapotát a szülő Board komponensben tároljuk minden Square komponens helyett. A Board komponens meg tudja mondani minden Square komponensnek mit mutasson prop-ok leküldésével, [ahogyan egy számot is leküldtünk minden Square komponensnek](#passing-data-through-props)
+Azt gondolhatnánk, hogy a Board komponens csak egyszerűen végigkérdezi minden Square állapotát. Bár ez lehetséges a React-ben, nem támogatjuk, mert így a kód nehezen érthetővé válik, fogékony lesz hibákra, és nehéz lesz újraírni. Ehelyett a legjobb módszer ha a játék állapotát a szülő Board komponensben tároljuk minden Square komponens helyett. A Board komponens meg tudja mondani minden Square komponensnek mit mutasson prop-ok leküldésével, [ahogyan egy számot is leküldtünk minden Square komponensnek](#passing-data-through-props)
 
-**To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
+**Adat gyűjtéséhez több gyermektől, vagy ahhoz hogy két gyermek komponens kommunikálni tudjon egymással, az állapotot amin a komponensek osztozni fognak egy köszös szülő komponensben kell hogy deklaráld. A szülő komponens ezután le tudja küldeni a megosztott állapotot a gyermekeknek prop-ok segítségével; ez szinkronizálja a gyermekeket egymással és a szülő komponensükkel.**
 
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out.
+A helyi állapot felemelése egy szülő komponensbe gyakroi tevékyenség amikor React komponenseket írunk újra. -- Ragadjuk meg az alkalmat és próbáljuk ezt ki gyakorlatban.
 
-Add a constructor to the Board and set the Board's initial state to contain an array of 9 nulls corresponding to the 9 squares:
+Adj hozzá egy konstruktort a Board komponenshez és állítsd be a kezdő állapotot, hogy az tartalmazzon egy tömböt 9 null értékkel, amik a 9 négyzetnek felelnek meg:
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -377,7 +377,7 @@ class Board extends React.Component {
   }
 ```
 
-When we fill the board in later, the `this.state.squares` array will look something like this:
+Amikor később töltjük ki a táblát, a `this.state.sqares` tömb valahogy így fog kinézni:
 
 ```javascript
 [
@@ -387,7 +387,7 @@ When we fill the board in later, the `this.state.squares` array will look someth
 ]
 ```
 
-The Board's `renderSquare` method currently looks like this:
+A Board komponens `renderSquare` metóudsa jelenleg így néz ki:
 
 ```javascript
   renderSquare(i) {
@@ -395,9 +395,9 @@ The Board's `renderSquare` method currently looks like this:
   }
 ```
 
-In the beginning, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component). This is why Square currently ignores the `value` prop passed to it by the Board.
+Kezdetben [leküldtük a `value` prop-ot](#passing-data-through-props) a Board komponensből ahhoz, hogy számokat mutassunk 0-tól 8-ig minden Square komobensben. Egy másik korábbli lépésben lecseréltük a számokat "X" jelekre amit a [Square komponens saját állapota határozott meg](#making-an-interactive-component). A Square komponens jelenleg ezért nem veszi figyelmbe a `value` prop értékét, amit a Board komponens küld neki.
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
+Most megint igyénybe fogjuk venni a prop küldési mechanizmust. Úgy módosítjük a Board komponenst, hogy az értesítsen minden Square komponenst annak jelenlegi értékéről (`'X'`, `'O'`, vagy `null`). A `squares` tömböt már korábban definiáltuk a Board komponens konstruktorában, és most úgy módosítjúk a Board komponens `renderSquare` metódusát, hogy az ebből a tömbből olvasson:
 
 ```javascript{2}
   renderSquare(i) {
@@ -407,11 +407,11 @@ We will now use the prop passing mechanism again. We will modify the Board to in
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+Így most minden Square komponens fogadni egy `value` prop-ot, ami egy `'X'`, `'O'`, vagy `null` üres négyzetek esetében.
 
-Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+A következőben meg kell változtatnunk mi történjen, ha a Square komponensre rákattintanak. Most már a Board komponens kezeli melyik négyzetek vannak kitöltve. Valahogy el kell érnünk, hogy a Square komponens frissítse a Board állapotát. Mivel az állapot privát arra a komponensre nézve amiben az definiálva van, a Board állapota nem frissíthető közvetlenül a Square komponensből.
 
-Instead, we'll pass down a function from the Board to the Square, and we'll have Square call that function when a square is clicked. We'll change the `renderSquare` method in Board to:
+Ehelyett leküldünk egy függvényt a Board komponensből a Square-nek, és hagyjuk hogy a Square meghívja ezt a függvényt amikor egy négyzetre kattintanak. Ehhez meg kell változtatnunk a `renderSquare` metódust a Board komponensben:
 
 ```javascript{5}
   renderSquare(i) {
@@ -424,17 +424,17 @@ Instead, we'll pass down a function from the Board to the Square, and we'll have
   }
 ```
 
->Note
+>Megjegyzés
 >
->We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
+>Az olvashatóság érdekében a visszaküldött elemet több sorba tördeljük, és hozzáadunk zárójeleket is, hogy a JavaScript ne adjon pontosvesszőt a `return` után így megtörve a kódunkat.
 
-Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
+Így már két prop-ot küldünk le a Board-ból a Square-nek: `value` és `onClick`. Az `onClick` prop egy függvény amit a Square meg tud hívni, ha rákattintanak. A következő változásokat eszközöljük a Square komponensen:
 
-* Replace `this.state.value` with `this.props.value` in Square's `render` method
-* Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
-* Delete the `constructor` from Square because Square no longer keeps track of the game's state
+* Cseréld le a `this.state.value`-t `this.props.value`-ra a Square `render` metódusában
+* Cseréld le a `this.setState()`-t `this.props.onClick()`-re a Square `render` metódusában
+* Töröld a `constructor`-t  a Square komponensből, mivel az többé nem követi a játék állását
 
-After these changes, the Square component looks like this:
+A változások után a Square komponens így néz ki:
 
 ```javascript{1,2,6,8}
 class Square extends React.Component {
@@ -451,19 +451,19 @@ class Square extends React.Component {
 }
 ```
 
-When a Square is clicked, the `onClick` function provided by the Board is called. Here's a review of how this is achieved:
+Amikor a Square komponensre rákattintanak, az `onClick` függvény meg lesz hívva, amit a Board komponens szolgáltat. Íme egy összefoglaló, hogy ez hogyan is lehetséges:
 
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+1. Az `onClick` prop a beépített DOM `<button>` komponensben közli a React-el, hogy állítson fel egy kattintás esemélyfigyelőt.
+2. Amikor a gombra kattintanak, a React meghívja az `onClick` eseményfigyelőt, ami a Square komponens `render()` metódusában definiálva lett.
+3. Ez az eseményfigyelő meghívja a `this.props.onClick()` függvényt. A Square `onClick` prop-ja a Board komponensben lett definiálva.
+4. Mivel a Board leküldte a `onClick={() => this.handleClick(i)}` prop-ot a Square komponensnek, a Square meghívja a `this.handleClick(i)` függvényt, ha rákattintanak.
+5. Mivel a `handleClick()` metódust még nem definiáltuk, a kódunk összeomlik. Ha most kattintasz egy négyzetre, egy piros hibát kell látnod a képernyőt, ami valami olyat mond, hogy "this.handleClik is not a function", azaz "a this.handleClick nem függvény".
 
->Note
+>Megjegyzés
 >
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `onClick` prop or Board's `handleClick` method, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>A `<button>` button elem `onClick` attribútumának van egy speciális jelentése a React számára, mivel ez egy beépített komponens. Egy egyedi komponens mint például a Square, a megnezvezés tőled függ. Más nevet is adhatuk a Square `onClick` prop-jának, vagy a Board `handleClick` metódusának, és a kód ugyanúgy működne. A React-ben megállapodás alapján `on[Event]`-nek hívjuk azokat a prop-okat amik eseményeket képviselnek, és `handle[Event]`-nek azokat a metódusokat amik esemélyeket kezelnek.
 
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
+Ha rákattintuk egy Square komponensre, egy hibát kell hogy kapjunk, mivel a `handleClick` még nincs definiálva. Most hozzáadjuk a `handleClick` metódust a Board osztályhoz:
 
 ```javascript{9-13}
 class Board extends React.Component {
@@ -518,61 +518,61 @@ class Board extends React.Component {
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
+Ezen változtatások után újra rá tudunk kattintani a Square komponensekre hogy kitöltsük őket, ahogy eddig is. Azonban az állapot most már a Board komponensben van tárolva, ahelyett, hogy minden Square külön tárolná a saját állapotát. Ha a Board állapota megváltozik, a Square komponens automatikusan újra fog renderelni. Minden négyzet állapotának a Board komponensben való tárolása lehetővé teszi hogy a jövőben megállapítsuk a győztest.
 
-Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
+Mivel a Square komponens többé nem kezel állapotot, a Square komponens most már csak a Board komponenstől fogad értékeket, és értesíti azt ha rákattintanak. React nyelven ez azt jelenti, hogy a Square komponensek  **irányított komponensek**. A Board komponens teljes mértékben irányítja őket.
 
-Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
+Vedd észre hogy a `handleClick` metódusban meghívjuk a `.slice()` metódust a tömbbön, hogy a `squares` tömb egy másolatát módosítsuk, ne az eredetit. A következő szekcióban elmagyarázzuk miért készítjük ezt a `squares` tömb másolatot.
 
 ### Miért Fontos a Megváltoztathatatlanság {#why-immutability-is-important}
 
-In the previous code example, we suggested that you use the `.slice()` method to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+Az előző kód példában azt tanácsoltuk hogy a `.slice()` metódussal készítsünk egy `squares` tömb másolatot, hogy ne az eredeti tömböt módosítsuk. Most megvitatjuk a megváltoztathatatlanságot és hogy miért fontos ezt megtanulni.
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
+Adat változatására két általános megközelítés létezik. Az első megközelítés az, hogy közvetlenül *megváltoztatjuk* az adat értékét. A második megközelítés lecserélni az adatot egy másolattal ami tartalmazza a kívánt változtatásokat.
 
 #### Adatváltozás Mutációval {#data-change-with-mutation}
 ```javascript
-var player = {score: 1, name: 'Jeff'};
+var player = {score: 1, name: 'György'};
 player.score = 2;
-// Now player is {score: 2, name: 'Jeff'}
+// A player most {score: 2, name: 'György'}
 ```
 
 #### Adatváltozás Mutáció Nélkül {#data-change-without-mutation}
 ```javascript
-var player = {score: 1, name: 'Jeff'};
+var player = {score: 1, name: 'György'};
 
 var newPlayer = Object.assign({}, player, {score: 2});
-// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+// A player változatlan, a newPlayer pedig {score: 2, name: 'György'}
 
-// Or if you are using object spread syntax proposal, you can write:
+// Vagy ha használod az objektum terítési szintaxis javaslatot, ezt is írhatod:
 // var newPlayer = {...player, score: 2};
 ```
 
-The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
+A végeredmény ugyanaz, de azzal hogy nem közvetlenül változtatjuk meg az eredeti (vagy eredeti alá rendelt) adatot, hasznos lehet a lent leírt okokból.
 
 #### Komplex Tulajdonságok Válnak Egyszerűvé {#complex-features-become-simple}
 
-Immutability makes complex features much easier to implement. Later in this tutorial, we will implement a "time travel" feature that allows us to review the tic-tac-toe game's history and "jump back" to previous moves. This functionality isn't specific to games -- an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game's history intact, and reuse them later.
+A megváltoztathatatlanság bonyolult tulajdonságok válnak egyszerűen implementálhatóvá. Később ebben a tutorialban implementálni fogunk egy "időutazó" funkciót ami lehetővé teszi számunkra a tic-tac-toe játék lépéstörténetének tanulmányozását és abban való korábbi lépésre való "visszaugrást". Ez a funkció nem specifikus játékokra -- a képesség visszavonni vagy újracsinálni bizonyos tevékenységeket egy gyakori követelmény alkalmazásokban. A közvetlen adatváltozás elkerülésével érintetlenül tudjuk megtartani a játék lépéstörténetének korábbi verzióit, és ezt később újrahasznosíthatjuk.
 
 #### Változások Detektálása {#detecting-changes}
 
-Detecting changes in mutable objects is difficult because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
+Változások detektálása megváltoztatható objektumokban nehéz feladat, mivel azok közvetlenül módosíthatóak. Ez a detektálás megköveteli a megváltoztatható objektumtól annak összehasonlítását saját maga korábbi másolataihoz és a teljes objektum fa bejárását.
 
-Detecting changes in immutable objects is considerably easier. If the immutable object that is being referenced is different than the previous one, then the object has changed.
+Változások detektálása egy megváltoztathatatlan objektumban jelentősen egyszerűbb. Ha a megváltoztathatatlan objektum amire referálunk különbözik a korábbitól, akkor az objektum megváltozott.
 
 #### Újrarenderelés Meghatározása React-ben {#determining-when-to-re-render-in-react}
 
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering.
+A megváltoztathatatlanság legfőbb előnye, hogy az segít _tiszta komponenseket_ építeni React-ben. A megváltoztathatatlan adat könnyen megállapíthatja ha valamilyen változás történt ami segít meghatározni hogy egy komponensnek újra kell-e renderelnie.
 
-You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
+Többet tanulhatsz a `shouldComponentUpdate()` metódusról és hogy hogyan készíts *tiszta komponenseket* a [Teljesítmény Optimalizáció](/docs/optimizing-performance.html#examples) olvasásával.
 
 ### Függvény Komponensek {#function-components}
 
-We'll now change the Square to be a **function component**.
+Most átalakítjuk a Square komponenst egy **függvény komponenssé**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+A React-ben a **függvény komponensek** egy egyszerűbb módja komponensek írásának amik csak egy `render` metódust tartalmaznak, és nincs saját állapotuk. Ahelyett hogy osztályokat definiálunk amik a `React.Component` kiterjesztései, írhatunk egy függvényt ami veszi a `prop`-okat inputként, és visszaküldi azt, amit renderelni kéne. A függvény komponensek írása kevesébé időigényes, és sok komponens kifejezhető így.
 
-Replace the Square class with this function:
+Cseréld le a Square oszályt erre a függvényre:
 
 ```javascript
 function Square(props) {
@@ -584,13 +584,13 @@ function Square(props) {
 }
 ```
 
-We have changed `this.props` to `props` both times it appears.
+Lecseréltük a `this.props`-t `props`-ra mindkét helyen ahol megjelent.
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
->Note
+>Megjegyzés
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
+>Amikor módosítottuk a Square függvényt egy függvény komponense, megváltoztattuk a `onClick={() => this.props.onClick()}`-t is egy rövidebb `onClick={props.onClick}` formára is (vedd észre a zárójelek hiányát *mindkettő* oldalon).
 
 ### Szerepváltás {#taking-turns}
 
