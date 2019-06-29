@@ -14,7 +14,7 @@ redirect_from:
 
 Ez a tutoriál nem feltételez korábbi React ismereteket.
 
-## Mielőtt Elkezdjük a Tutoriált {#before-we-start-the-tutorial}
+## Mielőtt elkezdjük a Tutoriált {#before-we-start-the-tutorial}
 
 Ebben a tutoriálban egy kis játékot fogunk készíteni. **Csábító lehet átugrani, mivel nem játékokat készítesz -- de azért adj neki egy esélyt.** A technikák amiket itt tanulsz alapvetőek bármilyen React alkalmazáshoz, és ha ezeket sikerül elsajátítanod, úgy sokkal jobban meg fogod érteni a React működését.
 
@@ -31,7 +31,7 @@ Ez a tutoriál szekciókra van felosztva:
 
 Hogy eredményes légy, nem kötelező befejezned minden egyes szekciót egyszerre. Próbálj meg olyan messzire eljutni, amennyire tudsz -- akkor is, ha ez egy vagy két szekció.
 
-### Mit Készítünk? {#what-are-we-building}
+### Mit készítünk? {#what-are-we-building}
 
 Ebben a tutoriálban megmutatjuk, hogy hogyan készíthetsz egy tic-tac-toe játékot React-ben.
 
@@ -52,7 +52,7 @@ Ha először szeretnéd átnézni a JavaScript-et akkor [ezt az útmutatót](htt
 
 Ezt a tutoriált két féle képpen is elvégezheted: kódolhatsz a böngésződből, vagy felállíthatsz egy helyi fejlesztői környezetet.
 
-### "1. Opció: Kódolj a Böngésződben" {#setup-option-1-write-code-in-the-browser}
+### "1. Opció: kódolj a böngésződben" {#setup-option-1-write-code-in-the-browser}
 
 A leggyorsabban így kezdhetsz neki!
 
@@ -61,7 +61,7 @@ Először is nyisd meg a **[Kezdő kódot](https://codepen.io/gaearon/pen/oWWQNa
 
 Ugord át a második opciót, és a React áttekintéséhez menj az [Áttekintés](#overview) szekcióhoz.
 
-### "2. Opció: Helyi Fejlesztői Környezet" {#setup-option-2-local-development-environment}
+### "2. Opció: helyi fejlesztői környezet" {#setup-option-2-local-development-environment}
 
 Ez az opció szabadon választható, és nem kötelező a tutoriál elvégzéséhez!
 
@@ -118,7 +118,7 @@ Szintaxis kiemeléshez a következő [instrukciókat](https://babeljs.io/docs/ed
 
 </details>
 
-### Segítség, Elakadtam! {#help-im-stuck}
+### Segítség, elakadtam! {#help-im-stuck}
 
 Ha bármikor elekadsz, a [közösségi támogatási források](/community/support.html) segíthet. Különösen a [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) lehet hasznos, ha gyorsan szeretnél segítséget kapni. Ha nem érkezik válasz, vagy még mindig el vagy akadva, nyiss egy issue-t és segítünk.
 
@@ -172,7 +172,7 @@ A JSX rendelkezik a JavaScript minden erejével. A JSX-ben *bármilyen* JavaScri
 
 A fenti `ShoppingList` komponens csak beépített DOM komponenseket renderel, mint a `<div />` és az `<li />`. De összeállíthatsz és renderelhetsz egyedi React komponenseket is. Például a `<ShoppingList />` írásával utalhatunk az egész bevásárlólistára. Minden React komponens elzártan és függetlenül operálhat; ez lehetővé teszi számodra komplex felhasználói kezelőfelületek építését egyszerű komponensekből.
 
-## Kezdő Kód Ellenőrzése {#inspecting-the-starter-code}
+## Kezdő kód ellenőrzése {#inspecting-the-starter-code}
 
 Ha a tutoriálon a **böngésződből** fogsz dolgozni, nyisd meg ezt a kódot egy új fülön: **[Kezdő Kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Ha **helyi környezetben** fogsz dolgozni, nyisd meg a `src/index.js` fájlt a projekt mappádban (már korábban szerkesztetted a fájlt a [beállítások](#setup-option-2-local-development-environment) részben).
 
@@ -186,7 +186,7 @@ A kód tanulmányozásával megállapíthatod, hogy három féle React komponens
 
 A Square komponens egy egyszerű `<button>`-t renderel, amíg a Board 9 Square-t. A Game komponens egy játéktáblát renderel helyörző értékekkel, amiket később módosítunk. Jelenleg nincs egyetlen interaktív komponens sem.
 
-### Adattovábbítás Prop-okkal {#passing-data-through-props}
+### Adattovábbítás prop-okkal {#passing-data-through-props}
 
 Hogy végre bemocskoljuk a kezünk, küldjük adatot a Board komponensből a Square komponensnek.
 
@@ -227,7 +227,7 @@ Utána: Egy számot kell láss minden négyzetben a renderelés során.
 
 Gratulálunk! Sikeresen "leküldtél egy prop-ot" egy szülő Board komponensből egy gyermek Square komponensnek. React alkalmazásokban a prop-ok leküldésével tudsz információt mozgatni szülőktől gyermek komponenseknek.
 
-### Készíts egy Interaktív Komponenst {#making-an-interactive-component}
+### Készíts egy interaktív komponenst {#making-an-interactive-component}
 
 Töltsük ki a Square komponenst egy "X"-el, ha rákattintunk.
 Először is változtasd meg a button taget a `render()` metódus visszatérésében erre:
@@ -329,7 +329,7 @@ Amikor a `setState` metódust megívjuk egy komponensben, a React automatikusan 
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
-### Fejlesztői Eszközök {#developer-tools}
+### Fejlesztői eszközök {#developer-tools}
 
 A React Devtools fejlesztői eszközök kiegészítő [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)-hoz és [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)-hoz segít a React komponens fa vizsgálatában a böngésződ fejlesztői eszközeivel.
 
@@ -347,11 +347,11 @@ A React DevTools telepítése után kattints bármelyik elemre jobb egérgombbal
 3. Kattints a "Change View"-ra, majd válaszd a "Debug mode"-t.
 4. Az új megnyíló fülön, a fejleszői eszközökben lesz egy React fül.
 
-## Játék Befejezése {#completing-the-game}
+## Játék befejezése {#completing-the-game}
 
 Kész vagyunk a tic-tac-toe játék alap építőelemeivel. Egy teljes játékhoz azonban az "X"-ek és "O"-k elhelyezésének a váltakozására van szükségünk a játéktáblán, és szüségünk van egy módra, hogy megállapíthassuk a győztest.
 
-### Állapot Felemelése {#lifting-state-up}
+### Állapot felemelése {#lifting-state-up}
 
 Jelenleg minden Square komponens külön kezeli a játék állapotát. A győztes ellenőrzéséhez mind a 9 négyzet értékét egy helyen fogjuk kezelni.
 
@@ -490,7 +490,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = 'Következő játékos X';
 
     return (
       <div>
@@ -524,20 +524,20 @@ Mivel a Square komponens többé nem kezel állapotot, a Square komponens most m
 
 Vedd észre hogy a `handleClick` metódusban meghívjuk a `.slice()` metódust a tömbbön, hogy a `squares` tömb egy másolatát módosítsuk, ne az eredetit. A következő szekcióban elmagyarázzuk miért készítjük ezt a `squares` tömb másolatot.
 
-### Miért Fontos a Megváltoztathatatlanság {#why-immutability-is-important}
+### Megváltoztathatatlanság fontossága {#why-immutability-is-important}
 
 Az előző kód példában azt tanácsoltuk hogy a `.slice()` metódussal készítsünk egy `squares` tömb másolatot, hogy ne az eredeti tömböt módosítsuk. Most megvitatjuk a megváltoztathatatlanságot és hogy miért fontos ezt megtanulni.
 
 Adat változatására két általános megközelítés létezik. Az első megközelítés az, hogy közvetlenül *megváltoztatjuk* az adat értékét. A második megközelítés lecserélni az adatot egy másolattal ami tartalmazza a kívánt változtatásokat.
 
-#### Adatváltozás Mutációval {#data-change-with-mutation}
+#### Adatváltozás mutációval {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'György'};
 player.score = 2;
 // A player most {score: 2, name: 'György'}
 ```
 
-#### Adatváltozás Mutáció Nélkül {#data-change-without-mutation}
+#### Adatváltozás mutáció nélkül {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'György'};
 
@@ -550,23 +550,23 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 A végeredmény ugyanaz, de azzal hogy nem közvetlenül változtatjuk meg az eredeti (vagy eredeti alá rendelt) adatot, hasznos lehet a lent leírt okokból.
 
-#### Komplex Tulajdonságok Válnak Egyszerűvé {#complex-features-become-simple}
+#### Komplex tulajdonságok válnak egyszerűvé {#complex-features-become-simple}
 
 A megváltoztathatatlanság bonyolult tulajdonságok válnak egyszerűen implementálhatóvá. Később ebben a tutorialban implementálni fogunk egy "időutazó" funkciót ami lehetővé teszi számunkra a tic-tac-toe játék lépéstörténetének tanulmányozását és abban való korábbi lépésre való "visszaugrást". Ez a funkció nem specifikus játékokra -- a képesség visszavonni vagy újracsinálni bizonyos tevékenységeket egy gyakori követelmény alkalmazásokban. A közvetlen adatváltozás elkerülésével érintetlenül tudjuk megtartani a játék lépéstörténetének korábbi verzióit, és ezt később újrahasznosíthatjuk.
 
-#### Változások Detektálása {#detecting-changes}
+#### Változások észlelése {#detecting-changes}
 
-Változások detektálása megváltoztatható objektumokban nehéz feladat, mivel azok közvetlenül módosíthatóak. Ez a detektálás megköveteli a megváltoztatható objektumtól annak összehasonlítását saját maga korábbi másolataihoz és a teljes objektum fa bejárását.
+A változások észlelése megváltoztatható objektumokban nehéz feladat, mivel azok közvetlenül módosíthatóak. Ez az észlelés megköveteli a megváltoztatható objektumtól, hogy azt összehasonlítsuk saját maga korábbi másolataihoz és a teljes objektum fa bejárását.
 
-Változások detektálása egy megváltoztathatatlan objektumban jelentősen egyszerűbb. Ha a megváltoztathatatlan objektum amire referálunk különbözik a korábbitól, akkor az objektum megváltozott.
+A változások észlelése egy megváltoztathatatlan objektum esetén jelentősen egyszerűbb. Ha a megváltoztathatatlan objektum amire referálunk különbözik a korábbitól, akkor az objektum megváltozott.
 
-#### Újrarenderelés Meghatározása React-ben {#determining-when-to-re-render-in-react}
+#### Újrarenderelés megállapítása React-ben {#determining-when-to-re-render-in-react}
 
-A megváltoztathatatlanság legfőbb előnye, hogy az segít _tiszta komponenseket_ építeni React-ben. A megváltoztathatatlan adat könnyen megállapíthatja ha valamilyen változás történt ami segít meghatározni hogy egy komponensnek újra kell-e renderelnie.
+A megváltoztathatatlanság legfőbb előnye, hogy az segít _tiszta komponenseket_ építeni React-ben. A megváltoztathatatlan adat könnyen megállapíthatja ha valamilyen változás történt ami segít megállapítani hogy egy komponensnek újra kell-e renderelnie.
 
 Többet tanulhatsz a `shouldComponentUpdate()` metódusról és hogy hogyan készíts *tiszta komponenseket* a [Teljesítmény Optimalizáció](/docs/optimizing-performance.html#examples) olvasásával.
 
-### Függvény Komponensek {#function-components}
+### Függvény komponensek {#function-components}
 
 Most átalakítjuk a Square komponenst egy **függvény komponenssé**.
 
@@ -590,13 +590,13 @@ Lecseréltük a `this.props`-t `props`-ra mindkét helyen ahol megjelent.
 
 >Megjegyzés
 >
->Amikor módosítottuk a Square függvényt egy függvény komponense, megváltoztattuk a `onClick={() => this.props.onClick()}`-t is egy rövidebb `onClick={props.onClick}` formára is (vedd észre a zárójelek hiányát *mindkettő* oldalon).
+>Amikor módosítottuk a Square függvényt egy függvény komponense, megváltoztattuk a `onClick={() => this.props.onClick()}`-t is egy rövidebb `onClick={props.onClick}` formára is (vedd észre *mindkét* zárójel hiányát).
 
 ### Szerepváltás {#taking-turns}
 
-We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
+Most pedig ki kell javítanunk egy egyértelmű hibát a tic-tac-toe játékunkban: "O"-kat még nem lehet felvinni a táblára.
 
-We'll set the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
+Most beállítjuk az "X"-et alapértelmezett első lépésnek. Az alapértelmezett lépést a kezdő állapot módosításával állíthatjuk be a Board konstruktorában:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -609,7 +609,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
+Minden alkalommal mikor egy játékos lép, az `xIsNext` (egy boolean) értékét váltogatjuk, hogy meg tudjuk határozni melyik játékos következik és hogy a játék állása el legyen mentve. Módosítjuk a Board `handleClick` metódusát hogy váltogassa az `xIsNext` értékét:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -622,19 +622,19 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
   }
 ```
 
-With this change, "X"s and "O"s can take turns. Try it!
+Ezzel a változtatással, az "X"-ek és az "O"-k most már váltakoznak. Próbáld ki!
 
-Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
+Változtassuk meg a "státusz" szöveget is a Board `render` metódusában, hogy mutassa ki a következő játékos:
 
 ```javascript{2}
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const status = 'Következő játékos: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
-      // the rest has not changed
+      // más változás nincs
 ```
 
-After applying these changes, you should have this Board component:
+Ezen változtatások után a Board komponensed így kell hogy kinézzen:
 
 ```javascript{6,11-16,29}
 class Board extends React.Component {
@@ -665,7 +665,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       <div>
@@ -693,9 +693,9 @@ class Board extends React.Component {
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
 
-### Győztes Kinevezése {#declaring-a-winner}
+### Győztes kihirdetése {#declaring-a-winner}
 
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. Copy this helper function and paste it at the end of the file:
+Most hogy már mutatjuk ki a következő játékos, azt is mutatnunk kéne ha a játékot valaki megnyeri, és nincs több lépésre szükség. Másold be ezt a segédfüggvényt a fájl végére:
 
 ```javascript
 function calculateWinner(squares) {
@@ -719,25 +719,25 @@ function calculateWinner(squares) {
 }
 ```
 
-Given an array of 9 squares, this function will check for a winner and return `'X'`, `'O'`, or `null` as appropriate.
+Adott egy 9 néygzetet tartalmazó tömb, ez a függvény leellenőrzi hogy van-e győztes, és ennek mefelelően visszatérhet `'X'`-szel, `'O'`-val, vagy `null`-val.
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
+A `calculateWinner(squares)` függvényt meghívjuk a Board `render` metódusában, hogy megtudjuk van-e győztes. Ha egy játékos nyert, akkor mutathatunk valami olyan szöveget mint: "Győztes: X" vagy "Győztes: O". Lecseréljük a `status` deklarációját is a Board `render` metódusában erre a kódra:
 
 ```javascript{2-8}
   render() {
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Győztes: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
-      // the rest has not changed
+      // más változás nincs
 ```
 
-We can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
+Most már megváltoztathatjuk a Board `handleClick` metódusát is, hogy az korán térjen vissza, ignorálva a kattintásokat ha valaki megnyerte a játékot vagy ha a Square már ki van töltve:
 
 ```javascript{3-5}
   handleClick(i) {
@@ -755,23 +755,23 @@ We can now change the Board's `handleClick` function to return early by ignoring
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you're* probably the real winner here.
+Gratulálunk! Most már van egy működő tic-tac-toe játékod. És közben megtanultad a React alapjait is. Szóval igazából itt *te vagy* az igazi nyertes.
 
-## Időutazás Hozzáadása {#adding-time-travel}
+## Időutazás hozzáadása {#adding-time-travel}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+Egy utolsó gyakorlatként tegyük lehetővé az "időutazást" korábbi játékállásokhoz.
 
-### Lépéstörténet Tárolása {#storing-a-history-of-moves}
+### Lépéstörténet tárolása {#storing-a-history-of-moves}
 
-If we mutated the `squares` array, implementing time travel would be very difficult.
+Ha mutáltuk volna a `squares` tömböt, az időutazás implementálása nagyon bonyolult lenne.
 
-However, we used `slice()` to create a new copy of the `squares` array after every move, and [treated it as immutable](#why-immutability-is-important). This will allow us to store every past version of the `squares` array, and navigate between the turns that have already happened.
+Mi azonban a `slice()` metódust használtuk új `squares` tömb másolatok létrehozásához minden lépésnél, és így [megváltoztathatatlanként kezeltük azt](#why-immutability-is-important). Ez lehetővé teszi majd a `squares` tömb minden korábbi verziójának eltárolását, és hogy navigálni tudjunk a már megtörtént lépések között.
 
-We'll store the past `squares` arrays in another array called `history`. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+A korábbi `squares` tömböket egy új, `history` nevű tömbben fogjuk tárolni. A `history` tömb a tábla minden állását képviseli az elsőtől az utolsó lépésig, és így néz ki:
 
 ```javascript
 history = [
-  // Before first move
+  // Az első lépés előtt
   {
     squares: [
       null, null, null,
@@ -779,7 +779,7 @@ history = [
       null, null, null,
     ]
   },
-  // After first move
+  // Az első lépés után
   {
     squares: [
       null, null, null,
@@ -787,7 +787,7 @@ history = [
       null, null, null,
     ]
   },
-  // After second move
+  // A második lépés után
   {
     squares: [
       null, null, null,
@@ -799,15 +799,15 @@ history = [
 ]
 ```
 
-Now we need to decide which component should own the `history` state.
+Most el kell döntenünk melyik komonens birtokolja a `history` állapotot.
 
-### Állapot Felemelése, Újra {#lifting-state-up-again}
+### Állapot ismételt felemelése {#lifting-state-up-again}
 
-We'll want the top-level Game component to display a list of past moves. It will need access to the `history` to do that, so we will place the `history` state in the top-level Game component.
+Szeretnénk ha a legfelsőbb szintű Game komponens mutatná a korábbi lépések listáját. Ehhez hozzá kell hogy férjen a `history`-hoz, szóval a `history` állapotot a legfelsőbb szintű Game komponensbe helyezzük.
 
-Placing the `history` state into the Game component lets us remove the `squares` state from its child Board component. Just like we ["lifted state up"](#lifting-state-up) from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board's data, and lets it instruct the Board to render previous turns from the `history`.
+A `history` állapot Game komponensben való elhelyezésével eltávolíthatjuk a `squares` állapotot annak gyermek komponenséből, a Board komponensből. Ugyanúgy ahogy a Square komponensből ["felemeltük az állapotot"](#lifting-state-up) a Board komponensbe, most felemeljük azt a Board-ból a legfelsőbb szintű Game komponensbe. Ez teljes felügyeletet ad a Game komponensnek a Board adata felett, és utasíthatja a Board komponenst korábbi állások renderelésére a `history`-ból.
 
-First, we'll set up the initial state for the Game component within its constructor:
+Először is beállítjuk a kezdeti állapotot a Game komponens konstruktorában:
 
 ```javascript{2-10}
 class Game extends React.Component {
@@ -828,7 +828,7 @@ class Game extends React.Component {
           <Board />
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
+          <div>{/* státusz */}</div>
           <ol>{/* TODO */}</ol>
         </div>
       </div>
@@ -837,13 +837,13 @@ class Game extends React.Component {
 }
 ```
 
-Next, we'll have the Board component receive `squares` and `onClick` props from the Game component. Since we now have a single click handler in Board for many Squares, we'll need to pass the location of each Square into the `onClick` handler to indicate which Square was clicked. Here are the required steps to transform the Board component:
+Ezután beállítjuk, hogy a Board komponens a Game komponensből fogadja a `squares` és `onClick` prop-okat. Mivel már van egy egyszerű kattintás kezelőnk a Board-ban több Square komponenshez, meg kell mondanunk minden egyes Square komponens pozícióját is az `onClick` kezelőnek, hogy jelezzük melyik Square-re kattintottak. Íme a szükséges lépések a Board komponens átalakításához:
 
-* Delete the `constructor` in Board.
-* Replace `this.state.squares[i]` with `this.props.squares[i]` in Board's `renderSquare`.
-* Replace `this.handleClick(i)` with `this.props.onClick(i)` in Board's `renderSquare`.
+* Töröld `constructor`-t a Board-ban.
+* Cseréld le a `this.state.squares[i]`-t `this.props.squares[i]`-re a Board `renderSquare` metódusában.
+* Cseréld le a `this.handleClick(i)`-t `this.props.onClick(i)`-re a Board `renderSquare` metódusában.
 
-The Board component now looks like this:
+A Board komponens most így néz ki:
 
 ```javascript{17,18}
 class Board extends React.Component {
@@ -872,9 +872,9 @@ class Board extends React.Component {
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Győztes: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -901,7 +901,7 @@ class Board extends React.Component {
 }
 ```
 
-We'll update the Game component's `render` function to use the most recent history entry to determine and display the game's status:
+Frissítjük a Game komponens `render` metódusát hogy az használja a legfrissebb history bejegyzést a játék státuszának megjelenítéséhez:
 
 ```javascript{2-11,16-19,22}
   render() {
@@ -911,9 +911,9 @@ We'll update the Game component's `render` function to use the most recent histo
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Győztes: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -933,7 +933,7 @@ We'll update the Game component's `render` function to use the most recent histo
   }
 ```
 
-Since the Game component is now rendering the game's status, we can remove the corresponding code from the Board's `render` method. After refactoring, the Board's `render` function looks like this:
+Mivel most már a Game komponens rendereli a játék státuszát, eltávolíthatjuk az ennek mefelelő kódot a Board `render` metódusából. Az újraírás után a Board `render` metódusa így néz ki:
 
 ```js{1-4}
   render() {
@@ -959,7 +959,8 @@ Since the Game component is now rendering the game's status, we can remove the c
   }
 ```
 
-Finally, we need to move the `handleClick` method from the Board component to the Game component. We also need to modify `handleClick` because the Game component's state is structured differently. Within the Game's `handleClick` method, we concatenate new history entries onto `history`.
+Utoljára pedig át kell helyeznünk a `handleClick` metódust a Board komponensből a Game komponensbe. Módosítanunk is kell a `handleClick`-et mivel a Game komponens állapota másként van strukturálva.
+A Game `handleClick` metódusában összefűzzük a history bejegyzéseket a `history` állapotba.
 
 ```javascript{2-4,10-12}
   handleClick(i) {
@@ -979,30 +980,30 @@ Finally, we need to move the `handleClick` method from the Board component to th
   }
 ```
 
->Note
+>Megjegyzés
 >
->Unlike the array `push()` method you might be more familiar with, the `concat()` method doesn't mutate the original array, so we prefer it.
+>A tömb `push()` metódusával ellentétben amit már ismerhetsz korábbról, a `concat()` metódus nem módosítja a korábbi tömböt, szóval ezt részesítjük előnyben.
 
-At this point, the Board component only needs the `renderSquare` and `render` methods. The game's state and the `handleClick` method should be in the Game component.
+Ezen a ponton a Board komponensnek csak a `renderSquare` és `render` metódusokra van szüksége. A játék állapota és a `handleClick` metódusok a Game komponensben kell legyenek.
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
 
-### Korábbi Lépések Mutatása {#showing-the-past-moves}
+### Korábbi lépések mutatása {#showing-the-past-moves}
 
-Since we are recording the tic-tac-toe game's history, we can now display it to the player as a list of past moves.
+Mivel feljegyezzük a tic-tac-toe játék lépéstörténetét, most már mutatni tudjuk a játékosnak a korábbi lépések listáját.
 
-We learned earlier that React elements are first-class JavaScript objects; we can pass them around in our applications. To render multiple items in React, we can use an array of React elements.
+Korábban megtanultuk, hogy a React elemek elsőosztályú JavaScript objektumok; körbe tudjuk őket küldözgetni az alkalmazásban. Hogy több elemet tudjunk renderelni React-ben, használhatunk egy tömböt ami React elemeket tartalmaz.
 
-In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) that is commonly used for mapping data to other data, for example:
+A JavaScriptben a tömbök rendelkeznek egy [`map()` metódussal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) amit gyakran használnak adatok adatra leképezésére, mint például:
 
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 ```
 
-Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
+A `map` metódus használatával le tudjuk képezni a lépéstörténetünket React elemekre amik gombokat képviselnek a képernyőn, és egy gomb listára amikkel "ugrálni" tudunk korábbi lépésekre.
 
-Let's `map` over the `history` in the Game's `render` method:
+Most pedig `leképezzük` a `history`-t a Game komponens `render` metódusában:
 
 ```javascript{6-15,34}
   render() {
@@ -1012,8 +1013,8 @@ Let's `map` over the `history` in the Game's `render` method:
 
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+        'Menj erre ide, lépés: #' + move :
+        'Menj a játék kezdetéhez';
       return (
         <li>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -1023,9 +1024,9 @@ Let's `map` over the `history` in the Game's `render` method:
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Győztes: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -1047,60 +1048,60 @@ Let's `map` over the `history` in the Game's `render` method:
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+Minden lépéshez a tic-tac-toe játék lépéstörténetében létrehozunk egy `<li>`-t ami tartalmaz egy `<button>` gombot. A gombnak van egy `onClick` kezelője ami meghív egy `this.jumpTo()` metódust. A `jumpTo()` metódust még nem implementáltuk. Egyenlőre egy listát kell látnunk a lépésekről amik már megtörténtek a játék során, és egy figyelmeztetést a fejlesztői eszközözök konzolban ami azt mondja:
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
 
-Let's discuss what the above warning means.
+Beszéljük meg mit is jelent a fenti figyelmeztetés.
 
-### Azonosító Kulcs Választása {#picking-a-key}
+### Azonosító kulcs választása {#picking-a-key}
 
-When we render a list, React stores some information about each rendered list item. When we update a list, React needs to determine what has changed. We could have added, removed, re-arranged, or updated the list's items.
+Amikor egy listát renderelünk, a React valamennyi információt tárol minden renderelt lista elemről. Amikor frissítünk egy listát, a React-nek tudnia kell mi változott. Hozzá tudtunk adni, eltávolítani vagy megváltoztatni a lista sorrendjét, vagy megváltoztatni a lista elemeit.
 
-Imagine transitioning from
-
-```html
-<li>Alexa: 7 tasks left</li>
-<li>Ben: 5 tasks left</li>
-```
-
-to
+Képzeld el az átmenetet erről
 
 ```html
-<li>Ben: 9 tasks left</li>
-<li>Claudia: 8 tasks left</li>
-<li>Alexa: 5 tasks left</li>
+<li>Aladár: 7 feladat van vissza</li>
+<li>Balázs: 5 feladat van vissza</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that we swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what we intended. Because React cannot know our intentions, we need to specify a *key* property for each list item to differentiate each list item from its siblings. One option would be to use the strings `alexa`, `ben`, `claudia`. If we were displaying data from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+erre
 
 ```html
-<li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
+<li>Balázs: 9 feladat van vissza</li>
+<li>Klaudia: 8 feladat van vissza</li>
+<li>Aladár: 5 feladat van vissza</li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved. Keys tell React about the identity of each component which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+A frissített számlálók mellett ha valaki ezt olvasná valószínűlg azt mondaná hogy Aladár és Ben fel lett cserélve, és Klaudia be lett illesztve Aladár és Balázs közé. Azonban a React egy számítógépes program nem érti mit is szerettünk volna elérni. Mivel a React nem ismeri a szándékainkat, meg kell adnunk egy *kulcs* tulajdonságot minden lisa bejegyzésnek, hogy az meg tudja különböztetni a bejegyzéseket annak testvéreitől. Egy alternatíva a karakterláncok `aladar`, `balazs`, `klaudia` használata. Ha az adatokat egy adatbázisból jelenítenénk meg, akkor Aladár, Balázs és Klaudia adatbázis azonosítókulcsát használhatnánk kulcsnak.
 
-`key` is a special and reserved property in React (along with `ref`, a more advanced feature). When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it belongs in `props`, `key` cannot be referenced using `this.props.key`. React automatically uses `key` to decide which components to update. A component cannot inquire about its `key`.
+```html
+<li key={user.id}>{user.name}: {user.taskCount} feladat van vissza</li>
+```
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+Mikor egy listát újrarenderelünk, a React veszi minden lista elemének a kulcsát és megkeresi az előző lista elemet a megegyező kulccsal. Ha a jelenlegi lista tartalmaz egy kulcsot amit korábban nem, a React készít egy új komponenst. Ha a jelenlegi listában már nincs jelen egy korábban létező kulcs, a React törli az előző komponenst. Ha két kulcs egyezik, a komponens mozgatva lett. A kulcsok azonosítanak minden komponenst a React-nek ami lehetővé testi annak az állapotok kezelését újrarenderelések között. Ha egy komponens kulcsa megváltozik, a komponens törölve lesz és újra lesz készítve egy új állapottal.
 
-If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
+A `key` egy speciális fenntartott tulajdonság a React-ben (a `ref`-el egyetemben, ami egy sokkal haladóbb funkció). Mikor egy új elemet készítünk, a React kivonja a `key` tulajdonságot és azt közvetlenül eltárolja azt a visszatért elemen. Ha úgy is tűnik hogy a `key` a `prop`-ok közé tartozik, a `key`-re nem referálható a `this.prop.key`-el. A React automatikusan használja a `key`-t hogy eldöntse melyik komponenseket frissítse. Egy komponens nem tud annak `key` tulajdonságáról érdeklődni.  
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+**Erősen ajánlott, hogy dinamikus listák esetében rendes kulcsokat rendelsz hozzá a lista elemeihez.** Ha nem rendelkezel egy megfelelő kulccsal, fontold meg a az adatod átalakítát, hogy legyen megfelelő kulcs.
+
+Ha nincs kulcs megadva, a React egy figyelmeztetést fog adni és a tömb indexét fogja megadni alapértelmezett kulcsként . A tömb indexének kulcsként való használata problémás lehet ha egy lista újra lesz rendezve, vagy új elem lesz hozzáadva, vagy egy elem lesz törölve. A `key={i}` határozott megadása elnémítja a figyelmeztetést, de ugyanaz a probléma áll fenn mint a tömb indexek esetében és a legtöbb esetben nem ajánlott.
+
+A kulcsoknak nem kell globálisan egyedinek lenniük; csupán komponensek és azok testvéreinek között kell, hogy egyediek legyenek.
 
 
-### Időutazás Implementálása {#implementing-time-travel}
+### Időutazás implementálása {#implementing-time-travel}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+A tic-tac-toe játék lépéstörténetében minden korábbi lépésnek vagy egy egyedi azonosítúja:  ez a lépés sorszáma. A lépések soha nincsenek átrendezve, törölve, beillesztve más lépések közé, szóval ebben az esetben tömb indx használata kulcsként biztonságosnak számít.
 
-In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
+A Game komponens render metódusában hozzá tudjuk adni a kulcsot így `<li key={move}>` és a React figyelmeztetése a kulcsokról el kell hogy tűnjön:
 
 ```js{6}
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+        'Menj erre ide, lépés: #' + move :
+        'Menj a játék kezdetéhez';
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -1111,9 +1112,9 @@ In the Game component's `render` method, we can add the key as `<li key={move}>`
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
 
-Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
+Bármelyik lista bejegyzés gombjára kattintva egy hiba ugrik fel, mert a `jumpTo` metódus nincs definiálva. Mielőtt implementálnánk a `jumpTo` metódust, hozzáadjuk a `stepNumber`-t a Game komponens állapotához hogy jelezzük melyik lépést látjuk éppen.
 
-First, add `stepNumber: 0` to the initial state in Game's `constructor`:
+Először is add hozzá a `stepNumber: 0`-t a kezdeti állapothoz a Game `contructor`-ban:
 
 ```js{8}
 class Game extends React.Component {
@@ -1129,11 +1130,11 @@ class Game extends React.Component {
   }
 ```
 
-Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We also set `xIsNext` to true if the number that we're changing `stepNumber` to is even:
+Ezután definiáljuk a `jumpTo` metódust a Game komponensben hogy frissíteni tudjuk a `stepNumber`-t. Valamint az `xIsNext` értékét is igazra állítjuk, ha a szám amit változtatunk páros szám:
 
 ```javascript{5-10}
   handleClick(i) {
-    // this method has not changed
+    // ez a metódus nem változott
   }
 
   jumpTo(step) {
@@ -1144,15 +1145,15 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
   }
 
   render() {
-    // this method has not changed
+    // ez a metódus nem változott
   }
 ```
 
-We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+Most pedig csinálunk egy pár változtatást a Game `handleClick` metódusában ami akkor lesz meghívva ha egy négyzetre kattintasz.
 
-The `stepNumber` state we've added reflects the move displayed to the user now. After we make a new move, we need to update `stepNumber` by adding `stepNumber: history.length` as part of the `this.setState` argument. This ensures we don't get stuck showing the same move after a new one has been made.
+A `stepNumber` állapot amit hozzáadtunk most már tükrözi a lépést amit a felhasználó lát. Ha egyet lépünk, frissítenünk kell a `stepNumber`-t azzal hogy ezt hozzáadjuk a `this.setState` argumentumához: `stepNumber: history.length`. Ez biztosítja azt, hogy ne ragadjunk le annál hogy mindig ugyanazt a lépést mutassuk minden új lépés után.
 
-We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now become incorrect.
+Lecseréljük a `this.state.history` olvasását is erre: `this.state.history.slice(0, this.state.stepNumber + 1)`. Ez biztosítja azt, hogy ha "visszautazunk az időben" és egy újat lépünk, akkor eldobjuk a "jövő" lépéseit amik így már helytelenek lennének.
 
 ```javascript{2,13}
   handleClick(i) {
@@ -1173,7 +1174,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
   }
 ```
 
-Finally, we will modify the Game component's `render` method from always rendering the last move to rendering the currently selected move according to `stepNumber`:
+Végezetül módosítjük a Game komponent `render` metódusát hogy ahelyett hogy mindig a legutolsó lépést renderelje, renderelje inkább a kiválasztott lépést a `stepNumber` szerint:
 
 ```javascript{3}
   render() {
@@ -1181,33 +1182,33 @@ Finally, we will modify the Game component's `render` method from always renderi
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
-    // the rest has not changed
+    // más változás nincs
 ```
 
-If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+Ha most rákattintunk bármelyik lépésre a játéktörténetben, a tic-tac-toa tábla azonnal frissül hogy azt az állást mutassa ami a rákattintott lépés után történt.
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
 ### Összegzés {#wrapping-up}
 
-Congratulations! You've created a tic-tac-toe game that:
+Gratulálunk! Készítettél egy tic-tac-toe játékot ami:
 
-* Lets you play tic-tac-toe,
-* Indicates when a player has won the game,
-* Stores a game's history as a game progresses,
-* Allows players to review a game's history and see previous versions of a game's board.
+* Lehetővé teszi a tic-tac-toe játszását,
+* Kihirdeti a győztest,
+* Elmenti a játék lépéstörténetét a játék közben,
+* Lehetővé teszi a játékosoknak újranézni a játéktábla korábbi állásait.
 
-Nice work! We hope you now feel like you have a decent grasp on how React works.
+Szép munka! Reméljük hogy ezek után te is úgy érzed, sikerült megragadnod a React működésének lényegét.
 
-Check out the final result here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
+Nézd meg a végeredményt itt: **[Végeredmény](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game which are listed in order of increasing difficulty:
+Ha van egy kis extra időd, vagy szeretnéd gyakorolni az új React képességeidet, íme pár ötlet a tic-tac-toe játék tökéletesítéséhez, nehézség szerinti növekvő sorrendben:
 
-1. Display the location for each move in the format (col, row) in the move history list.
-2. Bold the currently selected item in the move list.
-3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
-4. Add a toggle button that lets you sort the moves in either ascending or descending order.
-5. When someone wins, highlight the three squares that caused the win.
-6. When no one wins, display a message about the result being a draw.
+1. Mutasd minden lépés pozícióját a (oszlop, sor) formátumban a lépéstörténet listában.
+2. Tedd kövérré a jelenleg kiválasztott element a lépés listában.
+3. Írd át a Board komponenst úgy, hogy az két ciklust használjon négyzetek készítéséhez belekódolás helyett.
+4. Adj hozzá egy kapcsoló gombot ami lehetővé teszi a lépések szortírozását növekvő vagy csökkenő sorrendben.
+5. Ha valaki nyer, emeld ki a három négyzetet ami lehetővé tette a játékosnak hogy nyerjen.
+6. Ha senki sem nyer, mutass egy üzenetet döntetlen eredményéről.
 
-Throughout this tutorial, we touched on React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).
+Ezen a tutoriálon keresztül érintettük a React koncepcióit mint elemek, komponensek, prop-ok és állapotot. Ezen témák részletesebb magyarázatához nézd meg a [dokumentáció többi részét](/docs/hello-world.html). Ha többet szeretnél tanulni komponensek definiálásról, nézd meg a [`React.Component` API hivatkozását](/docs/react-component.html).

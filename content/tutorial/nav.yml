@@ -1,12 +1,12 @@
 - title: Tutoriál
   items:
     - id: before-we-start-the-tutorial
-      title: Mielőtt Elkezdjük a Tutoriált
+      title: Mielőtt elkezdjük a tutoriált
       href: /tutorial/tutorial.html#before-we-start-the-tutorial
       forceInternal: true
       subitems:
         - id: what-are-we-building
-          title: Mit Készítünk?
+          title: Mit készítünk?
           href: /tutorial/tutorial.html#what-are-we-building
           forceInternal: true
         - id: prerequisites
@@ -19,15 +19,15 @@
       forceInternal: true
       subitems:
         - id: setup-option-1-write-code-in-the-browser
-          title: "1. Opció: Kódolj a Böngésződben"
+          title: "1. Opció: kódolj a böngésződben"
           href: /tutorial/tutorial.html#setup-option-1-write-code-in-the-browser
           forceInternal: true
         - id: setup-option-2-local-development-environment
-          title: "2. Opció: Helyi Fejlesztői Környezet"
+          title: "2. Opció: helyi fejlesztői környezet"
           href: /tutorial/tutorial.html#setup-option-2-local-development-environment
           forceInternal: true
         - id: help-im-stuck
-          title: Segítség, Elakadtam!
+          title: Segítség, elakadtam!
           href: /tutorial/tutorial.html#help-im-stuck
           forceInternal: true
     - id: overview
@@ -40,36 +40,36 @@
           href: /tutorial/tutorial.html#what-is-react
           forceInternal: true
         - id: inspecting-the-starter-code
-          title: Kezdő Kód Ellenőrzése
+          title: Kezdő kód ellenőrzése
           href: /tutorial/tutorial.html#inspecting-the-starter-code
           forceInternal: true
         - id: passing-data-through-props
-          title: Adattovábbítás Prop-okkal
+          title: Adattovábbítás prop-okkal
           href: /tutorial/tutorial.html#passing-data-through-props
           forceInternal: true
         - id: making-an-interactive-component
-          title: Készíts egy Interaktív Komponenst
+          title: Készíts egy interaktív komponenst
           href: /tutorial/tutorial.html#making-an-interactive-component
           forceInternal: true
         - id: developer-tools
-          title: Fejlesztői Eszközök
+          title: Fejlesztői eszközök
           href: /tutorial/tutorial.html#developer-tools
           forceInternal: true
     - id: completing-the-game
-      title: Játék Befejezése
+      title: Játék befejezése
       href: /tutorial/tutorial.html#completing-the-game
       forceInternal: true
       subitems:
         - id: lifting-state-up
-          title: Állapot Felemelése
+          title: Állapot felemelése
           href: /tutorial/tutorial.html#lifting-state-up
           forceInternal: true
         - id: why-immutability-is-important
-          title: Miért Fontos a Megváltoztathatatlanság
+          title: Megváltoztathatatlanság fontossága
           href: /tutorial/tutorial.html#why-immutability-is-important
           forceInternal: true
         - id: function-components
-          title: Függvény Komponensek
+          title: Függvény komponensek
           href: /tutorial/tutorial.html#function-components
           forceInternal: true
         - id: taking-turns
@@ -77,32 +77,32 @@
           href: /tutorial/tutorial.html#taking-turns
           forceInternal: true
         - id: declaring-a-winner
-          title: Győztes Kinevezése
+          title: Győztes kihirdetése
           href: /tutorial/tutorial.html#declaring-a-winner
           forceInternal: true
     - id: adding-time-travel
-      title: Időutazás Hozzáadása
+      title: Időutazás hozzáadása
       href: /tutorial/tutorial.html#adding-time-travel
       forceInternal: true
       subitems:
         - id: storing-a-history-of-moves
-          title: Lépéstörténet Tárolása
+          title: Lépéstörténet tárolása
           href: /tutorial/tutorial.html#storing-a-history-of-moves
           forceInternal: true
         - id: lifting-state-up-again
-          title: Állapot Felemelése, Újra
+          title: Állapot ismételt felemelése
           href: /tutorial/tutorial.html#lifting-state-up-again
           forceInternal: true
         - id: showing-the-past-moves
-          title: Korábbi Lépések Mutatása
+          title: Korábbi lépések mutatása
           href: /tutorial/tutorial.html#showing-the-past-moves
           forceInternal: true
         - id: picking-a-key
-          title: Azonosító Kulcs Választása
+          title: Azonosító kulcs választása
           href: /tutorial/tutorial.html#picking-a-key
           forceInternal: true
         - id: implementing-time-travel
-          title: Időutazás Implementálása
+          title: Időutazás implementálása
           href: /tutorial/tutorial.html#implementing-time-travel
           forceInternal: true
         - id: wrapping-up
