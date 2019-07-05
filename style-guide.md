@@ -92,7 +92,7 @@ React is a [JavaScript library](https://en.wikipedia.org/wiki/JavaScript_library
 ✅ OK:
 
 ```md
-A React egy [JavaScript keretrendszer](https://hu.wikipedia.org/wiki/JavaScript_keretrendszer).
+A React egy [JavaScript könyvtár](https://hu.wikipedia.org/wiki/JavaScript_könyvtár).
 ```
 
 Egyéb esetben (pl.: Stack Overflow, YouTube videók, stb.), linkelj az angol forráshoz.
