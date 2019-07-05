@@ -1,6 +1,6 @@
 ---
 id: rendering-elements
-title: Rendering Elements
+title: Elemek renderelése
 permalink: docs/rendering-elements.html
 redirect_from:
   - "docs/displaying-data.html"
@@ -8,68 +8,68 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
-Elements are the smallest building blocks of React apps.
+Az elemek a React alkalmazások legkisebb építőegységei.
 
-An element describes what you want to see on the screen:
+Egy elem azt írja le amit a képernyőn szeretnél látni:
 
 ```js
-const element = <h1>Hello, world</h1>;
+const element = <h1>Helló, világ</h1>;
 ```
 
-Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
+A böngésző DOM elemeivel szemben, a React elemek sima objektumok, és olcsó őket gyártani. Azért hogy a React elemek megegyezzenek a DOM-mal és frissítve legyenek, a React DOM a felelős.
 
->**Note:**
+>**Megjegyzés:**
 >
->One might confuse elements with a more widely known concept of "components". We will introduce components in the [next section](/docs/components-and-props.html). Elements are what components are "made of", and we encourage you to read this section before jumping ahead.
+>Könnyű lehet összetéveszteni az elemeket a széles körben ismert "komponensek" fogalmával. A komponenseket a [következő fejezetben](/docs/components-and-props.html) fogjuk bemutatni. A komponensek elemekből "tevődnek össze", és bátorítunk hogy olvasd el ezt a fejezetet mielőtt előre ugranál.
 
-## Rendering an Element into the DOM {#rendering-an-element-into-the-dom}
+## Egy elem renderelése a DOM-ba {#rendering-an-element-into-the-dom}
 
-Let's say there is a `<div>` somewhere in your HTML file:
+Tegyük fel, hogy van egy `<div>` valahol a HTML fájlodban:
 
 ```html
 <div id="root"></div>
 ```
 
-We call this a "root" DOM node because everything inside it will be managed by React DOM.
+Ezt hívjuk "gyökér" DOM csomópontnak mert mindent ami benne van, a React DOM fog kezelni.
 
-Applications built with just React usually have a single root DOM node. If you are integrating React into an existing app, you may have as many isolated root DOM nodes as you like.
+A React-el készített alkalmazásoknak általában egy gyökér DOM csomópontjuk van. Ha egy már meglévő alkalmazásba akarod a React-et integrálni, annyi elszigetelt gyökér DOM csomópontot vehetsz fel, amennyit szeretnél.
 
-To render a React element into a root DOM node, pass both to `ReactDOM.render()`:
+Egy React elem gyökér DOM csomópontba való rendereléséhez, add meg mindkettőt paraméterként a `ReactDOM.render()` metódusnak:
 
 `embed:rendering-elements/render-an-element.js`
 
 [](codepen://rendering-elements/render-an-element)
 
-It displays "Hello, world" on the page.
+Ez egy "Helló, világ"-ot jelenít meg az oldalon.
 
-## Updating the Rendered Element {#updating-the-rendered-element}
+## A renderelt elem frissítése {#updating-the-rendered-element}
 
-React elements are [immutable](https://en.wikipedia.org/wiki/Immutable_object). Once you create an element, you can't change its children or attributes. An element is like a single frame in a movie: it represents the UI at a certain point in time.
+A React elemek [megváltoztathatatlanok](https://en.wikipedia.org/wiki/Immutable_object). Ha egyszer készítettél egy elemet, már nem tudod annak gyermekeit vagy attribútumait módosítani. Egy elem olyan mint egy sima képkocka egy filmben: az felhasználói felületet reprezentálja egy adott pillanatban.
 
-With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `ReactDOM.render()`.
+Az eddigi tudásunkkal az egyetlen módja a felhasználói felületünk frissítésének ha egy új elemet hozunk létre, és megadjuk paraméterként a `ReactDOM.render()`-nek.
 
-Consider this ticking clock example:
+Vedd ezt a ketyegő óra példát:
 
 `embed:rendering-elements/update-rendered-element.js`
 
 [](codepen://rendering-elements/update-rendered-element)
 
-It calls `ReactDOM.render()` every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+Ez minden másodpercben meghívja a `ReactDOM.render()`-t a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) visszahívó metódusából.
 
->**Note:**
+>**Megjegyzés:**
 >
->In practice, most React apps only call `ReactDOM.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a `ReactDOM.render()` metódust. A következő fejezetben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbefoglalni [állapotteljes komponensekkel](/docs/state-and-lifecycle.html).
 >
->We recommend that you don't skip topics because they build on each other.
+>Ajánljuk, hogy ne ugord át ezeket a témákat, mert egymásra építenek.
 
-## React Only Updates What's Necessary {#react-only-updates-whats-necessary}
+## A React csak akkor frissít, ha szükséges {#react-only-updates-whats-necessary}
 
-React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
+A React DOM összehasonlítja az elemeket és azok gyermekeit a korábbiakkal, és csak azokat a változtatásokat eszközöli a DOM-on, amik a DOM kívánt állapotának eléréséhze szükségesek.
 
-You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
+Ezt megerősítheted a [legutolsó példa](codepen://rendering-elements/update-rendered-element) vizsgálatával a böngészői eszközökkel:
 
-![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
+![A DOM vizsgáló fokozatos frissítést mutat](../images/docs/granular-dom-updates.gif)
 
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents has changed gets updated by React DOM.
+Hacsak egy elemet is készítünk ami leírja a teljes felhasználói felület fát minden egyes kettyenéshez, a React DOM akkor is csak a megváltozott szövegcsomópontok tartalmát fogja frissíteni.
 
-In our experience, thinking about how the UI should look at any given moment rather than how to change it over time eliminates a whole class of bugs.
+Tapasztalataink szerint úgy gondolni a felhasználói felületre hogy az hogyan is nézzen ki egy adott pillanatban ahelyett hogy hogyan fog változni az idő múlásával, egy csomó programhibát gátol meg.
