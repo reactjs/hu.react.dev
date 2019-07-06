@@ -1,6 +1,6 @@
 ---
 id: components-and-props
-title: Components and Props
+title: Komponensek és prop-ok
 permalink: docs/components-and-props.html
 redirect_from:
   - "docs/reusable-components.html"
@@ -16,60 +16,60 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
+A komponensek lehetővé teszik számodra a felhasználói felület független, újrafelhasználható darabokra való felosztását, és segítnek hogy minden darabról a többitől elzártan tudj gondolkodni. Ez az oldal a komponensek lényegét mutatja be. A [részletes komponens API referenciát itt](/docs/react-component.html) találod.
 
-Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
+Elviekben a komponensek olyanok mint a JavaScript függvények. Egy tetszőleges számú inputot fogadnak (amiket "prop"-oknak hívunk) és egy React elemet térítenek vissza ami leírja mi jelenjen meg a képernyőn.
 
-## Function and Class Components {#function-and-class-components}
+## Függvény és Osztály komopnensek {#function-and-class-components}
 
-The simplest way to define a component is to write a JavaScript function:
+Egy komponens legegyszerűbb definiálásának módja egy JavaScript függvény:
 
 ```js
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+  return <h1>Helló, {props.name}</h1>;
 }
 ```
 
-This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "function components" because they are literally JavaScript functions.
+Ez a függvény egy érvényes React komponens, mivel egyetlen "props" (angol properties, vagy tulajdonságok) objektum argumentuma van ami adatot tartalmaz, és egy React elemet térít vissza. Egy ilyen komponenst hívunk "függvény komponensnek", mert szó szerint csak egy JavaScript függvény.
 
-You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:
+Emellett használhatsz [ES6 osztályokat](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) is komponensek definiálásához:
 
 ```js
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Helló, {this.props.name}</h1>;
   }
 }
 ```
 
-The above two components are equivalent from React's point of view.
+A React szemszögéből a fenti két komponens egymással megegyező.
 
-Classes have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html). Until then, we will use function components for their conciseness.
+Az osztályok rendelkeznek pár extra funkcióval, amit a [következő fejezetekben](/docs/state-and-lifecycle.html) beszélünk ki. Addig is a függvény komponenseket használjuk, mivel olyan tömörek.
 
-## Rendering a Component {#rendering-a-component}
+## Egy komponens renderelése {#rendering-a-component}
 
-Previously, we only encountered React elements that represent DOM tags:
+Korábban csak olyan React elemekkel találkoztunk, amik csak DOM címkéket képviseltek:
 
 ```js
 const element = <div />;
 ```
 
-However, elements can also represent user-defined components:
+Azonban az elemek képviselhetnek a felhasználó által definiált komponenseket is:
 
 ```js
-const element = <Welcome name="Sara" />;
+const element = <Welcome name="Sára" />;
 ```
 
-When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object "props".
+Ha a React egy olyan elemet lát ami egy felhasználó által definiált komponenst képvisel, akkor leküldi a JSX attribútumokat a komponensnek egy sima objektumként. Ezt az objektumot hívjuk "props"-nak.
 
-For example, this code renders "Hello, Sara" on the page:
+Például ez a kód a "Helló, Sára" szöveget rendereli az oldalon:
 
 ```js{1,5}
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+  return <h1>Helló, {props.name}</h1>;
 }
 
-const element = <Welcome name="Sara" />;
+const element = <Welcome name="Sára" />;
 ReactDOM.render(
   element,
   document.getElementById('root')
@@ -78,36 +78,36 @@ ReactDOM.render(
 
 [](codepen://components-and-props/rendering-a-component)
 
-Let's recap what happens in this example:
+Foglaljuk össze mi történik ebben a példában:
 
-1. We call `ReactDOM.render()` with the `<Welcome name="Sara" />` element.
-2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
-3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
-4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
+1. Meghívjuk a `ReactDOM.render()` metódust a `<Welcome name="Sára" />` elemmel.
+2. A React meghívja a `Welcome` komponenst a `{name: 'Sára'}` props objektummal.
+3. A `Welcome` komponensünk visszatéríti a `<h1>Helló, Sára</h1>` elemet eredményként.
+4. A React DOM hatékonyan frissíti a DOM-ot hogy az megegyezzen a `<h1>Helló, Sára</h1>`-val.
 
->**Note:** Always start component names with a capital letter.
+>**Megjegyzés:** A komponensek neveit mindig nagybetűvel kezdd.
 >
->React treats components starting with lowercase letters as DOM tags. For example, `<div />` represents an HTML div tag, but `<Welcome />` represents a component and requires `Welcome` to be in scope.
+>Azokat a kopmonenseket amik kisbetűvel kezdődnek, a React szimpla DOM címkékként kezeli. Például a `<div />` egy HTML div címkét képvisel, de a `<Welcome />` egy komponenst, és szükséges, hogy a `Welcome` a hatókörben legyen.
 >
->To learn more about the reasoning behind this convention, please read [JSX In Depth](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+>Ha többet szeretnél megtudni ezen közös megegyezés mögötti érvelésről, olvasd el a [JSX-ről mélyebben](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized) részt.
 
-## Composing Components {#composing-components}
+## Komponensek komponálása {#composing-components}
 
-Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.
+A komponensek utalhatnak más komponensekre is a kimenetükben. Ez lehetővé teszi számunkra, hogy ugyanazt a komponens absztrakciót használjuk bármilyen részletességgel. Egy gomb, egy űrlap, egy dialógus, egy képernyő: React alkalmazásokban ezek általában mind komponensként vannak kifejezve.
 
-For example, we can create an `App` component that renders `Welcome` many times:
+Például készíthetünk egy `App` komponenst, ami több `Welcome` komponenst renderel:
 
 ```js{8-10}
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+  return <h1>Helló, {props.name}</h1>;
 }
 
 function App() {
   return (
     <div>
-      <Welcome name="Sara" />
-      <Welcome name="Cahal" />
-      <Welcome name="Edite" />
+      <Welcome name="Sára" />
+      <Welcome name="Kata" />
+      <Welcome name="Edit" />
     </div>
   );
 }
@@ -120,13 +120,13 @@ ReactDOM.render(
 
 [](codepen://components-and-props/composing-components)
 
-Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
+Tipikusan az új React alkalmazásoknak van egy `App` komponensük a legfelsőbb szinten. Azonban ha egy meglévő alkalmazásba integrálod a React-et, dolgozhatsz lentről felfelé fokozatosan haladva, kezdve kis komponensekkel, mint egy `Button` amíg el nem éred a nézet hierarchia csúcsát.
 
-## Extracting Components {#extracting-components}
+## Komponensek kivonása {#extracting-components}
 
-Don't be afraid to split components into smaller components.
+Ne félj a komponenseket kisebb komponensekké feldarabolni.
 
-For example, consider this `Comment` component:
+Vedd ezt a `Comment` komponenst példának:
 
 ```js
 function Comment(props) {
@@ -154,11 +154,11 @@ function Comment(props) {
 
 [](codepen://components-and-props/extracting-components)
 
-It accepts `author` (an object), `text` (a string), and `date` (a date) as props, and describes a comment on a social media website.
+Ez fogad egy `author` (objektumot), `text` (karakterláncot), és `date` (dátumot) props-ként, és egy kommentet ír le egy közösségi média weblapon.
 
-This component can be tricky to change because of all the nesting, and it is also hard to reuse individual parts of it. Let's extract a few components from it.
+Ezt a komponenst furfangos lehet megváltoztatni a sok egymásba ágyazás miatt, és nehéz is újrafelhasználi az egyedülálló részeit. Vonjunk ki egy pár komponenst belőle.
 
-First, we will extract `Avatar`:
+Először is kivonjuk az `Avatar` komponenst:
 
 ```js{3-6}
 function Avatar(props) {
@@ -171,11 +171,11 @@ function Avatar(props) {
 }
 ```
 
-The `Avatar` doesn't need to know that it is being rendered inside a `Comment`. This is why we have given its prop a more generic name: `user` rather than `author`.
+Az `Avatar`-nak nem kell tudnia, hogy mit is renderelünk a `Comment`-ben. Ezért is adtunk a prop-jának egy általánosabb nevet mint a `user`, az `author` helyett.
 
-We recommend naming props from the component's own point of view rather than the context in which it is being used.
+Ajánljuk a prop-ok elnevezését a komponens saját szemszögéből nézve, a kontextus helyett amiben az használva van.
 
-We can now simplify `Comment` a tiny bit:
+Most egy kicsit tudunk egyszerűsíteni a `Comment` komponensen:
 
 ```js{5}
 function Comment(props) {
@@ -198,7 +198,7 @@ function Comment(props) {
 }
 ```
 
-Next, we will extract a `UserInfo` component that renders an `Avatar` next to the user's name:
+A következőben kivonjuk a `UserInfo` komponenst ami az `Avatar`-t rendereli a felhasználó neve mellett:
 
 ```js{3-8}
 function UserInfo(props) {
@@ -213,7 +213,7 @@ function UserInfo(props) {
 }
 ```
 
-This lets us simplify `Comment` even further:
+Ez tovább egyszerűsíti a `Comment` komponensünket:
 
 ```js{4}
 function Comment(props) {
@@ -233,11 +233,11 @@ function Comment(props) {
 
 [](codepen://components-and-props/extracting-components-continued)
 
-Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be a reusable component.
+A komponensek kivonása elsőre morgós munkának tűnhet, de nagyobb alkalmazások esetén gyorsan megtérül ha egy újrafelhasználható komponens palettával rendelkezünk. Egy jó ökölszabály ha a felhasználói kezelőfelületed valamelyik része többször fel van használva (`Button`, `Panel`, `Avatar`), vagy elég bonyolult saját magában is (`App`, `FeedStory`, `Comment`) akkor jó jelölt lehet egy újrafelhasználható komponensnek.
 
-## Props are Read-Only {#props-are-read-only}
+## A prop-ok csak olvashatók {#props-are-read-only}
 
-Whether you declare a component [as a function or a class](#function-and-class-components), it must never modify its own props. Consider this `sum` function:
+Függetlenül hogy egy komponenst [függvényként vagy osztályként](#function-and-class-components) deklarálsz, az soha nem módosíthatja annak saját prop-jait. Vedd ezt a `sum` függvényt:
 
 ```js
 function sum(a, b) {
@@ -245,9 +245,9 @@ function sum(a, b) {
 }
 ```
 
-Such functions are called ["pure"](https://en.wikipedia.org/wiki/Pure_function) because they do not attempt to change their inputs, and always return the same result for the same inputs.
+Egy ilyen függvényt ["tiszta"](https://hu.wikipedia.org/wiki/Tiszta_függvény) függvénynek nevezünk, mert nem kísérli meg megváltoztatni a bemenetét, és mindig ugyanazt az eredményt adja ugyanazon bemenet esetében.
 
-In contrast, this function is impure because it changes its own input:
+Összehasonlítás képpen ez a függvény nem tiszta, mert megváltoztatja a saját bemenetét:
 
 ```js
 function withdraw(account, amount) {
@@ -255,8 +255,8 @@ function withdraw(account, amount) {
 }
 ```
 
-React is pretty flexible but it has a single strict rule:
+A React elég rugalmas, de van egy szigorú szabálya:
 
-**All React components must act like pure functions with respect to their props.**
+**Minden React komponensnek tiszta függvényként kell viselkednie annak prop-jaira tekintettel**
 
-Of course, application UIs are dynamic and change over time. In the [next section](/docs/state-and-lifecycle.html), we will introduce a new concept of "state". State allows React components to change their output over time in response to user actions, network responses, and anything else, without violating this rule.
+Természetesen az alkalmazások felhasználói felületei dinamikusak és idővel változnak. A [következő fejezetben](/docs/state-and-lifecycle.html) bemutatunk egy új koncepciót, az állapotot, vagyis a "state"-t. A állapotok lehetővé teszik a React komponenseknek hogy idővel megváltoztassák a kimenetüket a felhasználó interakciói, hálózati válaszok, vagy bármi más esetén, anélkül, hogy ezt a szabályt megszegnénk.
