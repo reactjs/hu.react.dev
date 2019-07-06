@@ -114,6 +114,6 @@ Egyéb esetben (pl.: Stack Overflow, YouTube videók, stb.), linkelj az angol fo
 - Az olvasót egyes szám második személyként (tegeződő) formában szólítsd meg. (Nincs szükség formalitásra. 🚫🧐)
 - Ahol lehet, ragaszkodj az eredeti kis-nagy betűíráshoz.
 - Figyelj az egyes és többes számokra.
-- Ha kérdésed van, nyiss egy [issue](https://github.com/reactjs/hu.reactjs.org/issues/new)-t GitHubon, vagy írj [@balazsorban44](https://github.com/balazsorban44)-nek, vagy [@FeherMarcell](http://github.com/FeherMarcell)-nek.
+- Ha kérdésed van, nyiss egy [issue](https://github.com/reactjs/hu.reactjs.org/issues/new)-t GitHubon, vagy írj [@balazsorban44](https://github.com/balazsorban44)-nek, vagy [@gergely-nagy](http://github.com/gergely-nagy)-nak. 
 
 Sok szerencsét a fordítóknak! 🍀
