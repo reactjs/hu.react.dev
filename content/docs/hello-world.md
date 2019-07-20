@@ -15,7 +15,7 @@ ReactDOM.render(
 );
 ```
 
-Ez egy címsort jelenít meg "Hello, világ!" szöveggel a weboldalon.
+Ez egy címsort jelenít meg "Helló, világ!" szöveggel a weboldalon.
 
 [](codepen://hello-world)
 
@@ -32,15 +32,15 @@ Ebben az útmutatóban a React alkalmazások építőkockáit fogjuk megvizsgál
 
 Ez az első fejezet lépésről lépésre vezet végig a React alapvető fogalmain. A navigációs oldalsávon megtalálhatod az összes fejezet listáját. Ha ezt mobilkészülékről olvasod, akkor a képernyő jobb alsó sarkában található gomb megnyomásával érheted el a navigációt.
 
-Az útmutató minden fejezete a korábbi fejezetekben megszerzett tudásra épít. **Meg lehet tanulni a React nagy részét azzal, ha elolvasod a "Fő fogalmak" című útmutató fejezeteit az oldalsávban megjelenő sorrendben.** Például, a ["Bevezetés a JSX-be"](/docs/introducing-jsx.html) lesz a következő fejezet ezt .
+Az útmutató minden fejezete a korábbi fejezetekben megszerzett tudásra épít. **A React nagy részét meg tudod tanulni azzal, ha elolvasod a "Fő fogalmak" című útmutató fejezeteit az oldalsávban megjelenő sorrendben.** Például a következő fejezet a ["Bevezetés a JSX-be"](/docs/introducing-jsx.html) ez után.
 
 ## Feltételezett tudásszint {#knowledge-level-assumptions}
 
-A React egy JavaScript könyvtár, ezért feltételezzük, hogy van alapvető ismereted a JavaScript programozási nyelvből. **Ha nem érzed magabiztosnak magad nézd át [a JavaScript tutoriált](https://developer.mozilla.org/hu/docs/Web/JavaScript/a_javascript_ujboli_bemutatasa), hogy ellenőrizd a tudásszinted** és biztosítsd magadnak a haladást az útmutató olvasása közben anélkül, hogy elakadnál. Ez körübelül 30 perc és egy óra közötti időtartam lesz, de utána nem fogod úgy érezni, mintha egyszerre kell megtanulnod a React-et és a JavaScipt nyelvet is.
+A React egy JavaScript könyvtár, ezért feltételezzük, hogy van alapvető ismereted a JavaScript programozási nyelvből. **Ha nem érzed magabiztosnak magad nézd át [a JavaScript tutoriált](https://developer.mozilla.org/hu/docs/Web/JavaScript/a_javascript_ujboli_bemutatasa), hogy ellenőrizd a tudásszinted** és hogy biztosan haladni tudj az útmutató olvasása közben anélkül, hogy elakadnál. Ez körübelül 30 perc és egy óra közötti időtartamot vesz igénybe, de utána nem fogod úgy érezni, mintha egyszerre kell megtanulnod a React-et és a JavaScript nyelvet is.
 
 >Megjegyzés
 >
->Ez az útmutató esetenként újabb JavaScript szintaktikát használ a példákban. Ha az elmúlt években nem foglalkoztál a JavaScript nyelvel, [ez a három pont](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) segíteni fog eligazodni.
+>Ez az útmutató esetenként újabb JavaScript szintaxist használ a példákban. Ha az elmúlt években nem foglalkoztál a JavaScript nyelvvel, [ez a három pont](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) segíteni fog eligazodni.
 
 
 ## Lássunk neki! {#lets-get-started}
