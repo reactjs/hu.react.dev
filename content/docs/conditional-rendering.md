@@ -1,6 +1,6 @@
 ---
 id: conditional-rendering
-title: Conditional Rendering
+title: Feltételes renderelés
 permalink: docs/conditional-rendering.html
 prev: handling-events.html
 next: lists-and-keys.html
@@ -8,23 +8,23 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
-In React, you can create distinct components that encapsulate behavior you need. Then, you can render only some of them, depending on the state of your application.
+A React-ben olyan különböző komponenseket készíthetsz, amik különféle viselkedéseket tudnak elkülöníteni, magukba foglalni. Ezután tudsz kimondottan csak néhányat renderelni, az alkalmazás állapotától függően.
 
-Conditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators like [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) or the [conditional operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) to create elements representing the current state, and let React update the UI to match them.
+A feltételes renderelés React-ben ugyanúgy működik mint ahogy a feltételek működnek JavaScript-ben. Használj JavaScript operátorokat mint az [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) vagy a [feltételes operátor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) elemek készítéséhez, amik reprezentálják a jelenlegi állapotot, és hagyd hogy a React ennek megfelelően frissítse a felhasználói kezelőfelületet.
 
-Consider these two components:
+Vedd ezt a két komopnenst:
 
 ```js
 function UserGreeting(props) {
-  return <h1>Welcome back!</h1>;
+  return <h1>Üdv újra!</h1>;
 }
 
 function GuestGreeting(props) {
-  return <h1>Please sign up.</h1>;
+  return <h1>Kérjük, regisztrálj.</h1>;
 }
 ```
 
-We'll create a `Greeting` component that displays either of these components depending on whether a user is logged in:
+Készíteni fogunk egy `Greeting` komponenst, ami ezen komponensek egyikét fogja megjeleníteni attól függően, hogy a felhasználó be van-e jelentkezve:
 
 ```javascript{3-7,11,12}
 function Greeting(props) {
@@ -42,21 +42,21 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-This example renders a different greeting depending on the value of `isLoggedIn` prop.
+Ez a példa különféle üdvözléseket renderel az `isLoggenIn` prop értékétől függően.
 
-### Element Variables {#element-variables}
+### Elem változók {#element-variables}
 
-You can use variables to store elements. This can help you conditionally render a part of the component while the rest of the output doesn't change.
+Használhatsz változókat elemek tárolására. Ez segít feltételesen renderelni a komponens egy részét, amíg a kimenet többi része nem változik.
 
-Consider these two new components representing Logout and Login buttons:
+Vedd ezt a két komponenst amik Kijelentkezés és Bejelentkezés gombokat képviselnek:
 
 ```js
 function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
-      Login
+      Bejelentkezés
     </button>
   );
 }
@@ -64,15 +64,15 @@ function LoginButton(props) {
 function LogoutButton(props) {
   return (
     <button onClick={props.onClick}>
-      Logout
+      Kijelentkezés
     </button>
   );
 }
 ```
 
-In the example below, we will create a [stateful component](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) called `LoginControl`.
+Az alábbi példában készíteni fogunk egy `LoginControl` nevű [állapot-teljes komponenst](/docs/state-and-lifecycle.html#adding-local-state-to-a-class).
 
-It will render either `<LoginButton />` or `<LogoutButton />` depending on its current state. It will also render a `<Greeting />` from the previous example:
+Ez vagy a `<LoginButton />`-t vagy pedig a `<LogoutButton />`-t fogja renderelni a jelenlegi állapotától függően. Valamint renderelni fogja a`<Greeting />`-et is az előző példából:
 
 ```javascript{20-25,29,30}
 class LoginControl extends React.Component {
@@ -116,23 +116,23 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-While declaring a variable and using an `if` statement is a fine way to conditionally render a component, sometimes you might want to use a shorter syntax. There are a few ways to inline conditions in JSX, explained below.
+Változók deklarálása és `if` állítások használata teljesen rendben van egy komponens feltételes renderelése esetén, néha azonban talán szívesen használnál egy rövidebb szintaxist. Az alábbiakban elmagyarázzuk, hogy van néhány módja helyben kifejtett feltételeknek JSX-ben.
 
-### Inline If with Logical && Operator {#inline-if-with-logical--operator}
+### Helyben kifejtett if logikai && operátorral {#inline-if-with-logical--operator}
 
-You may [embed any expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+Kapcsos zárójelekkel bármliyen [kifejezést JSX-be tudsz ágyazni](/docs/introducing-jsx.html#embedding-expressions-in-jsx). Ez magába foglalja a logikai `&&` operátort is. Hasznos lehet ha egy elemet feltételesen szeretnénk mutatni:
 
 ```js{6-10}
 function Mailbox(props) {
   const unreadMessages = props.unreadMessages;
   return (
     <div>
-      <h1>Hello!</h1>
+      <h1>Helló!</h1>
       {unreadMessages.length > 0 &&
         <h2>
-          You have {unreadMessages.length} unread messages.
+          {unreadMessages.length} olvasatlan üzeneted van.
         </h2>
       }
     </div>
@@ -146,30 +146,30 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-It works because in JavaScript, `true && expression` always evaluates to `expression`, and `false && expression` always evaluates to `false`.
+Ez azért működik JavaScript-ben, mert a `true && kifejezés` mindig a `kifejezés`-re értékelődik, valamint a `false && kifejezés` pedig mindig `false`-ra.
 
-Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it.
+Ezért ha a feltétel `true`, az elem ami `&&` operátor jobb oldalán van, meg fog jelenni a kimenetben. Ha a feltétel `false` a React átugorja az elemet.
 
-### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+### Helyben kifejtett if-else feltételes operátorral {#inline-if-else-with-conditional-operator}
 
-Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
+A helyben kifejtett feltételes renderelés egy másik módja lehet a JavaScript feltételes operátor [`feltétel ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
-In the example below, we use it to conditionally render a small block of text.
+Az alábbi példában ezt használjuk egy kis szövegrészlet feltételes renderelésére.
 
 ```javascript{5}
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
     <div>
-      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+      A felhasználó <b>{isLoggedIn ? 'jelenleg be van ' : 'nincs be'}</b>jelentkezve.
     </div>
   );
 }
 ```
 
-It can also be used for larger expressions although it is less obvious what's going on:
+Használható nagyobb kifejezésekhez is, bár így kevésbé nyilvánvaló mi is történik éppen:
 
 ```js{5,7,9}
 render() {
@@ -186,13 +186,13 @@ render() {
 }
 ```
 
-Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+Ugyanúgy ahogy JavaScript-ben, te döntöd el hogy melyik stílust választod attól függően hogy te és a társaid mit találnak olvashatóbbnak. Valamint emlékezz, ha a feltételek túl összetetté kezdenek válni, talán itt az ideje [kivonni egy komponenst](/docs/components-and-props.html#extracting-components).
 
-### Preventing Component from Rendering {#preventing-component-from-rendering}
+### Komponens renderelésének megelőzése {#preventing-component-from-rendering}
 
-In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
+Ritka esetekben szeretnéd ha a komponensed elrejtené magát akkor is, ha az más komponensek által renderelve lett. Ehhez egyszerűen téríts vissza `null`-t a renderelés kimenetében.
 
-In the example below, the `<WarningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
+Az alábbi példában a `<WarningBanner />` a `warn` prop értékétől függően van renderelve. Ha a prop értéke `false`, a komponens nem lesz renderelve:
 
 ```javascript{2-4,29}
 function WarningBanner(props) {
@@ -202,7 +202,7 @@ function WarningBanner(props) {
 
   return (
     <div className="warning">
-      Warning!
+      Figyelem!
     </div>
   );
 }
@@ -225,7 +225,7 @@ class Page extends React.Component {
       <div>
         <WarningBanner warn={this.state.showWarning} />
         <button onClick={this.handleToggleClick}>
-          {this.state.showWarning ? 'Hide' : 'Show'}
+          {this.state.showWarning ? 'Elrejtés' : 'Mutatás'}
         </button>
       </div>
     );
@@ -238,6 +238,6 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance `componentDidUpdate` will still be called.
+Ha a komponens `render` metódusában `null` értéket térítünk vissza, az nem hat ki a komponens életciklus metódusainak meghívására. Például a `componentDidUpdate` ebben az esetben is meg lesz hívva.
