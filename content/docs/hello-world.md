@@ -28,7 +28,7 @@ Ebben az útmutatóban a React alkalmazások építőkockáit fogjuk megvizsgál
 
 >Tipp
 >
->Ez az útmutató olyan emberek számárak készült, akik előnyben részesítik a **lépésről lépésre történő tanulást**. Ha jobban szereted gyakorlati példák közben megszerezni a tudást, nézd meg a [tutoriált](/tutorial/tutorial.html). Ezt az útmutatót és a tutoriált egymás kiegészítésének is tekintheted.
+>Ez az útmutató azok számára készült, akik előnyben részesítik a **koncepciók lépésről lépésre történő tanulását**. Ha jobban szereted gyakorlati példák közben megszerezni a tudást, nézd meg a [gyakorlati tutoriált](/tutorial/tutorial.html). Ezt az útmutatót és a tutoriált egymás kiegészítésének is tekintheted.
 
 Ez az első fejezet lépésről lépésre vezet végig a React alapvető fogalmain. A navigációs oldalsávon megtalálhatod az összes fejezet listáját. Ha ezt mobilkészülékről olvasod, akkor a képernyő jobb alsó sarkában található gomb megnyomásával érheted el a navigációt.
 
