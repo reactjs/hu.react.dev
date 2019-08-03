@@ -18,13 +18,13 @@ console.log(doubled);
 
 Ez a kód a `[2, 4, 6, 8, 10]` tömböt írja ki a konzolba.
 
-A React-ben tömböket [elemelistákká](/docs/rendering-elements.html) majdnem ugyanígy transzformálunk.
+A React-ben tömböket [elemlistákká](/docs/rendering-elements.html) majdnem ugyanígy transzformálunk.
 
 ### Komponensek többszöri renderelése {#rendering-multiple-components}
 
 Elemkollekciókat kapcsos zárójelek segítségével `{}` készíthetsz és [illeszthetsz JSX-be](/docs/introducing-jsx.html#embedding-expressions-in-jsx).
 
-Az alábbiakban egy `numbers` tömböt iterálunk a [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) függvénnyel. Minden elemhez visszatérítünk egy `<li>` elemet. Végül hozzárendeljük a kapott elemek tömbjét a `listItems`-hez:
+Az alábbiakban egy `numbers` tömbön iterálunk végig a [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) függvény használatával. Minden elemhez visszaadunk egy `<li>` elemet. Végül hozzárendeljük a kapott elemek tömbjét a `listItems`-hez:
 
 ```javascript{2-4}
 const numbers = [1, 2, 3, 4, 5];
@@ -70,7 +70,7 @@ ReactDOM.render(
 );
 ```
 
-Ha ezt a kódot futtatod, egy figyelmeztetést fogsz kapni, hogy minden listaelemnek rendelkeznie kell egy kulccsal. A "key" (kulcs) egy speciális sztring attribútum, amit fel kell vegyél ha listaelemeket készítesz. A következő szekcióban megbeszéljük hogy ez miért is fontos.
+Ha ezt a kódot futtatod, egy figyelmeztetést fogsz kapni, hogy minden listaelemnek rendelkeznie kell egy kulccsal. A "key" (kulcs) egy speciális szöveges attribútum, amit fel kell vegyél ha listaelemeket készítesz. A következő szekcióban megbeszéljük hogy ez miért is fontos.
 
 Rendeljünk hozzá egy `key`-t a listaelemeinkhez a `numbers.map()`-en belül, hogy kijavítsuk a kulcs problémát.
 
@@ -206,7 +206,7 @@ ReactDOM.render(
 
 Egy jó ökölszabály, hogy a `map()`-en belül lévő minden elemnek rendelkeznie kell egy kulccsal.
 
-### A kulcsoknak csak testévreik között kell egyedinek lenniük {#keys-must-only-be-unique-among-siblings}
+### A kulcsoknak csak testvéreik között kell egyedinek lenniük {#keys-must-only-be-unique-among-siblings}
 
 A kulcsoknak egyedinek kell lenniük testvéreik között. Azonban nem kell, hogy globálisan is egyediek legyenek. Ugyanazokat a kulcsokat használhatjuk két különböző tömb készítése esetén:
 
@@ -280,7 +280,7 @@ function NumberList(props) {
 }
 ```
 
-A JSX lehetővé teszi [bármliyen kifejezés beágyazását](/docs/introducing-jsx.html#embedding-expressions-in-jsx) kapcsos zárójelek között, így a `map()` eredményét is:
+A JSX lehetővé teszi [bármilyen kifejezés beágyazását](/docs/introducing-jsx.html#embedding-expressions-in-jsx) kapcsos zárójelek között, így a `map()` eredményét is:
 
 ```js{5-8}
 function NumberList(props) {
