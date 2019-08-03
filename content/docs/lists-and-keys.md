@@ -8,7 +8,7 @@ next: forms.html
 
 Először is vegyük át hogyan alakítunk át listákat JavaScript-ben.
 
-Vegyük az alábbi kódot. A [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) függvény fog egy számokkal teli tömböt (`numbers`) és megduplázza annak értékeit. A `map()` által visszatérített új tömböt hozzárendeljük a `doubled` változóhoz, és kiírjuk a konzolba:
+Vegyük az alábbi kódot. A [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) függvény fog egy számokkal teli tömböt (`numbers`) és megduplázza annak értékeit. A `map()` által visszaadott új tömböt hozzárendeljük a `doubled` változóhoz, és kiírjuk a konzolba:
 
 ```javascript{2}
 const numbers = [1, 2, 3, 4, 5];
