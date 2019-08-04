@@ -20,7 +20,7 @@ A böngésző DOM elemeivel szemben, a React elemek sima objektumok, és olcsó 
 
 >**Megjegyzés:**
 >
->Könnyű lehet összetéveszteni az elemeket a széles körben ismert "komponensek" fogalmával. A komponenseket a [következő fejezetben](/docs/components-and-props.html) fogjuk bemutatni. A komponensek elemekből "tevődnek össze", és bátorítunk hogy olvasd el ezt a fejezetet mielőtt előre ugranál.
+>Könnyű lehet összetéveszteni az elemeket a szélesebb körben ismert "komponensek" fogalmával. A komponenseket a [következő fejezetben](/docs/components-and-props.html) fogjuk bemutatni. A komponensek elemekből "tevődnek össze", és bátorítunk hogy olvasd el ezt a fejezetet mielőtt előre ugranál.
 
 ## Egy elem renderelése a DOM-ba {#rendering-an-element-into-the-dom}
 
@@ -30,7 +30,7 @@ Tegyük fel, hogy van egy `<div>` valahol a HTML fájlodban:
 <div id="root"></div>
 ```
 
-Ezt hívjuk "gyökér" DOM csomópontnak mert mindent ami benne van, a React DOM fog kezelni.
+Ezt hívjuk "gyökér" DOM csomópontnak, mert mindent ami benne van azt a React DOM fogja kezelni.
 
 A React-el készített alkalmazásoknak általában egy gyökér DOM csomópontjuk van. Ha egy már meglévő alkalmazásba akarod a React-et integrálni, annyi elszigetelt gyökér DOM csomópontot vehetsz fel, amennyit szeretnél.
 
@@ -58,13 +58,13 @@ Ez minden másodpercben meghívja a `ReactDOM.render()`-t a [`setInterval()`](ht
 
 >**Megjegyzés:**
 >
->Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a `ReactDOM.render()` metódust. A következő fejezetben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbefoglalni [állapotteljes komponensekkel](/docs/state-and-lifecycle.html).
+>Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a `ReactDOM.render()` metódust. A következő fejezetben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbe foglalni [állapot-teljes komponensekkel](/docs/state-and-lifecycle.html).
 >
 >Ajánljuk, hogy ne ugord át ezeket a témákat, mert egymásra építenek.
 
 ## A React csak akkor frissít, ha szükséges {#react-only-updates-whats-necessary}
 
-A React DOM összehasonlítja az elemeket és azok gyermekeit a korábbiakkal, és csak azokat a változtatásokat eszközöli a DOM-on, amik a DOM kívánt állapotának eléréséhze szükségesek.
+A React DOM összehasonlítja az elemeket és azok gyermekeit a korábbiakkal, és csak azokat a változtatásokat eszközöli a DOM-on, amik a DOM kívánt állapotának eléréséhez szükségesek.
 
 Ezt megerősítheted a [legutolsó példa](codepen://rendering-elements/update-rendered-element) vizsgálatával a böngészői eszközökkel:
 
