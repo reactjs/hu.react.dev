@@ -12,7 +12,7 @@ A React-ben olyan különböző komponenseket készíthetsz, amik különféle v
 
 A feltételes renderelés React-ben ugyanúgy működik mint ahogy a feltételek működnek JavaScript-ben. Használj JavaScript operátorokat mint az [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) vagy a [feltételes operátor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) elemek készítéséhez, amik reprezentálják a jelenlegi állapotot, és hagyd hogy a React ennek megfelelően frissítse a felhasználói kezelőfelületet.
 
-Vedd ezt a két komopnenst:
+Vedd ezt a két komponenst:
 
 ```js
 function UserGreeting(props) {
@@ -122,7 +122,7 @@ Változók deklarálása és `if` állítások használata teljesen rendben van 
 
 ### Helyben kifejtett if logikai && operátorral {#inline-if-with-logical--operator}
 
-Kapcsos zárójelekkel bármliyen [kifejezést JSX-be tudsz ágyazni](/docs/introducing-jsx.html#embedding-expressions-in-jsx). Ez magába foglalja a logikai `&&` operátort is. Hasznos lehet ha egy elemet feltételesen szeretnénk mutatni:
+Kapcsos zárójelekkel bármilyen [kifejezést JSX-be tudsz ágyazni](/docs/introducing-jsx.html#embedding-expressions-in-jsx). Ez magába foglalja a logikai `&&` operátort is. Hasznos lehet ha egy elemet feltételesen szeretnénk mutatni:
 
 ```js{6-10}
 function Mailbox(props) {
@@ -148,9 +148,9 @@ ReactDOM.render(
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-Ez azért működik JavaScript-ben, mert a `true && kifejezés` mindig a `kifejezés`-re értékelődik, valamint a `false && kifejezés` pedig mindig `false`-ra.
+Ez azért működik JavaScript-ben, mert a `true && kifejezés` mindig a `kifejezés`-re értékelődik ki, valamint a `false && kifejezés` pedig mindig `false`-ra.
 
-Ezért ha a feltétel `true`, az elem ami `&&` operátor jobb oldalán van, meg fog jelenni a kimenetben. Ha a feltétel `false` a React átugorja az elemet.
+Ezért ha a feltétel `true`, az elem ami `&&` operátor jobb oldalán van, meg fog jelenni a kimenetben. Ha a feltétel `false` a React figyelmen kívül hagyja az elemet.
 
 ### Helyben kifejtett if-else feltételes operátorral {#inline-if-else-with-conditional-operator}
 
@@ -190,7 +190,7 @@ Ugyanúgy ahogy JavaScript-ben, te döntöd el hogy melyik stílust választod a
 
 ### Komponens renderelésének megelőzése {#preventing-component-from-rendering}
 
-Ritka esetekben szeretnéd ha a komponensed elrejtené magát akkor is, ha az más komponensek által renderelve lett. Ehhez egyszerűen téríts vissza `null`-t a renderelés kimenetében.
+Ritka esetekben szeretnéd ha a komponensed elrejtené magát akkor is, ha az más komponensek által renderelve lett. Ehhez egyszerűen adj vissza `null`-t a renderelés kimenetében.
 
 Az alábbi példában a `<WarningBanner />` a `warn` prop értékétől függően van renderelve. Ha a prop értéke `false`, a komponens nem lesz renderelve:
 
@@ -240,4 +240,4 @@ ReactDOM.render(
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-Ha a komponens `render` metódusában `null` értéket térítünk vissza, az nem hat ki a komponens életciklus metódusainak meghívására. Például a `componentDidUpdate` ebben az esetben is meg lesz hívva.
+Ha a komponens `render` metódusában `null` értéket adunk vissza, az nem hat ki a komponens életciklus metódusainak meghívására. Például a `componentDidUpdate` ebben az esetben is meg lesz hívva.
