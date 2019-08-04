@@ -109,7 +109,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-A legjobb módja egy kulcs választásának ha egy sztringet használunk, ami egyedien azonosít egy listaelemet annak testvérei között. Leggyakrabban az adatod ID azonosítókulcsa lehet a legjobb kulcs:
+A legjobb módja egy kulcs választásának ha egy szöveget használunk, ami egyedien azonosít egy listaelemet annak testvérei között. Leggyakrabban az adatod ID azonosítókulcsa lehet a legjobb kulcs:
 
 ```js{2}
 const todoItems = todos.map((todo) =>
