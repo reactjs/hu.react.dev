@@ -18,7 +18,7 @@ next: state-and-lifecycle.html
 
 A komponensek lehetővé teszik számodra a felhasználói felület független, újrafelhasználható darabokra való felosztását, és segítnek hogy minden darabról a többitől elzártan tudj gondolkodni. Ez az oldal a komponensek lényegét mutatja be. A [részletes komponens API referenciát itt](/docs/react-component.html) találod.
 
-Elviekben a komponensek olyanok mint a JavaScript függvények. Egy tetszőleges számú inputot fogadnak (amiket "prop"-oknak hívunk) és egy React elemet térítenek vissza ami leírja mi jelenjen meg a képernyőn.
+Elviekben a komponensek olyanok mint a JavaScript függvények. Egy tetszőleges számú inputot fogadnak (amiket "prop"-oknak hívunk) és egy React elemet adnak vissza ami leírja mi jelenjen meg a képernyőn.
 
 ## Függvény és Osztály komopnensek {#function-and-class-components}
 
@@ -30,7 +30,7 @@ function Welcome(props) {
 }
 ```
 
-Ez a függvény egy érvényes React komponens, mivel egyetlen "props" (angol properties, vagy tulajdonságok) objektum argumentuma van ami adatot tartalmaz, és egy React elemet térít vissza. Egy ilyen komponenst hívunk "függvény komponensnek", mert szó szerint csak egy JavaScript függvény.
+Ez a függvény egy érvényes React komponens, mivel egyetlen "props" (angol properties, vagy tulajdonságok) objektum argumentuma van ami adatot tartalmaz, és egy React elemet ad vissza. Egy ilyen komponenst hívunk "függvény komponensnek", mert szó szerint csak egy JavaScript függvény.
 
 Emellett használhatsz [ES6 osztályokat](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) is komponensek definiálásához:
 
@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
 A React szemszögéből a fenti két komponens egymással megegyező.
 
-Az osztályok rendelkeznek pár extra funkcióval, amit a [következő fejezetekben](/docs/state-and-lifecycle.html) beszélünk ki. Addig is a függvény komponenseket használjuk, mivel olyan tömörek.
+Az osztályok rendelkeznek pár extra funkcióval, amit a [következő fejezetekben](/docs/state-and-lifecycle.html) beszélünk ki. Addig is a függvény komponenseket használjuk tömörségük miatt.
 
 ## Egy komponens renderelése {#rendering-a-component}
 
@@ -82,12 +82,12 @@ Foglaljuk össze mi történik ebben a példában:
 
 1. Meghívjuk a `ReactDOM.render()` metódust a `<Welcome name="Sára" />` elemmel.
 2. A React meghívja a `Welcome` komponenst a `{name: 'Sára'}` props objektummal.
-3. A `Welcome` komponensünk visszatéríti a `<h1>Helló, Sára</h1>` elemet eredményként.
+3. A `Welcome` komponensünk visszaadja a `<h1>Helló, Sára</h1>` elemet eredményként.
 4. A React DOM hatékonyan frissíti a DOM-ot hogy az megegyezzen a `<h1>Helló, Sára</h1>`-val.
 
 >**Megjegyzés:** A komponensek neveit mindig nagybetűvel kezdd.
 >
->Azokat a kopmonenseket amik kisbetűvel kezdődnek, a React szimpla DOM címkékként kezeli. Például a `<div />` egy HTML div címkét képvisel, de a `<Welcome />` egy komponenst, és szükséges, hogy a `Welcome` a hatókörben legyen.
+>Azokat a komponenseket amik kisbetűvel kezdődnek, a React szimpla DOM címkékként kezeli. Például a `<div />` egy HTML div címkét képvisel, de a `<Welcome />` egy komponenst, és szükséges, hogy a `Welcome` a hatókörben legyen.
 >
 >Ha többet szeretnél megtudni ezen közös megegyezés mögötti érvelésről, olvasd el a [JSX-ről mélyebben](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized) részt.
 
@@ -156,7 +156,7 @@ function Comment(props) {
 
 Ez fogad egy `author` (objektumot), `text` (karakterláncot), és `date` (dátumot) props-ként, és egy kommentet ír le egy közösségi média weblapon.
 
-Ezt a komponenst furfangos lehet megváltoztatni a sok egymásba ágyazás miatt, és nehéz is újrafelhasználi az egyedülálló részeit. Vonjunk ki egy pár komponenst belőle.
+Ezt a komponenst furfangos lehet megváltoztatni a sok egymásba ágyazás miatt, és nehéz is újrafelhasználni az egyedülálló részeit. Vonjunk ki egy pár komponenst belőle.
 
 Először is kivonjuk az `Avatar` komponenst:
 
@@ -247,7 +247,7 @@ function sum(a, b) {
 
 Egy ilyen függvényt ["tiszta"](https://hu.wikipedia.org/wiki/Tiszta_függvény) függvénynek nevezünk, mert nem kísérli meg megváltoztatni a bemenetét, és mindig ugyanazt az eredményt adja ugyanazon bemenet esetében.
 
-Összehasonlítás képpen ez a függvény nem tiszta, mert megváltoztatja a saját bemenetét:
+Összehasonlításképpen ez a függvény nem tiszta, mert megváltoztatja a saját bemenetét:
 
 ```js
 function withdraw(account, amount) {
