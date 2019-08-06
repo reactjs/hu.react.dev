@@ -10,7 +10,7 @@ redirect_from:
 
 A React-ben olyan különböző komponenseket készíthetsz, amik különféle viselkedéseket tudnak elkülöníteni, magukba foglalni. Ezután tudsz kimondottan csak néhányat renderelni, az alkalmazás állapotától függően.
 
-A feltételes renderelés React-ben ugyanúgy működik mint ahogy a feltételek működnek JavaScript-ben. Használj JavaScript operátorokat mint az [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) vagy a [feltételes operátor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) elemek készítéséhez, amik reprezentálják a jelenlegi állapotot, és hagyd hogy a React ennek megfelelően frissítse a felhasználói kezelőfelületet.
+A feltételes renderelés React-ben ugyanúgy működik mint ahogy a feltételek működnek JavaScript-ben. Használj JavaScript operátorokat mint az [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) vagy a [feltételes operátor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) elemek készítéséhez, amik reprezentálják a jelenlegi állapotot, és hagyd hogy a React ennek megfelelően frissítse a felhasználói felületet.
 
 Vedd ezt a két komponenst:
 
@@ -118,7 +118,7 @@ ReactDOM.render(
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-Változók deklarálása és `if` állítások használata teljesen rendben van egy komponens feltételes renderelése esetén, néha azonban talán szívesen használnál egy rövidebb szintaxist. Az alábbiakban elmagyarázzuk, hogy van néhány módja helyben kifejtett feltételeknek JSX-ben.
+Változók deklarálása és `if` utasítások használata teljesen rendben van egy komponens feltételes renderelése esetén, néha azonban talán szívesen használnál egy rövidebb szintaxist. Az alábbiakban elmagyarázzuk, hogy van néhány módja helyben kifejtett feltételeknek JSX-ben.
 
 ### Helyben kifejtett if logikai && operátorral {#inline-if-with-logical--operator}
 
@@ -186,7 +186,7 @@ render() {
 }
 ```
 
-Ugyanúgy ahogy JavaScript-ben, te döntöd el hogy melyik stílust választod attól függően hogy te és a társaid mit találnak olvashatóbbnak. Valamint emlékezz, ha a feltételek túl összetetté kezdenek válni, talán itt az ideje [kivonni egy komponenst](/docs/components-and-props.html#extracting-components).
+Ugyanúgy ahogy JavaScript-ben, te döntöd el hogy melyik stílust választod attól függően hogy te és a csapatod mit találnak olvashatóbbnak. Valamint emlékezz, ha a feltételek túl összetetté kezdenek válni, talán itt az ideje [kivonni egy komponenst](/docs/components-and-props.html#extracting-components).
 
 ### Komponens renderelésének megelőzése {#preventing-component-from-rendering}
 
