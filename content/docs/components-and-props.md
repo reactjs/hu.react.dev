@@ -16,11 +16,11 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-A komponensek lehetővé teszik számodra a felhasználói felület független, újrafelhasználható darabokra való felosztását, és segítnek hogy minden darabról a többitől elzártan tudj gondolkodni. Ez az oldal a komponensek lényegét mutatja be. A [részletes komponens API referenciát itt](/docs/react-component.html) találod.
+A komponensek lehetővé teszik számodra a felhasználói felület független, újrafelhasználható darabokra való felosztását, és segítenek hogy minden darabról a többitől elzártan tudj gondolkodni. Ez az oldal a komponensek lényegét mutatja be. A [részletes komponens API referenciát itt](/docs/react-component.html) találod.
 
 Elviekben a komponensek olyanok mint a JavaScript függvények. Egy tetszőleges számú inputot fogadnak (amiket "prop"-oknak hívunk) és egy React elemet adnak vissza ami leírja mi jelenjen meg a képernyőn.
 
-## Függvény és Osztály komopnensek {#function-and-class-components}
+## Függvény és Osztály komponensek {#function-and-class-components}
 
 Egy komponens legegyszerűbb definiálásának módja egy JavaScript függvény:
 
@@ -156,7 +156,7 @@ function Comment(props) {
 
 Ez fogad egy `author` (objektumot), `text` (karakterláncot), és `date` (dátumot) props-ként, és egy kommentet ír le egy közösségi média weblapon.
 
-Ezt a komponenst furfangos lehet megváltoztatni a sok egymásba ágyazás miatt, és nehéz is újrafelhasználni az egyedülálló részeit. Vonjunk ki egy pár komponenst belőle.
+Ezt a komponenst furfangos lehet megváltoztatni a sok egymásba ágyazás miatt, és nehéz is újra felhasználni az egyedülálló részeit. Vonjunk ki egy pár komponenst belőle.
 
 Először is kivonjuk az `Avatar` komponenst:
 
