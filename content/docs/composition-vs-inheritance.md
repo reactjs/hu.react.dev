@@ -1,6 +1,6 @@
 ---
 id: composition-vs-inheritance
-title: Kompozíció vs öröklés
+title: Kompozíció és öröklődés
 permalink: docs/composition-vs-inheritance.html
 redirect_from:
   - "docs/multiple-components.html"
@@ -8,7 +8,7 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
-A React egy erőteljes kompozíciós modellel rendelkezik, és ajánljuk is a kompozíció használatát öröklés helyett, a kód komponensek közötti újrafelhasználásának érdekében.
+A React egy erőteljes kompozíciós modellel rendelkezik, és ajánljuk is a kompozíció használatát öröklődés helyett, a kód komponensek közötti újrafelhasználásának érdekében.
 
 Ebben a fejezetben szemügyre veszünk néhány problémát ahol a még új React fejlesztők előszeretettel nyúlnak az örökléshez, és megmutatjuk hogyan lehet ezeket kompozícióval megoldani.
 
@@ -80,7 +80,7 @@ function App() {
 
 [**Próbáld ki CodePen-en**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
-A React elemek mint a `<Contacts />` és a `<Chat />` csak objektumok, szóval le tudod őket küldeni prop-ként, mint bármilyen más adatot. Ez a megközelítés ismerős lehet számodra más könyvtárakból "slot" (rés)-ként, de a React esetében nincs semmilyem megkötés, hogy mit küldesz le prop-ként.
+A React elemek mint a `<Contacts />` és a `<Chat />` csak objektumok, szóval le tudod őket küldeni prop-ként, mint bármilyen más adatot. Ez a megközelítés ismerős lehet számodra más könyvtárakból "slot" (rés)-ként, de a React esetében nincs semmilyen megkötés, hogy mit küldesz le prop-ként.
 
 ## Specializáció {#specialization}
 
@@ -169,4 +169,4 @@ A Facebook-nál a React-et több ezernyi komponensben használjuk, és egyetlen 
 
 A prop-ok és a kompozíció minden szabadságot megadnak ahhoz, hogy egy biztonságos és határozott módon tudd kifejezni a komponensed kinézetét is viselkedését. Emlékezz, hogy a komponensek tetszőleges számú prop-ot fogadhatnak, beleértve primitív értékeket, React elemeket és függvényeket.
 
-Ha újra szeretnél használni egy nem kezelőfelület-specifikus tulajdonságot komponensek között, akkor ajánljuk hogy azt szeparáld ki egy saját JavaScript modulba. A komponensek ezt importálni és használni tudják bármi féle öröklő kiterjeszétés nélkül, legyen az függvény, objektum, vagy egy osztály.
+Ha újra szeretnél használni egy nem kezelőfelület-specifikus tulajdonságot komponensek között, akkor ajánljuk hogy azt szeparáld ki egy saját JavaScript modulba. A komponensek ezt importálni és használni tudják bármi féle öröklő kiterjesztés nélkül, legyen az függvény, objektum, vagy egy osztály.
