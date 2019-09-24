@@ -167,6 +167,6 @@ class SignUpDialog extends React.Component {
 
 A Facebook-nál a React-et több ezernyi komponensben használjuk, és egyetlen esetet sem találtunk, ahol komponens öröklő hierarchia készítését ajánlanánk.
 
-A prop-ok és a kompozíció minden szabadságot megadnak ahhoz, hogy egy biztonságos és határozott módon tudd kifejezni a komponensed kinézetét is viselkedését. Emlékezz, hogy a komponensek tetszőleges számú prop-ot fogadhatnak, beleértve primitív értékeket, React elemeket és függvényeket.
+A prop-ok és a kompozíció minden szabadságot megadnak ahhoz, hogy egy biztonságos és határozott módon tudd kifejezni a komponensed kinézetét és viselkedését. Emlékezz, hogy a komponensek tetszőleges számú prop-ot fogadhatnak, beleértve primitív értékeket, React elemeket és függvényeket.
 
-Ha újra szeretnél használni egy nem kezelőfelület-specifikus tulajdonságot komponensek között, akkor ajánljuk hogy azt szeparáld ki egy saját JavaScript modulba. A komponensek ezt importálni és használni tudják bármi féle öröklő kiterjesztés nélkül, legyen az függvény, objektum, vagy egy osztály.
+Ha újra szeretnél használni egy nem felhasználói felület specifikus tulajdonságot komponensek között, akkor ajánljuk hogy azt szeparáld ki egy saját JavaScript modulba. A komponensek ezt importálni és használni tudják bármi féle öröklő kiterjesztés nélkül, legyen az függvény, objektum, vagy egy osztály.
