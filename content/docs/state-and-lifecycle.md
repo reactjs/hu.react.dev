@@ -244,7 +244,7 @@ A `componentDidMount()` metódus azután fut le, hogy a komponens kimenete a DOM
   }
 ```
 
-Vedd észre hogy az időzítő azonosítóját közvetlenül a `this`-re mentjük.
+Vedd észre hogy az időzítő azonosítóját közvetlenül a `this`-re mentjük (`this.timerID`).
 
 Míg a `this.props`-ot maga a React állítja fel, és a `this.state`-nek speciális jelentése van, te nyugodtan adhatsz hozzá manuálisan egyéb mezőket, ha valamit tárolni szeretnél ami nem vesz részt az adatfolyamban (mint például az időzítő azonosító).
 
