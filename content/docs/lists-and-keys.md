@@ -1,14 +1,14 @@
 ---
 id: lists-and-keys
-title: Lists and Keys
+title: Listák és kulcsok
 permalink: docs/lists-and-keys.html
 prev: conditional-rendering.html
 next: forms.html
 ---
 
-First, let's review how you transform lists in JavaScript.
+Először is vegyük át hogyan alakítunk át listákat JavaScript-ben.
 
-Given the code below, we use the [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function to take an array of `numbers` and double their values. We assign the new array returned by `map()` to the variable `doubled` and log it:
+Vegyük az alábbi kódot. A [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) függvény fog egy számokkal teli tömböt (`numbers`) és megduplázza annak értékeit. A `map()` által visszaadott új tömböt hozzárendeljük a `doubled` változóhoz, és kiírjuk a konzolba:
 
 ```javascript{2}
 const numbers = [1, 2, 3, 4, 5];
@@ -16,15 +16,15 @@ const doubled = numbers.map((number) => number * 2);
 console.log(doubled);
 ```
 
-This code logs `[2, 4, 6, 8, 10]` to the console.
+Ez a kód a `[2, 4, 6, 8, 10]` tömböt írja ki a konzolba.
 
-In React, transforming arrays into lists of [elements](/docs/rendering-elements.html) is nearly identical.
+A React-ben tömböket [elemlistákká](/docs/rendering-elements.html) majdnem ugyanígy transzformálunk.
 
-### Rendering Multiple Components {#rendering-multiple-components}
+### Komponensek többszöri renderelése {#rendering-multiple-components}
 
-You can build collections of elements and [include them in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) using curly braces `{}`.
+Elemkollekciókat kapcsos zárójelek segítségével `{}` készíthetsz és [illeszthetsz JSX-be](/docs/introducing-jsx.html#embedding-expressions-in-jsx).
 
-Below, we loop through the `numbers` array using the JavaScript [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function. We return a `<li>` element for each item. Finally, we assign the resulting array of elements to `listItems`:
+Az alábbiakban egy `numbers` tömbön iterálunk végig a [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) függvény használatával. Minden elemhez visszaadunk egy `<li>` elemet. Végül hozzárendeljük a kapott elemek tömbjét a `listItems`-hez:
 
 ```javascript{2-4}
 const numbers = [1, 2, 3, 4, 5];
@@ -33,7 +33,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-We include the entire `listItems` array inside a `<ul>` element, and [render it to the DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
+A `listItems` tömböt belefoglaljuk egy `<ul>` elembe, és [azt a DOM-ba rendereljük](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
 
 ```javascript{2}
 ReactDOM.render(
@@ -42,15 +42,15 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
 
-This code displays a bullet list of numbers between 1 and 5.
+Ez a kód egy pontokba szedett számlistát mutat 1-től 5-ig.
 
-### Basic List Component {#basic-list-component}
+### Alap lista komponens {#basic-list-component}
 
-Usually you would render lists inside a [component](/docs/components-and-props.html).
+Listákat általában egy [komponensbe](/docs/components-and-props.html) szeretnénk renderelni.
 
-We can refactor the previous example into a component that accepts an array of `numbers` and outputs a list of elements.
+Az előző példát át tudjuk alakítani egy komponenssé, ami fogad egy `numbers` tömböt, és egy elemlistát ad vissza.
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
@@ -70,9 +70,9 @@ ReactDOM.render(
 );
 ```
 
-When you run this code, you'll be given a warning that a key should be provided for list items. A "key" is a special string attribute you need to include when creating lists of elements. We'll discuss why it's important in the next section.
+Ha ezt a kódot futtatod, egy figyelmeztetést fogsz kapni, hogy minden listaelemnek rendelkeznie kell egy kulccsal. A "key" (kulcs) egy speciális szöveges attribútum, amit fel kell vegyél ha listaelemeket készítesz. A következő szekcióban megbeszéljük hogy ez miért is fontos.
 
-Let's assign a `key` to our list items inside `numbers.map()` and fix the missing key issue.
+Rendeljünk hozzá egy `key`-t a listaelemeinkhez a `numbers.map()`-en belül, hogy kijavítsuk a kulcs problémát.
 
 ```javascript{4}
 function NumberList(props) {
@@ -94,11 +94,11 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
 
-## Keys {#keys}
+## Kulcsok {#keys}
 
-Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity:
+A kulcsok segítenek a React-nek azonosítani, hogy mely elemek változtak, lettek hozzáadva, vagy épp törölve. A kulcsokat a tömbön belül kell az elemekhez hozzárendelnünk a stabil azonosíthatóság érdekében:
 
 ```js{3}
 const numbers = [1, 2, 3, 4, 5];
@@ -109,7 +109,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-The best way to pick a key is to use a string that uniquely identifies a list item among its siblings. Most often you would use IDs from your data as keys:
+A legjobb módja egy kulcs választásának ha egy szöveget használunk, ami egyedien azonosít egy listaelemet annak testvérei között. Leggyakrabban az adatod ID azonosítókulcsa lehet a legjobb kulcs:
 
 ```js{2}
 const todoItems = todos.map((todo) =>
@@ -119,34 +119,34 @@ const todoItems = todos.map((todo) =>
 );
 ```
 
-When you don't have stable IDs for rendered items, you may use the item index as a key as a last resort:
+Ha nincs egy stabil ID azonosítókulcsod a renderelt elemekhez, akkor használhatod az elemindexet is kulcsként utolsó lehetőségként:
 
 ```js{2,3}
 const todoItems = todos.map((todo, index) =>
-  // Only do this if items have no stable IDs
+  // Csak akkor tedd ezt, ha nincs egy stabil ID azonosítókulcsod
   <li key={index}>
     {todo.text}
   </li>
 );
 ```
 
-We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
+Ha az elemek sorrendje változhat, akkor nem ajánljuk indexek használatát kulcsként. Ez negatívan hathat ki a teljesítményre és problémákat okozhat a komponens állapotában. Nézd meg Robin Pokorny' cikkét egy [mélyebbre ható magyarázatért, az index mint kulcs használatáról](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Ha úgy döntesz, hogy nem rendelsz egy explicit kulcsot a listaelemekhez, a React automatikusan az indexet fogja kulcsként használni.
 
-Here is an [in-depth explanation about why keys are necessary](/docs/reconciliation.html#recursing-on-children) if you're interested in learning more.
+Itt egy [mélyebbre ható magyarázat, hogy miért is fontosak a kulcsok](/docs/reconciliation.html#recursing-on-children) ha többet szeretnél tanulni.
 
-### Extracting Components with Keys {#extracting-components-with-keys}
+### Komponensek kivonása kulcsokkal {#extracting-components-with-keys}
 
-Keys only make sense in the context of the surrounding array.
+A kulcsoknak csak a környező tömb kontextusában van értelmük.
 
-For example, if you [extract](/docs/components-and-props.html#extracting-components) a `ListItem` component, you should keep the key on the `<ListItem />` elements in the array rather than on the `<li>` element in the `ListItem` itself.
+Például ha [kivonsz](/docs/components-and-props.html#extracting-components) egy `ListItem` komponenst, a kulcsot a `<ListItem />` elemen kell hogy tartsd, nem pedig áttenni azt az `<li>` elemre a `ListItem`-en belül.
 
-**Example: Incorrect Key Usage**
+**Példa: Helytelen kulcshasználat**
 
 ```javascript{4,5,14,15}
 function ListItem(props) {
   const value = props.value;
   return (
-    // Wrong! There is no need to specify the key here:
+    // Hibás! Itt a kulcs definiálásának nincs semmi értelme:
     <li key={value.toString()}>
       {value}
     </li>
@@ -156,7 +156,7 @@ function ListItem(props) {
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
-    // Wrong! The key should have been specified here:
+    // Hibás! A kulcsot itt kell definiálni:
     <ListItem value={number} />
   );
   return (
@@ -173,18 +173,18 @@ ReactDOM.render(
 );
 ```
 
-**Example: Correct Key Usage**
+**Példa: Helyes kulcshasználat**
 
 ```javascript{2,3,9,10}
 function ListItem(props) {
-  // Correct! There is no need to specify the key here:
+  // Helyes! Itt a kulcs definiálásának nincs semmi értelme:
   return <li>{props.value}</li>;
 }
 
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
-    // Correct! Key should be specified inside the array.
+    // Helyes! A kulcsot itt kell definiálni:
     <ListItem key={number.toString()}
               value={number} />
   );
@@ -202,13 +202,13 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
 
-A good rule of thumb is that elements inside the `map()` call need keys.
+Egy jó ökölszabály, hogy a `map()`-en belül lévő minden elemnek rendelkeznie kell egy kulccsal.
 
-### Keys Must Only Be Unique Among Siblings {#keys-must-only-be-unique-among-siblings}
+### A kulcsoknak csak testvéreik között kell egyedinek lenniük {#keys-must-only-be-unique-among-siblings}
 
-Keys used within arrays should be unique among their siblings. However they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+A kulcsoknak egyedinek kell lenniük testvéreik között. Azonban nem kell, hogy globálisan is egyediek legyenek. Ugyanazokat a kulcsokat használhatjuk két különböző tömb készítése esetén:
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
@@ -237,8 +237,8 @@ function Blog(props) {
 }
 
 const posts = [
-  {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-  {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+  {id: 1, title: 'Helló, világ', content: 'Üdövzlünk a React tanulói kurzusában!'},
+  {id: 2, title: 'Telepítés', content: 'A React-et npm-ből tudod telepíteni.'}
 ];
 ReactDOM.render(
   <Blog posts={posts} />,
@@ -246,9 +246,9 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
-Keys serve as a hint to React but they don't get passed to your components. If you need the same value in your component, pass it explicitly as a prop with a different name:
+A kulcsok a React számára szolgálnak utalásként, de leküldve nem lesznek a komponenseidnek. Ha ugyanarra az értékre van szükséged a komponensedben is, akkor azt egy másik prop névvel is explicit módon meg kell adnod:
 
 ```js{3,4}
 const content = posts.map((post) =>
@@ -259,11 +259,11 @@ const content = posts.map((post) =>
 );
 ```
 
-With the example above, the `Post` component can read `props.id`, but not `props.key`.
+A fenti példával a `Post` komponens olvasni tudja `props.id`-t, de a `props.key`-t nem.
 
-### Embedding map() in JSX {#embedding-map-in-jsx}
+### map() JSX-be ágyazása {#embedding-map-in-jsx}
 
-In the examples above we declared a separate `listItems` variable and included it in JSX:
+A fenti példákban külön deklaráltuk a `listItems` változót és belevettük azt a JSX-be:
 
 ```js{3-6}
 function NumberList(props) {
@@ -280,7 +280,7 @@ function NumberList(props) {
 }
 ```
 
-JSX allows [embedding any expression](/docs/introducing-jsx.html#embedding-expressions-in-jsx) in curly braces so we could inline the `map()` result:
+A JSX lehetővé teszi [bármilyen kifejezés beágyazását](/docs/introducing-jsx.html#embedding-expressions-in-jsx) kapcsos zárójelek között, így a `map()` eredményét is:
 
 ```js{5-8}
 function NumberList(props) {
@@ -296,6 +296,6 @@ function NumberList(props) {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
+[**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
-Sometimes this results in clearer code, but this style can also be abused. Like in JavaScript, it is up to you to decide whether it is worth extracting a variable for readability. Keep in mind that if the `map()` body is too nested, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+Ennek néha tisztább kód az eredménye, de ezzel a stílussal könnyű visszaélni. Ahogy a JavaScript-ben is, tőled függ hogy megéri-e kivonni egy változót az olvashatóság érdekében. Tartsd észben hogy ha a `map()` teste túl beágyazott, talán itt az ideje [kivonni egy komponenst](/docs/components-and-props.html#extracting-components).

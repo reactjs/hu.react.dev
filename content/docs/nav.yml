@@ -59,6 +59,8 @@
       title: A teljesítmény optimalizálása
     - id: portals
       title: Portálok
+    - id: profiler
+      title: Futás-elemző
     - id: react-without-es6
       title: React ES6 nélkül
     - id: react-without-jsx
@@ -123,6 +125,14 @@
         title: Horog API referencia
       - id: hooks-faq
         title: Horgok GY.I.K.
+- title: Tesztelés
+  items:
+    - id: testing 
+      title: Tesztelés áttekintés
+    - id: testing-recipes
+      title: Tesztelői receptek
+    - id: testing-environments
+      title: Tesztelői környezetek
 - title: Közreműködés
   items:
   - id: how-to-contribute
