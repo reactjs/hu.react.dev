@@ -111,7 +111,7 @@ class Columns extends React.Component {
 }
 ```
 
-Ugyanúgy használhatod a `<></>`-t, mint ahogy más elemeket is, azzal a különbséggel, hogy nem támogatja a kulcsokat és az attribútumokat.
+Ugyanúgy használhatod a `<></>`-t, mint ahogy más elemeket is, azzal a különbséggel, hogy ez nem támogatja a kulcsokat és az attribútumokat.
 
 ### Kulcsot használó töredékek {#keyed-fragments}
 
