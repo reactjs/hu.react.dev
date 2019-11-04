@@ -1,10 +1,10 @@
 ---
 id: fragments
-title: Fragments
+title: Töredékek
 permalink: docs/fragments.html
 ---
 
-A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
+Egy általános minta React-ben, hogy egy komponens több elemet ad vissza. A töredékek segítenek csoportosítani gyerekek listáját anélkül, hogy új csomópontot adnál a DOM-hoz.
 
 ```js
 render() {
@@ -18,11 +18,11 @@ render() {
 }
 ```
 
-There is also a new [short syntax](#short-syntax) for declaring them.
+Létezik egy új [rövid szintaxis](#short-syntax) is a deklarálásukhoz.
 
-## Motivation {#motivation}
+## Motiváció {#motivation}
 
-A common pattern is for a component to return a list of children. Take this example React snippet:
+Általános minta, hogy egy komponens visszatér a gyerekek listájával. Vegyük példának ezt a React kódrészletet:
 
 ```jsx
 class Table extends React.Component {
@@ -38,91 +38,91 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside the `render()` of `<Columns />`, then the resulting HTML will be invalid.
+`<Columns />`-nak több `<td>` elemet kell visszaadnia hogy a megjelenített HTML érvényes legyen. Ha egy szülő div-et használunk a `<Columns />` komponens `render()` metódusában, akkor az eredményül kapott HTML érvénytelen lesz.
 
 ```jsx
 class Columns extends React.Component {
   render() {
     return (
       <div>
-        <td>Hello</td>
-        <td>World</td>
+        <td>Helló</td>
+        <td>Világ</td>
       </div>
     );
   }
 }
 ```
 
-results in a `<Table />` output of:
+a következő `<Table />` kimenetet eredményezi:
 
 ```jsx
 <table>
   <tr>
     <div>
-      <td>Hello</td>
-      <td>World</td>
+      <td>Helló</td>
+      <td>Világ</td>
     </div>
   </tr>
 </table>
 ```
 
-Fragments solve this problem.
+A töredékek megoldják ezt a problémát.
 
-## Usage {#usage}
+## Használat {#usage}
 
 ```jsx{4,7}
 class Columns extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <td>Hello</td>
-        <td>World</td>
+        <td>Helló</td>
+        <td>Világ</td>
       </React.Fragment>
     );
   }
 }
 ```
 
-which results in a correct `<Table />` output of:
+ami a következő helyes `<Table />` kimenetet eredményezi:
 
 ```jsx
 <table>
   <tr>
-    <td>Hello</td>
-    <td>World</td>
+    <td>Helló</td>
+    <td>Világ</td>
   </tr>
 </table>
 ```
 
-### Short Syntax {#short-syntax}
+### Rövid szintaxis {#short-syntax}
 
-There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
+Van egy új, rövidebb szintaxis, amit a töredékek deklarálásához használhatsz. Úgy néz ki, mint az üres címkék:
 
 ```jsx{4,7}
 class Columns extends React.Component {
   render() {
     return (
       <>
-        <td>Hello</td>
-        <td>World</td>
+        <td>Helló</td>
+        <td>Világ</td>
       </>
     );
   }
 }
 ```
 
-You can use `<></>` the same way you'd use any other element except that it doesn't support keys or attributes.
+Ugyanúgy használhatod a `<></>`-t, mint ahogy más elemeket is, azzal a különbséggel, hogy nem támogatja a kulcsokat és az attribútumokat.
 
-### Keyed Fragments {#keyed-fragments}
+### Kulcsot használó töredékek {#keyed-fragments}
 
-Fragments declared with the explicit `<React.Fragment>` syntax may have keys. A use case for this is mapping a collection to an array of fragments -- for example, to create a description list:
+A töredékek, amik a `<React.Fragment>` szintaxissal vannak deklarálva tartalmazhatnak kulcsokat. Ennek az egyik felhasználási módja egy kollekció leképezése töredékek tömbre - például egy leíráslista létrehozására:
 
 ```jsx
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Without the `key`, React will fire a key warning
+        // 'key' nélkül a React figyelmeztetést fog dobni
         <React.Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -133,8 +133,8 @@ function Glossary(props) {
 }
 ```
 
-`key` is the only attribute that can be passed to `Fragment`. In the future, we may add support for additional attributes, such as event handlers.
+A `key` az egyetlen olyan attribútum, amelyet át lehet adni egy `Fragment`-nek. A jövőben további attribútumok, például eseménykezelők is támogatást kaphatnak.
 
-### Live Demo {#live-demo}
+### Élő demó {#live-demo}
 
-You can try out the new JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+Kipróbálhatod az új JSX töredék szintaktikát ebben a [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000)-ben.
