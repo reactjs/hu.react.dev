@@ -115,7 +115,7 @@ Ugyanúgy használhatod a `<></>`-t, mint ahogy más elemeket is, azzal a külö
 
 ### Kulcsot használó töredékek {#keyed-fragments}
 
-A töredékek, amik a `<React.Fragment>` szintaxissal vannak deklarálva tartalmazhatnak kulcsokat. Ennek az egyik felhasználási módja egy kollekció leképezése töredékek tömbre - például egy leíráslista létrehozására:
+A töredékek, amik a `<React.Fragment>` szintaxissal vannak deklarálva tartalmazhatnak kulcsokat. Ennek az egyik felhasználási módja egy kollekció leképezése töredékek tömbre -- például egy leíráslista létrehozására:
 
 ```jsx
 function Glossary(props) {
