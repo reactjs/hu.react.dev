@@ -137,4 +137,4 @@ A `key` az egyetlen olyan attribútum, amelyet át lehet adni egy `Fragment`-nek
 
 ### Élő demó {#live-demo}
 
-Kipróbálhatod az új JSX töredék szintaktikát ebben a [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000)-ben.
+Ebben a [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000)-ben kipróbálhatod az új JSX  töredék szintaxist.
