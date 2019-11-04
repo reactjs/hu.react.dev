@@ -14,7 +14,7 @@ const element = <h1>Helló, világ!</h1>;
 
 Ez a furcsa szintaktika se nem szöveg se nem HTML.
 
-JSX-nek hívják, ami egy szintaxis kiterjesztés a JavaScript nyelvhez.Használatát ajánljuk a React-el, hogy leírd miként fog kinézni a felhasználói felület. A JSX egy sablonnyelvre emlékeztethet, de a JavaScript teljes erejével bír.
+JSX-nek hívják, ami egy szintaxis kiterjesztés a JavaScript nyelvhez. Használatát ajánljuk a React-el, hogy leírd miként fog kinézni a felhasználói felület. A JSX egy sablonnyelvre emlékeztethet, de a JavaScript teljes erejével bír.
 
 A JSX React "elemeket" állít elő. A [következő szekcióban](/docs/rendering-elements.html) fogjuk megvizsgálni a DOM-ba való renderelésüket. Lent megtalálod a JSX alapjait, amelyek az elinduláshoz szükségesek.
 
