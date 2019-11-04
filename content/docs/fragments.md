@@ -22,7 +22,7 @@ Létezik egy új [rövid szintaxis](#short-syntax) is a deklarálásukhoz.
 
 ## Motiváció {#motivation}
 
-Általános minta, hogy egy komponens visszatér a gyerekek listájával. Vegyük példának ezt a React kódrészletet:
+Komponensek esetében gyakori minta, hogy az gyermekek listájával térjen vissza. Vegyük példának ezt a React kódrészletet:
 
 ```jsx
 class Table extends React.Component {
