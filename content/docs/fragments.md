@@ -38,7 +38,7 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />`-nak több `<td>` elemet kell visszaadnia hogy a megjelenített HTML érvényes legyen. Ha egy szülő div-et használunk a `<Columns />` komponens `render()` metódusában, akkor az eredményül kapott HTML érvénytelen lesz.
+A `<Columns />`-nak több `<td>` elemet kell visszaadnia hogy a megjelenített HTML érvényes legyen. Ha egy szülő div-et használunk a `<Columns />` komponens `render()` metódusában, akkor az eredményül kapott HTML érvénytelen lesz.
 
 ```jsx
 class Columns extends React.Component {
