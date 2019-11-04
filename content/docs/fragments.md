@@ -4,7 +4,7 @@ title: Töredékek
 permalink: docs/fragments.html
 ---
 
-Egy általános minta React-ben, hogy egy komponens több elemet ad vissza. A töredékek segítenek csoportosítani gyerekek listáját anélkül, hogy új csomópontot adnál a DOM-hoz.
+Egy általános minta a React-ben, hogy egy komponens több elemet ad vissza. A töredékek segítenek gyermekek listáját csoportosítani anélkül, hogy új csomópontot adnál a DOM-hoz.
 
 ```js
 render() {
