@@ -66,7 +66,7 @@ a következő `<Table />` kimenetet eredményezi:
 </table>
 ```
 
-A töredékek megoldják ezt a problémát.
+A töredékek ezt a problémát oldják meg.
 
 ## Használat {#usage}
 
