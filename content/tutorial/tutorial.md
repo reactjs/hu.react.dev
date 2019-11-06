@@ -120,7 +120,8 @@ Szintaxis kiemeléshez a következő [instrukciókat](https://babeljs.io/docs/ed
 
 ### Segítség, elakadtam! {#help-im-stuck}
 
-Ha bármikor elekadsz, a [közösségi támogatási források](/community/support.html) segíthet. Különösen a [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) lehet hasznos, ha gyorsan szeretnél segítséget kapni. Ha nem érkezik válasz, vagy még mindig el vagy akadva, nyiss egy issue-t és segítünk.
+Ha bármikor elekadsz, a [közösségi támogatási források](/community/support.html) segíthet. Különösen a [Reactiflux Chat](https://discord.gg/reactiflux) lehet hasznos, ha gyorsan szeretnél segítséget kapni. Ha nem érkezik válasz, vagy még mindig el vagy akadva, nyiss egy issue-t és segítünk.
+If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
 
 ## Áttekintés {#overview}
 
@@ -337,8 +338,7 @@ A React Devtools fejlesztői eszközök kiegészítő [Chrome](https://chrome.go
 
 A React DevTools segít ellenőrizni a React komponenseid prop-jait és állapotait (state).
 
-<!-- TODO: Translate Inspect -->
-A React DevTools telepítése után kattints bármelyik elemre jobb egérgombbal az oldalon, majd kattitnts az "Inspect"-re a fejlesztői eszközök megnyitásához. Ekkor egy React fül nyílik meg utolsó fülként a jobb oldalon.
+A React DevTools telepítése után kattints bármelyik elemre jobb egérgombbal az oldalon, majd kattitnts a "Vizsgálat"-ra a fejlesztői eszközök megnyitásához. Ekkor a React fülek ("⚛️ Components" és "⚛️ Profiler") megjelennek mint a két utolsó fül a jobb oldalon. A komponens fa vizsgálatához használd a "⚛️ Components" fület.
 
 **Ha azonban a CodePen-en dolgozol, egy pár extra lépésre szükség van ahhoz, hogy egy műküdjön:**
 

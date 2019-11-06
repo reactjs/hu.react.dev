@@ -1,9 +1,9 @@
 ---
-title: A Simple Component
+title: Egyszerű komponens
 order: 0
 domid: hello-example
 ---
 
-React components implement a `render()` method that takes input data and returns what to display. This example uses an XML-like syntax called JSX. Input data that is passed into the component can be accessed by `render()` via `this.props`.
+A React komponensek azt mutatják, ami a `render()` metódusban visszatér, beviteli adattól függően. Ez a példa JSX-t használ, aminek a szintaxisa az XML-re hasonlít. A komponens beviteli adata le van küldve a komponensnek, amihez a `render()` metódus a `this.props` segítségével fér hozzá.
 
-**JSX is optional and not required to use React.** Try the [Babel REPL](babel://es5-syntax-example) to see the raw JavaScript code produced by the JSX compilation step.
+**A JSX szintaxis használata nem kötelező a Reactben.** Hogy lásd a nyers JavaScript kódot amit a JSX fordítása generál, próbáld ki a [Babel REPL](babel://es5-syntax-example)-t.

@@ -1,6 +1,6 @@
 ---
 id: composition-vs-inheritance
-title: Composition vs Inheritance
+title: Kompozíció és öröklődés
 permalink: docs/composition-vs-inheritance.html
 redirect_from:
   - "docs/multiple-components.html"
@@ -8,15 +8,15 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
-React has a powerful composition model, and we recommend using composition instead of inheritance to reuse code between components.
+A React egy erőteljes kompozíciós modellel rendelkezik, és ajánljuk is a kompozíció használatát öröklődés helyett, a kód komponensek közötti újrafelhasználásának érdekében.
 
-In this section, we will consider a few problems where developers new to React often reach for inheritance, and show how we can solve them with composition.
+Ebben a fejezetben szemügyre veszünk néhány problémát ahol a még új React fejlesztők előszeretettel nyúlnak az örökléshez, és megmutatjuk hogyan lehet ezeket kompozícióval megoldani.
 
-## Containment {#containment}
+## Elszigetelés {#containment}
 
-Some components don't know their children ahead of time. This is especially common for components like `Sidebar` or `Dialog` that represent generic "boxes".
+Néhány komponens nem ismeri a saját gyermekeit idő előtt. Ez igen gyakori olyan komponensek esetében mint a `Sidebar` vagy a `Dialog`, amik általános "dobozokat" képviselnek.
 
-We recommend that such components use the special `children` prop to pass children elements directly into their output:
+Azt ajánljuk, hogy ilyen komponensek esetében használd a speciális `children` (gyermekek) prop-ot, hogy ezen komponensek kimenetébe közvetlenül le tudd küldeni a gyermek elemeket:
 
 ```js{4}
 function FancyBorder(props) {
@@ -28,28 +28,28 @@ function FancyBorder(props) {
 }
 ```
 
-This lets other components pass arbitrary children to them by nesting the JSX:
+Ez lehetővé teszi más komponenseknek tetszőleges számú gyermeket küldeni ezen komponenseknek, JSX-be való beágyazással:
 
 ```js{4-9}
 function WelcomeDialog() {
   return (
     <FancyBorder color="blue">
       <h1 className="Dialog-title">
-        Welcome
+        Üdvözöljük
       </h1>
       <p className="Dialog-message">
-        Thank you for visiting our spacecraft!
+        Köszönjük, hogy meglátogatta űrhajónkat!
       </p>
     </FancyBorder>
   );
 }
 ```
 
-**[Try it on CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
+**[Próbáld ki CodePen-en](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
 
-Anything inside the `<FancyBorder>` JSX tag gets passed into the `FancyBorder` component as a `children` prop. Since `FancyBorder` renders `{props.children}` inside a `<div>`, the passed elements appear in the final output.
+Bármi ami a `<FancyBorder>` JSX címkéi között van, `children` prop-ként lesz leküldve a `FancyBorder` komponensnek. Mivel a `FancyBorder` egy `<div>`-ben rendereli a `{props.children}`-t, a legküldött elem meg fog jelenni a végső kimenetben.
 
-While this is less common, sometimes you might need multiple "holes" in a component. In such cases you may come up with your own convention instead of using `children`:
+Ha nem is gyakran, de néha szükséged lehet több "lyukra" is egy komponensben. Ilyen esetekben előrukkolhatsz egy saját megoldással a `children` helyett:
 
 ```js{5,8,18,21}
 function SplitPane(props) {
@@ -78,15 +78,15 @@ function App() {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
+[**Próbáld ki CodePen-en**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
-React elements like `<Contacts />` and `<Chat />` are just objects, so you can pass them as props like any other data. This approach may remind you of "slots" in other libraries but there are no limitations on what you can pass as props in React.
+A React elemek mint a `<Contacts />` és a `<Chat />` csak objektumok, szóval le tudod őket küldeni prop-ként, mint bármilyen más adatot. Ez a megközelítés ismerős lehet számodra más könyvtárakból "slot" (rés)-ként, de a React esetében nincs semmilyen megkötés, hogy mit küldesz le prop-ként.
 
-## Specialization {#specialization}
+## Specializáció {#specialization}
 
-Sometimes we think about components as being "special cases" of other components. For example, we might say that a `WelcomeDialog` is a special case of `Dialog`.
+Némely esetben úgy tekintünk komponensekre, mint más komponensek "speciális esetére". Például mondhatjuk, hogy a `WelcomeDialog` a `Dialog` egy speciális esete.
 
-In React, this is also achieved by composition, where a more "specific" component renders a more "generic" one and configures it with props:
+A React-ben ez is kompozícióval érhető el, ahol egy "specifikusabb" komponens egy "általánosabb" komponenst renderel, amiket prop-okkal konfigurál:
 
 ```js{5,8,16-18}
 function Dialog(props) {
@@ -105,15 +105,15 @@ function Dialog(props) {
 function WelcomeDialog() {
   return (
     <Dialog
-      title="Welcome"
-      message="Thank you for visiting our spacecraft!" />
+      title="Üdvözöljük"
+      message="Köszönjük, hogy meglátogatta űrhajónkat!" />
   );
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
+[**Próbáld ki CodePen-en**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
 
-Composition works equally well for components defined as classes:
+A kompozíció ugyanolyan jól működik osztályként definiált komponensek esetében is:
 
 ```js{10,27-31}
 function Dialog(props) {
@@ -140,12 +140,12 @@ class SignUpDialog extends React.Component {
 
   render() {
     return (
-      <Dialog title="Mars Exploration Program"
-              message="How should we refer to you?">
+      <Dialog title="Mars Kutató Program"
+              message="Hogy hívjunk?">
         <input value={this.state.login}
                onChange={this.handleChange} />
         <button onClick={this.handleSignUp}>
-          Sign Me Up!
+          Írj fel engem!
         </button>
       </Dialog>
     );
@@ -156,17 +156,17 @@ class SignUpDialog extends React.Component {
   }
 
   handleSignUp() {
-    alert(`Welcome aboard, ${this.state.login}!`);
+    alert(`Üdv a fedélzeten, ${this.state.login}!`);
   }
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
+[**Próbáld ki CodePen-en**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
 
-## So What About Inheritance? {#so-what-about-inheritance}
+## És mi a helyzet az örökléssel? {#so-what-about-inheritance}
 
-At Facebook, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies.
+A Facebook-nál a React-et több ezernyi komponensben használjuk, és egyetlen esetet sem találtunk, ahol komponens öröklő hierarchia készítését ajánlanánk.
 
-Props and composition give you all the flexibility you need to customize a component's look and behavior in an explicit and safe way. Remember that components may accept arbitrary props, including primitive values, React elements, or functions.
+A prop-ok és a kompozíció minden szabadságot megadnak ahhoz, hogy egy biztonságos és határozott módon tudd kifejezni a komponensed kinézetét és viselkedését. Emlékezz, hogy a komponensek tetszőleges számú prop-ot fogadhatnak, beleértve primitív értékeket, React elemeket és függvényeket.
 
-If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or a class, without extending it.
+Ha újra szeretnél használni egy nem felhasználói felület specifikus tulajdonságot komponensek között, akkor ajánljuk hogy azt szeparáld ki egy saját JavaScript modulba. A komponensek ezt importálni és használni tudják bármi féle öröklő kiterjesztés nélkül, legyen az függvény, objektum, vagy egy osztály.
