@@ -16,7 +16,7 @@ Ez a furcsa szintaxis se nem szöveg se nem HTML.
 
 JSX-nek hívják, ami egy szintaxis kiterjesztés a JavaScript nyelvhez. Ajánlani tudjuk a React-el való használatát a felhasználói felület kinézetének leírásához. A JSX egy sablonnyelvre emlékeztethet, de a JavaScript teljes erejével bír.
 
-A JSX React "elemeket" állít elő. A [következő szekcióban](/docs/rendering-elements.html) fogjuk megvizsgálni a DOM-ba való renderelésüket. Lent megtalálod a JSX alapjait, amelyek az elinduláshoz szükségesek.
+A JSX React "elemeket" állít elő. A DOM-ba való renderelésüket a [következő szekcióban](/docs/rendering-elements.html) fogjuk megvizsgálni. Lent megtalálod a JSX alapjait, amelyek az elinduláshoz szükségesek.
 
 ### Miért a JSX? {#why-jsx}
 
