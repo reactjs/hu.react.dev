@@ -138,7 +138,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-Alapértelmezés szerint a React DOM [elkerüli](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) az összes JSX-be beágyazott értéket, mielőtt azokat megjelenítené. Így tudja biztosítani, hogy soha nem tudsz bármi olyat injektálni, amit kifejezetten nem a te alkalmazásodban írtak. Minden átalakul karakterlánccá, mielőtt megjelenítésre kerül. Ez segít megelőzni az [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) típusú támadásokat.
+Alapértelmezés szerint a React DOM [szanitálja](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) az összes JSX-be beágyazott értéket, mielőtt azokat megjelenítené. Így biztosítja azt, hogy soha nem tudsz bármi olyat injektálni, amit kifejezetten nem a te alkalmazásodban írtak. Minden átalakul karakterlánccá, mielőtt megjelenítésre kerül. Ez segít megelőzni az [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) típusú támadásokat.
 
 ### A JSX objektumokat reprezentál {#jsx-represents-objects}
 
