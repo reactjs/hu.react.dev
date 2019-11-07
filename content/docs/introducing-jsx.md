@@ -70,7 +70,7 @@ ReactDOM.render(
 
 [](codepen://introducing-jsx)
 
-A JSX-et több sorra bontottuk az olvashatóság érdekében. Bár ez nem kötelező, de ha ezt csinálod akkor javasoljuk, hogy csomagold zárójelek közé, elkerülve az [automatikus pontosvessző beillesztésének](https://stackoverflow.com/q/2846283) buktatóit.
+A JSX-et több sorra bontottuk az olvashatóság érdekében. Bár ez nem kötelező, de ha így csinálod akkor azt javasoljuk, hogy tedd zárójelek közé, hogy elkerüld az [automatikus pontosvessző beillesztésének](https://stackoverflow.com/q/2846283) buktatóit.
 
 ### A JSX egy kifejezés is {#jsx-is-an-expression-too}
 
