@@ -130,7 +130,7 @@ const element = (
 
 ### A JSX megakadályozza az injekciós támadásokat {#jsx-prevents-injection-attacks}
 
-Biztonságos a felhasználói bevitel beágyazása a JSX-be:
+A felhasználói bevitel beágyazása a JSX-be biztonságos:
 
 ```js
 const title = response.potentiallyMaliciousInput;
