@@ -30,7 +30,7 @@ Ezeket tisztázva, kezdjünk is bele!
 
 ### Beágyazott kifejezések JSX-ben {#embedding-expressions-in-jsx}
 
-A következő példában egy `name` nevű változót deklarálunk, majd a JSX-ben használjuk úgy, hogy kapcsos zárójelek közé csomagoljuk:
+A következő példában egy `name` változót deklarálunk, majd a JSX-ben használjuk úgy, hogy kapcsos zárójelbe tesszük:
 
 ```js{1,2}
 const name = 'Josh Perez';
