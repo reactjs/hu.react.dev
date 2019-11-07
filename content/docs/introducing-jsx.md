@@ -20,7 +20,7 @@ A JSX React "elemeket" állít elő. A DOM-ba való renderelésüket a [követke
 
 ### Miért a JSX? {#why-jsx}
 
-A React felöleli a tényt, hogy a megjelenítési logika eleve összekapcsolódik a többi felhasználói felület logikájával: hogyan kezelik az eseményeket, hogyan változnak az állapotok az idő múlásával, és hogyan állnak elő az adatokat a megjelenítéshez.
+A React azt az elvet vallja, hogy a megjelenítési logika eleve összekapcsolódik a többi felhasználói felületi logikával: az események kezelésével, állapotok időbeni változásával, és hogy az adat hogyan van előkészítve annak megjelenítéséhez.
 
 Ahelyett, hogy a *technológiákat* mesterségesen elválasztaná azzal, hogy a jelölést és a logikát külön fájlokba helyezi, a React szempontok szerint szeparál lazán összekapcsolt „komponenseknek” nevezett egységekkel, amelyek mindkettőt tartalmazzák. Vissza fogunk térni a komponensekhez egy [későbbi szekcióban](/docs/components-and-props.html), ha még nem vagy otthon JS-be a jelölés használatával, [ez a beszélgetés](https://www.youtube.com/watch?v=x7cQ3mrcKaY) meggyőzhet téged.
 
