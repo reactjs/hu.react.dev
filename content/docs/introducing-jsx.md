@@ -12,7 +12,7 @@ Vizsgáljuk meg a következő változó deklarálást:
 const element = <h1>Helló, világ!</h1>;
 ```
 
-Ez a furcsa szintaktika se nem szöveg se nem HTML.
+Ez a furcsa szintaxis se nem szöveg se nem HTML.
 
 JSX-nek hívják, ami egy szintaxis kiterjesztés a JavaScript nyelvhez. Ajánlani tudjuk a React-el való használatát a felhasználói felület kinézetének leírásához. A JSX egy sablonnyelvre emlékeztethet, de a JavaScript teljes erejével bír.
 
