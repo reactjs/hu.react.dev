@@ -1,40 +1,40 @@
 ---
 id: introducing-jsx
-title: Introducing JSX
+title: JSX bemutatása
 permalink: docs/introducing-jsx.html
 prev: hello-world.html
 next: rendering-elements.html
 ---
 
-Consider this variable declaration:
+Vizsgáljuk meg a következő változó deklarálást:
 
 ```js
-const element = <h1>Hello, world!</h1>;
+const element = <h1>Helló, világ!</h1>;
 ```
 
-This funny tag syntax is neither a string nor HTML.
+Ez a furcsa szintaxis se nem szöveg se nem HTML.
 
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript.
+JSX-nek hívják, ami egy szintaxis kiterjesztés a JavaScript nyelvhez. Ajánlani tudjuk a React-el való használatát a felhasználói felület kinézetének leírásához. A JSX egy sablonnyelvre emlékeztethet, de a JavaScript teljes erejével bír.
 
-JSX produces React "elements". We will explore rendering them to the DOM in the [next section](/docs/rendering-elements.html). Below, you can find the basics of JSX necessary to get you started.
+A JSX React "elemeket" állít elő. A DOM-ba való renderelésüket a [következő szekcióban](/docs/rendering-elements.html) fogjuk megvizsgálni. Lent megtalálod a JSX alapjait, amelyek az elinduláshoz szükségesek.
 
-### Why JSX? {#why-jsx}
+### Miért a JSX? {#why-jsx}
 
-React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display.
+A React azt az elvet vallja, hogy a megjelenítési logika eleve összekapcsolódik a többi felhasználói felületi logikával: az események kezelésével, állapotok időbeni változásával, és hogy az adat hogyan van előkészítve annak megjelenítéséhez.
 
-Instead of artificially separating *technologies* by putting markup and logic in separate files, React [separates *concerns*](https://en.wikipedia.org/wiki/Separation_of_concerns) with loosely coupled units called "components" that contain both. We will come back to components in a [further section](/docs/components-and-props.html), but if you're not yet comfortable putting markup in JS, [this talk](https://www.youtube.com/watch?v=x7cQ3mrcKaY) might convince you otherwise.
+Ahelyett, hogy a *technológiákat* mesterségesen elválasztaná azzal, hogy a jelölést és a logikát külön fájlokba helyezi, a React szempontok szerint szeparál lazán összekapcsolt „komponenseknek” nevezett egységekkel, amelyek mindkettőt tartalmazzák. Vissza fogunk térni a komponensekhez egy [későbbi szekcióban](/docs/components-and-props.html), ha még nem vagy otthon a jelölés JS-ben való használatával, [ez a beszélgetés](https://www.youtube.com/watch?v=x7cQ3mrcKaY) meggyőzhet téged.
 
-React [doesn't require](/docs/react-without-jsx.html) using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.
+A React [nem követeli meg](/docs/react-without-jsx.html) a JSX használatát, de a legtöbb ember hasznosnak találja mint vizuális segédeszköz ha felhasználói felülettel dolgozik JavaScript kódban. Ezenkívül azt is lehetővé teszi, hogy a React hasznosabb hiba- és figyelmeztető üzeneteket jelenítsen meg.
 
-With that out of the way, let's get started!
+Ezeket tisztázva, kezdjünk is bele!
 
-### Embedding Expressions in JSX {#embedding-expressions-in-jsx}
+### Beágyazott kifejezések JSX-ben {#embedding-expressions-in-jsx}
 
-In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
+A következő példában egy `name` változót deklarálunk, majd a JSX-ben használjuk úgy, hogy kapcsos zárójelbe tesszük:
 
 ```js{1,2}
 const name = 'Josh Perez';
-const element = <h1>Hello, {name}</h1>;
+const element = <h1>Helló, {name}</h1>;
 
 ReactDOM.render(
   element,
@@ -42,9 +42,9 @@ ReactDOM.render(
 );
 ```
 
-You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.
+A JSX-be bármilyen érvényes [JavaScript kifejezést](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) beilleszthetsz kapcsos zárójelek közé. Például a `2 + 2`, `user.firstName`, vagy a `formatName(user)` mind érvényes JavaScript kifejezések.
 
-In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.
+Az alábbi példában a `formatName (user)` JavaScript függvény meghívásának eredményét ágyazzuk be a `<h1>` elembe.
 
 ```js{12}
 function formatName(user) {
@@ -58,7 +58,7 @@ const user = {
 
 const element = (
   <h1>
-    Hello, {formatName(user)}!
+    Helló, {formatName(user)}!
   </h1>
 );
 
@@ -70,86 +70,86 @@ ReactDOM.render(
 
 [](codepen://introducing-jsx)
 
-We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
+A JSX-et több sorra bontottuk az olvashatóság érdekében. Bár ez nem kötelező, de ha így csinálod akkor azt javasoljuk, hogy tedd zárójelek közé, hogy elkerüld az [automatikus pontosvessző beillesztésének](https://stackoverflow.com/q/2846283) buktatóit.
 
-### JSX is an Expression Too {#jsx-is-an-expression-too}
+### A JSX egy kifejezés is {#jsx-is-an-expression-too}
 
-After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
+A fordítás után a JSX kifejezések normál JavaScript hívásokká válnak, és JavaScript objektumokra értékelődnek ki.
 
-This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
+Ez azt jelenti, hogy a JSX-et használhatod `if` utasításokban és `for` ciklusokban, hozzárendelheted változókhoz, és paraméterként vagy visszatérési értékként is használhatod egy függvény esetében:
 
 ```js{3,5}
 function getGreeting(user) {
   if (user) {
-    return <h1>Hello, {formatName(user)}!</h1>;
+    return <h1>Helló, {formatName(user)}!</h1>;
   }
-  return <h1>Hello, Stranger.</h1>;
+  return <h1>Helló, idegen.</h1>;
 }
 ```
 
-### Specifying Attributes with JSX {#specifying-attributes-with-jsx}
+### Attribútumok meghatározása a JSX segítségével {#specifying-attributes-with-jsx}
 
-You may use quotes to specify string literals as attributes:
+Idézőjelek segítségével megadhatsz karakterláncokat attribútumként:
 
 ```js
 const element = <div tabIndex="0"></div>;
 ```
 
-You may also use curly braces to embed a JavaScript expression in an attribute:
+Kapcsos zárójelekkel beágyazhatsz JavaScript kifejezést egy attribútumba:
 
 ```js
 const element = <img src={user.avatarUrl}></img>;
 ```
 
-Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should either use quotes (for string values) or curly braces (for expressions), but not both in the same attribute.
+Ne használj idézőjeleket kapcsos zárójelek körül, mikor JavaScript kifejezést ágyazol be egy attribútumba. Használhatsz idézőjeleket (karakterláncokhoz) vagy kapcsos zárójelet (kifejezésekhez), de mindkettőt egy attribútumon belül ne.
 
->**Warning:**
+>**Figyelem:**
 >
->Since JSX is closer to JavaScript than to HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
+>Mivel a JSX közelebb áll a JavaScripthez, mint a HTML-hez, a REACT DOM a `camelCase` elnevezési stílust használja a HTML attribútumnevek helyett.
 >
->For example, `class` becomes [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) in JSX, and `tabindex` becomes [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
+>Például a `class` JSX-ben [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className)-re változik, a `tabindex`-et pedig [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex)-ként tudjuk használni.
 
-### Specifying Children with JSX {#specifying-children-with-jsx}
+### Gyermekek megadása JSX-ben {#specifying-children-with-jsx}
 
-If a tag is empty, you may close it immediately with `/>`, like XML:
+Ha egy címke üres, akkor azonnal lezárhatod egy `/>` (önlezáró) taggel, mint ahogy XML-ben is:
 
 ```js
 const element = <img src={user.avatarUrl} />;
 ```
 
-JSX tags may contain children:
+A JSX-címkék gyermekeket is tartalmazhatnak:
 
 ```js
 const element = (
   <div>
-    <h1>Hello!</h1>
-    <h2>Good to see you here.</h2>
+    <h1>Helló!</h1>
+    <h2>Jó itt látni.</h2>
   </div>
 );
 ```
 
-### JSX Prevents Injection Attacks {#jsx-prevents-injection-attacks}
+### A JSX megakadályozza az injekciós támadásokat {#jsx-prevents-injection-attacks}
 
-It is safe to embed user input in JSX:
+A felhasználói bevitel beágyazása a JSX-be biztonságos:
 
 ```js
 const title = response.potentiallyMaliciousInput;
-// This is safe:
+// Ez biztonságos:
 const element = <h1>{title}</h1>;
 ```
 
-By default, React DOM [escapes](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
+Alapértelmezés szerint a React DOM [szanitálja](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) az összes JSX-be beágyazott értéket, mielőtt azokat megjelenítené. Így biztosítja azt, hogy soha nem tudsz bármi olyat injektálni, amit kifejezetten nem a te alkalmazásodban írtak. Minden átalakul karakterlánccá, mielőtt megjelenítésre kerül. Ez segít megelőzni az [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) típusú támadásokat.
 
-### JSX Represents Objects {#jsx-represents-objects}
+### A JSX objektumokat reprezentál {#jsx-represents-objects}
 
-Babel compiles JSX down to `React.createElement()` calls.
+A Babel a JSX-et `React.createElement()` hívásokra fordítja le.
 
-These two examples are identical:
+Ez a két példa megegyezik:
 
 ```js
 const element = (
   <h1 className="greeting">
-    Hello, world!
+    Helló, világ!
   </h1>
 );
 ```
@@ -158,27 +158,27 @@ const element = (
 const element = React.createElement(
   'h1',
   {className: 'greeting'},
-  'Hello, world!'
+  'Helló, világ!'
 );
 ```
 
-`React.createElement()` performs a few checks to help you write bug-free code but essentially it creates an object like this:
+A `React.createElement()` végrehajt pár ellenőrzést a hibamentes kód megírásának érdekében, de alapvetően ehhez hasonló objektumokat hoz létre:
 
 ```js
-// Note: this structure is simplified
+// Megjegyzés: ez a szerkezet egyszerűsített
 const element = {
   type: 'h1',
   props: {
     className: 'greeting',
-    children: 'Hello, world!'
+    children: 'Helló, világ!'
   }
 };
 ```
 
-These objects are called "React elements". You can think of them as descriptions of what you want to see on the screen. React reads these objects and uses them to construct the DOM and keep it up to date.
+Ezeket az objektumokat "React elemeknek" nevezzük. Gondolhatunk rájuk úgy, mint annak a leírása amit a képernyőn látni szeretnénk. A React olvassa ezeket az objektumokat és arra használja, hogy a DOM-ot felépítse és naprakészen tartsa.
 
-We will explore rendering React elements to the DOM in the next section.
+A következő szekcióban megvizsgáljuk a React elemek DOM-ba való renderelését.
 
->**Tip:**
+>**Tipp:**
 >
->We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
+>Javasoljuk, hogy általad használt kódszerkesztőben használd a ["Babel" nyelvdefiníciót](https://babeljs.io/docs/editors), így az ES6 és JSX kódrészek is helyesen lesznek kiemelve. Ez a weboldal a [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) színsémát használja, ami ezzel kompatibilis.
