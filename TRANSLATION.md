@@ -30,7 +30,7 @@ A fordítás menete a következező:
 
 ## Gyakori kifejezések
 
-| Engllish | Magyar |
+| English | Magyar |
 | --- | --- |
 | _technical and React-specific_ |
 | declarative | deklaratív |
