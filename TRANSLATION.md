@@ -47,7 +47,7 @@ A fordítás menete a következező:
 | attributes | attributumok |
 | element | elem |
 | functional component | függvény komponens |
-| function component | fügvény komponens |
+| function component | függvény komponens |
 | class components | oszály komponensek |
 | composition | kompozíció |
 | inheritance | öröklődés |
