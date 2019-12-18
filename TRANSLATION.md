@@ -99,7 +99,7 @@ A fordítás menete a következező:
 | opt-in | opcionális |
 | section | szekció |
 | overview | áttekintés |
-| try it on CodePen | próbáld ki a CodePenen|
+| try it on CodePen | próbáld ki a CodePenen |
 | _No translation required_ |
 | DOM |
 | UI |
