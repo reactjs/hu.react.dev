@@ -70,7 +70,7 @@ Az alkalmazás statikus változatának építéséhez - ami az adatmodellt rende
 
 Építkezhetsz felülről lefelé vagy fordítva. Vagyis kezdheted a hierarchiában legmagasabban lévő (esetünkben ez a `FilterableProductTable`) komponenssel vagy alulról is (`ProductRow`). Egyszerűbb példáknál általában egyszerűbb fentről kezdeni, nagyobb projekteknél könnyebb ha alulról felfelé haladsz menet közben teszteket is készítve.
 
-Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható komponensekből, melyek renderelik az adatmodellt. A komponenseknek csak `render()` metódusuk van, mivel ez még mindig a statikus változat. A hierarchia tetején csücsülő komponens (`FilterableProductTable`) egy propként kapja meg az adatmodellt. Ha változtatsz valamit az adatmodellen és újra meghívod a  `ReactDOM.render()` metódust a UI frissülni fog. Láthatod, hogyan frissül a UI, hol változik. A React **egyirányú adatáramlása** (*one-way data flow* vagy  *one-way binding*) mindent modulárisan és gyorsan kezel.
+Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható komponensekből, melyek renderelik az adatmodellt. A komponenseknek csak `render()` metódusuk van, mivel ez még mindig a statikus változat. A hierarchia tetején csücsülő komponens (`FilterableProductTable`) egy propként kapja meg az adatmodellt. Ha változtatsz valamit az adatmodellen és újra meghívod a  `ReactDOM.render()` metódust a UI frissülni fog. Láthatod, hogyan frissül a UI, hol változik. A React **egyirányú adatáramlása** (*one-way data flow* vagy *one-way binding*) mindent modulárisan és gyorsan kezel.
 
 Fordulj a [React dokumentációhoz](/docs/) ha segítségre van szükséged a fenti lépés elvégzéséhez!
 
