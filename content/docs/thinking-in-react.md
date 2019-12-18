@@ -1,6 +1,6 @@
 ---
 id: thinking-in-react
-title: Gondolkodj Reactül
+title: Gondolkodj Reactben
 permalink: docs/thinking-in-react.html
 redirect_from:
   - 'blog/2013/11/05/thinking-in-react.html'
@@ -10,7 +10,7 @@ prev: composition-vs-inheritance.html
 
 A React, véleményünk szerint, elsőrendű módja nagy és gyors JavaScript alapú webalkalmazások készítésének. A Facebook és az Instagram esetében nekünk nagyon jól skálázódott.
 
-Az egyik a remek dolog – sok más mellett – ahogy a React átalakítja a gondolkodásodat az alkalmazásaidról miközben készíted őket. Ebben a fejezetben végigvezetünk a folyamaton, ahogy egy kereshető termék táblázatot megtervezünk és felépítünk React használatával.
+Az egyik remek dolog – sok más mellett – ahogy a React átalakítja a gondolkodásodat az alkalmazásaidról miközben készíted őket. Ebben a fejezetben végigvezetünk a folyamaton, miközben egy kereshető termék táblázatot megtervezünk és felépítünk React használatával.
 
 ## Kezdjük a skiccel {#start-with-a-mock}
 
@@ -33,7 +33,7 @@ A JSON API-tól kapott adatok így néznek ki:
 
 ## Első lépés: Bontsuk fel a felületet egy komponens hierarchiába! {#step-1-break-the-ui-into-a-component-hierarchy}
 
-Az első dolgod, hogy körberajzolod az egyes komponenseket és alkomponenseket a skiccen, és el is nevezed őket. Ha a grafikussal együtt dolgozol, van rá esély, hogy ő már előtted megtette ezt, szóval irány beszélj vele! A rajzon a rétegek nevei valószínűleg React komponenseidnek is megfelelő.
+Az első dolgod, hogy körberajzolod az egyes komponenseket és alkomponenseket a skiccen, és nevet adsz nekik. Ha a grafikussal együtt dolgozol, előfordulhat, hogy ő már előtted megtette ezt, szóval irány beszélj vele! A rajzon a rétegek nevei valószínűleg React komponenseidnek is megfelelnek.
 
 Honnan tudhatod, hogy miből legyen komponens? Használhatod ugyanazt a módszert, amivel eldöntöd, hogy valaminek kell-e saját függvény vagy objektum. Az egyik ilyen az [egy felelősség alapelve](https://hu.wikipedia.org/wiki/Egy_felel%C5%91ss%C3%A9g_alapelve), vagyis a komponens lehetőleg csak egy dolgot csináljon. Ha növekszik, kisebb egységekre kell bontani.
 
