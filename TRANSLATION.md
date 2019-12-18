@@ -90,7 +90,7 @@ A fordítás menete a következező:
 | mutation |  mutáció |
 | _General purpose_ |
 | tutorial | tutoriál |
-| tip |  tipp|
+| tip | tipp |
 | note | megjegyzés |
 | example | példa |
 | reference | referencia |
