@@ -32,7 +32,7 @@ A **React** egy JavaScript könyvtár, amit felhasználói felületek programoz�
 
 ## Próbáld ki a Reactet {#try-react}
 
-A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használhatsz a kódodban amennyit szeretnél.** Ha csak ismerkednál a Reacttel, hozzáadnál néhány interaktív komponenst egy szimpla HTML oldalhoz, vagy akár egy komplex React-alapú alkalmazást készítenél, az ebben a részben található linkek segítségedre lesznek.
+A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használhatsz a kódodban amennyit szeretnél.** Ha csak ismerkednél a Reacttel, hozzáádnál néhány interaktív komponenst egy szimpla HTML oldalhoz, vagy akár egy komplex React-alapú alkalmazást készítenél, az ebben a részben található linkek segítségedre lesznek.
 
 ### Online Játszóterek {#online-playgrounds}
 
