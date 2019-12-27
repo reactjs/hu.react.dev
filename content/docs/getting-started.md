@@ -32,17 +32,17 @@ A **React** egy JavaScript könyvtár, amit felhasználói felületek programoz�
 
 ## Próbáld ki a Reactet {#try-react}
 
-A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használhatsz a kódodban amennyit szeretnél.** Ha csak ismerkednál a Reacttel, hozzáádnál néhány interaktív komponenst egy szimpla HTML oldalhoz, vagy akár egy komplex React-alapú alkalmazást készítenél, az ebben a részben található linkek segítségedre lesznek.
+A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használhatsz a kódodban amennyit szeretnél.** Ha csak ismerkednál a Reacttel, hozzáadnál néhány interaktív komponenst egy szimpla HTML oldalhoz, vagy akár egy komplex React-alapú alkalmazást készítenél, az ebben a részben található linkek segítségedre lesznek.
 
 ### Online Játszóterek {#online-playgrounds}
 
 Az Online Játszótereken lehetőséged van kipróbálni a React funkcionalitásait. Próbáld ki a Helló Világ sablont [CodePenen](codepen://hello-world), [CodeSandboxon](https://codesandbox.io/s/new), vagy [Glitchen](https://glitch.com/edit/#!/remix/starter-react-template).
 
-Ha a saját kódszerkesződet használnád, [letöltheted ezt a HTML fájlt](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), szerkesztheted és megnyithatod a lokális böngésződben. Ez egy lassú kód transzformációt tartalmaz, így ezt csak a példakód futtatásához ajánljuk.
+Ha a saját kódszerkesztődet használnád, [letöltheted ezt a HTML fájlt](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), szerkesztheted és megnyithatod a lokális böngésződben. Ez egy lassú kód transzformációt tartalmaz, így ezt csak a példakód futtatásához ajánljuk.
 
 ### React hozzáadása egy weboldalhoz {#add-react-to-a-website}
 
-[Egy perc alatt hozzá tudod adni a Reactet egy meglévő HTML weboldalhoz](/docs/add-react-to-a-website.html). Ezután fokozatosan hozzádhatsz újabb React funkcionalitásokat, vagy egyszerűen csak egy pár dinamikus komponenst is használhatsz belőle.
+[A Reactet egy perc alatt hozzá tudod adni egy meglévő HTML weboldalhoz](/docs/add-react-to-a-website.html). Ezután fokozatosan hozzádhatsz újabb React funkcionalitásokat, vagy egyszerűen csak egy pár dinamikus komponenst is használhatsz belőle.
 
 ### Készíts egy új React alkalmazást {#create-a-new-react-app}
 
@@ -52,7 +52,7 @@ Ahogy az alkalmazásod nőni kezd, elkezdhetsz gondolkodni egy integráltabb meg
 
 ## Tanuld meg a Reactet {#learn-react}
 
-A kezdő React programozók különféle nyelvekből és hátterekből érkeznek. Reméljük ez a rész segítségedre lesz akár az elméletibb vagy a gyakorlatibb tanulást kedveled.
+A kezdő React programozók különféle nyelvekből és hátterekből érkeznek. Reméljük ez a rész segítségedre lesz akár az elméleti vagy a gyakorlatiasabb tanulást kedveled.
 
 * Ha inkább a **gyakorlati úton való tanulást preferálod**, kezdd a [gyakorlati útmutatóval](/tutorial/tutorial.html).
 * Ha inkább **lépésbeken tanulnád meg az elméleti anyagot**, kezdd a [bevezetés a főbb koncepciókba](/docs/hello-world.html) oldalunkkal.
@@ -65,7 +65,7 @@ A [React főoldala](/) tartalmaz néhány kis példát egy valós idejű szöveg
 
 ### React kezdőknek {#react-for-beginners}
 
-Ha úgy érzed, hogy a React dokumentáció túl nagy léptékben halad, [olvasd el ezt a Tania Rascia által írt ismeretőt](https://www.taniarascia.com/getting-started-with-react/). Ez bevezeti a legfontosabb React koncepciókat részletes, kezdők által is könnyen érthető módon. Ha ezt elolvastad, próbálozz újra a hivatalos dokumentációval.
+Ha úgy érzed, hogy a React dokumentáció túl nagy léptékben halad, [olvasd el ezt a Tania Rascia által írt ismeretőt](https://www.taniarascia.com/getting-started-with-react/). Ez részletes, kezdők által is könnyen érthető módon mutatja be a legfontosabb React koncepciókat . Ha ezt elolvastad, próbálkozz újra a hivatalos dokumentációval.
 
 ### React dizájnereknek {#react-for-designers}
 
@@ -75,7 +75,7 @@ Amennyiben dizájner háttérrel rendelkezel, [ez a dokumentáció](https://reac
 
 A React dokumentációja feltételez valamennyi meglévő JavaScript tudást. Nem kell, hogy profi legyél belőle, de nehezebb úgy megtanulni a Reactet, ha közben a JavaScriptet is az alapoktól kell megtanulnod.
 
-Ezt a [Javascript ismertetőt](https://developer.mozilla.org/hu/docs/Web/JavaScript/a_javascript_ujboli_bemutatasa) ajánljuk a tudásszinted ellenőrzéséhez. Körülbelül fél-1 órát vesz igénybe ennek az elolvasása, de ezután sokkal magabiztosabban tudod majd a Reactet elkezdeni tanulni.
+Ezt a [JavaScript ismertetőt](https://developer.mozilla.org/hu/docs/Web/JavaScript/a_javascript_ujboli_bemutatasa) ajánljuk a tudásszinted ellenőrzéséhez. Ennek az elolvasása körülbelül fél-1 órát vesz igénybe, de ezután sokkal magabiztosabban tudod majd a React tanulását elkezdeni.
 
 >Tipp
 >
@@ -87,7 +87,7 @@ Amennyiben inkább a **gyakorlati úton való tanulást preferálod,** látogass
 
 ### Lépésenkénti útmutató {#step-by-step-guide}
 
-Amennyiben inkább  **lépésbeken tanulnád meg az elméleten anyagot,** a [bevezetés a főbb koncepciókba](/docs/hello-world.html) a legjobb hely a tanulást elkezdeni. Minden egyes fejezet az előző fejezetekben bevezetett koncepciókra épít, így nem fogsz semmit kihagyni a tanulás során.
+Amennyiben inkább **lépésbeken tanulnád meg az elméleti anyagot,** a [bevezetés a főbb koncepciókba](/docs/hello-world.html) a legjobb hely a tanulást elkezdeni. Minden egyes fejezet az előző fejezetekben bevezetett koncepciókra épít, így nem fogsz semmit kihagyni a tanulás során.
 
 ### Gondolkodj Reactben {#thinking-in-react}
 
@@ -97,21 +97,21 @@ Sok React felhasználó tanúskodik arról, hogy a [Gondolkodj Reactben](/docs/t
 
 Néhány ember hasznosabbnak találhatja a React könyveket vagy videó kurzusokat, mint a hivatalos dokumentációt. Fenntartunk egy [listát a legnépszerűbb ajánlott forrásokról](/community/courses.html), ezek közül némelyik ingyenes is.
 
-### Magasabbszintű koncepciók {#advanced-concepts}
+### Magasabb szintű koncepciók {#advanced-concepts}
 
-Amennyiben már megismerkedtél a [főbb koncepciókkal](/docs/hello-world.html) és játszottál egy kicsit a Reacttel, lehet, hogy érdekelhetnek a magasabbszintű koncepciók is. Ez a fejezet bevezet az erőteljesebb, de kevésbé használt React funkcionalitásokba, mint a [kontextus](/docs/context.html) és a [referenciák](/docs/refs-and-the-dom.html).
+Amennyiben már megismerkedtél a [főbb koncepciókkal](/docs/hello-world.html) és játszottál egy kicsit a Reacttel, lehet, hogy érdekelhetnek a magasabb szintű koncepciók is. Ez a fejezet bevezet az erőteljesebb, de kevésbé használt React funkcionalitásokba, mint a [kontextus](/docs/context.html) és a [referenciák](/docs/refs-and-the-dom.html).
 
 ### API referencia {#api-reference}
 
-Ez a fejezet hasznos lehet, ha egy konkrét React API-ról szeretnél többet tanulni. Például a [`React.Component` API referencia](/docs/react-component.html) információt nyújt a `setState()` működéséről, és hogy mire használhatóak a különbőző Életciklus metódusok.
+Ez a fejezet hasznos lehet, ha egy konkrét React API-ról szeretnél többet tanulni. Például a [`React.Component` API referencia](/docs/react-component.html) információt nyújt a `setState()` működéséről, és hogy mire használhatóak a különbőző életciklus metódusok.
 
 ### Szójegyzék és GYIK {#glossary-and-faq}
 
-A [szójegyzék](/docs/glossary.html) egy lista a React dokumentáció leggyakoribb kifejezéseiről. A GYIK-ben a leggyakoribb kérdések és válaszok találhatóak, többek között [hogyan csináljunk AJAX kéréseket](/docs/faq-ajax.html), [komponens állapot](/docs/faq-state.html), és [fáljstruktúra](/docs/faq-structure.html).
+A [szójegyzék](/docs/glossary.html) egy lista a React dokumentáció leggyakoribb kifejezéseiről. A GYIK-ben a leggyakoribb kérdések és válaszok találhatóak, többek között [hogyan csináljunk AJAX kéréseket](/docs/faq-ajax.html), [komponens állapot](/docs/faq-state.html), és [fájlstruktúra](/docs/faq-structure.html).
 
 ## Maradj tájékozott {#staying-informed}
 
-A [React blog](/blog/) a hivatalos forrása a React csapat közleményeinek. Mindenféle fontos dolog, például a kiadási jegyzetek vagy elavulási tájékoztató is ide lesz először kiposzolva.
+A React csapat közleményeinek a [React blog](/blog/) a hivatalos forrása. Mindenféle fontos dolog, például a kiadási jegyzetek vagy elavulási tájékoztató is ide lesz először kiposztolva.
 
 Twitteren is követheted a [@reactjs felhasználót](https://twitter.com/reactjs), de akkor sem maradsz le semmiről, ha csak a blogot olvasod.
 
