@@ -181,8 +181,4 @@ A következő szekcióban megvizsgáljuk a React elemek DOM-ba való renderelés
 
 >**Tipp:**
 >
-<<<<<<< HEAD
->Javasoljuk, hogy általad használt kódszerkesztőben használd a ["Babel" nyelvdefiníciót](https://babeljs.io/docs/editors), így az ES6 és JSX kódrészek is helyesen lesznek kiemelve. Ez a weboldal a [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) színsémát használja, ami ezzel kompatibilis.
-=======
->We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme) color scheme which is compatible with it.
->>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
+>Javasoljuk, hogy általad használt kódszerkesztőben használd a ["Babel" nyelvdefiníciót](https://babeljs.io/docs/editors), így az ES6 és JSX kódrészek is helyesen lesznek kiemelve. Ez a weboldal az [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) színsémát használja, ami ezzel kompatibilis.
