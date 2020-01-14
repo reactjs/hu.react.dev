@@ -48,7 +48,7 @@ Ha a saját kódszerkesztődet használnád, [letöltheted ezt a HTML fájlt](ht
 
 Ha egy új React projektbe kezdesz, egy [egyszerű HTML oldal script tagekkel](/docs/add-react-to-a-website.html) lehet a legjobb megoldás. Csak egy percbe telik beállítani!
 
-Ahogy az alkalmazásod nőni kezd, elkezdhetsz gondolkodni egy integráltabb megoldásban. Többféle [JavaScript eszközlánc is létezik](/docs/create-a-new-react-app.html), amit nagyobb alkamazásokhoz ajánlunk. Ezek mindegyike csak kevés vagy szinte semmilyen konfigurációt nem igényel és segítségükkel teljes hozzáférést nyersz a gazdag React ökoszisztémához.
+Ahogy az alkalmazásod nőni kezd, elkezdhetsz gondolkodni egy integráltabb megoldásban. Többféle JavaScript eszközláncot is ajánlunk nagyobb alkalmazásokhoz. Ezek mindegyike csak kevés vagy szinte semmilyen konfigurációt nem igényel és segítségükkel teljes hozzáférést nyersz a gazdag React ökoszisztémához. [Tanuld meg hogyan.](/docs/create-a-new-react-app.html)
 
 ## Tanuld meg a Reactet {#learn-react}
 
