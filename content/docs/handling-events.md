@@ -29,7 +29,7 @@ kissé máshogyan néz ki Reactben:
 </button>
 ```
 
-Egy másik különbség, hogy nem tudsz `false` értéket visszaadni, hogy megakadályozd a default viselkedést Reactben. Expliciten meg kell hívni a `preventDefault`-ot. Például szimpla HTML-ben ahhoz, hogy megakadályozzuk egy linknek a default viselkedését, ezt írhatjuk:
+Egy másik különbség, hogy Reactben `false` érték visszaadásával nem tudod megakadályozni az alap viselkedést. Határozottan meg kell hívni a `preventDefault`-ot. Egyszerű HTML-ben például egy link alap viselkedésének megváltoztatásához írhatjuk ezt:
 
 ```html
 <a href="#" onclick="console.log('Rákattintottak a linkre.'); return false">
@@ -93,7 +93,7 @@ ReactDOM.render(
 
 [**Próbáld ki CodePenen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
 
-Vigyázni kell a `this` használatával a JSX callbackekben. JavaScriptben az osztálymetódusok alapesetben nincsenek [hozzákötve](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) a `this`-hez. Ha elfelejtenéd hozzákötni a `this.handleClick`-et a `this`-hez és így rendeled hozzá az `onClick`-hez, a `this` `undefined` értékű lesz amikor a metódus meghívódik.
+Légy óvatos a `this` használatával a JSX callbackekben. A JavaScriptben az osztálymetódusok alapesetben nincsenek [hozzákötve](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) a `this`-hez. Ha elfelejtenéd hozzákötni a `this.handleClick`-et a `this`-hez és így rendeled hozzá az `onClick`-hez, a `this` `undefined` értékű lesz amikor a metódus meghívódik.
 
 Ez nem React-specifikus viselkedés, hanem alapvetően [így működnek a függvények JavaScriptben](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Általában, ha egy metódusra a `()` nélkül hivatkozol, például `onClick={this.handleClick}`, hozzá kell kötnöd ezt a metódust a `this`-hez.
 
@@ -138,7 +138,7 @@ class LoggingButton extends React.Component {
 }
 ```
 
-Az a probléma ezzel a szintaxissal, hogy a `LoggingButton` minden egyes renderelésekor egy új callback hozódik létre. A legtöbb esetben ez nem gond. Viszont ha ezt a callbacket gyerekkomponenseknek adjuk át, azok lehet, hogy még egyszer újrarenderelődnek. Mi általánosságban a konstruktor bindingot vagy az oszálymező szintaxist ajánljuk, hogy elkerüljük az efféle teljesítményproblémákat.
+A probléma ezzel a szintaxissal az, hogy a `LoggingButton` minden egyes renderelésekor egy új callbacket hozunk létre. A legtöbb esetben ez nem gond. Viszont ha ezt a callbacket gyermek komponenseknek adjuk tovább, azok feleslegesen renderelődhetnek újra. Az efféle teljesítményproblémák elkerülése érdekében általában a konstruktoron belüli kötést vagy az osztálymező szintaxis használatát ajánljuk.
 
 ## Argumentumok átadása az eseménykezelőknek {#passing-arguments-to-event-handlers}
 
