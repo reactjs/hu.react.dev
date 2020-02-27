@@ -29,7 +29,7 @@ kissé máshogyan néz ki Reactben:
 </button>
 ```
 
-Egy másik különbség, hogy Reactben `false` érték visszaadásával nem tudod megakadályozni az alap viselkedést. Határozottan meg kell hívni a `preventDefault`-ot. Egyszerű HTML-ben például egy link alap viselkedésének megváltoztatásához írhatjuk ezt:
+Egy másik különbség, hogy Reactben `false` érték visszaadásával nem tudod megakadályozni az alapviselkedést. Határozottan meg kell hívni a `preventDefault`-ot. Egyszerű HTML-ben például egy link alapviselkedésének megváltoztatásához írhatjuk ezt:
 
 ```html
 <a href="#" onclick="console.log('Rákattintottak a linkre.'); return false">
