@@ -64,13 +64,14 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
 Starting with 16.8.0, React includes a stable implementation of React Hooks for:
 
 * React DOM
+* React Native
 * React DOM Server
 * React Test Renderer
 * React Shallow Renderer
 
 Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. Hooks won't work if you forget to update, for example, React DOM.
 
-React Native 0.59 and above support Hooks.
+[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
 
 ### Do I need to rewrite all my class components? {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -108,7 +109,9 @@ You can continue to use the exact same APIs as you always have; they'll continue
 
 React Redux since v7.1.0 [supports Hooks API](https://react-redux.js.org/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
 
-Libraries like React Router might support hooks in the future.
+React Router [supports hooks](https://reacttraining.com/react-router/web/api/Hooks) since v5.1.
+
+Other libraries might support hooks in the future too.
 
 ### Do Hooks work with static typing? {#do-hooks-work-with-static-typing}
 
@@ -370,7 +373,7 @@ Note how this would work for props, state, or any other calculated value.
 function Counter() {
   const [count, setCount] = useState(0);
 
-  const calculation = count * 100;
+  const calculation = count + 100;
   const prevCalculation = usePrevious(calculation);
   // ...
 ```
@@ -425,8 +428,8 @@ Here, we store the previous value of the `row` prop in a state variable so that 
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Row changed since last render. Update isScrollingDown.
@@ -462,7 +465,7 @@ While you shouldn't need this often, you may expose some imperative methods to a
 
 ### How can I measure a DOM node? {#how-can-i-measure-a-dom-node}
 
-In order to measure the position or size of a DOM node, you can use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
+One rudimentary way to measure the position or size of a DOM node is to use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -486,6 +489,8 @@ function MeasureExample() {
 We didn't choose `useRef` in this example because an object ref doesn't notify us about *changes* to the current ref value. Using a callback ref ensures that [even if a child component displays the measured node later](https://codesandbox.io/s/818zzk8m78) (e.g. in response to a click), we still get notified about it in the parent component and can update the measurements.
 
 Note that we pass `[]` as a dependency array to `useCallback`. This ensures that our ref callback doesn't change between the re-renders, and so React won't call it unnecessarily.
+
+In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
 
 If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
 
@@ -654,7 +659,7 @@ function ProductPage({ productId }) {
   return <ProductDetails fetchProduct={fetchProduct} />;
 }
 
-function ProductDetails({ fetchProduct })
+function ProductDetails({ fetchProduct }) {
   useEffect(() => {
     fetchProduct();
   }, [fetchProduct]); // ✅ All useEffect dependencies are specified
@@ -713,7 +718,7 @@ As a last resort, if you want something like `this` in a class, you can [use a r
 ```js{2-6,10-11,16}
 function Example(props) {
   // Keep latest props in a ref.
-  let latestProps = useRef(props);
+  const latestProps = useRef(props);
   useEffect(() => {
     latestProps.current = props;
   });

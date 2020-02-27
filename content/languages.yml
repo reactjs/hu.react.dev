@@ -3,183 +3,195 @@
 # 1: Partially complete (50-99%)
 # 2: Complete (100%)
 
-- name: English
+- name: angol
   translated_name: English
   code: en
   status: 2
-- name: Arabic
+- name: arab
   translated_name: العربية
   code: ar
   status: 2
-- name: Azerbaijani
+- name: azerbajdzsáni
   translated_name: Azərbaycanca
   code: az
-  status: 1
-- name: Bulgarian
+  status: 2
+- name: bolgár
   translated_name: Български
   code: bg
   status: 1
-- name: Bengali
+- name: bengáli
   translated_name: বাংলা
   code: bn
-  status: 0
-- name: Catalan
+  status: 1
+- name: katalán
   translated_name: Català
   code: ca
-  status: 0
-- name: German
+  status: 1
+- name: német
   translated_name: Deutsch
   code: de
   status: 1
-- name: Greek
+- name: görög
   translated_name: Ελληνικά
   code: el
   status: 1
-- name: Spanish
+- name: spanyol
   translated_name: Español
   code: es
   status: 2
-- name: Persian
+- name: perzsa
   translated_name: فارسی
   code: fa
   status: 0
-- name: French
+- name: francia
   translated_name: Français
   code: fr
   status: 2
-- name: Gujarati
+- name: guzsaráti
   translated_name: ગુજરાતી
   code: gu
   status: 0
-- name: Hebrew
+- name: héber
   translated_name: עברית
   code: he
   status: 1
-- name: Hindi
+- name: hindi
   translated_name: हिन्दी
   code: hi
   status: 0
-- name: Armenian
+- name: haitian kreol
+  translated_name: Kreyòl ayisyen
+  code: ht
+  status: 0
+- name: magyar
+  translated_name: magyar
+  code: hu
+  status: 0
+- name: örmény
   translated_name: Հայերեն
   code: hy
   status: 0
-- name: Indonesian
+- name: indonéz
   translated_name: Bahasa Indonesia
   code: id
   status: 1
-- name: Italian
+- name: olasz
   translated_name: Italiano
   code: it
   status: 2
-- name: Japanese
+- name: japán
   translated_name: 日本語
   code: ja
   status: 2
-- name: Georgian
+- name: grúz
   translated_name: ქართული
   code: ka
   status: 0
-- name: Central Khmer
+- name: közép-khmer
   translated_name: ភាសាខ្មែរ
   code: km
   status: 0
-- name: Kannada
+- name: kannada
   translated_name: ಕನ್ನಡ
   code: kn
   status: 0
-- name: Korean
+- name: koreai
   translated_name: 한국어
   code: ko
   status: 2
-- name: Kurdish
+- name: kurd
   translated_name: کوردی‎
   code: ku
   status: 0
-- name: Lithuanian
+- name: litván
   translated_name: Lietuvių kalba
   code: lt
   status: 0
-- name: Malayalam
+- name: malayalam
   translated_name: മലയാളം
   code: ml
   status: 0
-- name: Mongolian
+- name: mongol
   translated_name: Монгол хэл
   code: mn
-  status: 1
-- name: Nepali
+  status: 2
+- name: nepáli
   translated_name: नेपाली
   code: ne
   status: 0
-- name: Dutch
+- name: holland
   translated_name: Nederlands
   code: nl
   status: 0
-- name: Polish
+- name: lengyel
   translated_name: Polski
   code: pl
   status: 2
-- name: Portuguese (Brazil)
+- name: portugál (Brazil)
   translated_name: Português do Brasil
   code: pt-br
   status: 2
-- name: Portuguese (Portugal)
+- name: portugál (Portugália)
   translated_name: Português europeu
   code: pt-pt
   status: 0
-- name: Romanian
+- name: román
   translated_name: Română
   code: ro
   status: 0
-- name: Russian
+- name: orosz
   translated_name: Русский
   code: ru
   status: 2
-- name: Sinhala
+- name: sinhala
   translated_name: සිංහල
   code: si
   status: 0
-- name: Swedish
+- name: svéd
   translated_name: Svenska
   code: sv
   status: 0
-- name: Tamil
+- name: tamil
   translated_name: தமிழ்
   code: ta
   status: 0
-- name: Telugu
+- name: telugu
   translated_name: తెలుగు
   code: te
   status: 0
-- name: Thai
+- name: thai
   translated_name: ไทย
   code: th
   status: 0
-- name: Turkish
+- name: tagalog
+  translated_name: Wikang Tagalog
+  code: tl
+  status: 0
+- name: török
   translated_name: Türkçe
   code: tr
   status: 2
-- name: Ukrainian
+- name: ukrán
   translated_name: Українська
   code: uk
   status: 2
-- name: Urdu
+- name: urdu
   translated_name: اردو
   code: ur
   status: 0
-- name: Uzbek
+- name: üzbég
   translated_name: Oʻzbekcha
   code: uz
   status: 0
-- name: Vietnamese
+- name: vietnami
   translated_name: Tiếng Việt
   code: vi
-  status: 0
-- name: Simplified Chinese
+  status: 1
+- name: egyszerűsített kínai
   translated_name: 简体中文
   code: zh-hans
   status: 2
-- name: Traditional Chinese
+- name: tradicionális kínai
   translated_name: 繁體中文
   code: zh-hant
-  status: 1
+  status: 2

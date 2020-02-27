@@ -14,8 +14,9 @@ Common testing patterns for React components.
 
 On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
 
-- [Setup/Teardown ](#setup--teardown)
+- [Setup/Teardown](#setup--teardown)
 - [`act()`](#act)
+- [Rendering](#rendering)
 - [Data Fetching](#data-fetching)
 - [Mocking Modules](#mocking-modules)
 - [Events](#events)
@@ -395,14 +396,14 @@ it("changes value when clicked", () => {
 
   // get ahold of the button element, and trigger some clicks on it
   const button = document.querySelector("[data-testid=toggle]");
-  expect(button.innerHTML).toBe("Turn off");
+  expect(button.innerHTML).toBe("Turn on");
 
   act(() => {
     button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 
   expect(onChange).toHaveBeenCalledTimes(1);
-  expect(button.innerHTML).toBe("Turn on");
+  expect(button.innerHTML).toBe("Turn off");
 
   act(() => {
     for (let i = 0; i < 5; i++) {
@@ -528,7 +529,7 @@ it("should accept selections", () => {
 
   act(() => {
     container
-      .querySelector("[data-testid=2]")
+      .querySelector("[data-testid='2']")
       .dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 
@@ -542,7 +543,7 @@ You can use fake timers only in some tests. Above, we enabled them by calling `j
 
 ### Snapshot Testing {#snapshot-testing}
 
-Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). With these, we can "save" the renderered component output and ensure that a change to it has to be explicitly committed as a change to the snapshot.
+Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). With these, we can "save" the rendered component output and ensure that a change to it has to be explicitly committed as a change to the snapshot.
 
 In this example, we render a component and format the rendered HTML with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot:
 

@@ -1,87 +1,89 @@
-- title: Installation
+- title: Telepítés
   items:
     - id: getting-started
-      title: Getting Started
+      title: Kezdés
     - id: add-react-to-a-website
-      title: Add React to a Website
+      title: Add hozzá a React-et egy weblaphoz
     - id: create-a-new-react-app
-      title: Create a New React App
+      title: Készíts egy új React alkalmazást
     - id: cdn-links
-      title: CDN Links
-- title: Main Concepts
+      title: CDN linkek
+    - id: release-channels
+      title: Kiadási csatornák
+- title: Főbb fogalmak
   isOrdered: true
   items:
     - id: hello-world
-      title: Hello World
+      title: Helló, világ!
     - id: introducing-jsx
-      title: Introducing JSX
+      title: JSX bemutatása
     - id: rendering-elements
-      title: Rendering Elements
+      title: Elemek renderelése
     - id: components-and-props
-      title: Components and Props
+      title: Komponensek és prop-ok
     - id: state-and-lifecycle
-      title: State and Lifecycle
+      title: Állapot és életciklus
     - id: handling-events
-      title: Handling Events
+      title: Események kezelése
     - id: conditional-rendering
-      title: Conditional Rendering
+      title: Feltételes renderelés
     - id: lists-and-keys
-      title: Lists and Keys
+      title: Listák és kulcsok
     - id: forms
-      title: Forms
+      title: Űrlapok
     - id: lifting-state-up
-      title: Lifting State Up
+      title: Állapot felemelése
     - id: composition-vs-inheritance
-      title: Composition vs Inheritance
+      title: Kompozíció és öröklődés
     - id: thinking-in-react
-      title: Thinking In React
-- title: Advanced Guides
+      title: Gondolkodj React-ben
+- title: Haladó útmutatók
   items:
     - id: accessibility
-      title: Accessibility
+      title: Akadálymentesítés
     - id: code-splitting
-      title: Code-Splitting
+      title: Kód-hasítás
     - id: context
-      title: Context
+      title: Kontextus
     - id: error-boundaries
-      title: Error Boundaries
+      title: Hibahatárok
     - id: forwarding-refs
-      title: Forwarding Refs
+      title: Refek továbbítása
     - id: fragments
-      title: Fragments
+      title: Töredékek
     - id: higher-order-components
-      title: Higher-Order Components
+      title: Felsőbb rendű komponensek
     - id: integrating-with-other-libraries
-      title: Integrating with Other Libraries
+      title: Integrálás más könyvtárakkal
     - id: jsx-in-depth
-      title: JSX In Depth
+      title: JSX-ről mélyebben
     - id: optimizing-performance
-      title: Optimizing Performance
+      title: A teljesítmény optimalizálása
     - id: portals
-      title: Portals
+      title: Portálok
     - id: profiler
-      title: Profiler
+      title: Futás-elemző
     - id: react-without-es6
-      title: React Without ES6
+      title: React ES6 nélkül
     - id: react-without-jsx
-      title: React Without JSX
+      title: React JSX nélkül
     - id: reconciliation
-      title: Reconciliation
+      title: Egyeztetés
     - id: refs-and-the-dom
-      title: Refs and the DOM
+      title: Ref-ek és a DOM
     - id: render-props
-      title: Render Props
+      title: Render prop-ok
     - id: static-type-checking
-      title: Static Type Checking
+      title: Statikus típusellenőrzés
     - id: strict-mode
-      title: Strict Mode
+      title: Szigorú mód
     - id: typechecking-with-proptypes
-      title: Typechecking With PropTypes
+      title: Típusellenőrzés PropTypes-val
     - id: uncontrolled-components
-      title: Uncontrolled Components
+      title: Kontrollálatlan komponensek
     - id: web-components
-      title: Web Components
-- title: API Reference
+      title: Web komponensek
+- title: API Referencia
   items:
     - id: react-api
       title: React
@@ -93,71 +95,84 @@
     - id: react-dom-server
       title: ReactDOMServer
     - id: dom-elements
-      title: DOM Elements
+      title: DOM elemek
     - id: events
       title: SyntheticEvent
     - id: test-utils
-      title: Test Utilities
+      title: Tesztelői segédprogramok
     - id: shallow-renderer
-      title: Shallow Renderer
+      title: Sekély renderelő
     - id: test-renderer
-      title: Test Renderer
+      title: Teszt renderelő
     - id: javascript-environment-requirements
-      title: JS Environment Requirements
+      title: JS környezeti követelmények
     - id: glossary
-      title: Glossary
-- title: Hooks (New)
+      title: Szójegyzék
+- title: Horgok
   isOrdered: true
   items:
       - id: hooks-intro
-        title: Introducing Hooks
+        title: Horgok bemutatása
       - id: hooks-overview
-        title: Hooks at a Glance
+        title: Horgok egy pillantásra
       - id: hooks-state
-        title: Using the State Hook
+        title: Állapot horog használata
       - id: hooks-effect
-        title: Using the Effect Hook
+        title: Hatás horog használata
       - id: hooks-rules
-        title: Rules of Hooks
+        title: Horgok szabályai
       - id: hooks-custom
-        title: Building Your Own Hooks
+        title: Készítsd el a saját horgod
       - id: hooks-reference
-        title: Hooks API Reference
+        title: Horog API referencia
       - id: hooks-faq
-        title: Hooks FAQ
-- title: Testing
+        title: Horgok GY.I.K.
+- title: Tesztelés
   items:
     - id: testing 
-      title: Testing Overview
+      title: Tesztelés áttekintés
     - id: testing-recipes
-      title: Testing Recipes
+      title: Tesztelői receptek
     - id: testing-environments
-      title: Testing Environments
-- title: Contributing
+      title: Tesztelői környezetek
+- title: Konkurens mód (kísérleti fázis)
+  isOrdered: true
+  items:
+    - id: concurrent-mode-intro
+      title: Konkurens mód bemutatása
+    - id: concurrent-mode-suspense
+      title: Suspense adatlehíváshoz
+    - id: concurrent-mode-patterns
+      title: Konkurens UI minták
+    - id: concurrent-mode-adoption
+      title: Konkurens mód adoptálása
+    - id: concurrent-mode-reference
+      title: Konkurens mód API referencia
+- title: Közreműködés
   items:
   - id: how-to-contribute
-    title: How to Contribute
+    title: Hogyan segíthetsz
   - id: codebase-overview
-    title: Codebase Overview
+    title: Kódbázis áttekintés
   - id: implementation-notes
-    title: Implementation Notes
+    title: Implementáció megjegyzések
   - id: design-principles
-    title: Design Principles
-- title: FAQ
+    title: Tervezési elvek
+- title: GY.I.K
   items:
     - id: faq-ajax
-      title: AJAX and APIs
+      title: AJAX és API-k
     - id: faq-build
-      title: Babel, JSX, and Build Steps
+      title: Babel, JSX, és kompiláló lépések
     - id: faq-functions
-      title: Passing Functions to Components
+      title: Függvények küldése komponenseknek
     - id: faq-state
-      title: Component State
+      title: Komponens állapot
     - id: faq-styling
-      title: Styling and CSS
+      title: Stílusozás és CSS
     - id: faq-structure
-      title: File Structure
+      title: Fájlstruktúra
     - id: faq-versioning
-      title: Versioning Policy
+      title: Verziószabályok
     - id: faq-internals
-      title: Virtual DOM and Internals
+      title: Virtuális DOM és belső jellemzők
