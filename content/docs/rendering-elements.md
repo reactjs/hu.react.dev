@@ -70,10 +70,6 @@ Ezt megerősítheted a [legutolsó példa](codepen://rendering-elements/update-r
 
 ![A DOM vizsgáló fokozatos frissítést mutat](../images/docs/granular-dom-updates.gif)
 
-<<<<<<< HEAD
 Hacsak egy elemet is készítünk ami leírja a teljes felhasználói felület fát minden egyes kettyenéshez, a React DOM akkor is csak a megváltozott szövegcsomópontok tartalmát fogja frissíteni.
-=======
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 Tapasztalataink szerint úgy gondolni a felhasználói felületre hogy az hogyan is nézzen ki egy adott pillanatban ahelyett hogy hogyan fog változni az idő múlásával, egy csomó programhibát gátol meg.
