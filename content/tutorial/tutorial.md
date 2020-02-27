@@ -200,6 +200,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
+}
 ```
 
 Változtasd meg a Square komponens `render` metódusát úgy, hogy átírod a `{/* TODO */}` részt `{this.props.value}`-ra:
