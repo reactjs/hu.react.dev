@@ -1,6 +1,6 @@
 ---
 id: forms
-title: Forms
+title: Űrlapok
 permalink: docs/forms.html
 prev: lists-and-keys.html
 next: lifting-state-up.html
@@ -9,27 +9,27 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
-HTML form elements work a little bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+A HTML űrlap elemek kissé máshogy működnek a többi DOM elemhez képest Reactben, mert az űrlap elemek alapvetően egy saját belső állapotot tartanak nyilván. Például ez az űrlap szimpla HTML-ben egy nevet fogad be: 
 
 ```html
 <form>
   <label>
-    Name:
+    Név:
     <input type="text" name="name" />
   </label>
   <input type="submit" value="Submit" />
 </form>
 ```
 
-This form has the default HTML form behavior of browsing to a new page when the user submits the form. If you want this behavior in React, it just works. But in most cases, it's convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called "controlled components".
+Amikor a felhasználó beküldi ezt az űrlapot, a HTML alapviselkedése miatt ez egy új oldalra fog navigálni. Ha ezt a viselkedést szeretnéd elérni Reactben, eleve működni fog. De a legtöbb esetben érdemesebb egy JavaScript függvényben lekezelni az űrlap beküldését, aminek hozzáférése van a felhasználó által bevitt adatokhoz. Ennek elérése általában az úgynevezett "kontrollált komponensek" módszerével lehetséges.
 
-## Controlled Components {#controlled-components}
+## Kontrollált komponensek {#controlled-components}
 
-In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In React, mutable state is typically kept in the state property of components, and only updated with [`setState()`](/docs/react-component.html#setstate).
+A HTML űrlap elemek, mint az `<input>`, `<textarea>` és `<select>`, általában fenntartják a saját belső állapotukat, amit felhasználói bevitel alapján változtatnak. A Reactben a módosítható állapotot általában a komponens állapotában tároljuk, és csak a [`setState()`](/docs/react-component.html#setstate) meghívásával változik.   
 
-We can combine the two by making the React state be the "single source of truth". Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a "controlled component".
+Ezt a kettőt összekombinálhatjuk ha a React állapotot vesszük az "egyedüli igazságforrás"-ként. Így a React komponens, ami az űrlapot rendereli, azt is kontrollálja, hogy mi történik az űrlapban a felhasználói bevitel hatására. Egy beviteli elem, aminek az értékét ily módon a React kontrollál, "kontrollált komponens"-nek hívjuk.
 
-For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component:
+Például ha azt szeretnénk hogy az előző példa kiírja a konzolra a nevet az űrlap beküldésekor, létrehozhatjuk az űrlapot egy kontrollált komponensként: 
 
 ```javascript{4,10-12,24}
 class NameForm extends React.Component {
@@ -46,7 +46,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('Ezt a nevet küldték be: ' + this.state.value);
     event.preventDefault();
   }
 
@@ -54,7 +54,7 @@ class NameForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          Név:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
@@ -64,11 +64,11 @@ class NameForm extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
+[**Próbáld ki CodePenen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-Since the `value` attribute is set on our form element, the displayed value will always be `this.state.value`, making the React state the source of truth. Since `handleChange` runs on every keystroke to update the React state, the displayed value will update as the user types.
+Mivel a `value` attribútum be van állítva az elemen, a megjelenített érték mindig `this.state.value` lesz, ez teszi a React állapotot az egyéni igazságforrássá. Mivel a `handleChange` minden egyes billentyűleütéskor frissíti a React állapotot, a megjelenített érték is frissülni fog a felhasználó bevitele eredményeképpen.
 
-With a controlled component, every state mutation will have an associated handler function. This makes it straightforward to modify or validate user input. For example, if we wanted to enforce that names are written with all uppercase letters, we could write `handleChange` as:
+Egy kontrollált komponensben minden állapotmódosításhoz hozzá kell rendelni egy eseménykezelő függvényt. Ez egyszerűvé teszi a felhasználó által bevitt adat módosítását vagy érvényesítését. Például ha szeretnénk biztosítani, hogy a nevek csupa nagybetűvel legyenek írva, így módosíthatjuk a `handleChange`-t:   
 
 ```javascript{2}
 handleChange(event) {
@@ -76,24 +76,24 @@ handleChange(event) {
 }
 ```
 
-## The textarea Tag {#the-textarea-tag}
+## A textarea címke {#the-textarea-tag}
 
-In HTML, a `<textarea>` element defines its text by its children:
+A HTML-ben a `<textarea>` tartalma a gyermeke által van definiálva:
 
 ```html
 <textarea>
-  Hello there, this is some text in a text area
+  Hellóka, ez itt némi szöveg egy szövegterületen
 </textarea>
 ```
 
-In React, a `<textarea>` uses a `value` attribute instead. This way, a form using a `<textarea>` can be written very similarly to a form that uses a single-line input:
+Reactben a `<textarea>` ehelyett egy `value` attribútumot használ. Így az űrlap, ami `<textarea>`-t használ, nagyon hasonló az egysoros beviteli mezőhöz:
 
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Please write an essay about your favorite DOM element.'
+      value: 'Írj egy esszét a kedvenc DOM elemedről.'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -105,7 +105,7 @@ class EssayForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
+    alert('Beküldtek egy esszét: ' + this.state.value);
     event.preventDefault();
   }
 
@@ -113,7 +113,7 @@ class EssayForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Essay:
+          Esszé:
           <textarea value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
@@ -123,22 +123,22 @@ class EssayForm extends React.Component {
 }
 ```
 
-Notice that `this.state.value` is initialized in the constructor, so that the text area starts off with some text in it.
+Figyeld meg, hogy a `this.state.value` a konstruktorban kerül inicializálásra, így a szövegterület már az elején tartalmazni fog némi szöveget.
 
-## The select Tag {#the-select-tag}
+## A select címke {#the-select-tag}
 
-In HTML, `<select>` creates a drop-down list. For example, this HTML creates a drop-down list of flavors:
+A HTML-ben a `<select>` egy legördülő menüt hoz elő. Ez a HTML például egy ízesítésekből álló legördülő menüt tartalmaz:
 
 ```html
 <select>
   <option value="grapefruit">Grapefruit</option>
   <option value="lime">Lime</option>
-  <option selected value="coconut">Coconut</option>
-  <option value="mango">Mango</option>
+  <option selected value="coconut">Kókusz</option>
+  <option value="mango">Mangó</option>
 </select>
 ```
 
-Note that the Coconut option is initially selected, because of the `selected` attribute. React, instead of using this `selected` attribute, uses a `value` attribute on the root `select` tag. This is more convenient in a controlled component because you only need to update it in one place. For example:
+Figyeld meg, hogy a Kókusz opció van kiválasztva alapból, mivel ez tartalmazza a `selected` attribútumot. A React a `selected` attribútum helyett a `value` attribútumot használja a gyökér `select` címkén. Ez így egyszerűbb egy kontrollált komponensben, mivel így csak egy helyen kell módosítani az értéket. Például:
 
 ```javascript{4,10-12,24}
 class FlavorForm extends React.Component {
@@ -163,12 +163,12 @@ class FlavorForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Pick your favorite flavor:
+          Válaszd ki a kedvenc ízesítésedet:
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="grapefruit">Grapefruit</option>
             <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
+            <option value="coconut">Kókusz</option>
+            <option value="mango">Mangó</option>
           </select>
         </label>
         <input type="submit" value="Submit" />
@@ -178,33 +178,33 @@ class FlavorForm extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
+[**Próbáld ki CodePenen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
-Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
+Alapvetően ezáltal mind az `<input type="text">`, `<textarea>` és `<select>` is hasonlóan működik - mindegyiknek van egy `value` attribútuma, amit használhatsz egy kontrollált komponens létrehozásához.
 
-> Note
+> Megjegyzés
 >
-> You can pass an array into the `value` attribute, allowing you to select multiple options in a `select` tag:
+> Ha egy tömböt rendelsz a `value` attribútumhoz, akár több opciót is kiválaszthatsz egyszerre a `select` címkében:
 >
 >```js
 ><select multiple={true} value={['B', 'C']}>
 >```
 
-## The file input Tag {#the-file-input-tag}
+## A fájlbeviteli címke {#the-file-input-tag}
 
-In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+A HTML-ben az `<input type="file">` segítségével a felhasználó kiválaszthat egy vagy több fájlt a saját gépéről a szerverre feltöltéshez vagy a JavaScript [Fájl API-val](https://developer.mozilla.org/hu/docs/Web/API/File/Fajlok_hasznalata_webes_alkalmazasokban) való manipuláláshoz.
 
 ```html
 <input type="file" />
 ```
 
-Because its value is read-only, it is an **uncontrolled** component in React. It is discussed together with other uncontrolled components [later in the documentation](/docs/uncontrolled-components.html#the-file-input-tag).
+Mivel ez csak olvasható értékkel rendelkezik, ez egy **kontrollálatlan** komponens.  Erről a többi kontrollálatlan komponenssel együtt olvashatsz [később a dokumentációban](/docs/uncontrolled-components.html#the-file-input-tag).
 
-## Handling Multiple Inputs {#handling-multiple-inputs}
+## Több bemenet kezelése {#handling-multiple-inputs}
 
-When you need to handle multiple controlled `input` elements, you can add a `name` attribute to each element and let the handler function choose what to do based on the value of `event.target.name`.
+Ha több kontrollált `input` elemet is kezelned kell, hozzáadhatsz egy `name` attribútumot az egyes elemekhez, így az eseménykezelő függvény az `event.target.name` alapján tudja eldönteni, hogy mit csináljon. 
 
-For example:
+Például:
 
 ```javascript{15,18,28,37}
 class Reservation extends React.Component {
@@ -254,9 +254,9 @@ class Reservation extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
+[**Próbáld ki CodePenen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
-Note how we used the ES6 [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) syntax to update the state key corresponding to the given input name:
+Figyeld meg, hogy hogyan használtuk az ES6 [kiszámított mező név](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) szintaxist, hogy frissíteni tudjuk az állapotkulcsot, ami a megadott bemenet nevével egyezik meg:
 
 ```js{2}
 this.setState({
@@ -264,7 +264,7 @@ this.setState({
 });
 ```
 
-It is equivalent to this ES5 code:
+Ez ekvivalens a következő ES5 kóddal:
 
 ```js{2}
 var partialState = {};
@@ -272,13 +272,13 @@ partialState[name] = value;
 this.setState(partialState);
 ```
 
-Also, since `setState()` automatically [merges a partial state into the current state](/docs/state-and-lifecycle.html#state-updates-are-merged), we only needed to call it with the changed parts.
+Valamint, mivel a `setState()` automatikusan [összefésüli a részleges állapotot a jelenlegi állapottal](/docs/state-and-lifecycle.html#state-updates-are-merged), elég csak a megváltozott állapotot átadni.
 
-## Controlled Input Null Value {#controlled-input-null-value}
+## Kontrollált bemenet null értéke {#controlled-input-null-value}
 
-Specifying the value prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+A `value` megadása egy [kontrollált komponensen](/docs/forms.html#controlled-components) megakadályozza a felhasználót abban, hogy az engedélyünk nélkül változtassa meg a beviteli adatokat. Ha megadtál egy `value`-t, de a bemenet mégis szerkeszthető, valószínűleg véletlenül `undefined` vagy `null`-ra állítottad a `value`-t.
 
-The following code demonstrates this. (The input is locked at first but becomes editable after a short delay.)
+A következő kódrészlet ezt demonstrálja. (A bemenet eleinte nem szerkeszthető, de egy rövid késleltetés után szerkeszthetővé válik.)
 
 ```javascript
 ReactDOM.render(<input value="hi" />, mountNode);
@@ -289,10 +289,10 @@ setTimeout(function() {
 
 ```
 
-## Alternatives to Controlled Components {#alternatives-to-controlled-components}
+## Kontrollált komponens alternatívák {#alternatives-to-controlled-components}
 
-It can sometimes be tedious to use controlled components, because you need to write an event handler for every way your data can change and pipe all of the input state through a React component. This can become particularly annoying when you are converting a preexisting codebase to React, or integrating a React application with a non-React library. In these situations, you might want to check out [uncontrolled components](/docs/uncontrolled-components.html), an alternative technique for implementing input forms.
+Néha nehézkes lehet kontrollált komponenseket használni, mivel minden lehetséges adatváltoztatási módhoz kell egy eseménykezelőt írnod és hozzá kell kötni az összes belső állapotot a React komponens állapotához. Ez különösen bosszantó lehet, amikor meglévő kódot kell átírni Reactbe, vagy amikor egy nem React-alapú könyvtárat kell egy React applikációba integrálni. Ezekben az esetekben érdekes lehet a [kontrollálatlan komponensek](/docs/uncontrolled-components.html) használata, az űrlap bementek egy alternatív implementációs módszere.
 
-## Fully-Fledged Solutions {#fully-fledged-solutions}
+## Teljes értékű megoldás {#fully-fledged-solutions}
 
-If you're looking for a complete solution including validation, keeping track of the visited fields, and handling form submission, [Formik](https://jaredpalmer.com/formik) is one of the popular choices. However, it is built on the same principles of controlled components and managing state — so don't neglect to learn them.
+Ha egy meglévő teljes értékű megoldást keresel, amiben már benne van a validáció, a meglátogatott mezők nyomon követése és az űrlap beküldésének kezelése, a [Formik](https://jaredpalmer.com/formik) az egyik legnépszerűbb választás. Ugyanakkor ez is hasonló alapelvekre épül, mint a kontrollált komponensek vagy az állapotmenedzsment - így ne felejtsd el ezeket sem megtanulni.
