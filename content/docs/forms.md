@@ -9,7 +9,7 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
-A HTML űrlap elemek kissé máshogy működnek a többi React DOM elemhez képest, mert az űrlap elemek alapvetően egy saját belső állapotot tartanak nyilván. Például ez az űrlap szimpla HTML-ben egy nevet fogad be: 
+A HTML űrlap elemek kissé máshogy működnek a többi DOM elemhez képest Reactben, mert az űrlap elemek alapvetően egy saját belső állapotot tartanak nyilván. Például ez az űrlap szimpla HTML-ben egy nevet fogad be: 
 
 ```html
 <form>
@@ -21,15 +21,15 @@ A HTML űrlap elemek kissé máshogy működnek a többi React DOM elemhez képe
 </form>
 ```
 
-Amikor a felhasználó beküldi ezt az űrlapot, a HTML alapviselkedése miatt ez egy új oldalra fog navigálni. Ha ezt a viselkedést szeretnéd elérni Reactben, eleve működni fog. De a legtöbb esetben érdemesebb egy JavaScript függvényben lekezelni az űrlap beküldését, aminek hozzáférése van a felhasználó által bevitt adatokhoz. A szokásos módszer ennek eléréséhez az úgynevezett "kontrollált komponens" módszer.
+Amikor a felhasználó beküldi ezt az űrlapot, a HTML alapviselkedése miatt ez egy új oldalra fog navigálni. Ha ezt a viselkedést szeretnéd elérni Reactben, eleve működni fog. De a legtöbb esetben érdemesebb egy JavaScript függvényben lekezelni az űrlap beküldését, aminek hozzáférése van a felhasználó által bevitt adatokhoz. Ennek elérése általában az úgynevezett "kontrollált komponensek" módszerével lehetséges.
 
 ## Kontrollált komponensek {#controlled-components}
 
 A HTML űrlap elemek, mint az `<input>`, `<textarea>` és `<select>`, általában fenntartják a saját belső állapotukat, amit felhasználói bevitel alapján változtatnak. A Reactben a módosítható állapotot általában a komponens állapotában tároljuk, és csak a [`setState()`](/docs/react-component.html#setstate) meghívásával változik.   
 
-Ezt a kettőt összekombinálhatjuk a React komponens állapotban, mint az "egyedüli igazságforrás"-ban. Így a React komponens, ami az űrlapot rendereli, azt is kontrollálja, hogy mi történik az űrlapban a felhasználói bevitel hatására. Egy beviteli elem, aminek az értékét ily módon a React kontrollál, "kontrollált komponens"-nek hívjuk.   
+Ezt a kettőt összekombinálhatjuk ha a React állapotot vesszük az "egyedüli igazságforrás"-ként. Így a React komponens, ami az űrlapot rendereli, azt is kontrollálja, hogy mi történik az űrlapban a felhasználói bevitel hatására. Egy beviteli elem, aminek az értékét ily módon a React kontrollál, "kontrollált komponens"-nek hívjuk.
 
-Például ha ki szeretnénk írni a konzolra a nevet, amikor az űrlapot beküldik, létrehozhatunk egy kontrollált komponenst: 
+Például ha azt szeretnénk hogy az előző példa kiírja a konzolra a nevet az űrlap beküldésekor, létrehozhatjuk az űrlapot egy kontrollált komponensként: 
 
 ```javascript{4,10-12,24}
 class NameForm extends React.Component {
@@ -68,7 +68,7 @@ class NameForm extends React.Component {
 
 Mivel a `value` attribútum be van állítva az elemen, a megjelenített érték mindig `this.state.value` lesz, ez teszi a React állapotot az egyéni igazságforrássá. Mivel a `handleChange` minden egyes billentyűleütéskor frissíti a React állapotot, a megjelenített érték is frissülni fog a felhasználó bevitele eredményeképpen.
 
-Egy kontrollált komponensben minden állapotmódosításhoz hozzá kell rendelni egy eseménykezelő függvényt. Ez egyszerűvé teszi a felhasználó által bevitt adat módosítását vagy validálását. Például ha szeretnénk biztosítani, hogy a nevek csupa nagybetűvel legyenek írva, így módosíthatjuk a `handleChange`-t:   
+Egy kontrollált komponensben minden állapotmódosításhoz hozzá kell rendelni egy eseménykezelő függvényt. Ez egyszerűvé teszi a felhasználó által bevitt adat módosítását vagy érvényesítését. Például ha szeretnénk biztosítani, hogy a nevek csupa nagybetűvel legyenek írva, így módosíthatjuk a `handleChange`-t:   
 
 ```javascript{2}
 handleChange(event) {
@@ -76,7 +76,7 @@ handleChange(event) {
 }
 ```
 
-## A szövegterület tag {#the-textarea-tag}
+## A textarea címke {#the-textarea-tag}
 
 A HTML-ben a `<textarea>` tartalma a gyermeke által van definiálva:
 
@@ -125,7 +125,7 @@ class EssayForm extends React.Component {
 
 Figyeld meg, hogy a `this.state.value` a konstruktorban kerül inicializálásra, így a szövegterület már az elején tartalmazni fog némi szöveget.
 
-## A select tag {#the-select-tag}
+## A select címke {#the-select-tag}
 
 A HTML-ben a `<select>` egy legördülő menüt hoz elő. Ez a HTML például egy ízesítésekből álló legördülő menüt tartalmaz:
 
@@ -138,7 +138,7 @@ A HTML-ben a `<select>` egy legördülő menüt hoz elő. Ez a HTML például eg
 </select>
 ```
 
-Figyeld meg, hogy a Kókusz opció van kiválasztva alapból, mivel ez tartalmazza a `selected` attribútumot. A React a `selected` attribútum helyett a `value` attribútumot használja a gyökér `select` tagen. Ez így egyszerűbb egy kontrollált komponensben, mivel így csak egy helyen kell módosítani az értéket. Például:
+Figyeld meg, hogy a Kókusz opció van kiválasztva alapból, mivel ez tartalmazza a `selected` attribútumot. A React a `selected` attribútum helyett a `value` attribútumot használja a gyökér `select` címkén. Ez így egyszerűbb egy kontrollált komponensben, mivel így csak egy helyen kell módosítani az értéket. Például:
 
 ```javascript{4,10-12,24}
 class FlavorForm extends React.Component {
@@ -180,25 +180,25 @@ class FlavorForm extends React.Component {
 
 [**Próbáld ki CodePenen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
-Alapvetően ezáltal mind az `<input type="text">`, `<textarea>` és `<select>` is hasonlóan működik - mindegyiknek van egy `value` attribútuma, amit használhatsz egy kontrollált komponens létrehozásához. 
+Alapvetően ezáltal mind az `<input type="text">`, `<textarea>` és `<select>` is hasonlóan működik - mindegyiknek van egy `value` attribútuma, amit használhatsz egy kontrollált komponens létrehozásához.
 
 > Megjegyzés
 >
-> Egy tömböt is hozzárendelhetsz a `value` attribútumhoz, aminek a segítségével több opciót is kiválaszthatsz egyszerre a `select` tagben:
+> Ha egy tömböt rendelsz a `value` attribútumhoz akár több opciót is kiválaszthatsz egyszerre a `select` címkében:
 >
 >```js
 ><select multiple={true} value={['B', 'C']}>
 >```
 
-## A fájlbeviteli tag {#the-file-input-tag}
+## A fájlbeviteli címke {#the-file-input-tag}
 
-A HTML-ben az `<input type="file">` segítségével a felhasználó kiválaszthat egy vagy több fájlt a saját gépéről a szerverre feltöltéshez vagy a JavaScript [Fájl API-val](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) való manipuláláshoz.
+A HTML-ben az `<input type="file">` segítségével a felhasználó kiválaszthat egy vagy több fájlt a saját gépéről a szerverre feltöltéshez vagy a JavaScript [Fájl API-val](https://developer.mozilla.org/hu/docs/Web/API/File/Fajlok_hasznalata_webes_alkalmazasokban) való manipuláláshoz.
 
 ```html
 <input type="file" />
 ```
 
-Mivel ennek egy csak olvasható értéke van, ez egy **kontrollálatlan** komponens.  Erről a többi kontrollálatlan komponenssel együtt olvashatsz [később a dokumentációban](/docs/uncontrolled-components.html#the-file-input-tag).
+Mivel ez csak olvasható értékkel rendelkezik, ez egy **kontrollálatlan** komponens.  Erről a többi kontrollálatlan komponenssel együtt olvashatsz [később a dokumentációban](/docs/uncontrolled-components.html#the-file-input-tag).
 
 ## Több bemenet kezelése {#handling-multiple-inputs}
 
@@ -295,5 +295,4 @@ Néha nehézkes lehet kontrollált komponenseket használni, mivel minden lehets
 
 
 ## Teljes értékű megoldás {#fully-fledged-solutions}
-
 Ha egy meglévő teljes értékű megoldást keresel, amiben már benne van a validáció, a meglátogatott mezők nyomon követése és az űrlap beküldésének kezelése, a [Formik](https://jaredpalmer.com/formik) az egyik legnépszerűbb választás. Ugyanakkor ez is hasonló alapelvekre épül, mint a kontrollált komponensek vagy az állapotmenedzsment - így ne felejtsd el ezeket sem megtanulni.
