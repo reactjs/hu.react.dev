@@ -184,7 +184,7 @@ Alapvetően ezáltal mind az `<input type="text">`, `<textarea>` és `<select>` 
 
 > Megjegyzés
 >
-> Ha egy tömböt rendelsz a `value` attribútumhoz akár több opciót is kiválaszthatsz egyszerre a `select` címkében:
+> Ha egy tömböt rendelsz a `value` attribútumhoz, akár több opciót is kiválaszthatsz egyszerre a `select` címkében:
 >
 >```js
 ><select multiple={true} value={['B', 'C']}>
@@ -293,6 +293,6 @@ setTimeout(function() {
 
 Néha nehézkes lehet kontrollált komponenseket használni, mivel minden lehetséges adatváltoztatási módhoz kell egy eseménykezelőt írnod és hozzá kell kötni az összes belső állapotot a React komponens állapotához. Ez különösen bosszantó lehet, amikor meglévő kódot kell átírni Reactbe, vagy amikor egy nem React-alapú könyvtárat kell egy React applikációba integrálni. Ezekben az esetekben érdekes lehet a [kontrollálatlan komponensek](/docs/uncontrolled-components.html) használata, az űrlap bementek egy alternatív implementációs módszere.
 
-
 ## Teljes értékű megoldás {#fully-fledged-solutions}
+
 Ha egy meglévő teljes értékű megoldást keresel, amiben már benne van a validáció, a meglátogatott mezők nyomon követése és az űrlap beküldésének kezelése, a [Formik](https://jaredpalmer.com/formik) az egyik legnépszerűbb választás. Ugyanakkor ez is hasonló alapelvekre épül, mint a kontrollált komponensek vagy az állapotmenedzsment - így ne felejtsd el ezeket sem megtanulni.
