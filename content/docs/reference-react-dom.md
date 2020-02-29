@@ -20,7 +20,7 @@ A `react-dom` csomag DOM specifikus metódusokkal szolgál amiket az alkalmazás
 
 ### Böngésző támogatás {#browser-support}
 
-A React az összes népszerű böngészőt támogatja, az Internet Explorer 9-től kezdve, bár régebbi böngészők esetében, mint az IE 9 és IE 10, [néhány polyfill megkövetelt](/docs/javascript-environment-requirements.html).
+A React az Internet Explorer 9-től kezdve az összes népszerű böngészőt támogatja, bár régebbi böngészők esetében mint az IE 9 és IE 10, [néhány polyfill megkövetelt](/docs/javascript-environment-requirements.html).
 
 > Megjegyzés
 >
