@@ -12,14 +12,11 @@ Amennyiben a Reactet egy `<script>` tag segítségével töltöd be, ezek a legf
 
 A `react-dom` csomag DOM specifikus metódusokkal szolgál amiket az alkalmazásod legfelsőbb szintjén használhatsz, valamint egy menekülési utat is biztosít a React modellen kívülre, ha erre lenne szükséged. A legtöbb komponensednek nem lesz szüksége erre a modulra.
 
-- [Áttekintés {#overview}](#%c3%81ttekint%c3%a9s-overview)
-  - [Böngésző támogatás {#browser-support}](#b%c3%b6ng%c3%a9sz%c5%91-t%c3%a1mogat%c3%a1s-browser-support)
-- [Referencia {#reference}](#referencia-reference)
-  - [`render()` {#render}](#render-render)
-  - [`hydrate()` {#hydrate}](#hydrate-hydrate)
-  - [`unmountComponentAtNode()` {#unmountcomponentatnode}](#unmountcomponentatnode-unmountcomponentatnode)
-  - [`findDOMNode()` {#finddomnode}](#finddomnode-finddomnode)
-  - [`createPortal()` {#createportal}](#createportal-createportal)
+- [`render()`](#render)
+- [`hydrate()`](#hydrate)
+- [`unmountComponentAtNode()`](#unmountcomponentatnode)
+- [`findDOMNode()`](#finddomnode)
+- [`createPortal()`](#createportal)
 
 ### Böngésző támogatás {#browser-support}
 
