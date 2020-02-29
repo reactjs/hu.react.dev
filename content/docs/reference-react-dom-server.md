@@ -6,30 +6,30 @@ category: Reference
 permalink: docs/react-dom-server.html
 ---
 
-The `ReactDOMServer` object enables you to render components to static markup. Typically, it's used on a Node server:
+A `ReactDOMServer` objektum komponensek statikus sémává való renderelését teszi lehetővé. Tipikusan egy Node szerveren használt:
 
 ```js
-// ES modules
+// ES modulok
 import ReactDOMServer from 'react-dom/server';
 // CommonJS
 var ReactDOMServer = require('react-dom/server');
 ```
 
-## Overview {#overview}
+## Áttekintés {#overview}
 
-The following methods can be used in both the server and browser environments:
+A következő metódusok mind böngésző-, és szerverkörnyezetben is használhatóak:
 
 - [`renderToString()`](#rendertostring)
 - [`renderToStaticMarkup()`](#rendertostaticmarkup)
 
-These additional methods depend on a package (`stream`) that is **only available on the server**, and won't work in the browser.
+Ezek a további metódusok függenek a `stream` csomagtól, tehát **csak a szerveren elérhetőek** és nem fognak működni a böngészőben.
 
 - [`renderToNodeStream()`](#rendertonodestream)
 - [`renderToStaticNodeStream()`](#rendertostaticnodestream)
 
 * * *
 
-## Reference {#reference}
+## Referencia {#reference}
 
 ### `renderToString()` {#rendertostring}
 
@@ -37,9 +37,9 @@ These additional methods depend on a package (`stream`) that is **only available
 ReactDOMServer.renderToString(element)
 ```
 
-Render a React element to its initial HTML. React will return an HTML string. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+Egy React elemet renderel annak kezdetleges HTML formájába. A React egy HTML sztringet ad vissza. Ezzel a metódussal HTML-t tudsz generálni a szerveren és ezt a sémát le tudod küldeni a kezdetleges lekérésben egy gyorsabb oldalbetöltésért és hogy lehetővé tedd a keresőmotorknak az oldalad vizsgálatát SEO optimalizálás céljából.
 
-If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+Ha a [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) metódust egy olyan csomóponton hívod meg ami már rendelkezik ezzel a szerveroldali sémával, a React megőrzi azt és csak eseménykezelőket csatol hozzá, ezzel lehetővé téve a gyors első alkalombeli betöltési élményt.
 
 * * *
 
@@ -49,9 +49,9 @@ If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that 
 ReactDOMServer.renderToStaticMarkup(element)
 ```
 
-Similar to [`renderToString`](#rendertostring), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+A [`renderToString`](#rendertostring)-hez hasonló, kivéve hogy nem hoz létre extra DOM attribútumokat - mint például a `data-reactroot`-  amiket a React használ belsőleg. Ez akkor hasznos ha a Reactet egy szimpla statikus oldal generátorként akarod használni, mivel az extra attribútumok lecsupaszításával pár bájtot meg lehet takarítani.
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToString`](#rendertostring) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
+Ha a Reactet a kliens oldalon tervezed használni hogy interaktívvá tedd a sémát, ne használd ezt a metódust. Helyette használd a [`renderToString`](#rendertostring)-t a szerveren és a [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)-t a kliensen.
 
 * * *
 
@@ -61,15 +61,15 @@ If you plan to use React on the client to make the markup interactive, do not us
 ReactDOMServer.renderToNodeStream(element)
 ```
 
-Render a React element to its initial HTML. Returns a [Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that outputs an HTML string. The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToString`](#rendertostring) would return. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+Egy React elemet renderel annak kezdetleges HTML formájába. Egy [Readable streamet](https://nodejs.org/api/stream.html#stream_readable_streams) ad vissza, ami egy HTML sztringet ad ki. A folyam HTML kimenete tökéletesen megegyezik azzal amit a [`ReactDOMServer.renderToString`](#rendertostring) adna vissza. Ezt a metódust a szerveren tudod arra használni, hogy le tudd küldeni a sémát a kezdetleges lekérésben gyorsabb oldalbetöltésért és hogy lehetővé tedd a keresőmotorknak az oldalad vizsgálatát SEO optimalizálás céljából.
 
-If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+Ha a [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) metódust egy olyan csomóponton hívod meg ami már rendelkezik ezzel a szerveroldali sémával, a React megőrzi azt és csak eseménykezelőket csatol hozzá, ezzel lehetővé téve a gyors első alkalombeli betöltési élményt.
 
-> Note:
+> Megjegyzés:
 >
-> Server-only. This API is not available in the browser.
+> Csakis a szerveren működik. Ez az API nem elérhető a böngészőben.
 >
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+> Az ezen metódus által visszaadott folyam (stream) egy utf-8-ban kódolt bájtfolyamot ad vissza. Ha a folyamra egy másik kódolási formában van szükséged, nézz utána projekteknek mint például az [iconv-lite](https://www.npmjs.com/package/iconv-lite), ami folyamok transzformálását teszi lehetővé szövegek transzkódolásához.
 
 * * *
 
@@ -79,14 +79,14 @@ If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that 
 ReactDOMServer.renderToStaticNodeStream(element)
 ```
 
-Similar to [`renderToNodeStream`](#rendertonodestream), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+A [`renderToNodeStream`](#rendertonodestream)-hez hasonló, kivéve hogy nem hoz létre extra DOM attribútumokat - mint például a `data-reactroot`-  amiket a React használ belsőleg. Ez akkor hasznos ha a Reactet egy szimpla statikus oldal generátorként akarod használni, mivel az extra attribútumok lecsupaszításával pár bájtot meg lehet takarítani.
 
-The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) would return.
+A folyam HTML kimenete tökéletesen megegyezik azzal amit a [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) adna vissza.
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToNodeStream`](#rendertonodestream) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
+Ha a Reactet a kliens oldalon tervezed használni hogy interaktívvá tedd a sémát, ne használd ezt a metódust. Helyette használd a [`renderToNodeStream`](#rendertonodestream)-t a szerveren és a [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)-t a kliensen.
 
-> Note:
+> Megjegyzés:
 >
-> Server-only. This API is not available in the browser.
+> Csakis a szerveren működik. Ez az API nem elérhető a böngészőben.
 >
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+> Az ezen metódus által visszaadott folyam (stream) egy utf-8-ban kódolt bájtfolyamot ad vissza. Ha a folyamra egy másik kódolási formában van szükséged, nézz utána projekteknek mint például az [iconv-lite](https://www.npmjs.com/package/iconv-lite), ami folyamok transzformálását teszi lehetővé szövegek transzkódolásához.
