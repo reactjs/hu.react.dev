@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-Amennyiben a Reactet egy <script> tag segítségével töltöd be, ezek a legfelsőbb szintű API-k a `ReactDOM` globális változón keresztül lesznek elérhetőek. ES6 és npm esetében írhatod ezt: import ReactDOM from 'react-dom'. ES5 és npm esetében pedig írhatod az következőt: var ReactDOM = require('react-dom').
+Amennyiben a Reactet egy `<script>` tag segítségével töltöd be, ezek a legfelsőbb szintű API-k a `ReactDOM` globális változón keresztül lesznek elérhetőek. ES6 és npm esetében írhatod ezt: import ReactDOM from 'react-dom'. ES5 és npm esetében pedig írhatod az következőt: var ReactDOM = require('react-dom').
 
 ## Áttekintés {#overview}
 
