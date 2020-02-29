@@ -1,6 +1,6 @@
 ---
 id: create-a-new-react-app
-title: Egy új React alkalmazás készítése
+title: Készíts egy új React alkalmazást
 permalink: docs/create-a-new-react-app.html
 redirect_from:
   - "docs/add-react-to-a-new-app.html"
@@ -10,11 +10,11 @@ next: cdn-links.html
 
 A legjobb felhasználói és fejlesztői élmény érdekében használj egy integrált eszközláncot.
 
-Ez az oldal egy pár népszerű React ezsközláncot ír le amik az alábbi feladatokban segítenek:
+Ez az oldal néhány népszerű React eszközláncot ír le amik az alábbi feladatokban segítenek:
 
 * Sok fájl és komponens kezelése.
 * Külső npm könyvtárak használata.
-* Gyakori hibák korai detektálása.
+* Gyakori hibák korai felfedése.
 * CSS és JS élő szerkesztése fejlesztői módban.
 * A kimenet optimalizálása a végstádiumhoz.
 
@@ -50,15 +50,15 @@ npm start
 
 >Megjegyzés
 >
->Az `npx` az első sorban nem elírás -- ez egy [csomag futtató eszköt ami az npm 5.2 óta elérhető](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>Az `npx` az első sorban nem elírás -- ez egy [csomag futtató eszköz ami az npm 5.2 óta elérhető](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 
 A Create React App nem kezel szerveroldali logikát vagy adatbázisokat; csak egy frontend építő futószalagot készít, szóval bármilyen backendet használhatsz. A motorháztető alatt [Babel](https://babeljs.io/)-t és [webpack](https://webpack.js.org/)-et használ, de semmit nem kell tudnod róluk.
 
-Amikor készen állsz a publikálásra, az `npm run build` futtatása elkészíti az alkalmazásod egy optimalizált változatát a `build` mappában. A Create React Appről többet tanulhatsz [anak README fájljából](https://github.com/facebookincubator/create-react-app#create-react-app--) és a [felhasználói útmutatóból](https://facebook.github.io/create-react-app/).
+Amikor készen állsz a publikálásra, az `npm run build` futtatása elkészíti az alkalmazásod egy optimalizált változatát a `build` mappában. A Create React Appről többet tanulhatsz [annak README fájljából](https://github.com/facebookincubator/create-react-app#create-react-app--) és a [felhasználói útmutatóból](https://facebook.github.io/create-react-app/).
 
 ### Next.js {#nextjs}
 
-A [Next.js](https://nextjs.org/) egy népszerű és könnyűsúlyú React keretrendzser **statikus és szerver-renderelt alkalmazások** építéséhez. Alapból magában foglal **stílus és útválasztó megoldásokat**  és feltételezi hogy [Node.js](https://nodejs.org/)-t használsz a szerver környezetben.
+A [Next.js](https://nextjs.org/) egy népszerű és könnyűsúlyú React keretrendszer **statikus és szerver-renderelt alkalmazások** építéséhez. Alapból magában foglal **stílus és útválasztó (routing) megoldásokat**  és feltételezi hogy [Node.js](https://nodejs.org/)-t használsz a szerver környezetben.
 
 Tanuld meg a Next.js használatát [a hivatalos útmutatóból](https://nextjs.org/learn/).
 
@@ -86,8 +86,8 @@ Egy JavaScript eszközlánc tipikusan ezekből áll:
 
 * Egy **csomagoló** mint a [webpack](https://webpack.js.org/) vagy a [Parcel](https://parceljs.org/). Moduláris kód írását teszi lehetővé, amit aztán kisebb csomagokká csomagol a gyorsabb betöltési idő optimalizálása érdekében.
 
-* Egy kompilátor mint a [Babel](https://babeljs.io/). Modern JavaScript kód írását teszi lehetővé ami még így is működni fog régebbi böngészőkben.
+* Egy **kompilátor** mint a [Babel](https://babeljs.io/). Modern JavaScript kód írását teszi lehetővé ami még így is működni fog régebbi böngészőkben.
 
 Ha jobban szeretnél egy saját JavaScript eszökzláncot összeállítani a semmiből, akkor [nézd meg ezt az útmutatót](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) ami a Create React App funkcionalitását rekreálja.
 
-Ne felejts meggyőződni róla, hogy az egyedi eszközláncod [helyesen van beállítva a végstádiumhoz](/docs/optimizing-performance.html#use-the-production-build).
+Ne felejts el meggyőződni róla, hogy az egyedi eszközláncod [helyesen van beállítva a végstádiumhoz](/docs/optimizing-performance.html#use-the-production-build).
