@@ -11,7 +11,7 @@ Minden fejlécnek van egy saját azonosítója:
 ## Try React {#try-react}
 ```
 
-Ezeket az azonosítókat **ne** fordítsd le! Ezek a navigáció szempontjából fontosak, és ha megváltozank, a külső linkek nem fognak működni, azaz:
+Ezeket az azonosítókat **ne** fordítsd le! Ezek a navigáció szempontjából fontosak, és ha megváltoznak, a külső linkek nem fognak működni, azaz:
 
 ```md
 See the [beginning section](/getting-started#try-react) for more information.

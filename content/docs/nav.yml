@@ -8,6 +8,8 @@
       title: Készíts egy új React alkalmazást
     - id: cdn-links
       title: CDN linkek
+    - id: release-channels
+      title: Kiadási csatornák
 - title: Főbb fogalmak
   isOrdered: true
   items:
@@ -106,11 +108,11 @@
       title: JS környezeti követelmények
     - id: glossary
       title: Szójegyzék
-- title: Horgok (Új)
+- title: Horgok
   isOrdered: true
   items:
       - id: hooks-intro
-        title: Horgok bemutató
+        title: Horgok bemutatása
       - id: hooks-overview
         title: Horgok egy pillantásra
       - id: hooks-state
@@ -133,6 +135,19 @@
       title: Tesztelői receptek
     - id: testing-environments
       title: Tesztelői környezetek
+- title: Konkurens mód (kísérleti fázis)
+  isOrdered: true
+  items:
+    - id: concurrent-mode-intro
+      title: Konkurens mód bemutatása
+    - id: concurrent-mode-suspense
+      title: Suspense adatlehíváshoz
+    - id: concurrent-mode-patterns
+      title: Konkurens UI minták
+    - id: concurrent-mode-adoption
+      title: Konkurens mód adoptálása
+    - id: concurrent-mode-reference
+      title: Konkurens mód API referencia
 - title: Közreműködés
   items:
   - id: how-to-contribute
