@@ -88,7 +88,7 @@ const MarkdownPage = ({
                   {date}{' '}
                   {hasAuthors && (
                     <span>
-                      by{' '}
+                      szerzők{' '}
                       {toCommaSeparatedList(authors, author => (
                         <a
                           css={sharedStyles.link}

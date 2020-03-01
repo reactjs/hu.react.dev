@@ -1,24 +1,24 @@
 community:
-  title: Community
+  title: Közösség
 
 docs:
-  title: Docs
+  title: Dokumentáció
 
 more:
-  title: More
+  title: Több
   items:
-    - title: Tutorial
+    - title: Tutoriál
       to: /tutorial/tutorial.html
     - title: Blog
       to: /blog
-    - title: Acknowledgements
+    - title: Elismerések
       to: /acknowledgements.html
     - title: React Native
       to: https://facebook.github.io/react-native/
       external: true
 
 channels:
-  title: Channels
+  title: Csatornák
   items:
     - title: GitHub
       to: https://github.com/facebook/react
@@ -26,13 +26,13 @@ channels:
     - title: Stack Overflow
       to: https://stackoverflow.com/questions/tagged/reactjs
       external: true
-    - title: Discussion Forums
+    - title: Kibeszélő fórumok
       to: https://reactjs.org/community/support.html#popular-discussion-forums
       external: true
     - title: Reactiflux Chat
       to: https://discord.gg/reactiflux
       external: true
-    - title: DEV Community
+    - title: DEV Közösség
       to: https://dev.to/t/react
       external: true
     - title: Facebook
