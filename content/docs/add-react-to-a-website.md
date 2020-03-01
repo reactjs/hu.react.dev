@@ -1,6 +1,6 @@
 ---
 id: add-react-to-a-website
-title: Add hozzá a React-et egy weblaphoz
+title: React hozzáadása egy weblaphoz
 permalink: docs/add-react-to-a-website.html
 redirect_from:
   - "docs/add-react-to-an-existing-app.html"
