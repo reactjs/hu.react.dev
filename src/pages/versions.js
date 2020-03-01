@@ -25,27 +25,27 @@ const Versions = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>React Versions</Header>
+          <Header>React verziók</Header>
           <TitleAndMetaTags
             canonicalUrl={`${urlRoot}/versions/`}
-            title="React - Versions"
+            title="React - Verziók"
           />
           <div css={sharedStyles.markdown}>
             <p>
-              A complete release history for React is available{' '}
+              A React teljes kiadási története elérhető{' '}
               <a
                 href="https://github.com/facebook/react/releases"
                 target="_blank"
                 rel="noopener">
-                on GitHub
+                a GitHubon
               </a>
               .<br />
-              Documentation for recent releases can also be found below.
+              Lejjebb a jelenlegi kiadások dokumentációja is megtalálható.
             </p>
             <p>
-              See our FAQ for information about{' '}
+              Nézd meg a GY.I.K-et{' '}
               <a href="/docs/faq-versioning.html">
-                our versioning policy and commitment to stability
+                a számozási irányelveinkről és a stabilitási elkötelezttségünkről
               </a>
               .
             </p>
@@ -55,13 +55,13 @@ const Versions = ({location}: Props) => (
                 <ul>
                   <li>
                     <a href={version.changelog} target="_blank" rel="noopener">
-                      Changelog
+                      Változási napló
                     </a>
                   </li>
                   {version.path && (
                     <li>
                       <a href={version.path} rel="nofollow">
-                        Documentation
+                        Dokumntáció
                       </a>
                     </li>
                   )}
