@@ -74,9 +74,9 @@ Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható kompon
 
 Fordulj a [React dokumentációhoz](/docs/) ha segítségre van szükséged a fenti lépés elvégzéséhez!
 
-### Egy kis közjáték: `props` vagy `state` {#a-brief-interlude-props-vs-state}
+### Egy kis közjáték: props vagy state {#a-brief-interlude-props-vs-state}
 
-Kétféle adatot használunk Reactban, van `props` és `state`. Fontos megérteni a különbséget; fusd végig a [hivatalos React dokumentációt](/docs/state-and-lifecycle.html) ha nem vagy biztos benne, hogy ez már világos! Lásd még [GYÍK: `state` vagy `props`, mi a különbség?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
+Kétféle adatot használunk Reactban, van props és state. Fontos megérteni a különbséget; fusd végig a [hivatalos React dokumentációt](/docs/state-and-lifecycle.html) ha nem vagy biztos benne, hogy ez már világos! Lásd még [GYÍK: state vagy props, mi a különbség?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
 
 ## Harmadik lépés: Azonosítsd a UI állapot minimális (de teljes) reprezentációját {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
@@ -93,13 +93,13 @@ Vegyük végig a példánkban szereplő adatokat:
 
 Nézzük hát ezekből mi lehet állapot? Ezeket a kérdéseket kell feltenned mindegyikkel kapcsolatban:
 
-  1. Egy szülő komponenstől kaptuk props-on keresztül? Ha igen, akkor ez valószínűleg nem `state`.
-  2. Változatlan marad az idő elteltével? Ha igen, feltehetőleg nem `state`.
-  3. Elő tudod állítani az egyéb `state` és a `props` alapján? Ha igen, akkor nem `state`.
+  1. Egy szülő komponenstől kaptuk props-on keresztül? Ha igen, akkor ez valószínűleg nem state.
+  2. Változatlan marad az idő elteltével? Ha igen, feltehetőleg nem state.
+  3. Elő tudod állítani az egyéb state és a props alapján? Ha igen, akkor nem state.
 
-Az eredeti terméklista `props`ban érkezik, tehát nem `state`. A keresés szövege és a jelölőnégyzet `state` lesz, hiszen megváltozhatnak és nem számíthatók ki más adatokból. Végül a leszűrt terméklista sem `state` hiszen az eredeti lista és kereső szöveg valamint a jelölőnégyzet állapota alapján számolható.
+Az eredeti terméklista propsban érkezik, tehát nem state. A keresés szövege és a jelölőnégyzet state lesz, hiszen megváltozhatnak és nem számíthatók ki más adatokból. Végül a leszűrt terméklista sem state hiszen az eredeti lista és kereső szöveg valamint a jelölőnégyzet állapota alapján számolható.
 
-Tehát ennyi lett a `state`:
+Tehát ennyi lett a state:
 
   * A felhasználó által megadott keresőszöveg
   * A jelölőnégyzet értéke
@@ -108,16 +108,16 @@ Tehát ennyi lett a `state`:
 
 <p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Nézd meg a <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a>-t a <a href="https://codepen.io">CodePen</a>en.</p>
 
-OK, szóval meghatároztuk mi a minimális `state` az alkalmazásunkban. Most el kell döntenünk melyik komponens változtatja vagy *birtokolja* ezt a `state`-et.
+OK, szóval meghatároztuk mi a minimális state az alkalmazásunkban. Most el kell döntenünk melyik komponens változtatja vagy *birtokolja* ezt a state-et.
 
-Emlékezz: A React lényege az egy irányú adatáramlás a komponens hierarchiában. Talán nem egyértelmű melyik komponenshez melyik `state` tartozik. **Gyakran ezt megérteni a legnagyobb kihívás kezdők számára,** de csak kövesd ezeket a lépéseket:
+Emlékezz: A React lényege az egy irányú adatáramlás a komponens hierarchiában. Talán nem egyértelmű melyik komponenshez melyik state tartozik. **Gyakran ezt megérteni a legnagyobb kihívás kezdők számára,** de csak kövesd ezeket a lépéseket:
 
-Minden azonosított `state`-hez az alkalmazásodban:
+Minden azonosított state-hez az alkalmazásodban:
 
-  * Azonosíts minden komponenst amely renderel valamit az adott `state` alapján
-  * Keresd meg a közös komponenst (egy bizonyos komponens a hierarchiában, ami felette áll `state`-et használó minden komponensnek).
-  * Vagy a közös szülő, vagy egy másik a hierarchiában magasabban álló komponens kell birtokolja a `state`-et.
-  * Ha nem találsz olyan komponenst ahol van értelme a `state`-et elhelyezni, létrehozhatsz egyet pusztán azért, hogy azt kezelje és illeszd a hierarchiába valahol a közös bitrokló komponens felé.
+  * Azonosíts minden komponenst amely renderel valamit az adott state alapján
+  * Keresd meg a közös komponenst (egy bizonyos komponens a hierarchiában, ami felette áll state-et használó minden komponensnek).
+  * Vagy a közös szülő, vagy egy másik a hierarchiában magasabban álló komponens kell birtokolja a state-et.
+  * Ha nem találsz olyan komponenst ahol van értelme a state-et elhelyezni, létrehozhatsz egyet pusztán azért, hogy azt kezelje és illeszd a hierarchiába valahol a közös bitrokló komponens felé.
 
 Próbáljuk ki ezt a stratégiát az alkalmazásunkon:
 
@@ -125,7 +125,7 @@ Próbáljuk ki ezt a stratégiát az alkalmazásunkon:
   * A közös bitrokló komponens számukra a `FilterableProductTable`.
   * Fogalmilag tényleg van értelme, hogy mindkét érték a `FilterableProductTable` komponensben lakjon.
 
-Király, ezzel el is döntöttük, a `state` helye a `FilterableProductTable`. Először, vegyük fel hozzá a példány tulajdonságot a `FilterableProductTable` konstruktorába és adjunk neki kezdeti értéket is: `this.state = {filterText: '', inStockOnly: false}`. Ezután adjuk tovább a `filterText` és `inStockOnly` értékét a `ProductTable` és a `SearchBar` számára `props`ban. Végül a `ProductTable`-ben használjuk őket szűrésre és jelenítsük meg az értéküket a `SearchBar` űrlap mezőiben.
+Király, ezzel el is döntöttük, a state helye a `FilterableProductTable`. Először, vegyük fel hozzá a példány tulajdonságot a `FilterableProductTable` konstruktorába és adjunk neki kezdeti értéket is: `this.state = {filterText: '', inStockOnly: false}`. Ezután adjuk tovább a `filterText` és `inStockOnly` értékét a `ProductTable` és a `SearchBar` számára propsban. Végül a `ProductTable`-ben használjuk őket szűrésre és jelenítsük meg az értéküket a `SearchBar` űrlap mezőiben.
 
 Hogy viselkedik az alkalmazás, ha a `filterText` értékét beállítod `"ball"`-nak és frissíted az app-ot? Láthatod, hogy az értékek ennek megfelelően jelennek meg.
 
@@ -133,13 +133,13 @@ Hogy viselkedik az alkalmazás, ha a `filterText` értékét beállítod `"ball"
 
 <p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Nézd meg a <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a>-t a <a href="https://codepen.io">CodePen</a>en.</p>
 
-Van tehát egy alkalmazásunk ami helyesen jeleníti meg az adatokat a `props` és a `state` függvényében lefelé áramoltatva ezeket a hierarchiában. Eljött az ideje, hogy a másik irányba is mozgassunk adatokat. A form komponenseinknek a hierarchia mélyén is tudniuk kell frissíteni a `state`-et a `FilterableProductTable`-ben.
+Van tehát egy alkalmazásunk ami helyesen jeleníti meg az adatokat a props és a state függvényében lefelé áramoltatva ezeket a hierarchiában. Eljött az ideje, hogy a másik irányba is mozgassunk adatokat. A form komponenseinknek a hierarchia mélyén is tudniuk kell frissíteni a state-et a `FilterableProductTable`-ben.
 
 Reactben ezt nagyon kifejezően ábrázolhatjuk, ami segíti megérteni a program hogyan is működik, de egy kicsit többet kell hozzá gépelni, mint a hagyományos kétirányú adatkapcsolat esetén.
 
-Ha próbáltál szöveget beírni vagy kipipálni a jelölőnégyzetet a mostani verziónkban, akkor már láttad, hogy a React figyelmen kívül hagyja a bemeneteket. Ez szándékos, mivel így lehetséges, hogy a `props`ban kapott érték amit átadunk az `input`nak a `value`-ban  mindíg azonos legyen a `state`-ben tárolt értékkel amit a `FilterableProductTable`-ból továbbadunk.
+Ha próbáltál szöveget beírni vagy kipipálni a jelölőnégyzetet a mostani verziónkban, akkor már láttad, hogy a React figyelmen kívül hagyja a bemeneteket. Ez szándékos, mivel így lehetséges, hogy a propsban kapott érték amit átadunk az `input`nak a `value`-ban  mindíg azonos legyen a state-ben tárolt értékkel amit a `FilterableProductTable`-ból továbbadunk.
 
-Gondoljuk végig mit szeretnénk, mi történjen. Azt akarjuk, hogy bármikor ha a felhasználó megváltoztatja az űrlapot mi frissíthessük a `state`-et, hogy az tükrözze a bemeneten kapott adatot. Mivel a komponensek csak a saját `state`-jüket frissíthetik, a `FilterableProductTable` callback függvényeket ad át a `SearchBar`-nak melyek meghívódnak valahányszor a `state`-et frissíteni kell. Használhatjuk az input mezők `onChange` eseményét, a `FilterableProductTable` által átadott callback-ek meghívhatják annak `setState()` metódusát és alkalmazásunk frissül majd.
+Gondoljuk végig mit szeretnénk, mi történjen. Azt akarjuk, hogy bármikor ha a felhasználó megváltoztatja az űrlapot mi frissíthessük a state-et, hogy az tükrözze a bemeneten kapott adatot. Mivel a komponensek csak a saját state-jüket frissíthetik, a `FilterableProductTable` callback függvényeket ad át a `SearchBar`-nak melyek meghívódnak valahányszor a state-et frissíteni kell. Használhatjuk az input mezők `onChange` eseményét, a `FilterableProductTable` által átadott callback-ek meghívhatják annak `setState()` metódusát és alkalmazásunk frissül majd.
 
 ## Ennyi volna {#and-thats-it}
 
