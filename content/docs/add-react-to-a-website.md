@@ -8,9 +8,9 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
-Használj annyi Reactet, amennyit szeretnél. Se többet, se kevesebbet.
+Használj pont annyi Reactet, amennyit szeretnél. Se többet, se kevesebbet.
 
-A React a kezdetektől fogva úgy lett tervezve, hogy fokozatosan lehessen adoptálni és **pontosan annyi Reactet kelljen használnod, amennyit kell**. Talán csak néhány "csipetnyi interaktivitást" szeretnél hozzáadni egy meglévő oldalhoz. A React komponensek erre tökéletesen megfelelnek.
+A React a kezdetektől fogva úgy lett tervezve, hogy fokozatosan lehessen adoptálni és **pontosan annyi Reactet kelljen használnod, amennyire szükség van**. Talán csak néhány "csipetnyi interaktivitást" szeretnél hozzáadni egy meglévő oldalhoz. A React komponensek erre tökéletesen megfelelnek.
 
 A legtöbb weblap nem single-page alkalmazás, és nem is kell annak lenniük. Próbáld a Reactet **csak pár sornyi kóddal és bárminemű kód transzformáló eszköz nélkül** hozzáadni a weblapod egy kis részéhez. Eztuán fokozatosan tudod növelni a jelenlétét, vagy megtarthatod néhány dinamikus widgetként.
 
@@ -27,9 +27,9 @@ Nem lesz szükség se komplikált eszközökre vagy követelmények telepítés�
 
 Választható: [Töltsd le a teljes példát (Tömörítve 2KB)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
-### Első lépés: Adj hozzá egy DOM konténert a HTML-hez HTML {#step-1-add-a-dom-container-to-the-html}
+### Első lépés: Adj hozzá egy DOM konténert a HTML-hez {#step-1-add-a-dom-container-to-the-html}
 
-Előszőr nyisd meg a HTML oldalt amit szerkesztenél. Adj hozzá egy üres `<div>` címkét és jelöld meg azt a helyet ahol valamit Reacttel szeretnél megjeleníteni. Például:
+Először nyisd meg a HTML oldalt amit szerkeszteni szeretnél. Adj hozzá egy üres `<div>` címkét és jelöld meg azt a helyet ahol valamit Reacttel szeretnél megjeleníteni. Például:
 
 ```html{3}
 <!-- ... meglévő HTML ... -->
@@ -39,11 +39,11 @@ Előszőr nyisd meg a HTML oldalt amit szerkesztenél. Adj hozzá egy üres `<di
 <!-- ... meglévő HTML ... -->
 ```
 
-Ennek a `<div>`-nek adtunk egy egyedi `id` HTML attribútumot. Ez lehetővé teszi számunkra hogy később megtaláljuk JavaScript kódból, és egy React komponenst jelenítsünk meg benne.
+Ennek a `<div>`-nek adtunk egy egyedi `id` HTML attribútumot. Ez lehetővé teszi számunkra hogy ezt később könnyen megtaláljuk JavaScript kódból, és egy React komponenst jelenítsünk meg benne.
 
 >Tipp
 >
-> Egy ilyen `<div>` "konténert" **bárhol** elhelyezhetsz a `<body>` címkén belül. használj annyi különálló DOM konténert egy oldalon, amennyit csak szeretnél. Ezek általában üresek -- a React ki fogja cserélni a DOM konténerek meglévő tartalmát.
+> Egy ilyen `<div>` "konténert" **bárhol** elhelyezhetsz a `<body>` címkén belül. Használj annyi különálló DOM konténert egy oldalon, ahányat szeretnél. Ezek általában üresek -- a React ki fogja cserélni a DOM konténerek meglévő tartalmát.
 
 ### Második lépés: Add hozzá a script címkéket {#step-2-add-the-script-tags}
 
@@ -67,7 +67,7 @@ A két első címke a Reactet töltik be. A harmadik a komponensed kódját fogj
 
 ### Harmadik lépés: Készíts egy React komponenst {#step-3-create-a-react-component}
 
-Készíts egy fájlt és nevezd el `like_button.js`-nek a HTML oldalad mellett.
+Készíts egy fájlt a HTML oldalad mellett és nevezd el `like_button.js`-nek.
 
 Nyisd meg **[ezt a kezdő kódot](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** és másold be a tartalmát a fájlba amit készítettél.
 
@@ -124,7 +124,7 @@ Ha nincs kódcsökkentő lépésed a scriptekhez, [itt egy módja hogyan tudod e
 
 ## Választható: Próbáld ki a Reactet JSX-el {#optional-try-react-with-jsx}
 
-Az fentebbi példákban csak a böngészők által alapból támogatott funkciókra hagyatkoztunk. Ezért használtunk egy JavaScript függvény meghívást, hogy közöljük a Reacttel mit jelenítsen meg:
+A fenti példákban csak a böngészők által alapból támogatott funkciókra hagyatkoztunk. Ezért használtunk egy JavaScript függvény meghívást, hogy közöljük a Reacttel mit jelenítsen meg:
 
 ```js
 const e = React.createElement;
@@ -148,9 +148,9 @@ return (
 );
 ```
 
-Ez a két kódrészlet ekvivalens egymással. Bár **a JSX [teljes mértékben választható](/docs/react-without-jsx.html)**, sok ember hasznosnak tartja felhasználói felület kód írásához -- mind a Reacttel és más könyvtárak esetében is.
+Ez a két kódrészlet ekvivalens egymással. Bár **a JSX [teljesen szabadon választható](/docs/react-without-jsx.html)**, sok ember hasznosnak tartja felhasználói felület kód írásához -- mind a Reacttel és más könyvtárak esetében is.
 
-A JSX-el [ennek az online konverternek](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3) a segítségével játszadhozhatsz  egy kicsit.
+A JSX-el [ennek az online konverternek](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3) a segítségével játszadozhatsz  egy kicsit.
 
 ### Próbáld ki a JSX-et gyorsan {#quickly-try-jsx}
 
@@ -160,18 +160,18 @@ Ha a leggyorsabban akarod kipróbálni a JSX-et a projektedben, add hozzá ezt a
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
-Eztuán bármelyik `<script>` címkében használhatsz JSx-et amihez hozzáadtad a `type="text/babel"` attribútumot. Itt egy letölthető [HTML példafájl JSX-el](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), játssz vele.
+Eztuán bármelyik `<script>` címkében használhatsz JSX-et amihez hozzáadtad a `type="text/babel"` attribútumot. Itt egy letölthető [HTML példafájl JSX-el](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), játssz vele.
 
-Ez a megközelítés nem rossz tanulás és egyszerű demók készítése esetén. Azonban lelassítja a weblapodat, és **alkalmatlanná teszi azt publikálásra**. Ha készen állsz a továbblépésre, távolítsd el a `<script>` címkét és a `type="text/babel"` attribútumot amit az előbb hozzáadtál. Helyette a következő fejezetben beállítasz egy JSX preprocesszor ami az összes `<script>` címkét automatikusan átalakítja.
+Ez a megközelítés nem rossz tanulás és egyszerű demók készítése esetén. Azonban lelassítja a weblapodat, és **alkalmatlanná teszi azt publikálásra**. Ha készen állsz a továbblépésre, távolítsd el a `<script>` címkét és a `type="text/babel"` attribútumot amit az előbb hozzáadtál. Helyette a következő fejezetben beállítasz egy JSX preprocesszort, ami az összes `<script>` címkét automatikusan átalakítja.
 
 ### JSX hozzáadása egy projekthez {#add-jsx-to-a-project}
 
-JSX-et hozzáadni egy projekthez nem igányel komplikált eszközöket mint csomagolók vagy fejlesztői szerver. Alapjában véve a JSX hozzáadása **nagyon hasonló egy CSS preprocesszor hozzáadásához.** Az egyetlen követelmény hogy a [Node.js](https://nodejs.org/) telepítve legyen a számítógépeden.
+JSX-et hozzáadni egy projekthez nem igányel komplikált eszközöket mint csomagolók vagy fejlesztői szerver. Alapjában véve a JSX hozzáadása **nagyon hasonló egy CSS preprocesszor hozzáadásához.** Az egyetlen követelmény a [Node.js](https://nodejs.org/) jelenléte a számítógépeden.
 
 Menj a projekted mappájához a terminálban és másold be ezt a két parancsot:
 
-1. **Első lépés:** Futtasd a `npm init -y` parancsot (ha sikertelen, [itt egy fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
-2. **Második lépés:** Futtasd a `npm install babel-cli@6 babel-preset-react-app@3` parancsot
+1. **Első lépés:** Futtasd az `npm init -y` parancsot (ha sikertelen, [itt egy javítás](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
+2. **Második lépés:** Futtasd az `npm install babel-cli@6 babel-preset-react-app@3` parancsot
 
 >Tipp
 >
@@ -198,6 +198,6 @@ Ne várj a parancs lefutására -- ez a parancs egy automatikus JSX figyelőt in
 
 Ha most készítesz egy `src/like_button.js` nevű fájlt ezzel a **[JSX kezdő kóddal](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, a figyelő egy előre feldolgozott `like_button.js` fájlt fog készíteni egyszerű JavaScript kóddal ami megfelel a böngészőnek. Amikor a JSX forrásfájlt szerkeszted, a konvertálás újra le fog futni automatikusan.
 
-Bónuszként ez modern JavaScript szintaxis funkciók - mint például osztályok - használatát is lehetővé teszi anélkül hogy a régi böngészőkben való hibáktól kéne tartanod. Az imént használt eszköz neve Babel és ha többet akarsz tanulni róla nézd meg [annak dokumentációját](https://babeljs.io/docs/en/babel-cli/).
+Bónuszként ez modern JavaScript szintaxis funkciók - mint például osztályok - használatát is lehetővé teszi anélkül, hogy régi böngészőkben esetlegesen fellépő hibáktól kéne tartanod. Az imént használt eszköz neve Babel és ha többet akarsz tanulni róla nézd meg [annak dokumentációját](https://babeljs.io/docs/en/babel-cli/).
 
-Ha azt veszed észre magadon hogy kezdesz megbarátkozni az építő eszközökkel és azt szeretnéd hogy több munkát végezzenek el helyetted, [a következő fejezet](/docs/create-a-new-react-app.html) a legnépszerűbb és legkönnyebben felfogható eszközláncokat írja le. Ha még nem érzed magad készen -- azok a script címkék tökéletesen megfelelnek!
+Ha úgy érzed, hogy kezdesz megbarátkozni az építő eszközökkel és azt szeretnéd hogy több munkát végezzenek el helyetted, [a következő fejezet](/docs/create-a-new-react-app.html) a legnépszerűbb és legkönnyebben megközelíthető eszközláncokat írja le. Ha még nem érzed magad készen -- azok a script címkék tökéletesen megfelelnek!
