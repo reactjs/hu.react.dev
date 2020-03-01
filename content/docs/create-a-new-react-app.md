@@ -1,6 +1,6 @@
 ---
 id: create-a-new-react-app
-title: Készíts egy új React alkalmazást
+title: Új React alkalmazás készítése
 permalink: docs/create-a-new-react-app.html
 redirect_from:
   - "docs/add-react-to-a-new-app.html"
