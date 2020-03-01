@@ -61,7 +61,7 @@ const Versions = ({location}: Props) => (
                   {version.path && (
                     <li>
                       <a href={version.path} rel="nofollow">
-                        Dokumntáció
+                        Dokumentáció
                       </a>
                     </li>
                   )}

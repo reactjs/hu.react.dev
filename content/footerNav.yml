@@ -29,10 +29,10 @@ channels:
     - title: Kibeszélő fórumok
       to: https://reactjs.org/community/support.html#popular-discussion-forums
       external: true
-    - title: Reactiflux Chat
+    - title: Reactiflux chat
       to: https://discord.gg/reactiflux
       external: true
-    - title: DEV Közösség
+    - title: DEV közösség
       to: https://dev.to/t/react
       external: true
     - title: Facebook
