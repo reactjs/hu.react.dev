@@ -80,7 +80,7 @@ Ne felejts el a lassú interneteléréssel rendelkezők felhasználói élmény�
 ReactDOM.unmountComponentAtNode(container)
 ```
 
-Egy létrehozott React komponenst választ le a DOM-ról először kitakarítva az eseménykezelőket és az állapotát. Ha a komponens nem lett létrehozva a konténerben, ennek a függvénynek a meghívása nem tesz semmit. Ha a komponens le lett választva `true` értéket ad vissza, ha nem volt komponens amit le kellett választani, akkor pedig `false` értéket.
+Egy létrehozott React komponenst választ le a DOM-ról először kitakarítva az eseménykezelőket és az állapotát. Ha a konténerben nem lett komponens létrehozva, ennek a függvénynek a meghívása nem fog semmit csinálni. Ha a komponens le lett választva, `true` értéket ad vissza, ha nem volt komponens, amit le kellett választani, akkor pedig `false` értéket.
 
 * * *
 
