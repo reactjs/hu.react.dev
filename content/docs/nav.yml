@@ -100,8 +100,6 @@
       title: SyntheticEvent
     - id: test-utils
       title: Tesztelői segédprogramok
-    - id: shallow-renderer
-      title: Sekély renderelő
     - id: test-renderer
       title: Teszt renderelő
     - id: javascript-environment-requirements
