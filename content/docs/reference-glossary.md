@@ -15,7 +15,7 @@ A React-ben tudsz single-page applikációkat készíteni, de ez nem kötelező.
 
 ## ES6, ES2015, ES2016, stb. {#es6-es2015-es2016-etc}
 
-Ezek a mozaikszavak mind az ECMAScript nyelv specifikáció standard legújabb verziójaira utalnak aminek a JavaScript nyelv az egyik implementációja. Az ES6-os verzió (ES2015-ként is ismert) sok újdonságot tartalmaz a korábbi verziókhoz képest, mint például: nyíl függvények, osztályok, sablon literálok, `let` és `const` állítások. Az egyes verziókról [itt](https://en.wikipedia.org/wiki/ECMAScript#Versions) tanulhatsz többet.
+Ezek a mozaikszavak mind az ECMAScript nyelv specifikáció standard legújabb verziójaira utalnak, aminek a JavaScript nyelv az egyik implementációja. Az ES6-os verzió (ES2015-ként is ismert) sok újdonságot tartalmaz a korábbi verziókhoz képest, mint például: nyíl függvények, osztályok, sablon literálok, `let` és `const` állítások. Az egyes verziókról [itt](https://en.wikipedia.org/wiki/ECMAScript#Versions) tanulhatsz többet.
 
 ## Fordítóprogramok {#compilers}
 
@@ -25,9 +25,9 @@ Egy JavaScript fordítóprogram fogja a JavaScript kódot, transzformálja és v
 
 A kötegelők fogják a különálló (gyakran több száz) modulokban megírt JavaScript és CSS kódot, és egyesítik azt néhány böngészőkre jobban optimalizált fájlban. Néhány, a React alkalmazások esetében gyakran használt kötegelő például a [Webpack](https://webpack.js.org/) és a [Browserify](http://browserify.org/).
 
-## Csomag kezelők {#package-managers}
+## Csomagkezelők {#package-managers}
 
-A csomag kezelők olyan eszközök, amik lehetővé teszik egy projekt függőségeinek a kezelését. Az [npm](https://www.npmjs.com/) és a [Yarn](https://yarnpkg.com/) két gyakran használt csomag kezelő a React alkalmazások esetében. Mindkettő egy kliens ugyanahhoz az npm csomag regisztrátorhoz.
+A csomagkezelők olyan eszközök, amik lehetővé teszik egy projekt függőségeinek a kezelését. Az [npm](https://www.npmjs.com/) és a [Yarn](https://yarnpkg.com/) két gyakran használt csomagkezelő a React alkalmazások esetében. Mindkettő egy kliens ugyanahhoz az npm csomag regisztrátorhoz.
 
 ## CDN {#cdn}
 
@@ -49,17 +49,17 @@ ReactDOM.render(
 
 ## [Elemek](/docs/rendering-elements.html) {#elements}
 
-A React elemek a React alkalmazások építőkockái. Könnyen összetévszthetnő a sokkal ismertebb "komponensek" fogalmával. Egy elem azt írja le, amit a képernyőn szeretnél látni. A React elemek megváltoztathatatlanok.
+A React elemek a React alkalmazások építőkockái. Könnyen összetéveszthető a sokkal ismertebb "komponens" fogalmával. Egy elem azt írja le, amit a képernyőn szeretnél látni. A React elemek megváltoztathatatlanok.
 
 ```js
 const element = <h1>Helló, világ</h1>;
 ```
 
-Az elemeket általában nem közvetlenül használjuk, hanem egy komponens téríti őket vissza.
+Az elemeket általában nem közvetlenül használjuk, hanem egy komponens adja őket vissza.
 
 ## [Komponensek](/docs/components-and-props.html) {#components}
 
-A React komponensek kis, újrafelhasználható kódrészletek, amik React elemeket térítenek vissza, amiket az oldalra renderelünk. A React komponens legegyszerűbb verziója egy egyszerű JavaScript függvény ami egy React elemet térít vissza:
+A React komponensek kis, újrafelhasználható kódrészletek, amik React elemeket adnak vissza, amiket az oldalra renderelünk. A React komponens legegyszerűbb verziója egy egyszerű JavaScript függvény, ami egy React elemet ad vissza:
 
 ```js
 function Welcome(props) {
@@ -77,7 +77,7 @@ class Welcome extends React.Component {
 }
 ```
 
-A komponensket le tudjuk bontani különálló funkcionális részekre és használni azokat más komponensekben. A komponensek vissza tudnak téríteni más komponenseket, tömböket, sztringeket, és számokat. Egy jó ökölszabály, hogy ha a kezelőfelületed egy része többször is használva van, (Button, Panel, Avatar), vagy elég komplex saját magában is (App, FeedStory, Comment) akkor ez egy jó jelölt lehet egy újrafelhasználható komponens készítéséhez. A komponenseket mindig nagybetűvel kezdjük (`<Wrapper/>` **nem** `<wrapper/>`). Több információért a komponensek rendereléséről nézd meg [ezt a dokumentációt](/docs/components-and-props.html#rendering-a-component).
+A komponenseket le tudjuk bontani különálló funkcionális részekre és használni azokat más komponensekben. A komponensek vissza tudnak adni más komponenseket, tömböket, sztringeket és számokat. Egy jó ökölszabály, hogy ha a kezelőfelületed egy részét több helyen is használod (Button, Panel, Avatar), vagy elég komplex saját magában is (App, FeedStory, Comment), akkor ez egy jó jelölt lehet egy újrafelhasználható komponens készítéséhez. A komponenseket mindig nagybetűvel kezdjük (`<Wrapper/>` **nem** `<wrapper/>`). Több információért a komponensek rendereléséről nézd meg [ezt a dokumentációt](/docs/components-and-props.html#rendering-a-component).
 
 ### [`prop`-ok](/docs/components-and-props.html) {#props}
 
@@ -122,19 +122,19 @@ class Welcome extends React.Component {
 
 Egy komponensnek `state`-re, helyi állapotra van szüksége, ha az azzal párosított adat az idő során változni fog. Például egy `Checkbox` komponensnek szüksége lehet egy `isChecked` értékre az állapotában, vagy egy `NewsFeed` komponens talán nyomon akarja követni a `fetchedPosts`-okat annak helyi állapotában.
 
-A legfontosabb különbség a `state` és a `props` között, hogy a `props` szülő komponensekből van leküldve, amíg a `state`-t a komponens maga kezeli. Egy komponens nem változtathatja meg annak saját `props` értékeit, de a `state`-t igen.
+A legfontosabb különbség a `state` és a `props` között, hogy a `props` szülő komponensekből van átadva, amíg a `state`-t a komponens maga kezeli. Egy komponens nem változtathatja meg annak saját `props` értékeit, de a `state`-t igen.
 
-Minden változó adatot egyetlen komponens kell hogy "birtokoljon" a saját állapotában. Ne próbálj állapotokat szinkronizálni két különböző komponensben. Ehelyett [emeld fel az állapotot](/docs/lifting-state-up.html) a legközelebbi közös ősbe, és küldd le azt prop-ként mindkét komponensnek.
+Minden változó adatot egyetlen komponens kell, hogy "birtokoljon" a saját állapotában. Ne próbálj állapotokat szinkronizálni két különböző komponensben. Ehelyett [emeld fel az állapotot](/docs/lifting-state-up.html) a legközelebbi közös ősbe, és küldd le azt prop-ként mindkét komponensnek.
 
 ## [Életciklus metódusok](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
 
-Az életciklus metódusok egyedi funkciók, amik egy komponens különböző fázisaiban vannak elvégezve. Vannak elérhető metódusok ahhoz, amikor egy komponens létrejön és a DOM-ba van illesztve ([előkészítés](/docs/react-component.html#mounting)), amikor a komponens frissül, és amikor a komponens le van választva és eltávolítva a DOM-ból.
+Az életciklus metódusok egyedi funkciók, amik egy komponens különböző fázisaiban hajtódnak végre. Vannak elérhető metódusok ahhoz, amikor egy komponens létrejön és a DOM-ba van illesztve ([előkészítés](/docs/react-component.html#mounting)), amikor a komponens frissül, és amikor a komponens le van választva és eltávolítva a DOM-ból.
 
  ## [Kontrollált](/docs/forms.html#controlled-components) vs. [kontrollálatlan komponensek](/docs/uncontrolled-components.html)
 
 A React két különböző módon kezeli az űrlap bemeneteket.
 
-Egy olyan bemeneti űrlap elemet aminek az értékét a React irányítja, *kontrollált komponensnek* hívunk. Amikor egy felhasználó adatot ír be egy kontrollált komponensbe, egy változás eseménykezelő lesz meghívva és a kódod eldönti hogy a bevitt érték érvényes-e (a frissített érték újrarenderelésével). Ha nem renderelsz újra, az űrlap elem változatlan marad.
+Egy olyan bemeneti űrlap elemet aminek az értékét a React irányítja, *kontrollált komponensnek* hívunk. Amikor egy felhasználó adatot ír be egy kontrollált komponensbe, egy változás eseménykezelő lesz meghívva és a kódod eldönti, hogy a bevitt érték érvényes-e (a frissített érték újrarenderelésével). Ha nem renderelsz újra, az űrlap elem változatlan marad.
 
 Egy *kontrollálatlan komponens* ugyanúgy működik, mint az űrlap elemek a React-en kívül. Amikor a felhasználó adatot ír be egy űrlap mezőbe (egy input doboz, legördülő menü, stb.) a frissített információ anélkül lesz tükrözve, hogy a React-nek bármit is tennie kéne. Azonban ez azt is jelenti, hogy nem tudsz egy mezőt arra kényszeríteni, hogy egy bizonyos értéket vegyen fel.
 
@@ -142,7 +142,7 @@ A legtöbb esetben próbálj kontrollált komponenseket használni.
 
 ## [Kulcsok](/docs/lists-and-keys.html) {#keys}
 
-A "key", vagy kulcs egy speciális sztring attribútum amit elemtömbök létrehozásakor az elemeknek kell tartalmaznia. A kulcsok segítenek a React-nek azonosítani melyik elemek változtak, lettek hozzáadva, vagy törölve. A kulcsokat egy tömbön belül kell hozzáadni, hogy az elemek egy stabil azonossággal rendelkezzenek.
+A "key", vagy kulcs egy speciális sztring attribútum, amit elemtömbök létrehozásakor az elemeknek kell tartalmaznia. A kulcsok segítenek a Reactnek azonosítani melyik elemek változtak, lettek hozzáadva vagy törölve. A kulcsokat egy tömbön belül kell hozzáadni, hogy az elemek egy stabil azonossággal rendelkezzenek.
 
 A kulcsoknak csak testvér elemek között kell egyedinek lenniük ugyanabban a tömbben. Nem kell, hogy egyediek legyenek az egész alkalmazásban vagy akár egy szimpla komponensben sem.
 
@@ -152,15 +152,15 @@ Ne használj olyasmit, mint a `Math.random()` kulcsnak. Fontos, hogy a kulcsokna
 
 A React támogat egy speciális attribútumot, amit bármelyik komponenshez tudsz kötni. A `ref` attribútum lehet egy objektum amit a [`React.createRef()` függvény](/docs/react-api.html#reactcreateref) készített, vagy egy visszahívó függvény, vagy egy sztring (korábbi API-ben). Ha a `ref` attribútum egy visszahívó függvény, a függvény fogadja a mögöttes DOM elemet vagy osztály példányt (az elem típusától függően) argumentumként. Ez lehetővé teszi, hogy közvetlenül irányítsuk a DOM elemet vagy komponens példányt.
 
-Bánj takarékosan a ref-ekkel. Ha azt veszed észre magadon, hogy túl gyakran használod őket csak azért hogy a "dolgok csak simán működjenek" az alkalmazásodban, fontold meg a [fentről-lefelé adatfolyam](/docs/lifting-state-up.html) technika megismerését.
+Bánj takarékosan a ref-ekkel. Ha azt veszed észre magadon, hogy túl gyakran használod őket csak azért, hogy a "dolgok csak simán működjenek" az alkalmazásodban, fontold meg a [fentről-lefelé adatfolyam](/docs/lifting-state-up.html) technika megismerését.
 
 ## [Események](/docs/handling-events.html) {#events}
 
-A React esemény kezeléseinek vannak néhány szintaxis beli különbségei:
+A React eseménykezelésének van néhány szintaxisbeli különbsége:
 
 * A React eseménykezelők camelCase neveket használnak, kisbetűk helyett.
-* JSX-el sztring helyett egy függvényt adsz meg esemélykezelőnek.
+* JSX-el sztring helyett egy függvényt adsz meg eseménykezelőnek.
 
 ## [Összeegyeztetés](/docs/reconciliation.html) {#reconciliation}
 
-Amikor egy komponens egyik prop-ja vagy helyi állapota megváltozik, a React eldönti, hogy egy tényleges DOM frissítés is szükséges-e, az újonnan visszatérített, és az előző renderelés elemeinek összehasonlításával. Ha azok nem egyenlőek, a React frissíti a DOM-ot. Ezt a folyamatot hívjuk "összeegyeztetésnek".
+Amikor egy komponens egyik prop-ja vagy helyi állapota megváltozik, a React eldönti, hogy egy tényleges DOM frissítés is szükséges-e az újonnan visszatérített és az előző renderelés elemeinek összehasonlításával. Ha azok nem egyenlőek, a React frissíti a DOM-ot. Ezt a folyamatot hívjuk "összeegyeztetésnek".
