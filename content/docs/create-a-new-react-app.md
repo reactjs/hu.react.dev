@@ -10,7 +10,7 @@ next: cdn-links.html
 
 A legjobb felhasználói és fejlesztői élmény érdekében használj egy integrált eszközláncot.
 
-Ez az oldal néhány népszerű React eszközláncot ír le amik az alábbi feladatokban segítenek:
+Ez az oldal néhány népszerű React eszközláncot ír le, amik az alábbi feladatokban segítenek:
 
 * Sok fájl és komponens kezelése.
 * Külső npm könyvtárak használata.
@@ -31,7 +31,7 @@ Ez egyben a **legegyszerűbb módja a React egy meglévő oldalba való integrá
 A React csapat főként ezeket a megoldásokat ajánlja:
 
 - Ha **tanulod a Reactet** vagy **egy [single-page](/docs/glossary.html#single-page-application) alkalmazást készítesz,** használd a [Create React App](#create-react-app)-t.
-- Ha egy **Node.js-el szerveroldalon renderelt weblapot** építesz, próbáld ki a [Next.js](#nextjs)-t.
+- Ha egy **Node.js-sel szerveroldalon renderelt weblapot** építesz, próbáld ki a [Next.js](#nextjs)-t.
 - Ha egy **statikus, tartalom-orientált weblapot** építesz, próbáld ki a [Gatsby](#gatsby)-t.
 - Ha egy **komponens könyvtárat** építesz, vagy **egy meglévő kódbázissal integrálsz**, próbálj ki egy [kissé rugalmasabb eszközláncot](#more-flexible-toolchains).
 
@@ -58,13 +58,13 @@ Amikor készen állsz a publikálásra, az `npm run build` futtatása elkészít
 
 ### Next.js {#nextjs}
 
-A [Next.js](https://nextjs.org/) egy népszerű és könnyűsúlyú React keretrendszer **statikus és szerver-renderelt alkalmazások** építéséhez. Alapból magában foglal **stílus és útválasztó (routing) megoldásokat**  és feltételezi hogy [Node.js](https://nodejs.org/)-t használsz a szerver környezetben.
+A [Next.js](https://nextjs.org/) egy népszerű és könnyűsúlyú React keretrendszer **statikus és szerver-renderelt alkalmazások** építéséhez. Alapból magában foglal **stílus és útválasztó (routing) megoldásokat**  és feltételezi, hogy [Node.js](https://nodejs.org/)-t használsz a szerver környezetben.
 
 Tanuld meg a Next.js használatát [a hivatalos útmutatóból](https://nextjs.org/learn/).
 
 ### Gatsby {#gatsby}
 
-A [Gatsby](https://www.gatsbyjs.org/) a legjobb módja **statikus weblapok** készítésének Reacttel. Lehetővé teszi React komponensek használatát, de előrenderelt HTML-t és CSS-t eredményez ami garantálja a gyors betöltést.
+A [Gatsby](https://www.gatsbyjs.org/) a legjobb módja **statikus weblapok** készítésének Reacttel. Lehetővé teszi React komponensek használatát, de előrenderelt HTML-t és CSS-t eredményez, ami garantálja a gyors betöltést.
 
 Tanuld meg a Gatsby használatát [a hivatalos útmutatóból](https://www.gatsbyjs.org/docs/) és [kezdő csomagok egy galériájából](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
@@ -76,18 +76,18 @@ A következő eszközláncok több rugalmasságot és lehetőséget biztosítana
 
 - A **[Parcel](https://parceljs.org/)** egy gyors, konfigurálást nem igénylő webalkalmazás csomagoló ami [Reacttel is működik](https://parceljs.org/recipes.html#react).
 
-- A **[Razzle](https://github.com/jaredpalmer/razzle)** egy konfigurálást nem igénylő szerveroldali renderelő keretrendszer, de több rugalmasságot biztosít mint a Next.js.
+- A **[Razzle](https://github.com/jaredpalmer/razzle)** egy konfigurálást nem igénylő szerveroldali renderelő keretrendszer, de több rugalmasságot biztosít, mint a Next.js.
 
 ## Eszközlánc készítése a semmiből {#creating-a-toolchain-from-scratch}
 
 Egy JavaScript eszközlánc tipikusan ezekből áll:
 
-* Egy **csomagkezelő** mint a [Yarn](https://yarnpkg.com/) vagy az [npm](https://www.npmjs.com/). Ez lehetővé teszi a harmadik féltől származó csomagok hatalmas ökoszisztémájának kihasználását, valamint egyszerű telepítését vagy frissítését.
+* Egy **csomagkezelő**, mint a [Yarn](https://yarnpkg.com/) vagy az [npm](https://www.npmjs.com/). Ez lehetővé teszi a harmadik féltől származó csomagok hatalmas ökoszisztémájának kihasználását, valamint egyszerű telepítését vagy frissítését.
 
-* Egy **csomagoló** mint a [webpack](https://webpack.js.org/) vagy a [Parcel](https://parceljs.org/). Moduláris kód írását teszi lehetővé, amit aztán kisebb csomagokká csomagol a gyorsabb betöltési idő optimalizálása érdekében.
+* Egy **csomagoló**, mint a [webpack](https://webpack.js.org/) vagy a [Parcel](https://parceljs.org/). Moduláris kód írását teszi lehetővé, amit aztán kisebb csomagokká csomagol a gyorsabb betöltési idő optimalizálása érdekében.
 
-* Egy **kompilátor** mint a [Babel](https://babeljs.io/). Modern JavaScript kód írását teszi lehetővé ami még így is működni fog régebbi böngészőkben.
+* Egy **fordítóprogram**, mint a [Babel](https://babeljs.io/). Modern JavaScript kód írását teszi lehetővé, ami még így is működni fog régebbi böngészőkben.
 
-Ha jobban szeretnél egy saját JavaScript eszökzláncot összeállítani a semmiből, akkor [nézd meg ezt az útmutatót](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) ami a Create React App funkcionalitását rekreálja.
+Ha inkább szeretnél egy saját JavaScript eszökzláncot összeállítani a semmiből, akkor [nézd meg ezt az útmutatót](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658), ami a Create React App funkcionalitását utánozza.
 
 Ne felejts el meggyőződni róla, hogy az egyedi eszközláncod [helyesen van beállítva a végstádiumhoz](/docs/optimizing-performance.html#use-the-production-build).
