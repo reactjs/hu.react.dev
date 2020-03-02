@@ -10,7 +10,7 @@ Amennyiben a Reactet egy `<script>` tag segítségével töltöd be, ezek a legf
 
 ## Áttekintés {#overview}
 
-A `react-dom` csomag DOM specifikus metódusokkal szolgál amiket az alkalmazásod legfelsőbb szintjén használhatsz, valamint egy menekülési utat is biztosít a React modellen kívülre, ha erre lenne szükséged. A legtöbb komponensednek nem lesz szüksége erre a modulra.
+A `react-dom` csomag DOM specifikus metódusokkal szolgál, amiket az alkalmazásod legfelsőbb szintjén használhatsz, valamint egy menekülési utat is biztosít a React modellen kívülre, ha erre lenne szükséged. A legtöbb komponensednek nem lesz szüksége erre a modulra.
 
 - [`render()`](#render)
 - [`hydrate()`](#hydrate)
@@ -24,7 +24,7 @@ A React az Internet Explorer 9-től kezdve az összes népszerű böngészőt t�
 
 > Megjegyzés
 >
-> Olyan régi böngészőket amik nem támogatják az ES5 metódusokat nem támogatunk, de elképzelhető, hogy polyfillek mint az [es5-shim és es5-sham](https://github.com/es-shims/es5-shim) oldalba illesztésével a kód működni fog régebbi böngészőkben is. Ha ezt az utat választod, magadra vagy utalva.
+> Olyan régi böngészőket, amik nem támogatják az ES5 metódusokat nem támogatunk, de elképzelhető, hogy polyfillek, mint az [es5-shim és es5-sham](https://github.com/es-shims/es5-shim) oldalba illesztésével a kód működni fog régebbi böngészőkben is. Ha ezt az utat választod, magadra vagy utalva.
 
 * * *
 
@@ -38,7 +38,7 @@ ReactDOM.render(element, container[, callback])
 
 Egy React elemet renderel a DOM-ba a megadott `container`-be és egy komponens [referenciát](/docs/more-about-refs.html) ad vissza (vagy [állapot nélküli komponensek](/docs/components-and-props.html#function-and-class-components) esetében `null` értéket).
 
-Ha a React elem korábban egy `container`-be lett renderelve, akkor ezen egy frissítést fog végrehajtani és csak a DOM azon részeit fogja megváltoztatni amik ahhoz szükségesek, hogy a DOM tükrözze a legújabb React elemet.
+Ha a React elem korábban egy `container`-be lett renderelve, akkor ezen egy frissítést fog végrehajtani és csak a DOM azon részeit fogja megváltoztatni, amik ahhoz szükségesek, hogy a DOM tükrözze a legújabb React elemet.
 
 Ha az opcionális visszahívó függvény meg van adva, ez akkor lesz meghívva, amikor a komponens renderelt, vagy frissített.
 
@@ -62,15 +62,15 @@ Ha az opcionális visszahívó függvény meg van adva, ez akkor lesz meghívva,
 ReactDOM.hydrate(element, container[, callback])
 ```
 
-Ugyanaz mint a [`render()`](#render), de azon konténer HTML tartalmának hidrálásához használt, amit a [`ReactDOMServer`](/docs/react-dom-server.html) renderelt. A React megkísérel eseményhallgatókat hozzácsatolni a meglévő sémához.
+Ugyanaz, mint a [`render()`](#render), de azon konténer HTML tartalmának hidrálásához használt, amit a [`ReactDOMServer`](/docs/react-dom-server.html) renderelt. A React megkísérel eseményhallgatókat hozzácsatolni a meglévő sémához.
 
-A React arra számít, hogy a renderelt tartalom megegyezik a szerveren és a kliensen. Habár el tud simítani különbségeket a szövegtartalomban, de az eltéréseket kezeld hibákként és javítsd ki őket. Fejlesztői módban hidrálás közben a React figyelmeztet az eltérésekről. Arra, hogy az attribútum különbségek is ki lesznek javítva nincs garancia. Ez a teljesítmény szempontjából fontos, mivel a legtöbb alkalmazásban az eltérések ritkák és ezért a teljes séma validálása meglehetősen drága lenne.
+A React arra számít, hogy a renderelt tartalom megegyezik a szerveren és a kliensen. Habár el tud simítani különbségeket a szövegtartalomban, de az eltéréseket kezeld hibákként és javítsd ki őket. Fejlesztői módban hidrálás közben a React figyelmeztet az eltérésekről. Arra, hogy az attribútum különbségek is ki lesznek javítva, nincs garancia. Ez a teljesítmény szempontjából fontos, mivel a legtöbb alkalmazásban az eltérések ritkák és ezért a teljes séma validálása meglehetősen drága lenne.
 
 Ha egy szimpla elem attribútuma vagy szövegtartalma elkerülhetetlenül különbözne a szerver és a kliens közt (például időbélyegek), akkor elnémíthatod a figyelmeztetést a `suppressHydrationWarning={true}` elemhez való hozzáadásával. Ez csak egy szint mélységig működik és csak egy menekülő útnak van szánva. Ne használd túl sokat. Hacsak nem szövegtartalom, a React még így sem fogja megkísérelni megfoltozni, így ez jövőbeni frissítésekig inkonzisztens maradhat.
 
-Ha szándékosan szeretnél valamit renderelni ami eltért a szerveren és a kliensen, használhatsz kétmenetes renderelést. Azon komponensek amik mást renderelnek a kliensen, azok például ki tudnak olvasni egy `this.state.isClient` változót, amit `true` értékre állíthatsz a `componentDidMount()` metódusban. Így a kezdetleges renderelés ugyanazt a tartalmat rendereli mint a szerver, az eltéréseket elkerülve, de egy második menet is be fog következni szinkron módon rögtön a hidrálás után. Jegyezd meg, hogy ez a módszer lassabbá teszi a komponenseidet mivel kétszer kell renderelniük, szóval csak óvatosan használd.
+Ha szándékosan szeretnél valamit renderelni, ami eltér a szerveren és a kliensen, használhatsz kétmenetes renderelést. Azon komponensek, amik mást renderelnek a kliensen, azok például ki tudnak olvasni egy `this.state.isClient` változót, amit `true` értékre állíthatsz a `componentDidMount()` metódusban. Így a kezdetleges renderelés ugyanazt a tartalmat rendereli, mint a szerver, az eltéréseket elkerülve, de egy második menet is be fog következni szinkron módon rögtön a hidrálás után. Megjegyzendő, hogy ez a módszer lassabbá teszi a komponenseidet, mivel kétszer kell renderelniük, szóval csak óvatosan használd.
 
-Gondolj kellően a lassú internetléréssel rendelkezők felhasználói élményére. A JavaScript kód akár jelentősen később töltődhet be mint a kezdetleges HTML render, szóval ha valami eltérőt renderelsz a csak kliens oldali menetben, az átmenet csikorgós lehet. Azonban ha jól van végrehajtva, előnyös lehet a szerveren egy "vázat" renderelni az alkalmazásnak, és csupán néhány extra modult kell mutatni a kliensen. Az előző bekezdés magyarázatából megtudhatod, hogy ezt hogyan lehet sémabeli eltérési hibák nélkül megtenni.
+Ne felejts el a lassú interneteléréssel rendelkezők felhasználói élményére sem gondolni. A JavaScript kód akár jelentősen később töltődhet be, mint a kezdetleges HTML render, szóval ha valami eltérőt renderelsz a csak kliens oldali menetben, az átmenet csikorgós lehet. Azonban, ha jól van végrehajtva, előnyös lehet a szerveren egy "vázat" renderelni az alkalmazásnak, és csupán néhány extra modult kell mutatni a kliensen. Az előző bekezdés magyarázatából megtudhatod, hogy ezt hogyan lehet sémabeli eltérési hibák nélkül megtenni.
 
 * * *
 
@@ -88,14 +88,14 @@ Egy létrehozott React komponenst választ le a DOM-ról először kitakarítva 
 
 > Megjegyzés:
 >
-> A `findDOMNode` egy menekülési út ami alsóbbrendű DOM csomópontok eléréséhez szolgált. A legtöbb esetben ennek a használata nem ajánlott, mert rést üt a komponens absztrakcióján. [`StrictMode`-ban elavultnak lett minősítve.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+> A `findDOMNode` egy menekülési út, ami alsóbbrendű DOM csomópontok eléréséhez szolgált. A legtöbb esetben ennek a használata nem ajánlott, mert rést üt a komponens absztrakcióján. [`StrictMode`-ban elavultnak lett minősítve.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
 ```javascript
 ReactDOM.findDOMNode(component)
 ```
 Ha a komponens már létezik a DOM-ban, ez a megegyező natív böngészőbeli DOM elemet adja vissza. Ez a metódus hasznos lehet értékek kiolvasására a DOM-ból, mint például űrlap mezők értékei, vagy DOM számítások végrehajtása. **A legtöbb esetben a `findDOMNode` használata teljes mértékben elkerülhető ha hozzácsatolsz egy refet a DOM csomóponthoz.**
 
-Amikor egy komponens `null` vagy `false` értéket renderel, a `findDOMNode` `null` értéket ad vissza. Ha a komponens egy sztringgé renderelődik, a `findDOMNode` egy szöveg DOM csomópontot ad vissza ami ennek értéket tartalmazza. A React 16 óta egy komponens egy több gyermekből álló töredéket is visszaadhat. Ebben az esetben a `findDOMNode` az első megegyező nem üres gyermek DOM csomópontját adja vissza.
+Amikor egy komponens `null` vagy `false` értéket renderel, a `findDOMNode` `null` értéket ad vissza. Ha a komponens egy sztringgé renderelődik, a `findDOMNode` egy szöveg DOM csomópontot ad vissza, ami ennek értéket tartalmazza. A React 16 óta egy komponens egy több gyermekből álló töredéket is visszaadhat. Ebben az esetben a `findDOMNode` az első megegyező nem üres gyermek DOM csomópontját adja vissza.
 
 > Megjegyzés:
 >
