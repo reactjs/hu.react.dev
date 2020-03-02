@@ -1,6 +1,6 @@
 ---
 id: lifting-state-up
-title: Lifting State Up
+title: Állapot felemelése
 permalink: docs/lifting-state-up.html
 prev: forms.html
 next: composition-vs-inheritance.html
@@ -9,24 +9,24 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
-Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let's see how this works in action.
+Gyakran több komponens kell, hogy ugyanazon adat változását tükrözze. Ebben az esetben a megosztott állapot legközelebbi közös ősbe való felemelését ajánljuk. Lássuk, hogy hogyan is működik ez a gyakorlatban.
 
-In this section, we will create a temperature calculator that calculates whether the water would boil at a given temperature.
+Ebben a fejezetben egy hőmérsékletkalkulátort fogunk készíteni, ami azt számolja ki, hogy a víz forr-e egy adott hőmérsékleten.
 
-We will start with a component called `BoilingVerdict`. It accepts the `celsius` temperature as a prop, and prints whether it is enough to boil the water:
+Kezdjük egy `BoilingVerdict` komponenssel. Ez egy `celsius` prop-ot fogad, és kiírja, hogy ez elég-e a víz forrásához:
 
 ```js{3,5}
 function BoilingVerdict(props) {
   if (props.celsius >= 100) {
-    return <p>The water would boil.</p>;
+    return <p>A víz forrna.</p>;
   }
-  return <p>The water would not boil.</p>;
+  return <p>A víz nem forrna.</p>;
 }
 ```
 
-Next, we will create a component called `Calculator`. It renders an `<input>` that lets you enter the temperature, and keeps its value in `this.state.temperature`.
+A következőben egy `Calculator` komponenst készítünk. Ez egy `<input>`-ot renderel ami lehetővé teszi a hőmérséklet bevitelét és annak értékét a `this.state.temperature`-ban tárolja.
 
-Additionally, it renders the `BoilingVerdict` for the current input value.
+Továbbá rendereli a `BoilingVerdict`-et is a jelenlegi bevitt értékkel.
 
 ```js{5,9,13,17-21}
 class Calculator extends React.Component {
@@ -44,7 +44,7 @@ class Calculator extends React.Component {
     const temperature = this.state.temperature;
     return (
       <fieldset>
-        <legend>Enter temperature in Celsius:</legend>
+        <legend>Adja meg a hőmérsékletet Celsius egységben:</legend>
         <input
           value={temperature}
           onChange={this.handleChange} />
@@ -56,13 +56,13 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
+[**Próbáld ki CodePen-en**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## Adding a Second Input {#adding-a-second-input}
+## Második input hozzáadása {#adding-a-second-input}
 
-Our new requirement is that, in addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
+A legújabb követelményünk a Celsius input mellett egy Fahrenheit beviteli mező, és hogy ezek szinkronban legyenek.
 
-We can start by extracting a `TemperatureInput` component from `Calculator`. We will add a new `scale` prop to it that can either be `"c"` or `"f"`:
+Kezdhetjük egy `TemperatureInput` komponens kivonásával a `Calculator`-ból. Hozzáadunk egy `scale` prop-ot ami a `"c"` vagy `"f"` értékeket veheti fel:
 
 ```js{1-4,19,22}
 const scaleNames = {
@@ -86,7 +86,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <legend>Adja meg a hőmérsékletet {scaleNames[scale]} egységben:</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -95,7 +95,7 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-We can now change the `Calculator` to render two separate temperature inputs:
+Így most meg tudjuk változtatni a `Calculator` komponenst, hogy az két külön hőmérséklet inputot rendereljen:
 
 ```js{5,6}
 class Calculator extends React.Component {
@@ -110,15 +110,15 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
+[**Próbáld ki CodePen-en**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
 
-We have two inputs now, but when you enter the temperature in one of them, the other doesn't update. This contradicts our requirement: we want to keep them in sync.
+Most már két beviteli mezőnk van, de ha az egyikbe beírod a hőmérsékletet, a másik nem frissül. Ez ellentmond a követelményünknek: az értékek legyenek szinkronban.
 
-We also can't display the `BoilingVerdict` from `Calculator`. The `Calculator` doesn't know the current temperature because it is hidden inside the `TemperatureInput`.
+Valamint a `BoilingVerdict`-et sem tudjuk megjeleníteni a `Calculator`-ból. A `Calculator` nem ismeri a jelenlegi hőmérsékletet, mert az el van rejtve a `TemperatureInput`-ban.
 
-## Writing Conversion Functions {#writing-conversion-functions}
+## Konvertáló függvények írása {#writing-conversion-functions}
 
-First, we will write two functions to convert from Celsius to Fahrenheit and back:
+Először írjunk két függvényt ami a Celsius-t konvertálja Fahrenheit-té és vissza:
 
 ```js
 function toCelsius(fahrenheit) {
@@ -130,9 +130,9 @@ function toFahrenheit(celsius) {
 }
 ```
 
-These two functions convert numbers. We will write another function that takes a string `temperature` and a converter function as arguments and returns a string. We will use it to calculate the value of one input based on the other input.
+Ez a két függvény számokat konvertál. Írunk egy harmadik függvényt, ami vesz egy `temperature` sztringet és egy konvertáló függvényt argumentumként, és egy sztringet ad vissza. Ezt arra használjuk majd, hogy az egyik input értékét a másik értékének alapján ki tudjuk számolni.
 
-It returns an empty string on an invalid `temperature`, and it keeps the output rounded to the third decimal place:
+Érvénytelen `temperature` esetében a függvény egy üres sztringet ad vissza, valamint az értéket három tizedesjegyre kerekíti:
 
 ```js
 function tryConvert(temperature, convert) {
@@ -146,11 +146,11 @@ function tryConvert(temperature, convert) {
 }
 ```
 
-For example, `tryConvert('abc', toCelsius)` returns an empty string, and `tryConvert('10.22', toFahrenheit)` returns `'50.396'`.
+A `tryConvert('abc', toCelsius)` például egy üres sztringet ad vissza, a `tryConvert('10.22', toFahrenheit)` pedig `'50.396'`-t.
 
-## Lifting State Up {#lifting-state-up}
+## Állapot felemelése {#lifting-state-up}
 
-Currently, both `TemperatureInput` components independently keep their values in the local state:
+Jelenleg mindkét `TemperatureInput` komponens egymástól függetlenül tárolja a saját helyi állapotát:
 
 ```js{5,9,13}
 class TemperatureInput extends React.Component {
@@ -169,43 +169,43 @@ class TemperatureInput extends React.Component {
     // ...  
 ```
 
-However, we want these two inputs to be in sync with each other. When we update the Celsius input, the Fahrenheit input should reflect the converted temperature, and vice versa.
+Mi azonban azt szeretnénk, ha a két input szinkronban lenne egymással. Ha frissítjük a Celsius inputot, a Fahrenheit-nek tükröznie kell a konvertált hőmérsékletet, és oda-vissza.
 
-In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it. This is called "lifting state up". We will remove the local state from the `TemperatureInput` and move it into the `Calculator` instead.
+A React-ben az állapot megosztása azon komponensek között, amelyek ezt igénylik, úgy történik, hogy az állapotot azok legközelebbi közös ősébe mozgatjuk. Ezt hívjuk az "állapot felemelésének". A `TemperatureInput` helyi állapotát eltávolítjuk és a `Calculator`-ba költöztetjük azt.
 
-If the `Calculator` owns the shared state, it becomes the "source of truth" for the current temperature in both inputs. It can instruct them both to have values that are consistent with each other. Since the props of both `TemperatureInput` components are coming from the same parent `Calculator` component, the two inputs will always be in sync.
+Ha a `Calculator` birtokolja a megosztott állapotot, ezzel a jelenlegi hőmérséklet "igazságának forrásává" válik mindkét input számára. Mindkét inputot utasítani tudja, hogy olyan értéket vegyenek fel, ami konzisztens a másikkal. Mivel mindkét `TemperatureInput` komponens prop-jai ugyanabból a szülő `Calculator` komponensből jönnek, a két input így mindig szinkronban lesz.
 
-Let's see how this works step by step.
+Lássuk lépésről-lépésre, hogyan is működik ez.
 
-First, we will replace `this.state.temperature` with `this.props.temperature` in the `TemperatureInput` component. For now, let's pretend `this.props.temperature` already exists, although we will need to pass it from the `Calculator` in the future:
+Először is, cseréljük le a `this.state.temperature`-t `this.props.temperature`-ra a `TemperatureInput` komponensben. Átmenetileg tegyük fel, hogy a `this.props.temperature` létezik, bár később le kell azt küldjük a `Calculator`-ból:
 
 ```js{3}
   render() {
-    // Before: const temperature = this.state.temperature;
+    // Előtte: const temperature = this.state.temperature;
     const temperature = this.props.temperature;
     // ...
 ```
 
-We know that [props are read-only](/docs/components-and-props.html#props-are-read-only). When the `temperature` was in the local state, the `TemperatureInput` could just call `this.setState()` to change it. However, now that the `temperature` is coming from the parent as a prop, the `TemperatureInput` has no control over it.
+Azt tudjuk, hogy a [prop-ok csak olvashatóak](/docs/components-and-props.html#props-are-read-only). Mikor a `temperature` a helyi állapotban volt, a `TemperatureInput` csak egyszerűen meg tudta hívni a `this.setState()`-t annak megváltoztatásához. Azzal hogy a `temperature` most prop-ként jön a szülő komponensből, a `TemperatureInput` elvesztette az irányítást felette.
 
-In React, this is usually solved by making a component "controlled". Just like the DOM `<input>` accepts both a `value` and an `onChange` prop, so can the custom `TemperatureInput` accept both `temperature` and `onTemperatureChange` props from its parent `Calculator`.
+A React-ben ezt általában úgy oldjuk meg, hogy egy komponenst "kontrollálttá" teszünk. Ugyanúgy ahogy a DOM `<input>` fogad egy `value` és egy `onChange` prop-ot, az egyedi `TemperatureInput` is fogadhat egy `temperature` és egy `onTemperatureChange` prop-ot annak szülő komponensétől, a `Calculator`-tól.
 
-Now, when the `TemperatureInput` wants to update its temperature, it calls `this.props.onTemperatureChange`:
+Most, amikor a `TemperatureInput` frissíteni akarja annak hőmérsékletét, a `this.props.onTemperatureChange`-t fogja meghívni:
 
 ```js{3}
   handleChange(e) {
-    // Before: this.setState({temperature: e.target.value});
+    // Előtte: this.setState({temperature: e.target.value});
     this.props.onTemperatureChange(e.target.value);
     // ...
 ```
 
->Note:
+>Megjegyzés:
 >
->There is no special meaning to either `temperature` or `onTemperatureChange` prop names in custom components. We could have called them anything else, like name them `value` and `onChange` which is a common convention.
+>A `temperature` és `onTemperatureChange` prop-oknak nincs különösebb jelentésük egyedi komponensekben. Bárminek hívhattuk volna őket, például `value` és `onChange`, ami egy gyakori szokás.
 
-The `onTemperatureChange` prop will be provided together with the `temperature` prop by the parent `Calculator` component. It will handle the change by modifying its own local state, thus re-rendering both inputs with the new values. We will look at the new `Calculator` implementation very soon.
+Az `onTemperatureChange` prop a `temperature` prop-pal együtt a szülő `Calculator` komponens által lesz szolgáltatva. Ez fogja kezelni a változást annak saját helyi állapotát változtatva, ezzel újrarenderelve mindkét inputot az új értékekkel. Nemsokára rátérünk a `Calculator` új implementációjára is.
 
-Before diving into the changes in the `Calculator`, let's recap our changes to the `TemperatureInput` component. We have removed the local state from it, and instead of reading `this.state.temperature`, we now read `this.props.temperature`. Instead of calling `this.setState()` when we want to make a change, we now call `this.props.onTemperatureChange()`, which will be provided by the `Calculator`:
+Mielőtt belemerülnénk a `Calculator` változtatásaiba, vegyük át a `TemperatureInput` komponensen eszközölt változtatásainkat. Eltávolítottuk annak helyi állapotát és a `this.state.temperature` olvasása helyett most a `this.props.temperature`-t olvassuk. A `this.setState()` meghívása helyett ha változást akarunk eszközölni, most a `this.props.onTemperatureChange()` metódust hívjuk meg, amit a `Calculator` szolgáltat majd:
 
 ```js{8,12}
 class TemperatureInput extends React.Component {
@@ -223,7 +223,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <legend>Adja meg a hőmérsékletet {scaleNames[scale]} egységben:</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -232,11 +232,11 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-Now let's turn to the `Calculator` component.
+Most pedig forduljunk a `Calculator` komponens felé.
 
-We will store the current input's `temperature` and `scale` in its local state. This is the state we "lifted up" from the inputs, and it will serve as the "source of truth" for both of them. It is the minimal representation of all the data we need to know in order to render both inputs.
+A jelenlegi inputot a `temperature` és `scale` helyi állapotban fogjuk tárolni. Ez a beviteli mezőkből "felemelt" állapot és ez fog az "igazság forrásaként" szolgálni mindkettő számára. Ez az összes adat minimális reprezentációja, amit ismernünk kell ahhoz, hogy mindkét inputot renderelni tudjuk.
 
-For example, if we enter 37 into the Celsius input, the state of the `Calculator` component will be:
+Például ha 37-et írunk be a Celsius beviteli mezőbe, a `Calculator` komponens állapota így fog kinézni:
 
 ```js
 {
@@ -245,7 +245,7 @@ For example, if we enter 37 into the Celsius input, the state of the `Calculator
 }
 ```
 
-If we later edit the Fahrenheit field to be 212, the state of the `Calculator` will be:
+Ha később a Fahrenheit mezőbe írunk 212-t, a `Calculator` állapota így fog kinézni:
 
 ```js
 {
@@ -254,9 +254,9 @@ If we later edit the Fahrenheit field to be 212, the state of the `Calculator` w
 }
 ```
 
-We could have stored the value of both inputs but it turns out to be unnecessary. It is enough to store the value of the most recently changed input, and the scale that it represents. We can then infer the value of the other input based on the current `temperature` and `scale` alone.
+Eltárolhattuk volna mindkét input értékét is, de ez valószínűleg felesleges. Elég, ha csak a legutoljára változott input értéket és annak mértékegységét tároljuk. Ezután a jelenlegi `temperature` és `scale` értékekből egyszerűen ki tudjuk következtetni a másik input értékét is.
 
-The inputs stay in sync because their values are computed from the same state:
+Az inputok szinkronizálva lesznek, mivel azok értékei ugyanabból az állapotból vannak kalkulálva:
 
 ```js{6,10,14,18-21,27-28,31-32,34}
 class Calculator extends React.Component {
@@ -299,32 +299,31 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
+[**Próbáld ki CodePen-en**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
-Now, no matter which input you edit, `this.state.temperature` and `this.state.scale` in the `Calculator` get updated. One of the inputs gets the value as is, so any user input is preserved, and the other input value is always recalculated based on it.
+Így, ha most bármelyik inputot is szerkesztjük, a `this.state.temperature` és a `this.state.scale` frissülni fog a `Calculator`-ban. Az egyik input úgy kapja meg az értéket, ahogy az el van tárolva, szóval bármilyen felhasználói input meg van őrizve, míg a másik input mindig ez alapján lesz újrakalkulálva.
 
-Let's recap what happens when you edit an input:
+Vegyük át mi történik, mikor egy inputot szerkesztesz:
 
-* React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in the `TemperatureInput` component.
-* The `handleChange` method in the `TemperatureInput` component calls `this.props.onTemperatureChange()` with the new desired value. Its props, including `onTemperatureChange`, were provided by its parent component, the `Calculator`.
-* When it previously rendered, the `Calculator` has specified that `onTemperatureChange` of the Celsius `TemperatureInput` is the `Calculator`'s `handleCelsiusChange` method, and `onTemperatureChange` of the Fahrenheit `TemperatureInput` is the `Calculator`'s `handleFahrenheitChange` method. So either of these two `Calculator` methods gets called depending on which input we edited.
-* Inside these methods, the `Calculator` component asks React to re-render itself by calling `this.setState()` with the new input value and the current scale of the input we just edited.
-* React calls the `Calculator` component's `render` method to learn what the UI should look like. The values of both inputs are recomputed based on the current temperature and the active scale. The temperature conversion is performed here.
-* React calls the `render` methods of the individual `TemperatureInput` components with their new props specified by the `Calculator`. It learns what their UI should look like.
-* React calls the `render` method of the `BoilingVerdict` component, passing the temperature in Celsius as its props.
-* React DOM updates the DOM with the boiling verdict and to match the desired input values. The input we just edited receives its current value, and the other input is updated to the temperature after conversion.
+* A React meghívja a DOM `<input>`-on `onChange`-ként definiált függvényt. A mi esetünkben ez a `handleChange` metódus a `TemperatureInput` komponensben.
+* A `handleChange` metódus a `TemperatureInput` komponensben meghívja a `this.props.onTemperatureChange()`-t a kívánt értékkel. Ennek prop-jait, az `onTemperatureChange`-t beleértve, a `Calculator` szülőkomponens szolgáltatja.
+* Amikor korábban renderelt, a `Calculator` meghatározta, hogy a Celsius `TemperatureInput` `onTemperatureChange` metódusa a `Calculator` `handleCelsiusChange` metódusa legyen, a Fahrenheit `TemperatureInpiut` `onTemperatureChange` metódusa pedig a `Calculator` `handleFahrenheitChange` metódus. Szóval ezen két `Calculator` metódusok bármelyike meg lesz hívva attól függően, hogy melyik inputot szerkesztjük.
+* Ezekben a metódusokban, a `Calculator` komponens megkéri a React-et, hogy renderelje magát újra a `this.setState()` meghívásával az új beviteli értékkel és az utoljára szerkesztett input mértékegységével.
+* A React meghívja a `Calculator` komponens `render` metódusát, hogy megtudja hogyan is nézzen ki a kezelőfelület. Mindkét input értéke újra lesz számolva a jelenlegi hőmérséklet és az aktív mértékegység alapján. Itt történik a hőmérséklet konvertálása.
+* A React meghívja a `TemperatureInput` komponensek egyéni `render` metódusait azok új prop-jaival, amiket a `Calculator` határozott meg. Ezáltal megtudja, hogy hogyan is nézzen ki a kezelőfelület.
+* A React meghívja a `BoilingVerdict` komponens `render` metódusát a Celsiusban megadott hőmérséklet prop-val.
+* A React DOM frissíti a DOM-ot a hőmérséklet vízforralásról szóló ítéletével és a kívánt inputok értékeivel. Az újonnan szerkesztett input a jelenlegi értékét kapja, míg a másik input a konvertálás utáni hőmérsékleti értéket.
 
-Every update goes through the same steps so the inputs stay in sync.
+Minden frissítés ugyanezeken a lépéseken megy keresztül, így az inputok szinkronban maradnak.
 
-## Lessons Learned {#lessons-learned}
+## Megtanult dolgok {#lessons-learned}
 
-There should be a single "source of truth" for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. Instead of trying to sync the state between different components, you should rely on the [top-down data flow](/docs/state-and-lifecycle.html#the-data-flows-down).
+Egy React alkalmazásban minden változó adatnak egy "igaz forrása" kell, hogy legyen. Általában az állapot először ahhoz a komponenshez lesz hozzáadva, aminek arra szüksége van a rendereléshez. Ezután ha egy másik komponensnek is szüksége van erre, az állapotot felemelheted a legközelebbi közös ősbe. Ahelyett, hogy állapotokat próbálnál szinkronban tartani, támaszkodj [felülről-lefelé irányuló adatfolyamokra](/docs/state-and-lifecycle.html#the-data-flows-down).
 
-Lifting state involves writing more "boilerplate" code than two-way binding approaches, but as a benefit, it takes less work to find and isolate bugs. Since any state "lives" in some component and that component alone can change it, the surface area for bugs is greatly reduced. Additionally, you can implement any custom logic to reject or transform user input.
+Az állapot felemelése több "sablon kód" írását eredményezi, mint a kétirányú összekötő megközelítések, de egy előnyként felhozható, hogy kevesebb munkát igényel a hibák izolálása. Mivel bármelyik állapot valamilyen komponensben "él" és csakis ez a komponens tudja azt megváltoztatni, a hibák sokkal kisebb felületen jelentkeznek. Továbbá bármilyen egyéni logikát implementálhatsz bizonyos felhasználói input elutasítására vagy transzformálására.
 
-If something can be derived from either props or state, it probably shouldn't be in the state. For example, instead of storing both `celsiusValue` and `fahrenheitValue`, we store just the last edited `temperature` and its `scale`. The value of the other input can always be calculated from them in the `render()` method. This lets us clear or apply rounding to the other field without losing any precision in the user input.
+Ha valami prop-ból és állapotból is eredeztethető, akkor annak valószínűleg nem az állapotban van a helye. Például ahelyett hogy mind a `celsiusValue`-t és `fahrenheitValue`-t is eltárolnánk, elég ha csak a legutoljára szerkesztett `temperature` és `scale` értékeket tároljuk. A másik input értéke mindig kiszámítható ezekből a `render()`metódusban. Ez lehetővé teszi számunkra a másik mező kiürítését vagy értékének a kerekítését a felhasználói input pontosságának elvesztése nélkül.
 
-When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+Ha valami hibát észlelsz a kezelőfelületben, használhatod a [React Fejlesztői Eszközöket](https://github.com/facebook/react/tree/master/packages/react-devtools) a prop-ok vizsgálatához, valamint egészen addig mozoghatsz felfelé a komponensfában, amíg meg nem találod az állapot frissítéséért felelős komponenst. Ez elvezethet a hibák forrásához:
 
-<img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
-
+<img src="../images/docs/react-devtools-state.gif" alt="Állapot monitorozása a React Fejlesztői Eszközökben" max-width="100%" height="100%">
