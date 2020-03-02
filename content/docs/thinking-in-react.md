@@ -10,7 +10,7 @@ prev: composition-vs-inheritance.html
 
 A React, véleményünk szerint, elsőrendű módja nagy és gyors JavaScript alapú webalkalmazások készítésének. A Facebook és az Instagram esetében nekünk nagyon jól skálázódott.
 
-Az egyik remek dolog – sok más mellett – ahogy a React átalakítja a gondolkodásodat az alkalmazásaidról miközben készíted őket. Ebben a fejezetben végigvezetünk a folyamaton, miközben egy kereshető termék táblázatot megtervezünk és felépítünk React használatával.
+Az egyik remek dolog – sok más mellett – ahogy a React átalakítja a gondolkodásodat az alkalmazásaidról miközben készíted őket. Ebben a fejezetben végigvezetünk a folyamaton, miközben egy kereshető terméktáblázatot tervezünk meg és építünk fel React használatával.
 
 ## Kezdjük a skiccel {#start-with-a-mock}
 
@@ -33,15 +33,15 @@ A JSON API-tól kapott adatok így néznek ki:
 
 ## Első lépés: Bontsuk fel a felületet egy komponens hierarchiába! {#step-1-break-the-ui-into-a-component-hierarchy}
 
-Az első dolgod, hogy körberajzolod az egyes komponenseket és alkomponenseket a skiccen, és nevet adsz nekik. Ha a grafikussal együtt dolgozol, előfordulhat, hogy ő már előtted megtette ezt, szóval irány beszélj vele! A rajzon a rétegek nevei valószínűleg React komponenseidnek is megfelelnek.
+Az első dolgod, hogy körberajzolod az egyes komponenseket és alkomponenseket a skiccen, és nevet adsz nekik. Ha a grafikussal együtt dolgozol, előfordulhat, hogy ő már előtted megtette ezt, szóval irány, beszélj vele! A rajzon a rétegek nevei valószínűleg a React komponenseidnek fognak megfelelni.
 
 Honnan tudhatod, hogy miből legyen komponens? Használhatod ugyanazt a módszert, amivel eldöntöd, hogy valaminek kell-e saját függvény vagy objektum. Az egyik ilyen az [egy felelősség alapelve](https://hu.wikipedia.org/wiki/Egy_felel%C5%91ss%C3%A9g_alapelve), vagyis a komponens lehetőleg csak egy dolgot csináljon. Ha növekszik, kisebb egységekre kell bontani.
 
-Gyakran kell JSON adatokat megjeleníteni a felhasználónak. Mint az te is tapasztalni fogod, ha a model helyesen van felépítve, akkor az UI (és így a komponensek struktúrája) szépen le fogja azt képezni. Ez annak köszönhető, hogy általában az UI és az adatmodell is ugyanazon *információs architektúra* alapján készül. Különítsd el a UI komponenseidet úgy, hogy minden komponens az adatmodell egy-egy darabjára illeszkedjen.
+Gyakran kell JSON adatokat megjeleníteni a felhasználónak. Mint ahogyan azt te is tapasztalni fogod, ha a modell helyesen van felépítve, akkor a UI (és így a komponensek struktúrája) szépen le fogja azt képezni. Ez annak köszönhető, hogy általában a UI és az adatmodell is ugyanazon *információs architektúra* alapján készül. Különítsd el a UI komponenseidet úgy, hogy minden komponens az adatmodell egy-egy darabjára illeszkedjen.
 
 ![Komponens diagram](../images/blog/thinking-in-react-components.png)
 
-Amint látod az app így öt komponensből áll. Dőlt betűvel emeltük ki az egyes komponensek által képviselt adatokat.
+Amint látod, az app így öt komponensből áll. Dőlt betűvel emeltük ki az egyes komponensek által képviselt adatokat.
 
   1. **`FilterableProductTable` (narancs):** magába foglalja a teljes példánkat
   2. **`SearchBar` (kék):** ez fogadja az *adatbevitelt*
@@ -49,9 +49,9 @@ Amint látod az app így öt komponensből áll. Dőlt betűvel emeltük ki az e
   4. **`ProductCategoryRow` (türkiz):** egy fejlécet jelenít meg minden *kategóriához*
   5. **`ProductRow` (vörös):** megjelenít egy-egy *terméket*
 
-Megvizsgálva a  `ProductTable`-t látni fogod, hogy a fejléc (ami a "Termék" és "Ár" címkéket tartalmazza) nem független komponens. Ez ízlés kérdése is, lehet érvelni róla pro és kontra. Ebben a példában meghagyjuk ezt a `ProductTable` részeként, mert része az *adathalmaz* renderelésének ami a `ProductTable` felsősége. A későbbiekben, ha ez a fejléc bonyolultabbá válik (pl. lehetőséget kell adnunk rendezésre), érdemes megfontolni, hogy készítsünk egy önálló `ProductTableHeader` komponenst.
+Megvizsgálva a `ProductTable`-t látni fogod, hogy a fejléc (ami a "Termék" és "Ár" címkéket tartalmazza) nem független komponens. Ez ízlés kérdése is, lehet érvelni róla pro és kontra. Ebben a példában meghagyjuk ezt a `ProductTable` részeként, mert része az *adathalmaz* renderelésének ami a `ProductTable` felelőssége. A későbbiekben ha ez a fejléc bonyolultabbá válik (pl. lehetőséget kell adnunk rendezésre), érdemes megfontolni, hogy készítsünk egy önálló `ProductTableHeader` komponenst.
 
-Most, hogy azonosítottuk a komponenseket a rajzunkon, rendezzük őket el egy hierarchiában. Az a komponens ami egy másikon belül foglal helyet, legyen ennek a gyermeke:
+Most, hogy azonosítottuk a komponenseket a rajzunkon, rendezzük őket el egy hierarchiában. Az a komponens, ami egy másikon belül foglal helyet, legyen ennek a gyermeke:
 
   * `FilterableProductTable`
     * `SearchBar`
@@ -64,25 +64,25 @@ Most, hogy azonosítottuk a komponenseket a rajzunkon, rendezzük őket el egy h
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Nézd meg a <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a>-t a <a href="https://codepen.io">CodePen</a>en.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Most, hogy megvan a komponens hierarchiánk, ideje implementálni az appot. A legkönnyebb, ha elkészítünk egy olyan változatot, ami az adatmodellt felhasználva rendereli a UI-t, de még nem interaktív. Jobb ha szétválasztjuk  ezeket, mert a statikus változat elkészítése leginkább csak gépelésből áll, ezzel szemben az interaktivitás megtervezése több gondolkodást és kevesebb gépelést igényel. Rögtön látni fogjuk miért.
+Most, hogy megvan a komponens hierarchiánk, ideje implementálni az appot. A legkönnyebb, ha elkészítünk egy olyan változatot, ami az adatmodellt felhasználva rendereli a UI-t, de még nem interaktív. Jobb ha szétválasztjuk ezeket, mert a statikus változat elkészítése leginkább csak gépelésből áll, ezzel szemben az interaktivitás megtervezése több gondolkodást és kevesebb gépelést igényel. Rögtön látni fogjuk, miért.
 
-Az alkalmazás statikus változatának építéséhez - ami az adatmodellt rendereli - építsük fel a komponenseket, melyek más komponenseket hasznosítanak újra, az adatokat *props* használatával adva tovább. A *props* az egyik módja annak, amivel a szülő adatokat adhat a gyermek komponensnek. Ha esetleg már ismered a *state* (állapot) használatát, most még **ne használd** a statikus változatban. A *state* interaktivitás kezeléséhez  van fenntartva. Segítségével az adataink időben változhatnak. Amíg a statikus változatot készíted, nem lesz rá szükség.
+Az alkalmazás statikus változatának építéséhez - ami az adatmodellt rendereli - építsük fel a komponenseket, melyek más komponenseket hasznosítanak újra, az adatokat *props* használatával adva tovább. A *props* az egyik módja annak, amivel a szülő adatokat adhat a gyermek komponensnek. Ha esetleg már ismered a *state* (állapot) használatát, most még **ne használd** a statikus változatban. A *state* interaktivitás kezeléséhez van fenntartva. Segítségével az adataink időben változhatnak. Amíg a statikus változatot készíted, nem lesz rá szükség.
 
-Építkezhetsz felülről lefelé vagy fordítva. Vagyis kezdheted a hierarchiában legmagasabban lévő (esetünkben ez a `FilterableProductTable`) komponenssel vagy alulról is (`ProductRow`). Egyszerűbb példáknál általában egyszerűbb fentről kezdeni, nagyobb projekteknél könnyebb ha alulról felfelé haladsz menet közben teszteket is készítve.
+Építkezhetsz felülről lefelé vagy fordítva. Vagyis kezdheted a hierarchiában legmagasabban lévő (esetünkben ez a `FilterableProductTable`) komponenssel vagy alulról is (`ProductRow`). Egyszerűbb példáknál általában egyszerűbb fentről kezdeni, nagyobb projekteknél könnyebb, ha alulról felfelé haladsz, menet közben teszteket is készítve.
 
-Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható komponensekből, melyek renderelik az adatmodellt. A komponenseknek csak `render()` metódusuk van, mivel ez még mindig a statikus változat. A hierarchia tetején csücsülő komponens (`FilterableProductTable`) egy propként kapja meg az adatmodellt. Ha változtatsz valamit az adatmodellen és újra meghívod a  `ReactDOM.render()` metódust a UI frissülni fog. Láthatod, hogyan frissül a UI, hol változik. A React **egyirányú adatáramlása** (*one-way data flow* vagy *one-way binding*) mindent modulárisan és gyorsan kezel.
+Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható komponensekből, melyek renderelik az adatmodellt. A komponenseknek csak `render()` metódusuk van, mivel ez még mindig a statikus változat. A hierarchia tetején csücsülő komponens (`FilterableProductTable`) egy propként kapja meg az adatmodellt. Ha változtatsz valamit az adatmodellen és újra meghívod a `ReactDOM.render()` metódust a UI frissülni fog. Láthatod, hogyan frissül a UI, hol változik. A React **egyirányú adatáramlása** (*one-way data flow* vagy *one-way binding*) mindent modulárisan és gyorsan kezel.
 
 Fordulj a [React dokumentációhoz](/docs/) ha segítségre van szükséged a fenti lépés elvégzéséhez!
 
 ### Egy kis közjáték: props vagy state {#a-brief-interlude-props-vs-state}
 
-Kétféle adatot használunk Reactban, van props és state. Fontos megérteni a különbséget; fusd végig a [hivatalos React dokumentációt](/docs/state-and-lifecycle.html) ha nem vagy biztos benne, hogy ez már világos! Lásd még [GYÍK: state vagy props, mi a különbség?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
+Kétféle adatot használunk Reactban, van props és state. Fontos megérteni a különbséget; fusd végig a [hivatalos React dokumentációt](/docs/state-and-lifecycle.html) ha nem vagy biztos benne, hogy ez már világos! Lásd még [GY.I.K: state vagy props, mi a különbség?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
 
 ## Harmadik lépés: Azonosítsd a UI állapot minimális (de teljes) reprezentációját {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
 Ahhoz, hogy a UI interaktív legyen, képesnek kell lenned változásokat kiváltani a mögöttes adatmodellben. A React ezt a **state** segítségével éri el.
 
-A helyes felépítéshez először a megváltoztatható állapotok minimális halmazára van szükség. A kulcs itt, hogy [Ne ismételd önmagad](https://hu.wikipedia.org/wiki/Ne_ism%C3%A9teld_%C3%B6nmagad). Találd ki az abszolút minimális reprezentációt és minden mást menet közben számíttas ki igény szerint. Ha például egy TODO listát készítesz, legyen egy tömb a teendőkről, de nem kell egy külön változó a darabszámnak. Inkább mikor meg kell jeleníteni az elemek számát csak használd a *length*-et a tömbbödből.
+A helyes felépítéshez először a megváltoztatható állapotok minimális halmazára van szükség. A kulcs itt, hogy [Ne ismételd önmagad](https://hu.wikipedia.org/wiki/Ne_ism%C3%A9teld_%C3%B6nmagad). Találd ki az abszolút minimális reprezentációt és minden mást menet közben számíttass ki igény szerint. Ha például egy TODO listát készítesz, legyen egy tömb a teendőkről, de nem kell egy külön változó a darabszámnak. Inkább mikor meg kell jeleníteni az elemek számát csak használd a *length*-et a tömbödből.
 
 Vegyük végig a példánkban szereplő adatokat:
 
@@ -117,12 +117,12 @@ Minden azonosított state-hez az alkalmazásodban:
   * Azonosíts minden komponenst amely renderel valamit az adott state alapján
   * Keresd meg a közös komponenst (egy bizonyos komponens a hierarchiában, ami felette áll state-et használó minden komponensnek).
   * Vagy a közös szülő, vagy egy másik a hierarchiában magasabban álló komponens kell birtokolja a state-et.
-  * Ha nem találsz olyan komponenst ahol van értelme a state-et elhelyezni, létrehozhatsz egyet pusztán azért, hogy azt kezelje és illeszd a hierarchiába valahol a közös bitrokló komponens felé.
+  * Ha nem találsz olyan komponenst ahol van értelme a state-et elhelyezni, létrehozhatsz egyet pusztán azért, hogy azt kezelje és illeszd a hierarchiába valahol a közös birtokló komponens felé.
 
 Próbáljuk ki ezt a stratégiát az alkalmazásunkon:
 
   * A `ProductTable` le kell szűrje a listát és a `SearchBar` meg kell jelenítse a kereső szöveget és jelölőnégyzet állapotát.
-  * A közös bitrokló komponens számukra a `FilterableProductTable`.
+  * A közös birtokló komponens számukra a `FilterableProductTable`.
   * Fogalmilag tényleg van értelme, hogy mindkét érték a `FilterableProductTable` komponensben lakjon.
 
 Király, ezzel el is döntöttük, a state helye a `FilterableProductTable`. Először, vegyük fel hozzá a példány tulajdonságot a `FilterableProductTable` konstruktorába és adjunk neki kezdeti értéket is: `this.state = {filterText: '', inStockOnly: false}`. Ezután adjuk tovább a `filterText` és `inStockOnly` értékét a `ProductTable` és a `SearchBar` számára propsban. Végül a `ProductTable`-ben használjuk őket szűrésre és jelenítsük meg az értéküket a `SearchBar` űrlap mezőiben.
@@ -137,10 +137,10 @@ Van tehát egy alkalmazásunk ami helyesen jeleníti meg az adatokat a props és
 
 Reactben ezt nagyon kifejezően ábrázolhatjuk, ami segíti megérteni a program hogyan is működik, de egy kicsit többet kell hozzá gépelni, mint a hagyományos kétirányú adatkapcsolat esetén.
 
-Ha próbáltál szöveget beírni vagy kipipálni a jelölőnégyzetet a mostani verziónkban, akkor már láttad, hogy a React figyelmen kívül hagyja a bemeneteket. Ez szándékos, mivel így lehetséges, hogy a propsban kapott érték amit átadunk az `input`nak a `value`-ban  mindíg azonos legyen a state-ben tárolt értékkel amit a `FilterableProductTable`-ból továbbadunk.
+Ha próbáltál szöveget beírni vagy kipipálni a jelölőnégyzetet a mostani verziónkban, akkor már láttad, hogy a React figyelmen kívül hagyja a bemeneteket. Ez szándékos, mivel így lehetséges, hogy a propsban kapott érték amit átadunk az `input`nak a `value`-ban  mindig azonos legyen a state-ben tárolt értékkel amit a `FilterableProductTable`-ból továbbadunk.
 
 Gondoljuk végig mit szeretnénk, mi történjen. Azt akarjuk, hogy bármikor ha a felhasználó megváltoztatja az űrlapot mi frissíthessük a state-et, hogy az tükrözze a bemeneten kapott adatot. Mivel a komponensek csak a saját state-jüket frissíthetik, a `FilterableProductTable` callback függvényeket ad át a `SearchBar`-nak melyek meghívódnak valahányszor a state-et frissíteni kell. Használhatjuk az input mezők `onChange` eseményét, a `FilterableProductTable` által átadott callback-ek meghívhatják annak `setState()` metódusát és alkalmazásunk frissül majd.
 
 ## Ennyi volna {#and-thats-it}
 
-Remélhetőleg ezután már van némi fogalmad, hogyan is gondolkodj, mikor egy komponenst vagy egy alkalmazást készítesz Reactban. Talán egy kicsit többet kellett gépelned, mint amit eddig megszoktál, de ne feledd, általában több időt töltünk a forráskód olvasásával, mint az írással, és kevésbé fárasztó ezt a moduláris, kifejező kódot olvasni. Amikor elkezdesz terjedelmes komponens könyvtárakat létrehozni, nagyra értékeled majd a modularitást és az olvashatóságot, és az újrahaszosíthatóság révén a kódod sorai rövidülni kezdenek. :)
+Remélhetőleg ezután már van némi fogalmad, hogyan is gondolkodj, mikor egy komponenst vagy egy alkalmazást készítesz Reactban. Talán egy kicsit többet kellett gépelned, mint amit eddig megszoktál, de ne feledd, általában több időt töltünk a forráskód olvasásával, mint az írással, és kevésbé fárasztó ezt a moduláris, kifejező kódot olvasni. Amikor elkezdesz terjedelmes komponens könyvtárakat létrehozni, nagyra értékeled majd a modularitást és az olvashatóságot, és az újrahasznosíthatóság révén a kódod sorai rövidülni kezdenek. :)
