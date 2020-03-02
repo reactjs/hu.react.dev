@@ -375,7 +375,7 @@ this.setState(function(state, props) {
 
 ### Az állapot frissítések egyesítve vannak {#state-updates-are-merged}
 
-Amikor meghívod a `setState()` metódust, a React egyesíti az általat szolgáltatott objektumot a jelenlegi állapottal.
+Amikor meghívod a `setState()` metódust, a React egyesíti az általad szolgáltatott objektumot a jelenlegi állapottal.
 
 Például az állapotod tartalmazhat számos független változót:
 
