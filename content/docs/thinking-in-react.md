@@ -82,7 +82,7 @@ Kétféle adatot használunk Reactban, van props és state. Fontos megérteni a 
 
 Ahhoz, hogy a UI interaktív legyen, képesnek kell lenned változásokat kiváltani a mögöttes adatmodellben. A React ezt a **state** segítségével éri el.
 
-A helyes felépítéshez először a megváltoztatható állapotok minimális halmazára van szükség. A kulcs itt, hogy [Ne ismételd önmagad](https://hu.wikipedia.org/wiki/Ne_ism%C3%A9teld_%C3%B6nmagad). Találd ki az abszolút minimális reprezentációt és minden mást menet közben számíttass ki igény szerint. Ha például egy TODO listát készítesz, legyen egy tömb a teendőkről, de nem kell egy külön változó a darabszámnak. Inkább mikor meg kell jeleníteni az elemek számát csak használd a *length*-et a tömbödből.
+A helyes felépítéshez először a megváltoztatható állapotok minimális halmazára van szükség. A kulcs itt, hogy [Ne ismételd önmagad](https://hu.wikipedia.org/wiki/Ne_ism%C3%A9teld_%C3%B6nmagad). Találd ki az abszolút minimális reprezentációt és számíttas ki minden mást menet közben igény szerint. Ha például egy TODO listát készítesz, legyen egy tömb a teendőkről, de nem kell egy külön változó a darabszámnak. Inkább mikor meg kell jeleníteni az elemek számát csak használd a *length*-et a tömbödből.
 
 Vegyük végig a példánkban szereplő adatokat:
 
