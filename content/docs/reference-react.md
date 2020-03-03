@@ -1,6 +1,6 @@
 ---
 id: react-api
-title: React Top-Level API
+title: React legfelső szintű API
 layout: docs
 category: Reference
 permalink: docs/react-api.html
@@ -13,67 +13,67 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
-`React` is the entry point to the React library. If you load React from a `<script>` tag, these top-level APIs are available on the `React` global. If you use ES6 with npm, you can write `import React from 'react'`. If you use ES5 with npm, you can write `var React = require('react')`.
+A `React` a belépési pont a React könyvtárba. Amennyiben a Reactet egy <script> tag segítségével töltöd be, ezek a legfelsőbb szintű API-k a `React` globális változón keresztül lesznek elérhetőek. ES6 és npm esetében írhatod ezt: import React from 'react'. ES5 és npm esetében pedig írhatod az következőt: var React = require('react').
 
-## Overview {#overview}
+## Áttekintés {#overview}
 
-### Components {#components}
+### Komponensek {#components}
 
-React components let you split the UI into independent, reusable pieces, and think about each piece in isolation. React components can be defined by subclassing `React.Component` or `React.PureComponent`.
+A React komponensek segítéségével a kezelőfelületet feldarabolhatod független, újrafelhasználható darabokká, és minden darabról elzártan tudsz gondolkozni. A React komponensek definiálhatók a `React.Component` vagy a `React.PureCompnent` alosztályozásával.
 
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
-If you don't use ES6 classes, you may use the `create-react-class` module instead. See [Using React without ES6](/docs/react-without-es6.html) for more information.
+Ha nem használsz ES6 osztályokat, használhatod a `create-react-class` modult. Több információért lásd: [A React használata ES6 nélkül](/docs/react-without-es6.html) fejezetet.
 
-React components can also be defined as functions which can be wrapped:
+A React komponensek függvényekként is definiálhatóak, amiket be is tudunk csomagolni:
 
 - [`React.memo`](#reactmemo)
 
-### Creating React Elements {#creating-react-elements}
+### React elemek készítése {#creating-react-elements}
 
-We recommend [using JSX](/docs/introducing-jsx.html) to describe what your UI should look like. Each JSX element is just syntactic sugar for calling [`React.createElement()`](#createelement). You will not typically invoke the following methods directly if you are using JSX.
+A kezelőfelületed leírásához a [JSX használatát](/docs/introducing-jsx.html) ajánljuk. Minden JSX elem csak szintaktikus cukor a [`React.createElement()`](#createelement) meghívásához. Ha JSX-t használsz, a következő metódusokat nem fogod közvetlenül meghívni.
 
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
 
-See [Using React without JSX](/docs/react-without-jsx.html) for more information.
+Több információért lásd a [React JSX nélkül](/docs/react-without-jsx.html) fejezetet.
 
-### Transforming Elements {#transforming-elements}
+### Elemek transzformálása {#transforming-elements}
 
-`React` provides several APIs for manipulating elements:
+A `React` több API-t is kínál elemek manipulálásához:
 
 - [`cloneElement()`](#cloneelement)
 - [`isValidElement()`](#isvalidelement)
 - [`React.Children`](#reactchildren)
 
-### Fragments {#fragments}
+### Töredékek {#fragments}
 
-`React` also provides a component for rendering multiple elements without a wrapper.
+Ahhoz, hogy több elemet tudj egyszerre renderelni anélkül, hogy azokat becsomagolnád egy másik komponensbe, a `React` egy saját komponenst szolgáltat.
 
 - [`React.Fragment`](#reactfragment)
 
-### Refs {#refs}
+### Refek {#refs}
 
 - [`React.createRef`](#reactcreateref)
 - [`React.forwardRef`](#reactforwardref)
 
-### Suspense {#suspense}
+### Felfüggesztés {#suspense}
 
-Suspense lets components "wait" for something before rendering. Today, Suspense only supports one use case: [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy). In the future, it will support other use cases like data fetching.
+A Suspense lehetővé teszi hogy a komponensek "várni tudjanak" valamire renderelés előtt. A Suspense jelenleg csak egy esetben használható: [komponensek dinamikus betöltése `React.lazy` segítségével](/docs/code-splitting.html#reactlazy). A jövőben más forgatókönyvek is támogatva lesznek, mint például az adatlehívás.
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
-### Hooks {#hooks}
+### Horgok {#hooks}
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
+A *horgok* a React 16.8 egy új kiegészítései. Lehetővé teszik helyi állapot és egyéb React tulajdonságok használatát osztályok írása nélkül. A horgoknak van egy [saját dokumentáció fejezete](/docs/hooks-intro.html) és egy különálló API referenciája:
 
-- [Basic Hooks](/docs/hooks-reference.html#basic-hooks)
+- [Alapvető horgok](/docs/hooks-reference.html#basic-hooks)
   - [`useState`](/docs/hooks-reference.html#usestate)
   - [`useEffect`](/docs/hooks-reference.html#useeffect)
   - [`useContext`](/docs/hooks-reference.html#usecontext)
-- [Additional Hooks](/docs/hooks-reference.html#additional-hooks)
+- [Egyéb horgok](/docs/hooks-reference.html#additional-hooks)
   - [`useReducer`](/docs/hooks-reference.html#usereducer)
   - [`useCallback`](/docs/hooks-reference.html#usecallback)
   - [`useMemo`](/docs/hooks-reference.html#usememo)
@@ -84,35 +84,35 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 
 * * *
 
-## Reference {#reference}
+## Referencia {#reference}
 
 ### `React.Component` {#reactcomponent}
 
-`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
+A `React.Component` a React komponensek alaposztálya abban az esetben, ha azok [ES6 osztályokkal](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) vannak definiálva:
 
 ```javascript
 class Greeting extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Helló, {this.props.name}</h1>;
   }
 }
 ```
 
-See the [React.Component API Reference](/docs/react-component.html) for a list of methods and properties related to the base `React.Component` class.
+Ha egy listát szeretnél a `React.Component` osztály metódusairól és tulajdonságairól, nézd meg a [React.Component API referenciát](/docs/react-component.html).
 
 * * *
 
 ### `React.PureComponent` {#reactpurecomponent}
 
-`React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison.
+A `React.PureComponent` hasonló a [`React.Component`](#reactcomponent)-hez. A különbség annyi, hogy a [`React.Component`](#reactcomponent) nem implementálja a [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) metódust, míg a `React.PureComponent` igen, egy sekély prop és állapot összehasonlítással.
 
-If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
+Ha a React komponensed `render()` függvénye ugyanazt az eredményt rendereli ugyanazon propok és állapot esetében, akkor néhány esetben használhatod a `React.PureComponent`-t a teljesítmény fokozása érdekében.
 
-> Note
+> Megjegyzés
 >
-> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://facebook.github.io/immutable-js/) to facilitate fast comparisons of nested data.
+> A `React.PureComponent` `shouldComponentUpdate()` metódusa csak sekély objektum összehasonlítást végez. Ha az objektumok komplex adatstruktúrákat tartalmaznak, az hamisan negatívat eredményezhet mélyebb különbségek esetében. Csak akkor terjessz ki a `PureComponent`-el, ha egyszerű propokra és állapotra számítasz, vagy használd a [`forceUpdate()`](/docs/react-component.html#forceupdate) metódust ha tudod, hogy a mély adatstruktúrák megváltoztak. Vagy vedd fontolóra [megváltoztathatatlan objektumok](https://facebook.github.io/immutable-js/) használatát a mélyebb adatstruktúrák gyors összehasonlításának megkönnyítése érdekében.
 >
-> Furthermore, `React.PureComponent`'s `shouldComponentUpdate()` skips prop updates for the whole component subtree. Make sure all the children components are also "pure".
+> Továbbá a `React.PureComponent` `shouldComponentUpdate()` metódusa kihagyja a prop frissítéseket a komponens teljes alfája esetén. Bizonyosodj meg róla, hogy a komponens minden gyermeke szintúgy "tiszta" (pure).
 
 * * *
 
@@ -120,37 +120,38 @@ If your React component's `render()` function renders the same result given the 
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
-  /* render using props */
+  /* renderelés propok használatával */
 });
 ```
 
-`React.memo` is a [higher order component](/docs/higher-order-components.html). It's similar to [`React.PureComponent`](#reactpurecomponent) but for function components instead of classes.
+A `React.memo` egy [felsőbb rendű komponens](/docs/higher-order-components.html). Hasonló a [`React.PureComponent`](#reactpurecomponent)-hez, csak osztály komponensek helyett függvény komponensekhez való.
 
-If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+Ha a függvény komponensed ugyanazt rendereli ugyanazon propok esetében, csomagold be egy `React.memo` meghívásba, hogy bizonyos esetekben memoizálni tudd az eredményt a teljesítmény fokozása érdekében. Ez azt jelenti, hogy a React kihagyja a komponens renderelését, és újrafelhasználja az utoljára renderelt eredményt.
 
-`React.memo` only affects props changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+A `React.memo` csak a prop változásokat érinti. Ha a `React.memo`-ba csomagolt függvényed implementációja rendelkezik egy [`useState`](/docs/hooks-state.html) vagy [`useContext`](/docs/hooks-reference.html#usecontext) horoggal, az újra lesz renderelve amennyiben az állapot vagy a kontextus megváltozik.
 
-By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
+Komplex prop objektumok esetében alapértelmezés szerint csak sekély összehasonlítást végez. Ha teljes kontrollt szeretnél az összehasonlítás felett, a második argumentumként megadhatsz egy egyedi összehasonlító függvényt.
 
 ```javascript
 function MyComponent(props) {
-  /* render using props */
+  /* renderelés propok használatával */
 }
 function areEqual(prevProps, nextProps) {
   /*
-  return true if passing nextProps to render would return
-  the same result as passing prevProps to render,
-  otherwise return false
+  abban az esetben ha a nextProps-ot a rendernek átadva
+  ugyanazt az eredményt kapnánk mint a prevProps esetében,
+  adj vissza true értéket,
+  máskülönben pedig false-t
   */
 }
 export default React.memo(MyComponent, areEqual);
 ```
 
-This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a render, as this can lead to bugs.
+Ez a metódus csakis **[a teljesítmény optimalizálása](/docs/optimizing-performance.html)** céljából létezik. Ne bízd magad rá csak azért, hogy "elkerülj" néhány renderelést, mivel ez hibákhoz vezethet.
 
-> Note
+> Megjegyzés
 >
-> Unlike the [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method on class components, the `areEqual` function returns `true` if the props are equal and `false` if the props are not equal. This is the inverse from `shouldComponentUpdate`.
+> A [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) osztálykomponens metódussal ellentétben, az `areEqual` függvény `true` értéket ad vissza, ha a propok egyenlőek, és `false` értéket ha nem azok. Ez a `shouldComponentUpdate` inverze.
 
 * * *
 
@@ -164,9 +165,9 @@ React.createElement(
 )
 ```
 
-Create and return a new [React element](/docs/rendering-elements.html) of the given type. The type argument can be either a tag name string (such as `'div'` or `'span'`), a [React component](/docs/components-and-props.html) type (a class or a function), or a [React fragment](#reactfragment) type.
+Egy adott típusú [React elemet](/docs/rendering-elements.html) készít és ad vissza. A type argumentum lehet egy címke név sztring (mint például `'div'` vagy `'span'`), egy [React komponens](/docs/components-and-props.html) típus (akár osztály vagy függvény), vagy egy [React töredék](#reactfragment) típus.
 
-Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `React.createElement()`. You will not typically invoke `React.createElement()` directly if you are using JSX. See [React Without JSX](/docs/react-without-jsx.html) to learn more.
+A [JSX](/docs/introducing-jsx.html)-ben írt kód át lesz konvertálva, hogy az a `React.createElement()`-et használja. Ha JSX-et használsz, a `React.createElement()`-et tipikusan nem kell közvetlenül meghívnod. Nézd meg a [React JSX nélkül](/docs/react-without-jsx.html) fejezetet, ha többet akarsz megtudni.
 
 * * *
 
@@ -180,17 +181,17 @@ React.cloneElement(
 )
 ```
 
-Clone and return a new React element using `element` as the starting point. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved.
+Egy `element`-et alapul véve egy új React elemet klónoz és ad vissza. A keletkezett elem rendelkezni fog az eredeti elem és az új propok sekély összefonásával. Az új gyermekek átveszik a meglévő gyermekek helyét. A `key` és `ref` attribútumok meg lesznek tartva az eredeti elemből.
 
-`React.cloneElement()` is almost equivalent to:
+A `React.cloneElement()` majdnem ekvivalens ezzel:
 
 ```js
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element.
+De a `ref` attribútumokat is megőrzi. Ez azt jelenti, hogy ha egy olyan gyermeket kapsz, ami rendelkezik `ref`-el, akkor azt nem fogod véletlenül sem ellopni az ősöktől. Az új elemhez ugyanaz a `ref` lesz hozzákapcsolva.
 
-This API was introduced as a replacement of the deprecated `React.addons.cloneWithProps()`.
+Ez az API az elavult `React.addons.cloneWithProps()` leváltására lett létrehozva.
 
 * * *
 
@@ -200,11 +201,11 @@ This API was introduced as a replacement of the deprecated `React.addons.cloneWi
 React.createFactory(type)
 ```
 
-Return a function that produces React elements of a given type. Like [`React.createElement()`](#createelement), the type argument can be either a tag name string (such as `'div'` or `'span'`), a [React component](/docs/components-and-props.html) type (a class or a function), or a [React fragment](#reactfragment) type.
+Egy függvényt ad vissza ami bizonyos típusú React elemeket produkál. Mint ahogy a [`React.createElement()`](#createelement) esetében is, a type argumentum lehet egy címke név sztring (mint például `'div'` vagy `'span'`), egy [React komponens](/docs/components-and-props.html) típus (akár osztály vagy függvény), vagy egy [React töredék](#reactfragment) típus.
 
-This helper is considered legacy, and we encourage you to either use JSX or use `React.createElement()` directly instead.
+Ez a segédfüggvény egy korábbról örökölt függvénynek számít, és arra biztatunk, hogy inkább használj JSX-et, vagy közvetlenül a `React.createElement()`-et.
 
-You will not typically invoke `React.createFactory()` directly if you are using JSX. See [React Without JSX](/docs/react-without-jsx.html) to learn more.
+Ha JSX-et használsz, a `React.createFactory()`-t általában nem fogod közvetlenül meghívni. Nézd meg a [React JSX nélkül](/docs/react-without-jsx.html) fejezetet, ha többet akarsz megtudni.
 
 * * *
 
@@ -214,13 +215,13 @@ You will not typically invoke `React.createFactory()` directly if you are using 
 React.isValidElement(object)
 ```
 
-Verifies the object is a React element. Returns `true` or `false`.
+Azt ellenőrzi, hogy az objektum érvényes React elemnek minősül-e. `true` vagy `false` értéket ad vissza.
 
 * * *
 
 ### `React.Children` {#reactchildren}
 
-`React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
+A `React.Children` segédeszközként szolgál, ha a nem áttetsző `this.props.children` adatstruktúrával kell dolgozni.
 
 #### `React.Children.map` {#reactchildrenmap}
 
@@ -228,11 +229,11 @@ Verifies the object is a React element. Returns `true` or `false`.
 React.Children.map(children, function[(thisArg)])
 ```
 
-Invokes a function on every immediate child contained within `children` with `this` set to `thisArg`. If `children` is an array it will be traversed and the function will be called for each child in the array. If children is `null` or `undefined`, this method will return `null` or `undefined` rather than an array.
+Egy függvényt hív meg a `this`-t `thisArg`-ra állítva a `children` minden közvetlen gyermekén. Ha a `children` egy tömb, akkor azt bejárva a függvény minden gyermeken meg lesz hívva. Ha a children `null` vagy `undefined` értékű, ez a metódus `null` vagy `undefined` értéket ad vissza egy tömb helyett.
 
-> Note
+> Megjegyzés
 >
-> If `children` is a `Fragment` it will be treated as a single child and not traversed.
+> Ha a `children` egy `Fragment` akkor az egy szimpla gyermekként lesz kezelve, ezért nem lesz bejárva.
 
 #### `React.Children.forEach` {#reactchildrenforeach}
 
@@ -240,7 +241,7 @@ Invokes a function on every immediate child contained within `children` with `th
 React.Children.forEach(children, function[(thisArg)])
 ```
 
-Like [`React.Children.map()`](#reactchildrenmap) but does not return an array.
+Mint a [`React.Children.map()`](#reactchildrenmap) de nem ad vissza tömböt.
 
 #### `React.Children.count` {#reactchildrencount}
 
@@ -248,7 +249,7 @@ Like [`React.Children.map()`](#reactchildrenmap) but does not return an array.
 React.Children.count(children)
 ```
 
-Returns the total number of components in `children`, equal to the number of times that a callback passed to `map` or `forEach` would be invoked.
+Az `children`-ben lévő összes komponens számát adja vissza, egyenlő azzal ahányszor a visszahívó függvény át lett adva a `map` vagy `forEach`-nek.
 
 #### `React.Children.only` {#reactchildrenonly}
 
@@ -256,11 +257,11 @@ Returns the total number of components in `children`, equal to the number of tim
 React.Children.only(children)
 ```
 
-Verifies that `children` has only one child (a React element) and returns it. Otherwise this method throws an error.
+Azt ellenőrzi, hogy a `children`-nek csak egy gyermeke van-e (egy React elemből áll), és visszaadja azt. Máskülönben ez a metódus egy hibát dob.
 
-> Note:
+> Megjegyzés:
 >
->`React.Children.only()` does not accept the return value of [`React.Children.map()`](#reactchildrenmap) because it is an array rather than a React element.
+> A `React.Children.only()` nem fogadja el a [`React.Children.map()`](#reactchildrenmap) visszaadott értékét, mert az egy tömb, nem pedig egy React elem.
 
 #### `React.Children.toArray` {#reactchildrentoarray}
 
@@ -268,82 +269,82 @@ Verifies that `children` has only one child (a React element) and returns it. Ot
 React.Children.toArray(children)
 ```
 
-Returns the `children` opaque data structure as a flat array with keys assigned to each child. Useful if you want to manipulate collections of children in your render methods, especially if you want to reorder or slice `this.props.children` before passing it down.
+A nem áttetsző `children` adatstruktúrát adja vissza egy lapos tömbként, egy kulcsot rendelve minden gyermekhez. Hasznos lehet ha gyermekek listáját akarod manipulálni a render metódusodban, különösen ha át akarod rendezni, vagy le akarsz vágni a `this.props.children`-ből mielőtt azt lejjebb adod.
 
-> Note:
+> Megjegyzés:
 >
-> `React.Children.toArray()` changes keys to preserve the semantics of nested arrays when flattening lists of children. That is, `toArray` prefixes each key in the returned array so that each element's key is scoped to the input array containing it.
+> Gyermekek listájának lapítása közben a `React.Children.toArray()` megváltoztatja a kulcsokat a beágyazott tömbök szemantikájának megtartása érdekében. Azaz a `toArray` a visszaadott tömbben minden kulcshoz hozzáad egy prefixumot, hogy minden elem kulcsa az azt tartalmazó tömb hatókörében legyen.
 
 * * *
 
 ### `React.Fragment` {#reactfragment}
 
-The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
+A `React.Fragment` komponens több elem visszaadását teszi lehetővé a `render()` metódusban anélkül, hogy új DOM elemet hozna létre.
 
 ```javascript
 render() {
   return (
     <React.Fragment>
-      Some text.
-      <h2>A heading</h2>
+      Valami szöveg.
+      <h2>Egy fejléc</h2>
     </React.Fragment>
   );
 }
 ```
 
-You can also use it with the shorthand `<></>` syntax. For more information, see [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).
+Használhatod a gyorsított `<></>` szintaxissal is. Még több információért nézd meg a [React v16.2.0 Továbbfejlesztett Töredékek támogatás](/blog/2017/11/28/react-v16.2.0-fragment-support.html) blog posztot.
 
 
 ### `React.createRef` {#reactcreateref}
 
-`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
+A `React.createRef` egy [ref](/docs/refs-and-the-dom.html)-et hoz létre, amit a ref attribútummal csatolhatunk React elemekhez.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
 
-`React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
+A `React.forwardRef` egy React komponenst hoz létre, ami továbbadja a kapott [ref](/docs/refs-and-the-dom.html) attribútumot egy másik komponensnek lejjebb a komponensfában. Ezt nem gyakran kell alkalmazni, de két speciális esetben hasznos tud lenni:
 
-* [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
-* [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
+* [Refek továbbítása DOM elemeknek](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
+* [Refek továbbítása felsőbb rendű komponenseknek](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
-`React.forwardRef` accepts a rendering function as an argument. React will call this function with `props` and `ref` as two arguments. This function should return a React node.
+A `React.forwardRef` egy renderelő függvényt fogad argumentumként. A React ezt a függvényt hívja meg a `props` és `ref` argumentumokkal. Ez a függvény egy React csomópontot kell, hogy visszaadjon.
 
 `embed:reference-react-forward-ref.js`
 
-In the above example, React passes a `ref` given to `<FancyButton ref={ref}>` element as a second argument to the rendering function inside the `React.forwardRef` call. This rendering function passes the `ref` to the `<button ref={ref}>` element.
+A fenti példában a React továbbad egy a `<FancyButton ref={ref}>` elemnek adott `ref`-et második argumentumként a renderelő függvénynek a `React.forwardRef` meghívásában. Ez a renderelő függvény továbbadja a `ref`-et a `<button ref={ref}>` elemnek.
 
-As a result, after React attaches the ref, `ref.current` will point directly to the `<button>` DOM element instance.
+Ennek eredményeképp, azután hogy a React hozzácsatolja a refet, a `ref.current` közvetlenül a `<button>` DOM elem példányára fog mutatni.
 
-For more information, see [forwarding refs](/docs/forwarding-refs.html).
+További információért nézd meg a [refek továbbítása](/docs/forwarding-refs.html) fejezetet.
 
 ### `React.lazy` {#reactlazy}
 
-`React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
+A `React.lazy()` segítségével egy dinamikusan betöltődő komponenst tudsz definiálni. Ez segít csökkenteni az összecsomagolt kód méretét úgy, hogy a kezdetleges renderelés által nem használt komponensek betöltése késleltetve lesz.
 
-You can learn how to use it from our [code splitting documentation](/docs/code-splitting.html#reactlazy). You might also want to check out [this article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) explaining how to use it in more detail.
+A használatáról többet tanulhatsz a [kód felvágás dokumentációban](/docs/code-splitting.html#reactlazy). Valószínűleg [ezt a cikket](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) is megnézheted, ami részletesebben is elmagyarázza a használatot.
 
 ```js
-// This component is loaded dynamically
+// Ez a komponens dinamikusan van betöltve
 const SomeComponent = React.lazy(() => import('./SomeComponent'));
 ```
 
-Note that rendering `lazy` components requires that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
+Megjegyzendő, hogy a `lazy` komponensek renderelése megköveteli, hogy valahol feljebb a komponensfában legyen egy `<React.Suspense>`. Így tudsz megadni egy betöltés indikátort.
 
-> **Note**
+> **Megjegyzés**
 >
-> Using `React.lazy`with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
+> A `React.lazy` használata dinamikus import segítségével megköveteli, hogy a Promise objektum elérhető legyen a JS környezetben. Ez IE11 és az alatt egy polyfill használatát követeli meg.
 
 ### `React.Suspense` {#reactsuspense}
 
-`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+A `React.Suspense` segítségével egy betöltés indikátort tudsz megadni abban az esetben ha néhány komponens a komponensfában lejjebb még nem áll készen renderelésre. Jelenleg a `<React.Suspense>` **egyetlen** támogatott esete a lustán betöltő komponensek:
 
 ```js
-// This component is loaded dynamically
+// Ez a komponens dinamikusan van betöltve
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 function MyComponent() {
   return (
-    // Displays <Spinner> until OtherComponent loads
+    // Amíg az OtherComponent tölt, mutasd a <Spinner>-t
     <React.Suspense fallback={<Spinner />}>
       <div>
         <OtherComponent />
@@ -353,10 +354,10 @@ function MyComponent() {
 }
 ```
 
-It is documented in our [code splitting guide](/docs/code-splitting.html#reactlazy). Note that `lazy` components can be deep inside the `Suspense` tree -- it doesn't have to wrap every one of them. The best practice is to place `<Suspense>` where you want to see a loading indicator, but to use `lazy()` wherever you want to do code splitting.
+A [kód felvágó útmutatónkban](/docs/code-splitting.html#reactlazy) ez dokumentálva van. Jegyezd meg, hogy a `lazy` (lusta) komponensek lehetnek mélyen a `Suspense` fában -- nem kell mindegyiket egyesével körbevenni. A legjobb gyakorlat ha a `<Suspense>`-t oda helyezed ahol egy betöltés indikátort akarsz látni, a `lazy()`-t pedig oda ahol kódot akarsz felvágni.
 
-While this is not supported today, in the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+Bár ez jelenleg még nem támogatott, a jövőben a `Suspense` több forgatókönyvet fog támogatni, mint például adatlehívást. Erről az [ütemtervünkben](/blog/2018/11/27/react-16-roadmap.html) olvashatsz.
 
->Note:
+>Megjegyzés:
 >
->`React.lazy()` and `<React.Suspense>` are not yet supported by `ReactDOMServer`. This is a known limitation that will be resolved in the future.
+> A `ReactDOMServer` még nem támogatja a `React.lazy()`-t és a `<React.Suspense>`-t. Ez egy köztudott limitáció, ami a jövőben kerül megoldásra.
