@@ -49,7 +49,7 @@ A `React` több API-t is kínál elemek manipulálásához:
 
 ### Töredékek {#fragments}
 
-Ahhoz, hogy több elemet tudj egyszerre renderelni anélkül hogy azokat becsomagolnád egy másik komponensbe, a `React` egy saját komponenst szolgáltat.
+Ahhoz, hogy több elemet tudj egyszerre renderelni anélkül, hogy azokat becsomagolnád egy másik komponensbe, a `React` egy saját komponenst szolgáltat.
 
 - [`React.Fragment`](#reactfragment)
 
@@ -110,7 +110,7 @@ Ha a React komponensed `render()` függvénye ugyanazt az eredményt rendereli u
 
 > Megjegyzés
 >
-> A `React.PureComponent` `shouldComponentUpdate()` metódusa csak sekély objektum összehasonlítást végez. Ha az objektumok komplex adatstruktúrákat tartalmaznak, az hamisan negatívat eredményezhet mélyebb különbségek esetében. Csak akkor terjessz ki a `PureComponent`-el, ha egyszerű propokra és állapotra számítasz, vagy használd a [`forceUpdate()`](/docs/react-component.html#forceupdate) metódust ha tudod hogy a mély adatstruktúrák megváltoztak. Vagy vedd fontolóra [megváltoztathatatlan objektumok](https://facebook.github.io/immutable-js/) használatát a mélyebb adatstruktúrák gyors összehasonlításának megkönnyítése érdekében.
+> A `React.PureComponent` `shouldComponentUpdate()` metódusa csak sekély objektum összehasonlítást végez. Ha az objektumok komplex adatstruktúrákat tartalmaznak, az hamisan negatívat eredményezhet mélyebb különbségek esetében. Csak akkor terjessz ki a `PureComponent`-el, ha egyszerű propokra és állapotra számítasz, vagy használd a [`forceUpdate()`](/docs/react-component.html#forceupdate) metódust ha tudod, hogy a mély adatstruktúrák megváltoztak. Vagy vedd fontolóra [megváltoztathatatlan objektumok](https://facebook.github.io/immutable-js/) használatát a mélyebb adatstruktúrák gyors összehasonlításának megkönnyítése érdekében.
 >
 > Továbbá a `React.PureComponent` `shouldComponentUpdate()` metódusa kihagyja a prop frissítéseket a komponens teljes alfája esetén. Bizonyosodj meg róla, hogy a komponens minden gyermeke szintúgy "tiszta" (pure).
 
@@ -167,7 +167,7 @@ React.createElement(
 
 Egy adott típusú [React elemet](/docs/rendering-elements.html) készít és ad vissza. A type argumentum lehet egy címke név sztring (mint például `'div'` vagy `'span'`), egy [React komponens](/docs/components-and-props.html) típus (akár osztály vagy függvény), vagy egy [React töredék](#reactfragment) típus.
 
-A [JSX](/docs/introducing-jsx.html)-ben írt kód át lesz konvertálva, hogy az a `React.createElement()`-et használja. Ha JSX-et használsz, a `React.createElement()`-et tipikusan nem kell közvetlenül meghívnod. Nézd meg a [React JSX nélkül](/docs/react-without-jsx.html) fejezetet ha többet akarsz megtudni.
+A [JSX](/docs/introducing-jsx.html)-ben írt kód át lesz konvertálva, hogy az a `React.createElement()`-et használja. Ha JSX-et használsz, a `React.createElement()`-et tipikusan nem kell közvetlenül meghívnod. Nézd meg a [React JSX nélkül](/docs/react-without-jsx.html) fejezetet, ha többet akarsz megtudni.
 
 * * *
 
@@ -189,7 +189,7 @@ A `React.cloneElement()` majdnem ekvivalens ezzel:
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-De a `ref` attribútumokat is megőrzi. Ez azt jelenti, hogy ha egy olyan gyermeket kapsz ami rendelkezik `ref`-el, akkor azt nem fogod véletlenül sem ellopni az ősöktől. Az új elemhez ugyanaz a `ref` lesz hozzákapcsolva.
+De a `ref` attribútumokat is megőrzi. Ez azt jelenti, hogy ha egy olyan gyermeket kapsz, ami rendelkezik `ref`-el, akkor azt nem fogod véletlenül sem ellopni az ősöktől. Az új elemhez ugyanaz a `ref` lesz hozzákapcsolva.
 
 Ez az API az elavult `React.addons.cloneWithProps()` leváltására lett létrehozva.
 
@@ -203,9 +203,9 @@ React.createFactory(type)
 
 Egy függvényt ad vissza ami bizonyos típusú React elemeket produkál. Mint ahogy a [`React.createElement()`](#createelement) esetében is, a type argumentum lehet egy címke név sztring (mint például `'div'` vagy `'span'`), egy [React komponens](/docs/components-and-props.html) típus (akár osztály vagy függvény), vagy egy [React töredék](#reactfragment) típus.
 
-Ez a segédfüggvény egy korábbról örökölt függvénynek számít, és arra biztatunk hogy inkább használj JSX-et, vagy közvetlenül a `React.createElement()`-et.
+Ez a segédfüggvény egy korábbról örökölt függvénynek számít, és arra biztatunk, hogy inkább használj JSX-et, vagy közvetlenül a `React.createElement()`-et.
 
-Ha JSX-et használsz, a `React.createFactory()`-t általában nem fogod közvetlenül meghívni. Nézd meg a [React JSX nélkül](/docs/react-without-jsx.html) fejezetet ha többet akarsz megtudni.
+Ha JSX-et használsz, a `React.createFactory()`-t általában nem fogod közvetlenül meghívni. Nézd meg a [React JSX nélkül](/docs/react-without-jsx.html) fejezetet, ha többet akarsz megtudni.
 
 * * *
 
@@ -221,7 +221,7 @@ Azt ellenőrzi, hogy az objektum érvényes React elemnek minősül-e. `true` va
 
 ### `React.Children` {#reactchildren}
 
-A `React.Children` segédeszközként szolgál ha a nem áttetsző `this.props.children` adatstruktúrával kell dolgozni.
+A `React.Children` segédeszközként szolgál, ha a nem áttetsző `this.props.children` adatstruktúrával kell dolgozni.
 
 #### `React.Children.map` {#reactchildrenmap}
 
@@ -297,17 +297,17 @@ Használhatod a gyorsított `<></>` szintaxissal is. Még több információért
 
 ### `React.createRef` {#reactcreateref}
 
-A `React.createRef` egy [ref](/docs/refs-and-the-dom.html)-et hoz létre amit a ref attribútummal csatolhatunk React elemekhez.
+A `React.createRef` egy [ref](/docs/refs-and-the-dom.html)-et hoz létre, amit a ref attribútummal csatolhatunk React elemekhez.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
 
-A `React.forwardRef` egy React komponenst hoz létre ami továbbadja a [ref](/docs/refs-and-the-dom.html) attribútumot amit kap egy másik komponensnek lejjebb a komponensfában. Ezt nem gyakran kell alkalmazni, de két speciális esetben hasznos tud lenni:
+A `React.forwardRef` egy React komponenst hoz létre, ami továbbadja a kapott [ref](/docs/refs-and-the-dom.html) attribútumot egy másik komponensnek lejjebb a komponensfában. Ezt nem gyakran kell alkalmazni, de két speciális esetben hasznos tud lenni:
 
 * [Refek továbbítása DOM elemeknek](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
 * [Refek továbbítása felsőbb rendű komponenseknek](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
-A `React.forwardRef` egy renderelő függvényt fogad argumentumként. A React ezt a függvényt hívja meg a `props` és `ref` argumentumokkal. Ez a függvény egy React csomópontot kell hogy visszaadjon.
+A `React.forwardRef` egy renderelő függvényt fogad argumentumként. A React ezt a függvényt hívja meg a `props` és `ref` argumentumokkal. Ez a függvény egy React csomópontot kell, hogy visszaadjon.
 
 `embed:reference-react-forward-ref.js`
 
@@ -319,7 +319,7 @@ További információért nézd meg a [refek továbbítása](/docs/forwarding-re
 
 ### `React.lazy` {#reactlazy}
 
-A `React.lazy()` segítségével egy dinamikusan betöltődő komponenst tudsz definiálni. Ez segít csökkenteni az összecsomagolt kód méretét úgy, hogy a kezdetleges renderelés által nem használt komponensek betöltése késleltetve lesznek.
+A `React.lazy()` segítségével egy dinamikusan betöltődő komponenst tudsz definiálni. Ez segít csökkenteni az összecsomagolt kód méretét úgy, hogy a kezdetleges renderelés által nem használt komponensek betöltése késleltetve lesz.
 
 A használatáról többet tanulhatsz a [kód felvágás dokumentációban](/docs/code-splitting.html#reactlazy). Valószínűleg [ezt a cikket](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) is megnézheted, ami részletesebben is elmagyarázza a használatot.
 
@@ -328,11 +328,11 @@ A használatáról többet tanulhatsz a [kód felvágás dokumentációban](/doc
 const SomeComponent = React.lazy(() => import('./SomeComponent'));
 ```
 
-Jegyezd meg, hogy a `lazy` komponensek renderelése megköveteli, hogy valahol feljebb a komponensfában legyen egy `<React.Suspense>`. Így tudsz megadni egy betöltés indikátort.
+Megjegyzendő, hogy a `lazy` komponensek renderelése megköveteli, hogy valahol feljebb a komponensfában legyen egy `<React.Suspense>`. Így tudsz megadni egy betöltés indikátort.
 
 > **Megjegyzés**
 >
-> A `React.lazy` használata dinamikus import segítségével megköveteli hogy a Promise objektum elérhető legyen a JS környezetben. Ez IE11 és az alatt egy polyfill használatát követeli meg.
+> A `React.lazy` használata dinamikus import segítségével megköveteli, hogy a Promise objektum elérhető legyen a JS környezetben. Ez IE11 és az alatt egy polyfill használatát követeli meg.
 
 ### `React.Suspense` {#reactsuspense}
 
