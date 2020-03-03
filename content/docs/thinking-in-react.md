@@ -10,7 +10,7 @@ prev: composition-vs-inheritance.html
 
 A React, véleményünk szerint, elsőrendű módja nagy és gyors JavaScript alapú webalkalmazások készítésének. A Facebook és az Instagram esetében nekünk nagyon jól skálázódott.
 
-Az egyik remek dolog – sok más mellett – ahogy a React átalakítja a gondolkodásodat az alkalmazásaidról miközben készíted őket. Ebben a fejezetben végigvezetünk a folyamaton, miközben egy kereshető terméktáblázatot tervezünk meg és építünk fel React használatával.
+Az egyik remek dolog – sok más mellett – ahogy a React átalakítja a gondolkodásodat az alkalmazásaidról miközben készíted őket. Ebben a fejezetben végigvezetünk a folyamaton, miközben megtervezünk és felépítünk egy kereshető terméktáblázatot React használatával.
 
 ## Kezdjük a skiccel {#start-with-a-mock}
 
