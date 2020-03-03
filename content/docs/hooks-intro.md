@@ -1,111 +1,112 @@
 ---
 id: hooks-intro
-title: Introducing Hooks
+title: Horgok bemutatása
 permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+A *horgok* egy új kiegészítése a Reactnek a 16.8-as verziótól kezdve. Lehetővé teszik számodra állapotok és más React funkciók használatát osztályok írása nélkül.
 
 ```js{4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Deklarálj egy új, "count" nevű állapot változót
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>{count} alkalommal kattintottál.</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Kattints rám
       </button>
     </div>
   );
 }
 ```
 
-This new function `useState` is the first "Hook" we'll learn about, but this example is just a teaser. Don't worry if it doesn't make sense yet!
+Ez az új, `useState` nevű függvény az első "Horog" amiről tanulni fogounk, de ez a példa csak egy kis kedvcsináló. Ne aggódj, ha még nem teljesen érted!
 
-**You can start learning Hooks [on the next page](/docs/hooks-overview.html).** On this page, we'll continue by explaining why we're adding Hooks to React and how they can help you write great applications.
 
->Note
+**A [következő oldalon](/docs/hooks-overview.html) elkezdheted a horgok tanulását.** Ezen az oldalon tovább magyarázzuk, hogy miért adjuk hozzá a Horgokat a Reacthez és hogyan segíthetnek téged nagyszerű alkalmazások írásában.
+
+>Megjegyzés
 >
->React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM.
->React Native supports Hooks since [the 0.59 release of React Native](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059).
+> A React 16.8.0 az első kiadás ami támogatja a Horgokat. Frissítéskor ne felejtsd el az összes csomagot frissíteni, beleértve a React DOM-ot.
+> A [React Native a 0.59-es kiadás óta]((https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059)) támogatja a Horgokat.
 
-## Video Introduction {#video-introduction}
+## Videó bemutató {#video-introduction}
 
-At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
+A React Conf 2018-on Sophie Alpert és Dan Abramov mutatták be a Horgokat, akiket Ryan Florence követett, ahol a használatukat egy alkalmazás átírásával demonstrálta. Nézd meg a videót itt:
 
 <br>
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
-## No Breaking Changes {#no-breaking-changes}
+## Nincs "breaking change" {#no-breaking-changes}
 
-Before we continue, note that Hooks are:
+Mielőtt folytatjuk, vedd figyelembe, hogy a Horgok:
 
-* **Completely opt-in.** You can try Hooks in a few components without rewriting any existing code. But you don't have to learn or use Hooks right now if you don't want to.
-* **100% backwards-compatible.** Hooks don't contain any breaking changes.
-* **Available now.** Hooks are now available with the release of v16.8.0.
+* **Teljesen szabadon választhatóak.** A Horgokat kipróbálhatod néhány komponensben anélkül, hogy meglévő kódot kéne átírnod. De ha nem akarod, most egyből nem kell megtanulnod a Horgok használatát.
+* **100%-ban visszafelé kompatibilisak.** A Horgok egyetlen "breaking change"-t nem tartalmaznak.
+* **Már most elérhetőek.** A Horgok a v16.8.0 kiadással már most elérhetőek.
 
-**There are no plans to remove classes from React.** You can read more about the gradual adoption strategy for Hooks in the [bottom section](#gradual-adoption-strategy) of this page.
+**Az osztályok Reactből való eltávolítása nincs tervben.** Ennek az oldalnak a [lenti szekciójában](#gradual-adoption-strategy) többet olvashatsz a Horgok fokozatos adoptáló stratégiájáról.
 
-**Hooks don't replace your knowledge of React concepts.** Instead, Hooks provide a more direct API to the React concepts you already know: props, state, context, refs, and lifecycle. As we will show later, Hooks also offer a new powerful way to combine them.
+**Nem helyezik új lábakra a Reactről tanult koncepciókat.** A horgok inkább egy közvetlenebb API-t biztosítanak a React koncepcióihoz, amiket már ismersz: prop-ok, állapot, kontextus, ref-ek és életciklus. Ahogy később meg fogjuk mutatni, a Horgok egy új, erőteljes módját is lehetővé teszik ezek kombinálására.
 
-**If you just want to start learning Hooks, feel free to [jump directly to the next page!](/docs/hooks-overview.html)** You can also keep reading this page to learn more about why we're adding Hooks, and how we're going to start using them without rewriting our applications.
+**Ha csak el szeretnéd kezdeni a Horgok tanulását, nyugodtan [ugorj a következő oldalra!](/docs/hooks-overview.html)** Vagy folytathatod ennek az oldalnak az olvasását, hogy többet megtudj arról, hogy miért adjuk hozzá a Horgokat a Reacthez és hogyan kezdhetjük el használni őket anélkül, hogy át kéne írnunk az alkalmazásainkat.
 
-## Motivation {#motivation}
+## Motiváció {#motivation}
 
-Hooks solve a wide variety of seemingly unconnected problems in React that we've encountered over five years of writing and maintaining tens of thousands of components. Whether you're learning React, use it daily, or even prefer a different library with a similar component model, you might recognize some of these problems.
+A Horgok a React többféle, látszólag nem összefüggő problémáit oldják meg, amiket öt év alatt több tízezer komponens írása és karbantartása alatt fedeztünk fel. Ha csak tanulod a Reactet, napi szinten használod, vagy egy másik könyvtárat preferálsz hasonló komponensmodellel, valószínű felismersz néhányat ezen problémák közül.
 
-### It's hard to reuse stateful logic between components {#its-hard-to-reuse-stateful-logic-between-components}
+### Állapot teljes logika megosztása komponensek közt nehéz {#its-hard-to-reuse-stateful-logic-between-components}
 
-React doesn't offer a way to "attach" reusable behavior to a component (for example, connecting it to a store). If you've worked with React for a while, you may be familiar with patterns like [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html) that try to solve this. But these patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow. If you look at a typical React application in React DevTools, you will likely find a "wrapper hell" of components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions. While we could [filter them out in DevTools](https://github.com/facebook/react-devtools/pull/503), this points to a deeper underlying problem: React needs a better primitive for sharing stateful logic.
+A React nem ajánl megoldást újrafelhasználható viselkedés egy komponenshez "csatolásához" (például egy adatbázishoz kapcsolást). Ha már dolgoztál egy ideje a Reacttel, ismerős lehet a [render prop-ok](/docs/render-props.html) és a [felsőbb rendű komponensek](/docs/higher-order-components.html) mintája, amik ezt próbálják megoldani. De ezek használata a komponenseid átrendezését igénylik, ami nehézkes lehet és a kód nehezebben követhető lesz. Ha ránézek egy tipikus React alkalmazásra a React Fejlesztői Eszközből, valószínűleg találkozni fogsz egy "csomagoló pokollal", ahol komponensek több rétegnyi ellátó és fogyasztóval, felsőbb rendű komponensekke, render propokkal és más absztrakciókkal vannak körbevéve. Ki tudnánk [őket szűrni a Fejlesztői Eszközben](https://github.com/facebook/react-devtools/pull/503), de ez egy mélyebb problémára mutat rá: A Reactnek szüksége van egy jobb primitívre állapot teljes logika megosztására
 
-With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. **Hooks allow you to reuse stateful logic without changing your component hierarchy.** This makes it easy to share Hooks among many components or with the community.
+A Horgok segítségével kivonhatod az állapot teljes logikát egy komponensből, hogy azt külön tudd tesztelni és újra fel tudd használni. **A Horgok lehetővé teszik állapot teljes logika újrafelhasználását a komponens hierarchiád megváltoztatása nélkül.** Ez lehetővé teszi a Horgok megosztását komponensek között, vagy a közösséggel.
 
-We'll discuss this more in [Building Your Own Hooks](/docs/hooks-custom.html).
+Ezt részletesebben kibeszéljük a [Készítsd el a saját Horgod](/docs/hooks-custom.html) fejezetben.
 
-### Complex components become hard to understand {#complex-components-become-hard-to-understand}
+### A bonyolult komponensek egyre nehezebben érthetőek {#complex-components-become-hard-to-understand}
 
-We've often had to maintain components that started out simple but grew into an unmanageable mess of stateful logic and side effects. Each lifecycle method often contains a mix of unrelated logic. For example, components might perform some data fetching in `componentDidMount` and `componentDidUpdate`. However, the same `componentDidMount` method might also contain some unrelated logic that sets up event listeners, with cleanup performed in `componentWillUnmount`. Mutually related code that changes together gets split apart, but completely unrelated code ends up combined in a single method. This makes it too easy to introduce bugs and inconsistencies.
+Gyakran kellett komponenseket kezelnünk, amik egyszerűnek indultak, de egy nagy, állapot teljes, mellékhatásokkal teli, kezelhetetlen zűrzavarrá váltak. Minden egyes életciklus metódus gyakran tartalmaz oda nem illő logikát. Például egy komponens végrehajthat adatlehívást a `componentDidMount`-ban és a `componentDidUpdate`-ban. Azonban ugyanaz a `componentDidMount` metódus tartalmazhat más oda nem illő logikát ami eseményhallgatókat állít fel, ezek tisztítása pedig a `componentWillUnmount`-ban van végrehatjva. Egymástól függő kód ami együtt változik el lesz választva, de teljesen össze nem illő kódrészletek ugyanabban a metódusban végzik. Ez könnyen hibákhoz és ellentmondásokhoz vezethet.
 
-In many cases it's not possible to break these components into smaller ones because the stateful logic is all over the place. It's also difficult to test them. This is one of the reasons many people prefer to combine React with a separate state management library. However, that often introduces too much abstraction, requires you to jump between different files, and makes reusing components more difficult.
+A legtöbb esetben ezeket a komponenseket nem lehet kisebb egységekre feldarabolni, mert az állapot teljes logika szanaszét van. Valamint tesztelni is nehéz őket. Ez az egyik oka, hogy sokan szeretik a Reactet különálló állapot kezelő könyvtárakkal kombinálni. Azonban ez gyakran túl sok absztrakcióval jár, fájlok közötti ugrálást igényel és nehezebbé teszik a komponenseid újrafelhasználását.
 
-To solve this, **Hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data)**, rather than forcing a split based on lifecycle methods. You may also opt into managing the component's local state with a reducer to make it more predictable.
+Ezen problémák megoldására **a Horgok lehetővé teszik számodra egy komponens feldarabolását kisebb függvényekké az összefüggőségüket alapul véve (például egy feliratkozás felállítása, vagy adatlehívás)** ahelyett, hogy a feldarabolást életciklusok diktálják. Opcionálisan, a helyi állapot kiszámíthatóbbá tételéhez választhatsz egy redukátort (reducer).
 
-We'll discuss this more in [Using the Effect Hook](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns).
+Ezt részletesebben kibeszéljük a [A Hatás Horog](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns) fejezetben.
 
-### Classes confuse both people and machines {#classes-confuse-both-people-and-machines}
+### Az osztályok az embereket és gépeket is megzavarják {#classes-confuse-both-people-and-machines}
 
-In addition to making code reuse and code organization more difficult, we've found that classes can be a large barrier to learning React. You have to understand how `this` works in JavaScript, which is very different from how it works in most languages. You have to remember to bind the event handlers. Without unstable [syntax proposals](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/), the code is very verbose. People can understand props, state, and top-down data flow perfectly well but still struggle with classes. The distinction between function and class components in React and when to use each one leads to disagreements even between experienced React developers.
+Azon kívül hogy a kód újrafelhasználását és rendezését nehezebbé teszik, azt is észrevettük, hogy az osztályok a React tanulásának akadályt is képezhetnek. Értened kell a `this` működését JavaScriptben, ami nagyon különböző a legtöbb nyelv működéséhez képest. Emélkezned kell az esemény hallgatók megkötésére (bind). Instabil [szintaxis javslatok nélkül](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/) a kód nagyon bőbeszédűvé válik. Az emberek tökéletesen megértik a propokat, az állapotot, at fentről-lefelé adatfolyamot, de még mindig küzdenek az osztályokkal. A függvény és osztály közötti megkülönböztetés a Reactben és hogy mikor melyiket kell használni nézeteltérésekhez vezet még gyakorlott React fejlesztők között is.
 
-Additionally, React has been out for about five years, and we want to make sure it stays relevant in the next five years. As [Svelte](https://svelte.dev/), [Angular](https://angular.io/), [Glimmer](https://glimmerjs.com/), and others show, [ahead-of-time compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) of components has a lot of future potential. Especially if it's not limited to templates. Recently, we've been experimenting with [component folding](https://github.com/facebook/react/issues/7323) using [Prepack](https://prepack.io/), and we've seen promising early results. However, we found that class components can encourage unintentional patterns that make these optimizations fall back to a slower path. Classes present issues for today's tools, too. For example, classes don't minify very well, and they make hot reloading flaky and unreliable. We want to present an API that makes it more likely for code to stay on the optimizable path.
+Valamint a React nagyjából már öt éve kint van és azt szeretnék, ha a következő öt évben is az maradna. Ahogy a [Svelte](https://svelte.dev/), [Angular](https://angular.io/), [Glimmer](https://glimmerjs.com/) és mások is mutatják, a komponensek [idő előtti kompilációjának](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) nagy jövője van. Főleg ha az nem korlátozott sablonokra. A közelmúltban kisérlezetni kezdtünk a [komponens hajtogatással](https://github.com/facebook/react/issues/7323) a [Prepack](https://prepack.io/) használatával, és az eredmény jónak ígérkezik. Azonban úgy találtuk, hogy az osztálykomponensek akaratlan mintákra bátorítanak amik ezek optimalizálását nehézkessé teszik. Az osztályokkal problémák lépnek fel a ma eszközeiben is. Például az osztályokat nehéz jól kisebbíteni és az azonnali újratöltést (hot reloading) is nehézzé és megbízhatatlanná teszik. Egy olyan API-t szeretnénk bemutatni, ami a kódot nagyobb eséllyel tartja a jobban optimalizálható pályán.
 
-To solve these problems, **Hooks let you use more of React's features without classes.** Conceptually, React components have always been closer to functions. Hooks embrace functions, but without sacrificing the practical spirit of React. Hooks provide access to imperative escape hatches and don't require you to learn complex functional or reactive programming techniques.
+Ezen problémák megoldására a **Horgok a React funkcióinak használatát teszik lehetővé osztályok nélkül.** Elméletben a React komponensek mindig közelebb álltak a függvényekhez. A Horgok felkarolják a függvényeket, de anélkül, hogy feláldoznák a React gyakorlati szellemét. A Horgok egy imperatív menekülőutat szolgáltatnak, és nem igényelnek bonyolult funkcionális vagy reaktív programozási technikákat.
 
->Examples
+>Példák
 >
->[Hooks at a Glance](/docs/hooks-overview.html) is a good place to start learning Hooks.
+>A [Horgok egy pillantásra](/docs/hooks-overview.html) egy jó hely elkezdeni a Horgok tanulását.
 
-## Gradual Adoption Strategy {#gradual-adoption-strategy}
+## Fokozatos adoptáló stratégia {#gradual-adoption-strategy}
 
->**TLDR: There are no plans to remove classes from React.**
+>**Röviden: Az osztályok eltávolítása Reactből nincs tervben.**
 
-We know that React developers are focused on shipping products and don't have time to look into every new API that's being released. Hooks are very new, and it might be better to wait for more examples and tutorials before considering learning or adopting them.
+Tisztában vagyunk vele, hogy a React fejlesztők termékek leszállítására fókuszálnak és nincs idejük minden új kiadott API változást megnézni. A Horgok még nagyon újak, lehet, hogy megéri várni amíg több példa és tutoriál jelenik meg, mielőtt el kezdenéd tanulni, vagy adoptálni őket.
 
-We also understand that the bar for adding a new primitive to React is extremely high. For curious readers, we have prepared a [detailed RFC](https://github.com/reactjs/rfcs/pull/68) that dives into motivation with more details, and provides extra perspective on the specific design decisions and related prior art.
+Azt is megértjük, hogy a léc nagyon magas egy új React primitív hozzáadásakor. Az érdeklődő olvasóknak készítettünk egy [részletes RFC-t](https://github.com/reactjs/rfcs/pull/68), ami részletesebben elmerül a motivációban és egy extra perspektívát ad a specifikus tervezési döntésekről és az Horgok ihletőiről.
 
-**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mindshift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+**Alapvető, hogy a Horgok együtt tudnak működni a meglévő kódoddal, hogy fokozatosan tudd őket adoptálni.** Senki nem sürget a Horgokra migrálással. Ajánljuk a "nagy átírások" elkerülését, főleg meglévő, bonyolult osztálykomponensek esetében. Hogy "Horgokban kezdj el gondolkodni", egy új gondolkodásmódot igényel. Tapasztalatunk szerint a legjobb gyakorlat a Horgok használatára új, és nem kritikus komponensek, de győződj meg róla, hogy a csapatodban mindenki komfortosan érzi magát velük. A Horgok kipróbálása után nyugodtan [küldj nekünk visszajelzést](https://github.com/facebook/react/issues/new), legyen az pozitív, vagy negatív.
 
-We intend for Hooks to cover all existing use cases for classes, but **we will keep supporting class components for the foreseeable future.** At Facebook, we have tens of thousands of components written as classes, and we have absolutely no plans to rewrite them. Instead, we are starting to use Hooks in the new code side by side with classes.
+A Horgokkal azt szeretnénk elérni, hogy az osztályok minden jelenleg elérhető használati módját lefedjék, de **az előrelátható jövőben folytatni fogjuk az osztályok támogatását is.** A Facebooknál több tízezer kopmponenst írtunk osztályokban és egyáltalán nincs terveb ezek átírása. Ehelyett a Horgokat csak új kódban használjuk közvetlenül osztályok mellett.
 
-## Frequently Asked Questions {#frequently-asked-questions}
+## GY.I.K {#frequently-asked-questions}
 
-We've prepared a [Hooks FAQ page](/docs/hooks-faq.html) that answers the most common questions about Hooks.
+Készítettünk egy [Horgok GY.I.K oldalt](/docs/hooks-faq.html), ami a Horgokkal kapcsolatos leggyakoribb kérdéseket válaszolja meg.
 
-## Next Steps {#next-steps}
+## A következő lépések {#next-steps}
 
-By the end of this page, you should have a rough idea of what problems Hooks are solving, but many details are probably unclear. Don't worry! **Let's now go to [the next page](/docs/hooks-overview.html) where we start learning about Hooks by example.**
+Ennek az oldalnak a végére érve most már nagyjából lehet egy elképzelésed arról, hogy a Horgok milyen problémákat próbálnak megoldani, de valószínűleg sok részlet még nem teljesen tiszta. Ne aggódj! **Most menjünk a [következő oldalra](/docs/hooks-overview.html), ahol a Horgokról példákon keresztül kezdhetünk el tanulni.**
