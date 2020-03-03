@@ -12,7 +12,7 @@ import {createLinkBlog} from 'utils/createLink';
 
 const toSectionList = allMarkdownRemark => [
   {
-    title: 'Recent Posts',
+    title: 'Friss blogposztok',
     items: allMarkdownRemark.edges
       .map(({node}) => ({
         id: node.fields.slug,
@@ -20,7 +20,7 @@ const toSectionList = allMarkdownRemark => [
       }))
       .concat({
         id: '/blog/all.html',
-        title: 'All posts ...',
+        title: 'Összes blogposzt ...',
       }),
   },
 ];

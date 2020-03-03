@@ -21,13 +21,13 @@ const PageNotFound = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>Page Not Found</Header>
+          <Header>Az oldal nem található</Header>
           <TitleAndMetaTags title="React - Page Not Found" />
           <div css={sharedStyles.markdown}>
-            <p>We couldn't find what you were looking for.</p>
+            <p>Nem találtuk meg, amit kerestél.</p>
             <p>
-              Please contact the owner of the site that linked you to the
-              original URL and let them know their link is broken.
+              Kérjük vedd fel a kapcsolatot az oldal tulajdonosával, ami
+              erre az URL-re küldött téged és tudasd velük, hogy a link nem működik.
             </p>
           </div>
         </div>
