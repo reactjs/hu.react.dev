@@ -1,6 +1,6 @@
 ---
 id: thinking-in-react
-title: Thinking in React
+title: Gondolkodj Reactben
 permalink: docs/thinking-in-react.html
 redirect_from:
   - 'blog/2013/11/05/thinking-in-react.html'
@@ -8,17 +8,17 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
-React is, in our opinion, the premier way to build big, fast Web apps with JavaScript. It has scaled very well for us at Facebook and Instagram.
+A React, véleményünk szerint, elsőrendű módja nagy és gyors JavaScript alapú webalkalmazások készítésének. A Facebook és az Instagram esetében nekünk nagyon jól skálázódott.
 
-One of the many great parts of React is how it makes you think about apps as you build them. In this document, we'll walk you through the thought process of building a searchable product data table using React.
+Az egyik remek dolog – sok más mellett – ahogy a React átalakítja a gondolkodásodat az alkalmazásaidról miközben készíted őket. Ebben a fejezetben végigvezetünk a folyamaton, miközben megtervezünk és felépítünk egy kereshető terméktáblázatot React használatával.
 
-## Start With A Mock {#start-with-a-mock}
+## Kezdjük a skiccel {#start-with-a-mock}
 
-Imagine that we already have a JSON API and a mock from our designer. The mock looks like this:
+Tegyük fel, hogy már van egy JSON API-nk és egy rajz a grafikusunktól. A skicc valahogy így néz ki:
 
 ![Mockup](../images/blog/thinking-in-react-mock.png)
 
-Our JSON API returns some data that looks like this:
+A JSON API-tól kapott adatok így néznek ki:
 
 ```
 [
@@ -31,27 +31,27 @@ Our JSON API returns some data that looks like this:
 ];
 ```
 
-## Step 1: Break The UI Into A Component Hierarchy {#step-1-break-the-ui-into-a-component-hierarchy}
+## Első lépés: Bontsuk fel a felületet egy komponens hierarchiába! {#step-1-break-the-ui-into-a-component-hierarchy}
 
-The first thing you'll want to do is to draw boxes around every component (and subcomponent) in the mock and give them all names. If you're working with a designer, they may have already done this, so go talk to them! Their Photoshop layer names may end up being the names of your React components!
+Az első dolgod, hogy körberajzolod az egyes komponenseket és alkomponenseket a skiccen, és nevet adsz nekik. Ha a grafikussal együtt dolgozol, előfordulhat, hogy ő már előtted megtette ezt, szóval irány, beszélj vele! A rajzon a rétegek nevei valószínűleg a React komponenseidnek fognak megfelelni.
 
-But how do you know what should be its own component? Use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
+Honnan tudhatod, hogy miből legyen komponens? Használhatod ugyanazt a módszert, amivel eldöntöd, hogy valaminek kell-e saját függvény vagy objektum. Az egyik ilyen az [egy felelősség alapelve](https://hu.wikipedia.org/wiki/Egy_felel%C5%91ss%C3%A9g_alapelve), vagyis a komponens lehetőleg csak egy dolgot csináljon. Ha növekszik, kisebb egységekre kell bontani.
 
-Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
+Gyakran kell JSON adatokat megjeleníteni a felhasználónak. Mint ahogyan azt te is tapasztalni fogod, ha a modell helyesen van felépítve, akkor a UI (és így a komponensek struktúrája) szépen le fogja azt képezni. Ez annak köszönhető, hogy általában a UI és az adatmodell is ugyanazon *információs architektúra* alapján készül. Különítsd el a UI komponenseidet úgy, hogy minden komponens az adatmodell egy-egy darabjára illeszkedjen.
 
-![Component diagram](../images/blog/thinking-in-react-components.png)
+![Komponens diagram](../images/blog/thinking-in-react-components.png)
 
-You'll see here that we have five components in our app. We've italicized the data each component represents.
+Amint látod, az app így öt komponensből áll. Dőlt betűvel emeltük ki az egyes komponensek által képviselt adatokat.
 
-  1. **`FilterableProductTable` (orange):** contains the entirety of the example
-  2. **`SearchBar` (blue):** receives all *user input*
-  3. **`ProductTable` (green):** displays and filters the *data collection* based on *user input*
-  4. **`ProductCategoryRow` (turquoise):** displays a heading for each *category*
-  5. **`ProductRow` (red):** displays a row for each *product*
+  1. **`FilterableProductTable` (narancs):** magába foglalja a teljes példánkat
+  2. **`SearchBar` (kék):** ez fogadja az *adatbevitelt*
+  3. **`ProductTable` (zöld):** megjeleníti és szűri az *adathalmazt* az *adatbevitel* alapján
+  4. **`ProductCategoryRow` (türkiz):** egy fejlécet jelenít meg minden *kategóriához*
+  5. **`ProductRow` (vörös):** megjelenít egy-egy *terméket*
 
-If you look at `ProductTable`, you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and there's an argument to be made either way. For this example, we left it as part of `ProductTable` because it is part of rendering the *data collection* which is `ProductTable`'s responsibility. However, if this header grows to be complex (e.g., if we were to add affordances for sorting), it would certainly make sense to make this its own `ProductTableHeader` component.
+Megvizsgálva a `ProductTable`-t látni fogod, hogy a fejléc (ami a "Termék" és "Ár" címkéket tartalmazza) nem független komponens. Ez ízlés kérdése is, lehet érvelni róla pro és kontra. Ebben a példában meghagyjuk ezt a `ProductTable` részeként, mert része az *adathalmaz* renderelésének ami a `ProductTable` felelőssége. A későbbiekben ha ez a fejléc bonyolultabbá válik (pl. lehetőséget kell adnunk rendezésre), érdemes megfontolni, hogy készítsünk egy önálló `ProductTableHeader` komponenst.
 
-Now that we've identified the components in our mock, let's arrange them into a hierarchy. Components that appear within another component in the mock should appear as a child in the hierarchy:
+Most, hogy azonosítottuk a komponenseket a rajzunkon, rendezzük őket el egy hierarchiában. Az a komponens, ami egy másikon belül foglal helyet, legyen ennek a gyermeke:
 
   * `FilterableProductTable`
     * `SearchBar`
@@ -59,88 +59,88 @@ Now that we've identified the components in our mock, let's arrange them into a 
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Step 2: Build A Static Version in React {#step-2-build-a-static-version-in-react}
+## Második lépés: Készítsünk egy statikus verziót Reactben {#step-2-build-a-static-version-in-react}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Nézd meg a <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a>-t a <a href="https://codepen.io">CodePen</a>en.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Now that you have your component hierarchy, it's time to implement your app. The easiest way is to build a version that takes your data model and renders the UI but has no interactivity. It's best to decouple these processes because building a static version requires a lot of typing and no thinking, and adding interactivity requires a lot of thinking and not a lot of typing. We'll see why.
+Most, hogy megvan a komponens hierarchiánk, ideje implementálni az appot. A legkönnyebb, ha elkészítünk egy olyan változatot, ami az adatmodellt felhasználva rendereli a UI-t, de még nem interaktív. Jobb ha szétválasztjuk ezeket, mert a statikus változat elkészítése leginkább csak gépelésből áll, ezzel szemben az interaktivitás megtervezése több gondolkodást és kevesebb gépelést igényel. Rögtön látni fogjuk, miért.
 
-To build a static version of your app that renders your data model, you'll want to build components that reuse other components and pass data using *props*. *props* are a way of passing data from parent to child. If you're familiar with the concept of *state*, **don't use state at all** to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.
+Az alkalmazás statikus változatának építéséhez - ami az adatmodellt rendereli - építsük fel a komponenseket, melyek más komponenseket hasznosítanak újra, az adatokat *props* használatával adva tovább. A *props* az egyik módja annak, amivel a szülő adatokat adhat a gyermek komponensnek. Ha esetleg már ismered a *state* (állapot) használatát, most még **ne használd** a statikus változatban. A *state* interaktivitás kezeléséhez van fenntartva. Segítségével az adataink időben változhatnak. Amíg a statikus változatot készíted, nem lesz rá szükség.
 
-You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with `FilterableProductTable`) or with the ones lower in it (`ProductRow`). In simpler examples, it's usually easier to go top-down, and on larger projects, it's easier to go bottom-up and write tests as you build.
+Építkezhetsz felülről lefelé vagy fordítva. Vagyis kezdheted a hierarchiában legmagasabban lévő (esetünkben ez a `FilterableProductTable`) komponenssel vagy alulról is (`ProductRow`). Egyszerűbb példáknál általában egyszerűbb fentről kezdeni, nagyobb projekteknél könnyebb, ha alulról felfelé haladsz, menet közben teszteket is készítve.
 
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható komponensekből, melyek renderelik az adatmodellt. A komponenseknek csak `render()` metódusuk van, mivel ez még mindig a statikus változat. A hierarchia tetején csücsülő komponens (`FilterableProductTable`) egy propként kapja meg az adatmodellt. Ha változtatsz valamit az adatmodellen és újra meghívod a `ReactDOM.render()` metódust a UI frissülni fog. Láthatod, hogyan frissül a UI, hol változik. A React **egyirányú adatáramlása** (*one-way data flow* vagy *one-way binding*) mindent modulárisan és gyorsan kezel.
 
-Refer to the [React docs](/docs/) if you need help executing this step.
+Fordulj a [React dokumentációhoz](/docs/) ha segítségre van szükséged a fenti lépés elvégzéséhez!
 
-### A Brief Interlude: Props vs State {#a-brief-interlude-props-vs-state}
+### Egy kis közjáték: props vagy state {#a-brief-interlude-props-vs-state}
 
-There are two types of "model" data in React: props and state. It's important to understand the distinction between the two; skim [the official React docs](/docs/state-and-lifecycle.html) if you aren't sure what the difference is. See also [FAQ: What is the difference between state and props?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
+Kétféle adatot használunk Reactban, van props és state. Fontos megérteni a különbséget; fusd végig a [hivatalos React dokumentációt](/docs/state-and-lifecycle.html) ha nem vagy biztos benne, hogy ez már világos! Lásd még [GY.I.K: state vagy props, mi a különbség?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
 
-## Step 3: Identify The Minimal (but complete) Representation Of UI State {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
+## Harmadik lépés: Azonosítsd a UI állapot minimális (de teljes) reprezentációját {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
-To make your UI interactive, you need to be able to trigger changes to your underlying data model. React achieves this with **state**.
+Ahhoz, hogy a UI interaktív legyen, képesnek kell lenned változásokat kiváltani a mögöttes adatmodellben. A React ezt a **state** segítségével éri el.
 
-To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, take the length of the TODO items array.
+A helyes felépítéshez először a megváltoztatható állapotok minimális halmazára van szükség. A kulcs itt, hogy [Ne ismételd önmagad](https://hu.wikipedia.org/wiki/Ne_ism%C3%A9teld_%C3%B6nmagad). Találd ki az abszolút minimális reprezentációt és számíttass ki minden mást menet közben igény szerint. Ha például egy TODO listát készítesz, legyen egy tömb a teendőkről, de nem kell egy külön változó a darabszámnak. Inkább mikor meg kell jeleníteni az elemek számát csak használd a *length*-et a tömbödből.
 
-Think of all of the pieces of data in our example application. We have:
+Vegyük végig a példánkban szereplő adatokat:
 
-  * The original list of products
-  * The search text the user has entered
-  * The value of the checkbox
-  * The filtered list of products
+  * Az eredeti terméklista
+  * A szöveg amit a felhasználó megadott a keresésben
+  * A jelölőnégyzet állapota
+  * A szűrt terméklista
 
-Let's go through each one and figure out which one is state. Ask three questions about each piece of data:
+Nézzük hát ezekből mi lehet állapot? Ezeket a kérdéseket kell feltenned mindegyikkel kapcsolatban:
 
-  1. Is it passed in from a parent via props? If so, it probably isn't state.
-  2. Does it remain unchanged over time? If so, it probably isn't state.
-  3. Can you compute it based on any other state or props in your component? If so, it isn't state.
+  1. Egy szülő komponenstől kaptuk props-on keresztül? Ha igen, akkor ez valószínűleg nem state.
+  2. Változatlan marad az idő elteltével? Ha igen, feltehetőleg nem state.
+  3. Elő tudod állítani az egyéb state és a props alapján? Ha igen, akkor nem state.
 
-The original list of products is passed in as props, so that's not state. The search text and the checkbox seem to be state since they change over time and can't be computed from anything. And finally, the filtered list of products isn't state because it can be computed by combining the original list of products with the search text and value of the checkbox.
+Az eredeti terméklista propsban érkezik, tehát nem state. A keresés szövege és a jelölőnégyzet state lesz, hiszen megváltozhatnak és nem számíthatók ki más adatokból. Végül a leszűrt terméklista sem state hiszen az eredeti lista és kereső szöveg valamint a jelölőnégyzet állapota alapján számolható.
 
-So finally, our state is:
+Tehát ennyi lett a state:
 
-  * The search text the user has entered
-  * The value of the checkbox
+  * A felhasználó által megadott keresőszöveg
+  * A jelölőnégyzet értéke
 
-## Step 4: Identify Where Your State Should Live {#step-4-identify-where-your-state-should-live}
+## Negyedik lépés: Azonosítsd HOL kell tartanod a state-et {#step-4-identify-where-your-state-should-live}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Nézd meg a <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a>-t a <a href="https://codepen.io">CodePen</a>en.</p>
 
-OK, so we've identified what the minimal set of app state is. Next, we need to identify which component mutates, or *owns*, this state.
+OK, szóval meghatároztuk mi a minimális state az alkalmazásunkban. Most el kell döntenünk melyik komponens változtatja vagy *birtokolja* ezt a state-et.
 
-Remember: React is all about one-way data flow down the component hierarchy. It may not be immediately clear which component should own what state. **This is often the most challenging part for newcomers to understand,** so follow these steps to figure it out:
+Emlékezz: A React lényege az egy irányú adatáramlás a komponens hierarchiában. Talán nem egyértelmű melyik komponenshez melyik state tartozik. **Gyakran ezt megérteni a legnagyobb kihívás kezdők számára,** de csak kövesd ezeket a lépéseket:
 
-For each piece of state in your application:
+Minden azonosított state-hez az alkalmazásodban:
 
-  * Identify every component that renders something based on that state.
-  * Find a common owner component (a single component above all the components that need the state in the hierarchy).
-  * Either the common owner or another component higher up in the hierarchy should own the state.
-  * If you can't find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common owner component.
+  * Azonosíts minden komponenst amely renderel valamit az adott state alapján
+  * Keresd meg a közös komponenst (egy bizonyos komponens a hierarchiában, ami felette áll state-et használó minden komponensnek).
+  * Vagy a közös szülő, vagy egy másik a hierarchiában magasabban álló komponens kell birtokolja a state-et.
+  * Ha nem találsz olyan komponenst ahol van értelme a state-et elhelyezni, létrehozhatsz egyet pusztán azért, hogy azt kezelje és illeszd a hierarchiába valahol a közös birtokló komponens felé.
 
-Let's run through this strategy for our application:
+Próbáljuk ki ezt a stratégiát az alkalmazásunkon:
 
-  * `ProductTable` needs to filter the product list based on state and `SearchBar` needs to display the search text and checked state.
-  * The common owner component is `FilterableProductTable`.
-  * It conceptually makes sense for the filter text and checked value to live in `FilterableProductTable`
+  * A `ProductTable` le kell szűrje a listát és a `SearchBar` meg kell jelenítse a kereső szöveget és jelölőnégyzet állapotát.
+  * A közös birtokló komponens számukra a `FilterableProductTable`.
+  * Fogalmilag tényleg van értelme, hogy mindkét érték a `FilterableProductTable` komponensben lakjon.
 
-Cool, so we've decided that our state lives in `FilterableProductTable`. First, add an instance property `this.state = {filterText: '', inStockOnly: false}` to `FilterableProductTable`'s `constructor` to reflect the initial state of your application. Then, pass `filterText` and `inStockOnly` to `ProductTable` and `SearchBar` as a prop. Finally, use these props to filter the rows in `ProductTable` and set the values of the form fields in `SearchBar`.
+Király, ezzel el is döntöttük, a state helye a `FilterableProductTable`. Először, vegyük fel hozzá a példány tulajdonságot a `FilterableProductTable` konstruktorába és adjunk neki kezdeti értéket is: `this.state = {filterText: '', inStockOnly: false}`. Ezután adjuk tovább a `filterText` és `inStockOnly` értékét a `ProductTable` és a `SearchBar` számára propsban. Végül a `ProductTable`-ben használjuk őket szűrésre és jelenítsük meg az értéküket a `SearchBar` űrlap mezőiben.
 
-You can start seeing how your application will behave: set `filterText` to `"ball"` and refresh your app. You'll see that the data table is updated correctly.
+Hogy viselkedik az alkalmazás, ha a `filterText` értékét beállítod `"ball"`-nak és frissíted az app-ot? Láthatod, hogy az értékek ennek megfelelően jelennek meg.
 
-## Step 5: Add Inverse Data Flow {#step-5-add-inverse-data-flow}
+## Ötödik lépés: Fordított adatáramlás {#step-5-add-inverse-data-flow}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Nézd meg a <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a>-t a <a href="https://codepen.io">CodePen</a>en.</p>
 
-So far, we've built an app that renders correctly as a function of props and state flowing down the hierarchy. Now it's time to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+Van tehát egy alkalmazásunk ami helyesen jeleníti meg az adatokat a props és a state függvényében lefelé áramoltatva ezeket a hierarchiában. Eljött az ideje, hogy a másik irányba is mozgassunk adatokat. A form komponenseinknek a hierarchia mélyén is tudniuk kell frissíteni a state-et a `FilterableProductTable`-ben.
 
-React makes this data flow explicit to help you understand how your program works, but it does require a little more typing than traditional two-way data binding.
+Reactben ezt nagyon kifejezően ábrázolhatjuk, ami segíti megérteni a program hogyan is működik, de egy kicsit többet kell hozzá gépelni, mint a hagyományos kétirányú adatkapcsolat esetén.
 
-If you try to type or check the box in the current version of the example, you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+Ha próbáltál szöveget beírni vagy kipipálni a jelölőnégyzetet a mostani verziónkban, akkor már láttad, hogy a React figyelmen kívül hagyja a bemeneteket. Ez szándékos, mivel így lehetséges, hogy a propsban kapott érték amit átadunk az `input`nak a `value`-ban  mindig azonos legyen a state-ben tárolt értékkel amit a `FilterableProductTable`-ból továbbadunk.
 
-Let's think about what we want to happen. We want to make sure that whenever the user changes the form, we update the state to reflect the user input. Since components should only update their own state, `FilterableProductTable` will pass callbacks to `SearchBar` that will fire whenever the state should be updated. We can use the `onChange` event on the inputs to be notified of it. The callbacks passed by `FilterableProductTable` will call `setState()`, and the app will be updated.
+Gondoljuk végig mit szeretnénk, mi történjen. Azt akarjuk, hogy bármikor ha a felhasználó megváltoztatja az űrlapot mi frissíthessük a state-et, hogy az tükrözze a bemeneten kapott adatot. Mivel a komponensek csak a saját state-jüket frissíthetik, a `FilterableProductTable` callback függvényeket ad át a `SearchBar`-nak melyek meghívódnak valahányszor a state-et frissíteni kell. Használhatjuk az input mezők `onChange` eseményét, a `FilterableProductTable` által átadott callback-ek meghívhatják annak `setState()` metódusát és alkalmazásunk frissül majd.
 
-## And That's It {#and-thats-it}
+## Ennyi volna {#and-thats-it}
 
-Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+Remélhetőleg ezután már van némi fogalmad, hogyan is gondolkodj, mikor egy komponenst vagy egy alkalmazást készítesz Reactban. Talán egy kicsit többet kellett gépelned, mint amit eddig megszoktál, de ne feledd, általában több időt töltünk a forráskód olvasásával, mint az írással, és kevésbé fárasztó ezt a moduláris, kifejező kódot olvasni. Amikor elkezdesz terjedelmes komponens könyvtárakat létrehozni, nagyra értékeled majd a modularitást és az olvashatóságot, és az újrahasznosíthatóság révén a kódod sorai rövidülni kezdenek. :)
