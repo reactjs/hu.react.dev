@@ -62,7 +62,7 @@ class CodeEditor extends Component {
     if (showBabelErrorMessage) {
       errorMessage = (
         <span>
-          A Babelt nem sikeürlt betölteni.
+          A Babelt nem sikerült betölteni.
           <br />
           <br />
           Ez lehet, hogy egy hirdetés blokkoló miatt történt. Ha használsz ilyet,

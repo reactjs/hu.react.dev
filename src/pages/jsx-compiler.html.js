@@ -29,7 +29,7 @@ const JsxCompiler = ({location}: Props) => (
               </strong>
             </p>
             <p>
-              Egy másik eszköt használatát ajánljuk, mint például{' '}
+              Egy másik eszköz használatát ajánljuk, mint például{' '}
               <a href="https://babeljs.io/repl/">a Babel REPL</a>.
             </p>
           </div>

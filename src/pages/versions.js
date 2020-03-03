@@ -45,7 +45,7 @@ const Versions = ({location}: Props) => (
             <p>
               Nézd meg a GY.I.K-et{' '}
               <a href="/docs/faq-versioning.html">
-                a számozási irányelveinkről és a stabilitási elkötelezttségünkről
+                a számozási irányelveinkről és a stabilitási elkötelezettségünkről
               </a>
               .
             </p>

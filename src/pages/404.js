@@ -24,9 +24,9 @@ const PageNotFound = ({location}: Props) => (
           <Header>Az oldal nem található</Header>
           <TitleAndMetaTags title="React - Page Not Found" />
           <div css={sharedStyles.markdown}>
-            <p>Nem találtuk meg amit kerestél.</p>
+            <p>Nem találtuk meg, amit kerestél.</p>
             <p>
-              Kérjük vedd fel a kapcsolatot az oldal tulajdonosával ami
+              Kérjük vedd fel a kapcsolatot az oldal tulajdonosával, ami
               erre az URL-re küldött téged és tudasd velük, hogy a link nem működik.
             </p>
           </div>

@@ -69,7 +69,7 @@ function ErrorResult(props: {|code: ?string, msg: string|}) {
   if (!code) {
     return (
       <p>
-        Ha egy hibába ütközöl, egy linket fogsz kapni ami erre az oldalra mutat
+        Ha egy hibába ütközöl, egy linket fogsz kapni, ami erre az oldalra mutat
         azzal a specifikus hibával és itt megmutatjuk a hiba teljes szövegét.
       </p>
     );
