@@ -47,10 +47,10 @@ A React Conf 2018-on Sophie Alpert és Dan Abramov mutatták be a Horgokat, akik
 Mielőtt folytatjuk, tudd, hogy a Horgok:
 
 * **Teljesen szabadon választhatóak.** A Horgokat kipróbálhatod néhány komponensben anélkül, hogy meglévő kódot kéne átírnod. De ha nem szeretnéd, nem kell most azonnal megtanulnod a Horgok használatát.
-* **100%-ban visszafelé kompatibilisak.** A Horgok egyetlen "breaking change"-t nem tartalmaznak.
-* **Már most elérhetőek.** A Horgok a v16.8.0 kiadással már most használhatod.
+* **100%-ban visszafelé kompatibilisak.** A Horgok egyetlen "breaking change"-t sem tartalmaznak.
+* **Már most elérhetőek.** A Horgokat a v16.8.0 kiadással már most használhatod.
 
-**Az osztályok Reactből való eltávolítása nincs tervben.** Ennek az oldalnak [egy lentebbi szekciójában](#gradual-adoption-strategy) többet olvashatsz a Horgokat fokozatosan adoptáló stratégiájáról.
+**Nincs tervben az osztályok eltávolítása Reactből.** Ennek az oldalnak [egy lentebbi szekciójában](#gradual-adoption-strategy) többet olvashatsz a Horgokat fokozatosan adoptáló stratégiájáról.
 
 **Nem helyezik új alapokra a Reactről tanult koncepciókat.** A Horgok ehelyett egy közvetlenebb API-t nyújtanak számodra a React koncepcióihoz, amiket már ismersz: prop-ok, állapot, kontextus, ref-ek és életciklus. Ahogy később meg is fogjuk mutatni, a Horgok egy új, erőteljes módját is lehetővé teszik ezek kombinálására.
 
@@ -60,19 +60,19 @@ Mielőtt folytatjuk, tudd, hogy a Horgok:
 
 A Horgok a React többféle, látszólag nem összefüggő problémáit oldják meg, amiket öt év alatt több tízezer komponens írása és karbantartása alatt fedeztünk fel. Ha csak tanulod a Reactet, napi szinten használod, vagy egy másik könyvtárat preferálsz hasonló komponensmodellel, valószínű te is felismersz néhányat ezen problémák közül.
 
-### Állapot teljes logika megosztása komponensek közt nehéz {#its-hard-to-reuse-stateful-logic-between-components}
+### Állapotteljes logika megosztása komponensek közt nehéz {#its-hard-to-reuse-stateful-logic-between-components}
 
-A React nem ajánl megoldást újrafelhasználható viselkedés egy komponenshez "csatolásához" (például egy adatbázishoz kapcsolás). Ha már egy ideje Reacttel dolgozol, ismerős lehet a [render prop-ok](/docs/render-props.html) és a [felsőbb rendű komponensek](/docs/higher-order-components.html) mintája, amik ezt próbálják megoldani. De ezek használata a komponenseid átrendezését igénylik, ami nehézkes lehet és a kód nehezebben követhető lesz. Ha ránézel egy tipikus React alkalmazásra a React Fejlesztői Eszközből, valószínűleg találkozni fogsz a "csomagoló pokollal", ahol komponensek több rétegnyi ellátó (provider) és fogyasztóval (consumer), felsőbb rendű komponensekkel, render prop-okkal és más absztrakciókkal vannak körbevéve. Ki tudnánk [őket szűrni a Fejlesztői Eszközben](https://github.com/facebook/react-devtools/pull/503), de ez egy mélyebb problémára mutat rá: A Reactnek szüksége van egy jobb primitívre állapot teljes logika megosztására.
+A React nem ajánl megoldást újrafelhasználható viselkedés egy komponenshez "csatolásához" (például egy adatbázishoz kapcsolás). Ha már egy ideje Reacttel dolgozol, ismerős lehet a [render prop-ok](/docs/render-props.html) és a [magasabb rendű komponensek](/docs/higher-order-components.html) mintája, amik ezt próbálják megoldani. De ezek használata a komponenseid átrendezését igénylik, ami nehézkes lehet és a kód nehezebben lesz követhető. Ha ránézel egy tipikus React alkalmazásra a React Fejlesztői Eszközből, valószínűleg találkozni fogsz a "csomagoló pokollal", ahol komponensek több rétegnyi ellátó (provider) és fogyasztóval (consumer), magasabb rendű komponensekkel, render prop-okkal és más absztrakciókkal vannak körbevéve. Ki tudnánk [őket szűrni a Fejlesztői Eszközben](https://github.com/facebook/react-devtools/pull/503), de ez egy mélyebb problémára mutat rá: A Reactnek szüksége van egy jobb primitívre állapotteljes logika megosztására.
 
-A Horgok segítségével kivonhatod az állapot teljes logikát egy komponensből, hogy azt külön tudd tesztelni és újra fel tudd használni. **A Horgok lehetővé teszik állapot teljes logika újrafelhasználását a komponens hierarchiád megváltoztatása nélkül.** Ez lehetővé teszi a Horgok megosztását komponensek között, vagy a közösséggel.
+A Horgok segítségével kivonhatod az állapotteljes logikát egy komponensből, hogy azt külön tudd tesztelni és újra fel tudd használni. **A Horgok lehetővé teszik állapotteljes logika újrafelhasználását a komponens hierarchiád megváltoztatása nélkül.** Ez lehetővé teszi a Horgok megosztását komponensek között, vagy a közösséggel.
 
 Ezt részletesebben kibeszéljük a [Készítsd el a saját Horgod](/docs/hooks-custom.html) fejezetben.
 
 ### A bonyolult komponensek egyre nehezebben érthetőek {#complex-components-become-hard-to-understand}
 
-Gyakran kellett komponenseket kezelnünk, amik egyszerűnek indultak, de egy nagy, állapot teljes, mellékhatásokkal teli, kezelhetetlen zűrzavarrá váltak. Minden egyes életciklus metódus gyakran tartalmaz oda nem illő logikát. Például egy komponens végrehajthat adatlehívást a `componentDidMount`-ban és a `componentDidUpdate`-ben. De ugyanez a `componentDidMount` metódus tartalmazhat más, oda nem illő logikát ami eseményhallgatókat állít fel, ezek eltávolítása pedig a `componentWillUnmount`-ban történik. Együtt változó, egymástól függő kód elválasztódik egymástól, miközben teljesen össze nem illő kódrészletek ugyanabban a metódusban végzik. Ez könnyen hibákhoz és ellentmondásokhoz vezethet.
+Gyakran kellett komponenseket kezelnünk, amik egyszerűnek indultak, de egy nagy, állapotteljes, mellékhatásokkal teli, kezelhetetlen zűrzavarrá váltak. Minden egyes életciklus metódus gyakran tartalmaz oda nem illő logikát. Például egy komponens végrehajthat adatlehívást a `componentDidMount`-ban és a `componentDidUpdate`-ben. De ugyanez a `componentDidMount` metódus tartalmazhat más, oda nem illő logikát ami eseményhallgatókat állít fel, ezek eltávolítása pedig a `componentWillUnmount`-ban történik. Együtt változó, egymástól függő kód elválasztódik egymástól, miközben teljesen össze nem illő kódrészletek ugyanabban a metódusban végzik. Ez könnyen hibákhoz és ellentmondásokhoz vezethet.
 
-A legtöbb esetben ezeket a komponenseket nem lehet kisebb egységekre feldarabolni, mert az állapot teljes logika szanaszét van. Valamint tesztelni is nehéz őket. Ez az egyik oka, hogy sokan szeretik a Reactet különálló állapot kezelő könyvtárakkal kombinálni. Azonban ez gyakran túl sok absztrakcióval jár, fájlok közötti ugrálást igényel és nehezebbé teszik a komponenseid újrafelhasználását.
+A legtöbb esetben ezeket a komponenseket nem lehet kisebb egységekre feldarabolni, mert az állapotteljes logika szanaszét van. Valamint tesztelni is nehéz őket. Ez az egyik oka, hogy sokan szeretik a Reactet különálló állapotkezelő könyvtárakkal kombinálni. Azonban ez gyakran túl sok absztrakcióval jár, fájlok közötti ugrálást igényel és nehezebbé teszik a komponenseid újrafelhasználását.
 
 Ezen problémák megoldására, **a Horgokkal egy komponenst fel tudsz darabolni kisebb függvényekké, a darabok összefüggőségét alapul véve (például egy feliratkozás felállítása, vagy adatlehívás)** ahelyett, hogy a feldarabolást életciklusok diktálnák. Opcionálisan, a helyi állapot kiszámíthatóbbá tételéhez választhatsz egy redukátort (reducer).
 
@@ -80,7 +80,7 @@ Ezt részletesebben kibeszéljük a [A Hatás Horog](/docs/hooks-effect.html#tip
 
 ### Az osztályok az embereket és gépeket is megzavarják {#classes-confuse-both-people-and-machines}
 
-Azon kívül, hogy a kód újrafelhasználását és rendezését nehezebbé teszik, azt is észrevettük, hogy az osztályok a React tanulásának is akadályt képezhetnek. Értened kell a `this` működését JavaScriptben, ami nagyon különböző a legtöbb nyelv működéséhez képest. Emélkezned kell az esemény hallgatók megkötésére (bind). Instabil [szintaxis javslatok nélkül](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/) a kód nagyon bőbeszédűvé válik. Az emberek tökéletesen megértik a prop-okat, az állapotot, at fentről-lefelé irányuló adatfolyamot, de még mindig küzdenek az osztályokkal. A függvény és osztály közötti megkülönböztetés a Reactben, és hogy mikor melyiket kell használni, még gyakorlott React fejlesztők között is nézeteltérésekhez vezet.
+Azon kívül, hogy a kód újrafelhasználását és rendezését nehezebbé teszik, azt is észrevettük, hogy az osztályok a React tanulásában is akadályt képezhetnek. Értened kell a `this` működését JavaScriptben, ami nagyon különböző a legtöbb nyelv működéséhez képest. Emlékezned kell az eseményhallgatók megkötésére (bind). Instabil [szintaxis javaslatok nélkül](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/) a kód nagyon bőbeszédűvé válik. Az emberek tökéletesen megértik a prop-okat, az állapotot, a fentről-lefelé irányuló adatfolyamot, de még mindig küzdenek az osztályokkal. A függvény és osztály közötti megkülönböztetés a Reactben, és hogy mikor melyiket kell használni, még gyakorlott React fejlesztők között is nézeteltérésekhez vezet.
 
 Továbbá, a React nagyjából már öt éve kint van, és azt szeretnék, ha a következő öt évben is releváns maradna. Ahogy a [Svelte](https://svelte.dev/), [Angular](https://angular.io/), [Glimmer](https://glimmerjs.com/) és mások is mutatják, a komponensek [idő előtti kompilációjának](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) nagy jövője van. Főleg ha az nem korlátozott sablonokra. A közelmúltban kísérletezni kezdtünk a [komponens hajtogatással](https://github.com/facebook/react/issues/7323) a [Prepack](https://prepack.io/) használatával, és az eredmény jónak ígérkezik. Azonban úgy találtuk, hogy az osztálykomponensek akaratlan mintákra bátorítanak, amik ezek optimalizálását nehézkessé teszik. Az osztályokkal problémák lépnek fel a ma eszközeiben is. Például az osztályokat nehéz jól kisebbíteni és az azonnali újratöltést (hot reloading) is döcögőssé és megbízhatatlanná teszik. Egy olyan API-t szeretnénk bemutatni, ami a kódot nagyobb eséllyel tartja a jobban optimalizálható pályán.
 
@@ -94,13 +94,13 @@ Ezen problémák megoldására, a **Horgok a React funkcióinak használatát te
 
 >**Röviden: Nincs tervben az osztályok eltávolítása Reactből.**
 
-Tisztában vagyunk vele, hogy a React fejlesztők termékek leszállítására fókuszálnak és nincs idejük minden új kiadott API változást megnézni. A Horgok még nagyon újak, ezért lehet hogy megéri várni, amíg több példa és tutoriál jelenik meg, mielőtt el kezdenéd tanulni, vagy adoptálni őket.
+Tisztában vagyunk vele, hogy a React fejlesztők termékek leszállítására fókuszálnak és nincs idejük minden új kiadott API változást megnézni. A Horgok még nagyon újak, ezért lehet, hogy megéri várni, amíg több példa és tutoriál jelenik meg, mielőtt elkezdenéd tanulni, vagy adoptálni őket.
 
 Azt is megértjük, hogy a léc nagyon magas egy új React primitív hozzáadásakor. Az érdeklődő olvasóknak készítettünk egy [részletes RFC-t](https://github.com/reactjs/rfcs/pull/68), ami mélyebbre menően foglalkozik a motivációval és egy extra perspektívát ad a specifikus tervezési döntésekről és az Horgok ihletőiről.
 
 **Alapvető, hogy a Horgok együtt tudnak működni a meglévő kódoddal, hogy fokozatosan tudd őket adoptálni.** Senki nem sürget a Horgokra migrálással. Ajánljuk a "nagy átírások" elkerülését, főleg meglévő, bonyolult osztálykomponensek esetében. Hogy "Horgokban kezdj el látni", egy új gondolkodásmódot igényel. Tapasztalataink szerint a legjobb mód a Horgok használatára új, és nem kritikus komponensek, de győződj meg róla, hogy a csapatodban mindenki komfortosan érzi magát velük. A Horgok kipróbálása után nyugodtan [küldj nekünk visszajelzést](https://github.com/facebook/react/issues/new), legyen az pozitív, vagy negatív.
 
-A Horgokkal azt szeretnénk elérni, hogy az osztályok minden jelenleg elérhető használati módját lefedjék, de **az előrelátható jövőben folytatni fogjuk az osztályok támogatását is.** A Facebooknál több tízezer kopmponenst írtunk osztályokban, és egyáltalán nincs tervben ezek átírása. Ehelyett a Horgokat csak új kódban használjuk közvetlenül osztályok mellett.
+A Horgokkal azt szeretnénk elérni, hogy az osztályok minden jelenleg elérhető használati módját lefedjék, de **az előrelátható jövőben folytatni fogjuk az osztályok támogatását is.** A Facebooknál több tízezer komponenst írtunk osztályokban, és egyáltalán nincs tervben ezek átírása. Ehelyett a Horgokat csak új kódban használjuk közvetlenül osztályok mellett.
 
 ## GY.I.K {#frequently-asked-questions}
 
