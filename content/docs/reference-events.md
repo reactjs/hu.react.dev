@@ -74,7 +74,7 @@ Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" f
   - [Esemény összegyűjtése {#event-pooling}](#esem%c3%a9ny-%c3%b6sszegy%c5%b1jt%c3%a9se-event-pooling)
 - [Támogatott események {#supported-events}](#t%c3%a1mogatott-esem%c3%a9nyek-supported-events)
 - [Referencia {#reference}](#referencia-reference)
-  - [Vágópad események {#clipboard-events}](#v%c3%a1g%c3%b3pad-esem%c3%a9nyek-clipboard-events)
+  - [Vágópadesemények {#clipboard-events}](#v%c3%a1g%c3%b3pad-esem%c3%a9nyek-clipboard-events)
   - [Kompozíció-események {#composition-events}](#kompoz%c3%adci%c3%b3-esem%c3%a9nyek-composition-events)
   - [Billentyűzet-események {#keyboard-events}](#billenty%c5%b1zet-esem%c3%a9nyek-keyboard-events)
   - [Fókuszálás-események {#focus-events}](#f%c3%b3kusz%c3%a1l%c3%a1s-esem%c3%a9nyek-focus-events)
@@ -87,7 +87,7 @@ Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" f
   - [Görgőesemények {#wheel-events}](#g%c3%b6rg%c5%91esem%c3%a9nyek-wheel-events)
   - [Médiaesemények {#media-events}](#m%c3%a9diaesem%c3%a9nyek-media-events)
   - [Képesemények {#image-events}](#k%c3%a9pesem%c3%a9nyek-image-events)
-  - [Animációesemények {#animation-events}](#anim%c3%a1ci%c3%b3esem%c3%a9nyek-animation-events)
+  - [Animáció-események {#animation-events}](#anim%c3%a1ci%c3%b3esem%c3%a9nyek-animation-events)
   - [Átmenet-események {#transition-events}](#%c3%81tmenet-esem%c3%a9nyek-transition-events)
   - [Egyéb események {#other-events}](#egy%c3%a9b-esem%c3%a9nyek-other-events)
 
@@ -95,7 +95,7 @@ Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" f
 
 ## Referencia {#reference}
 
-### Vágópad események {#clipboard-events}
+### Vágópadesemények {#clipboard-events}
 
 Eseménynevek:
 
@@ -349,7 +349,7 @@ onLoad onError
 
 * * *
 
-### Animációesemények {#animation-events}
+### Animáció-események {#animation-events}
 
 Eseménynevek:
 
