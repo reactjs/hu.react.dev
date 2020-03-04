@@ -6,13 +6,13 @@ layout: docs
 category: Reference
 ---
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+Az a referencia útmutató `SyntheticEvent` csomagolót dokumentálja, ami a React Esemény Rendszerét képzi. Ha többet szeretnél tanulni, nézd meg az [Események kezelése](/docs/handling-events.html) útmutatót.
 
-## Overview {#overview}
+## Áttekintés {#overview}
 
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+Az eseménykezelőidnek a `SyntheticEvent` példányai lesznek átadva, ami egy böngészőtől független konténer, a böngésző natív eseményei körül. Ugyanazzal az interfésszel rendelkezik mint a natív események, a `stopPropagation()`-t és a `preventDefault()`-ot beleértve, kivéve, hogy ezek az események a böngészőktől függetlenül egységesen működnek.
 
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. Every `SyntheticEvent` object has the following attributes:
+Ha azon kapod magad, hogy valamiért szükséged van az egyik mögöttes böngészőeseményre, egyszerűen használd a `nativeEvent` attribútumot, hogy azt kapd. Minden `SyntheticEvent` objektum a következő attribútumokkal rendelkezik:
 
 ```javascript
 boolean bubbles
@@ -31,19 +31,19 @@ number timeStamp
 string type
 ```
 
-> Note:
+> Megjegyzés:
 >
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+> A v0.14-től kezdve `false` érték visszaadása egy eseménykezelőben nem állítja meg az esemény terjedését. Ehelyett manuálisan kell, hogy meghívd vagy az `e.stopPropagation()`-t, vagy az `e.preventDefault`-ot, attól függően melyik a helyes a te esetedben.
 
-### Event Pooling {#event-pooling}
+### Esemény összegyűjtése {#event-pooling}
 
-The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+A `SyntheticEvent` egy medencében gyűlik. Ez azt jelenti, hogy a `SyntheticEvent` objektum újra fel lesz használva és minden tulajdonság ki lesz nullozva az esemény callbackjének meghívása után.
+Ez a teljesítmény növelése érdekében történik.
+Így az eseményhez nem férhetsz aszinkron módon.
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => nullified object.
+  console.log(event); // => kinullozott objektum.
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -52,54 +52,58 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  // Won't work. this.state.clickEvent will only contain null values.
+  // Nem fog működni. A this.state.clickEvent csak null értékeket fog tartalmazni.
   this.setState({clickEvent: event});
 
-  // You can still export event properties.
+  // Az esemény értékeket még így is ki tudod exportálni.
   this.setState({eventType: event.type});
 }
 ```
 
-> Note:
+> Megjegyzés:
 >
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+> Ha szeretnél az események tulajdonságaihoz aszinkron módon hozzáférni, meg kell hogy hívd az `event.persist()` metódust az eseményen, ami eltávolítja a szintetikus eseményt a medencéből és lehetővé teszi az eseményre mutató hivatkozások megtartását felhasználói kóddal.
 
-## Supported Events {#supported-events}
+## Támogatott események {#supported-events}
 
-React normalizes events so that they have consistent properties across different browsers.
+A React normalizálja az eseményeket annak érdekében, hogy a tulajdonságaik egységesek legyenek böngészőtől függetlenül.
 
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" fázisban. Egy eseménykezelő regisztrálásához a "capture" fázisban add hozzá a `Capture` szót az esemény nevéhez; például az `onClick` helyett használd az `onClickCapture`-t kattintási események kezeléséhez a capture fázisban.
 
-- [Clipboard Events](#clipboard-events)
-- [Composition Events](#composition-events)
-- [Keyboard Events](#keyboard-events)
-- [Focus Events](#focus-events)
-- [Form Events](#form-events)
-- [Mouse Events](#mouse-events)
-- [Pointer Events](#pointer-events)
-- [Selection Events](#selection-events)
-- [Touch Events](#touch-events)
-- [UI Events](#ui-events)
-- [Wheel Events](#wheel-events)
-- [Media Events](#media-events)
-- [Image Events](#image-events)
-- [Animation Events](#animation-events)
-- [Transition Events](#transition-events)
-- [Other Events](#other-events)
+- [Áttekintés {#overview}](#%c3%81ttekint%c3%a9s-overview)
+  - [Esemény összegyűjtése {#event-pooling}](#esem%c3%a9ny-%c3%b6sszegy%c5%b1jt%c3%a9se-event-pooling)
+- [Támogatott események {#supported-events}](#t%c3%a1mogatott-esem%c3%a9nyek-supported-events)
+- [Referencia {#reference}](#referencia-reference)
+  - [Vágópad események {#clipboard-events}](#v%c3%a1g%c3%b3pad-esem%c3%a9nyek-clipboard-events)
+  - [Kompozíció-események {#composition-events}](#kompoz%c3%adci%c3%b3-esem%c3%a9nyek-composition-events)
+  - [Billentyűzet-események {#keyboard-events}](#billenty%c5%b1zet-esem%c3%a9nyek-keyboard-events)
+  - [Fókuszálás-események {#focus-events}](#f%c3%b3kusz%c3%a1l%c3%a1s-esem%c3%a9nyek-focus-events)
+  - [Űrlapesemények {#form-events}](#%c5%b0rlapesem%c3%a9nyek-form-events)
+  - [Egéresemények {#mouse-events}](#eg%c3%a9resem%c3%a9nyek-mouse-events)
+  - [Mutatóesemények {#pointer-events}](#mutat%c3%b3esem%c3%a9nyek-pointer-events)
+  - [Kiválasztás-események {#selection-events}](#kiv%c3%a1laszt%c3%a1s-esem%c3%a9nyek-selection-events)
+  - [Érintőesemények {#touch-events}](#%c3%89rint%c5%91esem%c3%a9nyek-touch-events)
+  - [Felhasználói felület eseményei {#ui-events}](#felhaszn%c3%a1l%c3%b3i-fel%c3%bclet-esem%c3%a9nyei-ui-events)
+  - [Görgőesemények {#wheel-events}](#g%c3%b6rg%c5%91esem%c3%a9nyek-wheel-events)
+  - [Médiaesemények {#media-events}](#m%c3%a9diaesem%c3%a9nyek-media-events)
+  - [Képesemények {#image-events}](#k%c3%a9pesem%c3%a9nyek-image-events)
+  - [Animációesemények {#animation-events}](#anim%c3%a1ci%c3%b3esem%c3%a9nyek-animation-events)
+  - [Átmenet-események {#transition-events}](#%c3%81tmenet-esem%c3%a9nyek-transition-events)
+  - [Egyéb események {#other-events}](#egy%c3%a9b-esem%c3%a9nyek-other-events)
 
 * * *
 
-## Reference {#reference}
+## Referencia {#reference}
 
-### Clipboard Events {#clipboard-events}
+### Vágópad események {#clipboard-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onCopy onCut onPaste
 ```
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 DOMDataTransfer clipboardData
@@ -107,15 +111,15 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events {#composition-events}
+### Kompozíció-események {#composition-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onCompositionEnd onCompositionStart onCompositionUpdate
 ```
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 string data
@@ -124,15 +128,15 @@ string data
 
 * * *
 
-### Keyboard Events {#keyboard-events}
+### Billentyűzet-események {#keyboard-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onKeyDown onKeyPress onKeyUp
 ```
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 boolean altKey
@@ -149,21 +153,21 @@ boolean shiftKey
 number which
 ```
 
-The `key` property can take any of the values documented in the [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+A `key` tulajdonság bármilyen értéket felvehet, ami szerepel a [3-as szintű DOM események specifikációjában](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
 
 * * *
 
-### Focus Events {#focus-events}
+### Fókuszálás-események {#focus-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onFocus onBlur
 ```
 
-These focus events work on all elements in the React DOM, not just form elements.
+Ezek a fókuszálás-események minden elemen működnek a React DOM-ban, nem csak az űrlapelemeken.
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 DOMEventTarget relatedTarget
@@ -171,21 +175,22 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events {#form-events}
+### Űrlapesemények {#form-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onChange onInput onInvalid onSubmit
 ```
 
+Még több információért az onChange eseményről, nézd meg az [Űrlapok](/docs/forms.html) fejezetet.
 For more information about the onChange event, see [Forms](/docs/forms.html).
 
 * * *
 
-### Mouse Events {#mouse-events}
+### Egéresemények {#mouse-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
@@ -193,9 +198,9 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-The `onMouseEnter` and `onMouseLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+Az `onMouseEnter` és `onMouseLeave` események attól az elemtől propagálódnak, ami balra van attól amelyikre rámutattál render bubbling helyett, és nincs capture fázisuk.
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 boolean altKey
@@ -216,20 +221,20 @@ boolean shiftKey
 
 * * *
 
-### Pointer Events {#pointer-events}
+### Mutatóesemények {#pointer-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+Az `onPointerEnter` és `onPointerLeave` események attól az elemtől propagálódnak, ami balra van attól amelyikre rámutattál render bubbling helyett, és nincs capture fázisuk.
 
-Properties:
+Tulajdonságok:
 
-As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+A [W3 specifikációt](https://www.w3.org/TR/pointerevents/) követve, a mutatóesemények az [Egéreseményeket](#mouse-events) terjesztik ki a következő tulajdonságokkal:
 
 ```javascript
 number pointerId
@@ -244,17 +249,17 @@ string pointerType
 boolean isPrimary
 ```
 
-A note on cross-browser support:
+Egy megjegyzés böngészők közötti támogatásról:
 
-Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+A mutatóesemények még nem minden böngésző által támogatottak (ennek a cikknek az írása közben a következő böngészők támogatják: Chrome, Firefox, Edge, és Internet Explorer). A React szándékosan nem használ polyfillt más böngészők támogatásához, mert egy standardhoz idomuló polyfill jelentősen növelné a `react-dom` csomagméretét.
 
-If your application requires pointer events, we recommend adding a third party pointer event polyfill.
+Ha az alkalmazásod mutatóeseményeket használ, azt ajánljuk, hogy adj hozzá egy harmadik féltől származó esemény polyfillt.
 
 * * *
 
-### Selection Events {#selection-events}
+### Kiválasztás-események {#selection-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onSelect
@@ -262,15 +267,15 @@ onSelect
 
 * * *
 
-### Touch Events {#touch-events}
+### Érintőesemények {#touch-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
 ```
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 boolean altKey
@@ -285,15 +290,15 @@ DOMTouchList touches
 
 * * *
 
-### UI Events {#ui-events}
+### Felhasználói felület eseményei {#ui-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onScroll
 ```
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 number detail
@@ -302,15 +307,15 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events {#wheel-events}
+### Görgőesemények {#wheel-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onWheel
 ```
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 number deltaMode
@@ -321,9 +326,9 @@ number deltaZ
 
 * * *
 
-### Media Events {#media-events}
+### Médiaesemények {#media-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
@@ -334,9 +339,9 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events {#image-events}
+### Képesemények {#image-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onLoad onError
@@ -344,15 +349,15 @@ onLoad onError
 
 * * *
 
-### Animation Events {#animation-events}
+### Animációesemények {#animation-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onAnimationStart onAnimationEnd onAnimationIteration
 ```
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 string animationName
@@ -362,15 +367,15 @@ float elapsedTime
 
 * * *
 
-### Transition Events {#transition-events}
+### Átmenet-események {#transition-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onTransitionEnd
 ```
 
-Properties:
+Tulajdonságok:
 
 ```javascript
 string propertyName
@@ -380,9 +385,9 @@ float elapsedTime
 
 * * *
 
-### Other Events {#other-events}
+### Egyéb események {#other-events}
 
-Event names:
+Eseménynevek:
 
 ```
 onToggle
