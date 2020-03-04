@@ -10,7 +10,7 @@ category: Reference
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
-var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
+var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 npm-mel
 ```
 
 ## Áttekintés {#overview}
