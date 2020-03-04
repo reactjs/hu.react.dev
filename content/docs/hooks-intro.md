@@ -27,7 +27,6 @@ function Example() {
 
 Ez az új, `useState` nevű függvény az első "Horog" amiről tanulni fogunk, de ez a példa csak egy kis kedvcsináló. Ne aggódj, ha még nem teljesen érted!
 
-
 **A [következő oldalon](/docs/hooks-overview.html) elkezdheted a Horgok tanulását.** Ezen az oldalon tovább magyarázzuk, hogy miért adjuk hozzá a Horgokat a Reacthez és hogyan segíthetnek téged nagyszerű alkalmazások írásában.
 
 >Megjegyzés
