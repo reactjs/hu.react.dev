@@ -15,9 +15,9 @@ var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 npm-mel
 
 ## Áttekintés {#overview}
 
-Amikor egységteszteket írsz Reacthez, a sekély renderelés hasznos lehet. A sekély renderelés lehetővé teszi egy komponens renderelését "egy szint mélységig", és tényeket tudsz megerősíteni arról, hogy a render metódus mit ad vissza anélkül, hogy a gyermekkomponensek viselkedésétől kéne aggódnod, amik nem lesznek renderelve. Ez nem igényel DOM-ot.
+Amikor egységteszteket írsz Reacthez, a sekély renderelés hasznos lehet. A sekély renderelés lehetővé teszi egy komponens renderelését "egy szint mélységig", és tényeket tudsz állítani arról, hogy a render metódus mit ad vissza anélkül, hogy a gyermekkomponensek viselkedésétől kéne aggódnod, mivel ezek nem lesznek renderelve. Ez nem igényel DOM-ot.
 
-Például ha van ez a komponensed:
+Például, ha van ez a komponensed:
 
 ```javascript
 function MyComponent() {
@@ -47,11 +47,11 @@ expect(result.props.children).toEqual([
 ]);
 ```
 
-A sekély renderelésnek jelnelg vannak korlátai, ugyanis nem támogatja a ref-eket.
+A sekély renderelésnek jelenleg vannak korlátai, ugyanis nem támogatja a ref-eket.
 
 > Megjegyzés:
 >
-> Ajánljuk továbbá, hogy nézz rá az Enzyme [Shallow Rendering API](https://airbnb.io/enzyme/docs/api/shallow.html)-jára. Ez szebb, felsőbb-szintű API-ket szolgáltat ugyanazzal a funkcionalitással.
+> Ajánljuk továbbá, hogy nézz rá az Enzyme [Shallow Rendering API](https://airbnb.io/enzyme/docs/api/shallow.html)-jára. Ez szebb, felsőbbszintű API-ket szolgáltat ugyanazzal a funkcionalitással.
 
 ## Referencia {#reference}
 
@@ -59,10 +59,10 @@ A sekély renderelésnek jelnelg vannak korlátai, ugyanis nem támogatja a ref-
 
 Gondolhatsz úgy a shallowRenderer-re, mint egy "helyre", ahova a tesztelt komponenst renderelheted és ahonnan ki tudod vonni a komponens kimenetét.
 
-A `shallowRenderer.render()` hasonló a [`ReactDOM.render()`](/docs/react-dom.html#render)-hez, de nincs szüksége DOM-ra, és csak csak egy szint mélységig renderel. Ez azt jelenti, hogy a komponenseket elzártan tudod tesztelni a gyermekeik implementációjától.
+A `shallowRenderer.render()` hasonló a [`ReactDOM.render()`](/docs/react-dom.html#render)-hez, de nincs szüksége DOM-ra, és csak egy szint mélységig renderel. Ez azt jelenti, hogy a komponenseket a gyermekeik implementációjától elzártan tudod tesztelni.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
 A `shallowRenderer.render()` meghívása után használhatod a `shallowRenderer.getRenderOutput()` metódust, hogy megkapd a sekélyen renderelt kimenetet.
 
-Ezután nekiálhatsz tényeket megerősíteni a kimenetről.
+Ezután nekiállhatsz tényeket állítani a kimenetről.
