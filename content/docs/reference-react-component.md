@@ -123,9 +123,9 @@ Amikor meghívódik, a `this.props` és `this.state` alapján vissza kell adnia 
 
 - **React elemek.** Általában [JSX](/docs/introducing-jsx.html) definiálja. Például mind a `<div />` és a `<MyComponent />` is React elemek, amik a Reactet sorrendben egy DOM csomópont és egy felhasználó által definiált komponens renderelésére utasítják.
 - **Tömbök és töredékek.** Ezek több elemet is vissza tudnak adni egyszerre a render függvényből. Részletekért lásd a [töredékek](/docs/fragments.html) dokumentációját.
-- **Kapuk**. Ez egy különálló DOM alfát tud renderelni. Részletekért lásd a [kapuk](/docs/portals.html) dokumentációját.
+- **Portálok**. Ez egy különálló DOM alfát tud renderelni. Részletekért lásd a [portálok](/docs/portals.html) dokumentációját.
 - **Sztringek és számok.** Ezek szövegként kerülnek renderelésre a DOM-ban.
-- **Logikai változók vagy `null`**. Nem renderel semmit. (Többnyire azért van, hogy segítse a `return test && <Child />` mintát, ahol `test` egy logikai változó.)
+- **Logikai változók vagy `null`**. Nem renderel semmit. (Többnyire azért van, hogy segítse a `return test && <Child />` mintát, ahol a `test` egy logikai változó.)
 
 A `render()` tiszta függvény kell, hogy legyen, ami azt jelenti, hogy nem módosítja a komponens állapotát, minden egyes híváskor ugyanazt adja vissza, és közvetlenül nem kommunikál a böngészővel.
 
@@ -145,7 +145,7 @@ constructor(props)
 
 **Nem kell konstruktort implementálnod a React komponensedben, ha nem inicializálod a helyi állapotot és nem bind-olsz metódusokat.**
 
-Egy React komponense konstruktora a DOM-ba helyeződés előtt hívódik meg. Egy `React.Component` konstruktorában először a `super(props)`-t kell meghívni minden más hívás előtt. Enélkül `this.props` undefined értékű lesz a konstruktorban, ami hibákhoz vezethet.
+Egy React komponens konstruktora a DOM-ba helyeződés előtt hívódik meg. Egy `React.Component` konstruktorában először a `super(props)`-t kell meghívni minden más hívás előtt. Enélkül a `this.props` undefined értékű lesz a konstruktorban, ami hibákhoz vezethet.
 
 A React konstruktorokat általában kétféle okból használjuk:
 
@@ -181,7 +181,7 @@ Kerüld el a mellékhatások bevezetését vagy a feliratkozásokat a konstrukto
 >
 >A probléma az, hogy ez mind felesleges (a `this.props.color`-t közvetlenül is tudod használni ehelyett), mind pedig hibákat generál (a `color` prop frissülése nem fog megjelenni a helyi állapotban).
 >
->**Ezt csak akkor használd, ha direkt szeretnéd figyelmen kívül hagyni a prop frissüléseit.** Ebben az esetben a propot átnevezhetjük `initialColor`-nak (vagyis kezdeti szín) or `defaultColor`-nak (alapszín). Ezután kényszerítheted a komponenst, hogy "újraindítsa" a belső állapotát [a `key` megváltoztatásával](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key), amikor szükséges.
+>**Ezt csak akkor használd, ha direkt szeretnéd figyelmen kívül hagyni a prop frissüléseit.** Ebben az esetben a propot átnevezhetjük `initialColor`-nak (vagyis kezdeti szín) vagy `defaultColor`-nak (alapszín). Ezután kényszerítheted a komponenst, hogy "újraindítsa" a belső állapotát [a `key` megváltoztatásával](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key), amikor szükséges.
 >
 >Olvasd el a [blogbejegyzésünket a származtatott állapot elkerüléséről](/blog/2018/06/07/you-probably-dont-need-derived-state.html), ha tudni szeretnéd, hogy mit csinálj, amikor úgy gondolod, hogy szükséged van az állapot propokból való származtatására.
 
@@ -198,7 +198,7 @@ A `componentDidMount()` rögtön azután hívódik meg, miután a komponens lét
 
 Ez a metódus arra is jó, ha feliratozásokat kell felállítanod. Ha ezt teszed, ne felejts el leiratkozni a `componentWillUnmount()`-ban.
 
-A **`setState()`-et akár azonnal is meghívhatod** a `componentDidMount()`-ban. Ez egy extra renderelést fog eredményezni, de ez azelőtt fog megtörténni, mielőtt a bongésző frissíti a képernyőt. Ez garantálja, hogy habár a `render()` kétszer fog meghívódni ebben az esetben, a felhasználó nem fogja a közbenső állapotot látni. Ezt a mintát óvatosan használd, mivel sokszor teljesítményproblémákat okoz. A legtöbb esetben ehelyett már a `constructor()`-ban hozzá tudod rendelni a kezdeti értéket a helyi állapothoz. Azonban szükséges lehet például dialógusok vagy címkék esetében, amik egy DOM csomópont helyzetétől vagy méretétől függenek. 
+A **`setState()`-et akár azonnal is meghívhatod** a `componentDidMount()`-ban. Ez egy extra renderelést fog eredményezni, de ez azelőtt fog megtörténni, mielőtt a böngésző frissíti a képernyőt. Ez garantálja, hogy habár a `render()` kétszer fog meghívódni ebben az esetben, a felhasználó nem fogja a közbenső állapotot látni. Ezt a mintát óvatosan használd, mivel sokszor teljesítményproblémákat okoz. A legtöbb esetben ehelyett már a `constructor()`-ban hozzá tudod rendelni a kezdeti értéket a helyi állapothoz. Azonban szükséges lehet például dialógusok vagy címkék esetében, amik egy DOM csomópont helyzetétől vagy méretétől függenek. 
 
 * * *
 
@@ -208,7 +208,7 @@ A **`setState()`-et akár azonnal is meghívhatod** a `componentDidMount()`-ban.
 componentDidUpdate(prevProps, prevState, snapshot)
 ```
 
-A `componentDidUpdate()` rögtön egy frissítés után hívódik meg. Ez a metódus nem hívódik meg a kezdeti renderelésről.
+A `componentDidUpdate()` rögtön egy frissítés után hívódik meg. Ez a metódus nem hívódik meg a kezdeti rendereléskor.
 
 Ez egy jó alkalom arra, hogy változtatásokat hajts végre a DOM-on, amikor egy komponens frissült. Ez egy jó hely arra is, hogy hálózati kéréseket hajts végre, de csak akkor, ha összehasonlítod a jelenlegi propokat az előző propokkal (például nincs szükség a hálózati kérésre, ha a propok nem változtak). 
 
@@ -223,7 +223,7 @@ componentDidUpdate(prevProps) {
 
 A **`setState()`-et akár azonnal is meghívhatod** a `componentDidUpdate()`-ben, de figyelj arra, hogy ennek **egy feltételben kell elhelyezkednie**, mint a fenti példában, különben egy végtelen ciklus lesz az eredmény. Ez ugyancsak okoz egy extra újrarenderelést, ami bár nem látható a felhasználó számára, de befolyásolhatja a komponens teljesítményét. Ha a helyi állapot egy részét a propból képzed le, fontold meg ehelyett a prop közvetlen használatát. Itt olvashatsz többet a [hibákról, amik a propok helyi állapotba való másolásakor fordulnak elő](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-Ha a komponensed implementálja a `getSnapshotBeforeUpdate()` életciklus metódust (ami ritka), az érték, amit visszaad, `componentDidUpdate()` egy harmadik paramétereként lesz átadva. Egyébként ez a paraméter undefined értékű lesz. 
+Ha a komponensed implementálja a `getSnapshotBeforeUpdate()` életciklus metódust (ami ritka), az érték, amit visszaad, a `componentDidUpdate()` egy harmadik paramétereként lesz átadva. Egyébként ez a paraméter undefined értékű lesz. 
 
 > Megjegyzés
 >
@@ -274,20 +274,20 @@ Jelenleg, ha a `shouldComponentUpdate()` `false`-ot ad vissza, akkor az [`UNSAFE
 static getDerivedStateFromProps(props, state)
 ```
 
-A `getDerivedStateFromProps` közvetlenül a renderelés előtt hajtódik végre a kezdeti renderelésnél és frissítéskor is. Ennek egy objektumot kell visszaadnia az állapot módosításához, vagy null-t, hogy ne módosítson semmit..
+A `getDerivedStateFromProps` közvetlenül a renderelés előtt hajtódik végre a kezdeti renderelésnél és frissítéskor is. Ennek egy objektumot kell visszaadnia az állapot módosításához, vagy null-t, hogy ne módosítson semmit.
 
 Ez a metódus csak [ritka használati esetekre](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) való, amikor a helyi állapot a propok változásaitól függ. Például hasznos lehet egy `<Transition>` komponens implementálására, ami összehasonlítja az előző és a következő gyermekeit, hogy eldöntse, melyiket animálja kifelé vagy befelé.
 
 A leszármaztatott állapot beszédes kódhoz vezet, ami a komponenseidet kevésbé átláthatóvá teszi.  
 [Győződj meg róla, hogy tisztában vagy egyszerűbb alternatívákkal is:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
-* Ha muszály **mellékhatást végrehajtanod** (például adatlekérés vagy animáció) egy propokban történt változás hatására, használd a [`componentDidUpdate`](#componentdidupdate) életciklus metódust ehelyett.
+* Ha muszáj **mellékhatást végrehajtanod** (például adatlekérés vagy animáció) egy propokban történt változás hatására, használd a [`componentDidUpdate`](#componentdidupdate) életciklus metódust ehelyett.
 
 * Ha **adatokat akarsz újraszámítani csak akkor, ha prop változás történt**, [használj egy memoizálás segítőt](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 
 * Ha **"újra kell inicializálni" az állapot egy részét prop változás hatására**, fontold meg a komponens [teljesen kontrollálttá tételét](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component), vagy [teljesen kontrollálatlaná tételét egy `key`-vel](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) ehelyett.
 
-Ennek a metódusnak nincs hozzáférése a komponenspéldányhoz. Ha szeretnéd, újrahasználhatsz némi kódot a `getDerivedStateFromProps()` és a többi osztálymetódus között a propok és helyi állapot tiszta függvényeinek kiemelésével az osztálydefiníción kivülre.
+Ennek a metódusnak nincs hozzáférése a komponenspéldányhoz. Ha szeretnéd, újrahasználhatsz némi kódot a `getDerivedStateFromProps()` és a többi osztálymetódus között a propok és helyi állapot tiszta függvényeinek kiemelésével az osztálydefiníción kívülre.
 
 Megjegyzendő, hogy ez a metódus *minden egyes* renderelődéskor meghívódik, októl függetlenül. Ez ellentétes az `UNSAFE_componentWillReceiveProps` viselkedésével, ami csak akkor hívódik meg, ha az újrarenderelődés a szülőkomponens miatt történt, és nem a helyi `setState` hívás által.
 
@@ -299,9 +299,9 @@ Megjegyzendő, hogy ez a metódus *minden egyes* renderelődéskor meghívódik,
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-A `getSnapshotBeforeUpdate()` rögtön azelőtt hívódik meg, hogy az legutóbb renderelt kimenet el van mentve pl. a DOM-ba. Ez lehetővé teszi, hogy a komponens kiragadjon információkat a DOM-ból (pl. görgetési pozíció), mielőtt az potenciálisan megváltozna. Bármely érték, amit ez a metódus visszaad, a `componentDidUpdate()`-nek lesz átadva.
+A `getSnapshotBeforeUpdate()` rögtön azelőtt hívódik meg, hogy a legutóbb renderelt kimenet el van mentve pl. a DOM-ba. Ez lehetővé teszi, hogy a komponens kiragadjon információkat a DOM-ból (pl. görgetési pozíció), mielőtt az potenciálisan megváltozna. Bármely érték, amit ez a metódus visszaad, a `componentDidUpdate()`-nek lesz átadva.
 
-Ez a használati eset nem gyakori, de előfordulhat olyan felhasználó felületeken, mind például egy csetalkalmazás, aminek speciálisan kell kezelnie a görgetési pozíciót.
+Ez a használati eset nem gyakori, de előfordulhat olyan felhasználói felületeken, mint például egy csevegőalkalmazás, aminek speciálisan kell kezelnie a görgetési pozíciót.
 
 Egy pillanatfelvételi érték (vagy `null`) legyen a visszatérés értéke.
 
@@ -315,7 +315,7 @@ A fenti példákban fontos, hogy kiolvassuk a `scrollHeight` értékét a `getSn
 
 ### Hibahatárok {#error-boundaries}
 
-A [hibahatárok](/docs/error-boundaries.html) React komponensek, amik elkapják a JavaScript hibákat bárhol a komponensfában, kinaplózzák ezeket, és egy tartalék UI-t jelenítenek meg az összeomlott komponensfa helyett. A hibahatárok elkapják a hibábak renderelés közben, az életciklusmetódusokban, és a teljes gyermekkomponensfa konstruktoraiban.
+A [hibahatárok](/docs/error-boundaries.html) React komponensek, amik elkapják a JavaScript hibákat bárhol a komponensfában, kinaplózzák ezeket, és egy tartalék UI-t jelenítenek meg az összeomlott komponensfa helyett. A hibahatárok elkapják a hibákat renderelés közben, az életciklusmetódusokban, és a teljes gyermekkomponensfa konstruktoraiban.
 
 Egy osztálykomponens hibahatárrá válik, ha definiálja a `static getDerivedStateFromError()` és/vagy a `componentDidCatch()` életciklus metódust. Az állapotváltoztatás ezekben az életciklusokban lehetővé teszi az alatta lévő fában történő kezeletlen JavaScript hibák elkapását és egy tartelék komponens megjelenítését.
 
@@ -450,7 +450,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 > Megjegyzés
 >
-> Ezt az életciklust előzőleg `componentWillReceiveProps`-nek hívták. Ez a név a 17-es verzióig működni fog. Használd a [`rename-unsafe-lifecycles` kódmódosítót](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles), hogy automatikusan frissítsd a komponenseidet.
+> Ezt az életciklust előzőleg `componentWillReceiveProps`-nak hívták. Ez a név a 17-es verzióig működni fog. Használd a [`rename-unsafe-lifecycles` kódmódosítót](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles), hogy automatikusan frissítsd a komponenseidet.
 
 > Megjegyzés:
 >
@@ -458,15 +458,15 @@ UNSAFE_componentWillReceiveProps(nextProps)
 >
 > * Ha **mellékhatást kell végrehajtanod**, (például adatlekérés vagy egy animáció) a propokban történt változások határásra, használd a [`componentDidUpdate`](#componentdidupdate) életciklust ehelyett.
 > * Ha a `componentWillReceiveProps`-ot használtad az **adatok újraszámítására a propok változásai alapján**, [használj memoizálás segítőt ehelyett](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
-> * Ha a `componentWillReceiveProps`-ot használtad, hogy **"újrainicializáld" az  állapot egy részét a propok változásának hatására**, fontold meg a komponense [teljesen kontrolláltá tételét](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component), vagy [teljesen kontrollálatlanná egy `key`-vel](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) ehelyett.
+> * Ha a `componentWillReceiveProps`-ot használtad, hogy **"újrainicializáld" az  állapot egy részét a propok változásának hatására**, fontold meg a komponens [teljesen kontrollálttá tételét](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component), vagy [teljesen kontrollálatlanná egy `key`-vel](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) ehelyett.
 >
 > A többi használati esetben [kövesd az ajánlásokat, amik ebben a származtatott állapotról szóló blogbejegyzésben találhatóak](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-Az `UNSAFE_componentWillReceiveProps()` azelőtt hívódik meg, mielőtt egy betöltött komponens új propokat kapna. Ha meg kell változtatnod az állapotot a propok változásának hatására, (például, hogy újrainicializálás), összehasonlíthatod a `this.props`-ot a `nextProps`-szal és állapotot változtathatsz a `this.setState()`-tel ebben a metódusban.
+Az `UNSAFE_componentWillReceiveProps()` azelőtt hívódik meg, mielőtt egy betöltött komponens új propokat kapna. Ha meg kell változtatnod az állapotot a propok változásának hatására, (például, újrainicializálás), összehasonlíthatod a `this.props`-ot a `nextProps`-szal és állapotot változtathatsz a `this.setState()`-tel ebben a metódusban.
 
 Megjegyzendő, hogy ha egy szülő komponens miatt renderelődik újra a komponensed, ez a metódus meghívódik akkor is, ha a propok nem változtak. Hasonlítsd össze a jelenlegi és következő értékeket, ha csak a változásokat akarod lekezelni.
 
-A React nem hívja meg a `UNSAFE_componentWillReceiveProps()`-t a kezdeti prop értékekkel a [betöltés](#mounting) közben. Csak akkor hívja meg ezt a metódust, ha a komponens néhány propja frissülhet. A `this.setState()` meghívása általában nem idézi elő a `UNSAFE_componentWillReceiveProps()` meghívását.
+A React nem hívja meg az `UNSAFE_componentWillReceiveProps()`-t a kezdeti prop értékekkel a [betöltés](#mounting) közben. Csak akkor hívja meg ezt a metódust, ha a komponens néhány propja frissülhet. A `this.setState()` meghívása általában nem idézi elő az `UNSAFE_componentWillReceiveProps()` meghívását.
 
 * * *
 
@@ -480,7 +480,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 >
 > Ezt az életciklust előzőleg `componentWillUpdate`-nek hívták. Ez a név a 17-es verzióig működni fog. Használd a [`rename-unsafe-lifecycles` kódmódosítót](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles), hogy automatikusan frissítsd a komponenseidet.
 
-A `UNSAFE_componentWillUpdate()` közvetlenül renderelés előtt hívódik meg, amikor új propok és állapotok kerülnek fogadásra. Ez egy jó lehetőség arra, hogy előkészítést végezzünk el egy frissítés előtt. Ez a metódus nem hívódik meg a kezdeti rendereléskor.
+Az `UNSAFE_componentWillUpdate()` közvetlenül renderelés előtt hívódik meg, amikor új propok és állapotok kerülnek fogadásra. Ez egy jó lehetőség arra, hogy előkészítést végezzünk el egy frissítés előtt. Ez a metódus nem hívódik meg a kezdeti rendereléskor.
 
 Megjegyzendő, hogy itt nem hívhatod meg a `this.setState()`-et; valamint bármi mást sem (pl. kezdeményezni egy Redux műveletet), ami egy frissítést kezdeményezne a React komponensben a `UNSAFE_componentWillUpdate()` visszatérése előtt.
 
@@ -504,13 +504,13 @@ Csak ez a kettő van: `setState()` és `forceUpdate()`.
 setState(updater[, callback])
 ```
 
- A `setState()` egy várakozási sorba helyezi a komponens állapotának változásait és utasítja a Reactet, hogy ez a komponens a gyermekeivel együtt újrarendereljen az új állapottal. Ez az elsődleges metódus a kezelői felület frissítéséhez a eseménykezelők és szerver általi válasz hatására.
+ A `setState()` egy várakozási sorba helyezi a komponens állapotának változásait és utasítja a Reactet, hogy ez a komponens a gyermekeivel együtt újrarendereljen az új állapottal. Ez az elsődleges metódus a kezelői felület frissítéséhez az eseménykezelők és szerver általi válasz hatására.
 
-Gondolj a `setState()`-re mint *kérés*, egy azonnali parancs helyett a komponens frissítésére. A jobb észlelt teljesítmény miatt a React dönthet úgy, hogy késlelteti a végrehajtást, és aztán több komponenst is egyszerre frissít. A React nem garantálja, hogy az állapotfrissítések azonnal megtörténnek.
+Gondolj a `setState()`-re mint *kérés*, egy azonnali parancs helyett a komponens frissítésére. A jobb észlelt teljesítmény érdekében a React dönthet úgy, hogy késlelteti a végrehajtást, és aztán több komponenst is egyszerre frissít. A React nem garantálja, hogy az állapotfrissítések azonnal megtörténnek.
 
-A `setState()` nem mindig frissíti rögtön a komponenst. Lehet, hogy összevonja más frissítésekkel, vagy késlelteti a frissítést. Emiatt a `this.state`-t kiolvasása rögtön a `setState()` meghívása után egy potenciális buktató. Ehelyett használd a `componentDidUpdate`-t vagy a `setState` callbackjét (`setState(updater, callback)`), ezek közül bármelyik garantáltan lefut egy frissítés megtörténte után . Ha az állapotot egy előző állapot alapján kell beállítanod, olvass az `updater` argumentumról alább.
+A `setState()` nem mindig frissíti rögtön a komponenst. Lehet, hogy összevonja más frissítésekkel, vagy késlelteti a frissítést. Emiatt a `this.state` kiolvasása rögtön a `setState()` meghívása után egy potenciális buktató. Ehelyett használd a `componentDidUpdate`-t vagy a `setState` callbackjét (`setState(updater, callback)`), ezek közül bármelyik garantáltan lefut egy frissítés megtörténte után. Ha az állapotot egy előző állapot alapján kell beállítanod, olvass az `updater` argumentumról alább.
 
-A `setState()` mindig újrarendereléshez vezet, kivéve, ha a `shouldComponentUpdate()` `false`-ot ad vissza. Ha változtatható objektumokat használsz és nem lehet implementálni feltételes renderelő logikát a `shouldComponentUpdate()`-ben, a felesleges renderelések elkerülése érdekében a `setState()`-et csak akkor hívd meg, ha az új állapot különbözik az előzőtől.
+A `setState()` mindig újrarendereléshez vezet, kivéve, ha a `shouldComponentUpdate()` `false`-ot ad vissza. Ha megváltoztatható objektumokat használsz és nem lehet implementálni feltételes renderelő logikát a `shouldComponentUpdate()`-ben, a felesleges renderelések elkerülése érdekében a `setState()`-et csak akkor hívd meg, ha az új állapot különbözik az előzőtől.
 
 Az első argumentum egy `updater` függvény az alábbi szignatúrával:
 
@@ -536,7 +536,7 @@ A `setState()` első argumentuma függvény helyett lehet objektum is:
 setState(stateChange[, callback])
 ```
 
-Ez a `stateChange` egy sekély összefésülését végzi el az új állapotba, pl., amikor egy bevásárlókocsi elemeinek számát változtatod meg:
+Ez a `stateChange` egy sekély összefésülését végzi el az új állapotba, pl., amikor egy kosár elemeinek számát változtatod meg:
 
 ```javascript
 this.setState({quantity: 2})
@@ -577,7 +577,7 @@ component.forceUpdate(callback)
 
 Alapesetben, amikor a komponensed állapota vagy propjai változnak, a komponensed újrarenderelődik. Ha a `render()` metódusod valami más adattól is függ, utasíthatod a Reactet az újrarenderelésre a `forceUpdate()` meghívásával.
 
-A `forceUpdate()` meghívása a `render()` hívását fogja előidézni a komponensben, kihagyva a `shouldComponentUpdate()`-t. Ez ugyanakkor előidézi a normális életciklusmetódusok meghívását a gyermekkomponensekben a `shouldComponentUpdate()`-tel együtt. Viszont a React ugyanúgy csak akkor frissíti a DOM-ot, ha a változás történt.
+A `forceUpdate()` meghívása a `render()` hívását fogja előidézni a komponensben, kihagyva a `shouldComponentUpdate()`-t. Ez ugyanakkor előidézi a normális életciklusmetódusok meghívását a gyermekkomponensekben a `shouldComponentUpdate()`-tel együtt. Viszont a React ugyanúgy csak akkor frissíti a DOM-ot, ha változás történt.
 
 Általában elkerülendő a `forceUpdate()` használata és csak a `this.props` és `this.state`-ből olvass a `render()`-ben.
 
@@ -587,7 +587,7 @@ A `forceUpdate()` meghívása a `render()` hívását fogja előidézni a kompon
 
 ### `defaultProps` {#defaultprops}
 
-A `defaultProps` egy tulajdonságként lehet definiálva magán a komponensen, hogy beállítsa a propok alapértékeit az osztályon. Ez az undefined értékű propoknál használatos, de nem a null értékűekre. Például:
+A `defaultProps` egy tulajdonságként lehet definiálva magán a komponensen, hogy beállítsa a propok alapértékeit az osztályon. Ez az undefined értékű propoknál használatos, a null értékűeknél nem. Például:
 
 ```js
 class CustomButton extends React.Component {
