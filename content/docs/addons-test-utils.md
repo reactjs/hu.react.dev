@@ -15,11 +15,11 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 npm-mel
 
 ## Áttekintés {#overview}
 
-A `ReactTestUtils` egyszerűvé teszi a React komponensek tesztelését az általad választott tesztelői keretrendszerben. A Facebooknál a [Jest](https://facebook.github.io/jest/)-et használjuk a fájdalommentes JavScript tesztelés érdekében. A Jest weboldalán lévő [React Tutorial](https://jestjs.io/docs/tutorial-react) segítségével megtanulhatod, hogy hogyan állj neki.
+A `ReactTestUtils` egyszerűvé teszi a React komponensek tesztelését az általad választott tesztelői keretrendszerben. A Facebooknál a [Jest](https://facebook.github.io/jest/)-et használjuk a fájdalommentes JavaScript tesztelés érdekében. A Jest weboldalán lévő [React Tutorial](https://jestjs.io/docs/tutorial-react) segítségével megtanulhatod, hogy kezdhetsz neki a tesztelésnek.
 
 > Megjegyzés:
 >
-> Mi a [React Testing Library](https://testing-library.com/react) használatát ajánljuk, ami úgy lett tervezve, hogy olyan komponenstesztek írására bátorítson, ami a végfelhasználó cselekedeit tükrözi.
+> Mi a [React Testing Library](https://testing-library.com/react) használatát ajánljuk, ami úgy lett tervezve, hogy olyan komponenstesztek írására bátorítson, amik a végfelhasználó cselekedeit tükrözi.
 >
 > Alternatívaként, az Airbnb is kiadott egy tesztelői segédeszközt [Enzyme](https://airbnb.io/enzyme/) néven, ami egyszerűbbé teszi a React komponenseid kimenetéhez állításokat írni, azt manipulálni és bejárni.
 
@@ -48,7 +48,7 @@ Egy komponens állításokhoz való felkészítéshez vedd körül az azt render
 
 >Megjegyzés
 >
-> Ha a `react-test-renderer`-et használod, az is szolgáltat egy `act` exportot, ami hasonlóan működik.
+> Ha a `react-test-renderer`-t használod, az is szolgáltat egy `act` exportot, ami hasonlóan működik.
 
 Például, mondjuk hogy van ez a `Counter` komponensünk:
 
@@ -103,7 +103,7 @@ afterEach(() => {
   container = null;
 });
 
-it('can render and update a counter', () => {
+it('tud egy számlálót renderelni, és frissíteni', () => {
   // Teszteld az első renderelést és a componentDidMount-ot
   act(() => {
     ReactDOM.render(<Counter />, container);
@@ -124,7 +124,7 @@ it('can render and update a counter', () => {
 
 - Ne feledd, hogy DOM események kiküldése csak akkor működik, ha a DOM konténer hozzá lett adva a `document`-hez. A sablonkód minimalizálásához használj egy könyvtárat, mint a [React Testing Library](https://testing-library.com/react).
 
-- A [`receptek`](/docs/testing-recipes.html) dokumentum több részletet tartalmaz az `act()` működéséről példákkal, és annak használatával.
+- A [`receptek`](/docs/testing-recipes.html) dokumentum több részletet tartalmaz az `act()` működéséről példákkal, és annak használatáról.
 
 * * *
 
@@ -197,7 +197,7 @@ isCompositeComponentWithType(
 )
 ```
 
-Ha az `instance` egy React komponens aminek a típusa egy `componentClass`, akkor `true` értéket ad vissza.
+Ha az `instance` egy React komponens, aminek a típusa egy `componentClass`, akkor `true` értéket ad vissza.
 
 * * *
 
@@ -210,7 +210,7 @@ findAllInRenderedTree(
 )
 ```
 
-Járj be minden komponenst a `tree`-ben (fán) és gyűjtsd össze az összes komponens, ahol a `test(component)` `true`. Ez így magában nem túl hasznos, inkább primitívként, más tesztelői segédeszközökben használt.
+Bejár minden komponenst a `tree`-ben (fán) és összegyűjti az összes komponenst, ahol a `test(component)` `true`. Ez így magában nem túl hasznos, inkább primitívként, más tesztelői segédeszközökben használt.
 
 * * *
 
@@ -298,7 +298,7 @@ Mint a [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype), de
 renderIntoDocument(element)
 ```
 
-Egy React elemet renderel egy leválasztott DOM csomópontba a dokumentumban. **Ez a függvény megköveteli a DOM jelenlétét.** Ez végülis ekvivalens ezzel:
+Egy React elemet renderel egy leválasztott DOM csomópontba, a dokumentumban. **Ez a függvény megköveteli a DOM jelenlétét.** Ez végülis ekvivalens ezzel:
 
 ```js
 const domContainer = document.createElement('div');
@@ -307,7 +307,7 @@ ReactDOM.render(element, domContainer);
 
 > Megegyezés:
 >
-> Szükséged lesz a `window`, `window.document` és a `window.document.createElement` globális jelenlétére a `React` beimportálása **előtt**. Máskülönben a React azt fogja hinni, hogy nem fér hozzá a DOM-hoz és olyan metódusok, mint a `setState` nem fog működni.
+> Szükséged lesz a `window`, `window.document` és a `window.document.createElement` globális jelenlétére a `React` beimportálása **előtt**. Máskülönben a React azt fogja hinni, hogy nem fér hozzá a DOM-hoz és olyan metódusok, mint a `setState` nem fognak működni.
 
 * * *
 
@@ -322,7 +322,7 @@ Simulate.{eventName}(
 )
 ```
 
-Egy esemény kiküldését szimulálja egy DOM csompóponton az opcionális `eventData` eseménnyel kapcsolatos adattal.
+Egy esemény kiküldését szimulálja egy DOM csompóponton, az opcionális `eventData` eseménnyel kapcsolatos adattal.
 
 A `Simulate` rendelkezik egy metódussal [minden eseményhez, amit a React megért](/docs/events.html#supported-events).
 
