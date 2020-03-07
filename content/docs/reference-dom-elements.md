@@ -14,9 +14,9 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-A React egy böngésző-független DOM rendszert implementál a teljesítmény és böngészők közti kompatibilitás érdekében. Éltünk a lehetőséggel és lekerekítettünk néhány érdes sarkot a DOM implementációban.
+A React egy böngészőfüggetlen DOM rendszert implementál a teljesítmény és böngészők közti kompatibilitás érdekében. Éltünk a lehetőséggel és lekerekítettünk néhány érdes sarkot a DOM implementációban.
 
-A Reactben minden DOM tulajdonság és attribútum (az eseménykezelőket beleértve) camelCase formában kell, hogy legyen írva. Például a `tabindex` HTML attribútum a `tabIndex`-szel egyenértékű Reactben. A kivétel az `aria-*` és a `data-*` attribútumok, amik kisbetűsek. Például az `aria-label`-t megarthatod `aria-label`-ként.
+A Reactben minden DOM tulajdonság és attribútum (az eseménykezelőket beleértve) camelCase formában kell, hogy legyen írva. Például a `tabindex` HTML attribútum a `tabIndex`-szel egyenértékű Reactben. A kivétel az `aria-*` és a `data-*` attribútumok, amik kisbetűsek. Például az `aria-label`-t megtarthatod `aria-label`-ként.
 
 ## Attribútumok közti különbségek {#differences-in-attributes}
 
@@ -34,7 +34,7 @@ Ha a Reactet Web Komponensekkel használod (ami ritka), használd inkább a `cla
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-A `dangerouslySetInnerHTML` a React `innerHTML` helyettesítője a böngésző DOM-ban. Általában HTML-t így bevinni kockázatos, mert akarva-akaratlanul [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) támadásnak teszed ki vele a felhasználóidat. Szóval annak ellenére, hogy bevihetsz HTML-t a Reacttel, ki kell írnod a `dangerouslySetInnerHTML` attribútumot, ami egy objektumot fogad egy `__htlm` tulajdonsággal, ami emlékeztessen arra, hogy ez veszélyes. Például:
+A `dangerouslySetInnerHTML` a React `innerHTML` helyettesítője a böngésző DOM-ban. Általában HTML-t így bevinni kockázatos, mert akarva-akaratlanul [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) támadásnak teszed ki vele a felhasználóidat. Szóval annak ellenére, hogy bevihetsz HTML-t a Reacttel, ki kell írnod a `dangerouslySetInnerHTML` attribútumot, ami egy objektumot fogad egy `__html` tulajdonsággal, ami emlékeztessen arra, hogy ez veszélyes. Például:
 
 ```js
 function createMarkup() {
@@ -48,15 +48,15 @@ function MyComponent() {
 
 ### htmlFor {#htmlfor}
 
-Mivel a `for` egy JavaScriptnek fentartott szó, a React elemek helyette a `htmlFor`-t használják.
+Mivel a `for` egy JavaScriptnek fenntartott kulcsszó, a React elemek helyette a `htmlFor`-t használják.
 
 ### onChange {#onchange}
 
-Az `onChange` esemény úgy viselkedik, ahogy elvárnád: amikor egy űrlap mezője megváltozik, ez az esemény meg lesz hívva. Szándékosan nem használjuk a beépített böngésző-viselkedést, mivel az `onChange` egy helytelen elnevezés a viselkedésére, és a React erre az eseményre támaszkodik valósidejű felhasználói bevitelek kezelésére.
+Az `onChange` esemény úgy viselkedik, ahogy elvárnád: amikor egy űrlap mezője megváltozik, ez az esemény meg lesz hívva. Szándékosan nem használjuk a beépített böngészőviselkedést, mivel az `onChange` egy helytelen elnevezés a viselkedésére, és a React erre az eseményre támaszkodik valósidejű felhasználói bevitelek kezelésére.
 
 ### selected {#selected}
 
-A `selected` attribútumot az `<option>` komponens támogatja. Használhatod arra, hogy a komponens ki legyen-e választva, vagy sem. Ez hasznos amikor kontrollált komponenseket kell építeni.
+A `selected` attribútumot az `<option>` komponens támogatja. Használhatod arra, hogy a komponens ki legyen-e választva, vagy sem. Ez hasznos, amikor kontrollált komponenseket kell építeni.
 
 ### style {#style}
 
@@ -92,7 +92,7 @@ function ComponentWithTransition() {
 
 A stíluskulcsok camelCase formátumban vannak, hogy konzisztens legyen az elérésük a DOM-on lévő csomópontokkal JS-ből. (pl. `node.style.backgroundImage`). A vendor prefixumok [kivétel az `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) nagybetűvel kell, hogy kezdődjenek. A `WebkitTransition`-nak ezért van nagy "W"-je.
 
-A React automatikusa hozzáilleszti a "px"-et bizonyos numerikus sorközi stílus tulajdonság után. Ha más egységet használnál a "px" helyett, az értéket sztringként add meg a kívánt egységgel. Például:
+A React automatikusan hozzáilleszti a "px"-et bizonyos numerikus sorközi stílustulajdonságok után. Ha más egységet használnál a "px" helyett, az értéket sztringként add meg a kívánt egységgel. Például:
 
 ```js
 // Az stílus eredménye: '10px'
@@ -106,7 +106,7 @@ A React automatikusa hozzáilleszti a "px"-et bizonyos numerikus sorközi stílu
 </div>
 ```
 
-Habár nem minden stílus tulajdonság van pixel sztringgé átkonvertálva. Néhányan egység nélkül maradnak (pl. `zoom`, `order`, `flex`). A teljes egység nélküli tulajdonságok listáját [itt](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59) találod.
+Habár nem minden stílustulajdonság van pixel sztringgé átkonvertálva. Néhányan egység nélkül maradnak (pl. `zoom`, `order`, `flex`). Az egység nélküli tulajdonságok teljes listáját [itt](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59) találod.
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
@@ -126,17 +126,17 @@ A `value` attribútum az `<input>` és `<textarea>` komponensek által támogat
 
 A React 16-tól kezdve minden standard, [vagy egyedi](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attribútum teljesen támogatott.
 
-A React mindigis biztosított egy JavaScript centrikus API-t a DOM-hoz. Mivel a React komponensek gyakran használnak mind egyedi és DOM-mal kapcsolatos propokat, a React konvenvió alapján `camelCase` formátumot használ úgy, ahogyan a DOM API-k:
+A React mindig is biztosított egy JavaScript centrikus API-t a DOM-hoz. Mivel a React komponensek gyakran használnak mind egyedi és DOM-mal kapcsolatos propokat, a React konvenció alapján `camelCase` formátumot használ úgy, ahogyan a DOM API-k:
 
 ```js
-<div tabIndex="-1" />      // Pont mint a node.tabIndex DOM API
-<div className="Button" /> // Pont mint a node.className DOM API
-<input readOnly={true} />  // Pont mint a node.readOnly DOM API
+<div tabIndex="-1" />      // Pont, mint a node.tabIndex DOM API
+<div className="Button" /> // Pont, mint a node.className DOM API
+<input readOnly={true} />  // Pont, mint a node.readOnly DOM API
 ```
 
-Ezek a propok nagyon hasonlóan működnek a megegyező HTML attribútumokhoz, az alábbi speciális esetek kivételével ami alább van dokumentálva.
+Ezek a propok nagyon hasonlóan működnek a megegyező HTML attribútumokhoz, a fentebb dokumentált speciális esetek kivételével.
 
-Néhány React által támoatott DOM attribútum:
+Néhány React által támogatott DOM attribútum:
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
