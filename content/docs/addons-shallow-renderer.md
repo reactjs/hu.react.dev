@@ -1,68 +1,68 @@
 ---
 id: shallow-renderer
-title: Shallow Renderer
+title: Sekély renderelő
 permalink: docs/shallow-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**Importálás**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
-var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
+var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 npm-mel
 ```
 
-## Overview {#overview}
+## Áttekintés {#overview}
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+Amikor egységteszteket írsz Reacthez, a sekély renderelés hasznos lehet. A sekély renderelés lehetővé teszi egy komponens renderelését "egy szint mélységig", és tényeket tudsz állítani arról, hogy a render metódus mit ad vissza anélkül, hogy a gyermekkomponensek viselkedésétől kéne aggódnod, mivel ezek nem lesznek renderelve. Ez nem igényel DOM-ot.
 
-For example, if you have the following component:
+Például, ha van ez a komponensed:
 
 ```javascript
 function MyComponent() {
   return (
     <div>
-      <span className="heading">Title</span>
+      <span className="heading">Cím</span>
       <Subcomponent foo="bar" />
     </div>
   );
 }
 ```
 
-Then you can assert:
+Akkor az alábbit állíthatod:
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// in your test:
+// a tesztedben:
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
 
 expect(result.type).toBe('div');
 expect(result.props.children).toEqual([
-  <span className="heading">Title</span>,
+  <span className="heading">Cím</span>,
   <Subcomponent foo="bar" />
 ]);
 ```
 
-Shallow testing currently has some limitations, namely not supporting refs.
+A sekély renderelésnek jelenleg vannak korlátai, ugyanis nem támogatja a ref-eket.
 
-> Note:
+> Megjegyzés:
 >
-> We also recommend checking out Enzyme's [Shallow Rendering API](https://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
+> Ajánljuk továbbá, hogy nézz rá az Enzyme [Shallow Rendering API](https://airbnb.io/enzyme/docs/api/shallow.html)-jára. Ez szebb, felsőbbszintű API-ket szolgáltat ugyanazzal a funkcionalitással.
 
-## Reference {#reference}
+## Referencia {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
-You can think of the shallowRenderer as a "place" to render the component you're testing, and from which you can extract the component's output.
+Gondolhatsz úgy a shallowRenderer-re, mint egy "helyre", ahova a tesztelt komponenst renderelheted és ahonnan ki tudod vonni a komponens kimenetét.
 
-`shallowRenderer.render()` is similar to [`ReactDOM.render()`](/docs/react-dom.html#render) but it doesn't require DOM and only renders a single level deep. This means you can test components isolated from how their children are implemented.
+A `shallowRenderer.render()` hasonló a [`ReactDOM.render()`](/docs/react-dom.html#render)-hez, de nincs szüksége DOM-ra, és csak egy szint mélységig renderel. Ez azt jelenti, hogy a komponenseket a gyermekeik implementációjától elzártan tudod tesztelni.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getRenderOutput()` to get the shallowly rendered output.
+A `shallowRenderer.render()` meghívása után használhatod a `shallowRenderer.getRenderOutput()` metódust, hogy megkapd a sekélyen renderelt kimenetet.
 
-You can then begin to assert facts about the output.
+Ezután nekiállhatsz tényeket állítani a kimenetről.
