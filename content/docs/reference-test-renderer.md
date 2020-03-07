@@ -15,9 +15,9 @@ const TestRenderer = require('react-test-renderer'); // ES5 npm-mel
 
 ## Áttekintés {#overview}
 
-Ez a csomag egy React renderelőt nyújt, ami React komponensek tiszta JavaScript objektumokként való  renderelését teszi lehetővé a DOM és natív mobilkörnyezetek nélkül.
+Ez a csomag egy React renderelőt nyújt, ami React komponensek, tiszta JavaScript objektumokként való  renderelését teszi lehetővé, a DOM és natív mobilkörnyezetek nélkül.
 
-Alapjában véve, ez a csomag a platform nézethierarchiájáról (hasonló a DOM fához) pillanatképek készítését teszi egyszerűvé, amiket egy React DOM, vagy React Native komponens renderel böngésző, vagy [jsdom](https://github.com/tmpvar/jsdom) használata nélkül.
+Alapjában véve, ez a csomag a platform nézethierarchiájáról (ami hasonló a DOM fához) való pillanatképek készítését teszi egyszerűbbé, amiket egy React DOM, vagy React Native komponens renderel böngésző, vagy [jsdom](https://github.com/tmpvar/jsdom) használata nélkül.
 
 Példa:
 
@@ -38,7 +38,7 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-Használhatod a Jest pillanatkép-tesztelő funkcióját a JSON fa automatikus fájlba való kimentéséhez, és hogy le tudd ellenőrizni, hogy a tesztjeid megváltoztak-e, vagy nem: [Itt tanulhatsz róla többet](https://jestjs.io/docs/en/snapshot-testing).
+Használhatod a Jest pillanatkép-tesztelő funkcióját a JSON fa automatikus fájlba való kimentéséhez, és hogy le tudd ellenőrizni, hogy a tesztjeid megváltoztak-e: [Itt tanulhatsz róla többet](https://jestjs.io/docs/en/snapshot-testing).
 
 A kimenetet be is tudod járni, hogy konkrét csomópontokhoz tudj állítsokat írni.
 
@@ -141,7 +141,7 @@ expect(root.toJSON()).toMatchSnapshot();
 testRenderer.toJSON()
 ```
 
-Egy, a renderelt fát képviselő objektumot ad vissza. Ez a fa csak platformspecifikus csomópontokat és azok propjait tartalmazza, mint a `<div>`, vagy `<View>`, a felhasználó által írt komponenseket viszont nem. Ez jól jön [pillanatkép teszteléskor](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+Egy, a renderelt fát képviselő objektumot ad vissza. Ez a fa csak platformspecifikus csomópontokat és azok propjait tartalmazza, mint a `<div>`, vagy `<View>`, a felhasználó által írt komponenseket viszont nem. Ez jól jön [pillanatkép-teszteléskor](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
@@ -187,7 +187,7 @@ A gyökér "tesztpéldány" objektumát adja vissza, ami hasznos a fában lévő
 testInstance.find(test)
 ```
 
-Megtalálja azt az egyetlen leszármazott tesztpéldányt, ami esetében a `test(testInstance)` `true` értéket ad vissza. Egy hibát dob, aa a `test(testInstance)` nem csak egy tesztpéldány esetén ad vissza `true` értéket.
+Megtalálja azt az egyetlen leszármazott tesztpéldányt, ami esetében a `test(testInstance)` `true` értéket ad vissza. Egy hibát dob, ha a `test(testInstance)` nem csak egy tesztpéldány esetén ad vissza `true` értéket.
 
 ### `testInstance.findByType()` {#testinstancefindbytype}
 
@@ -219,7 +219,7 @@ Megtalálja az összes tesztpéldányt, aminél a `test(testInstance)` `true` é
 testInstance.findAllByType(type)
 ```
 
-Megtalálja az összes tesztpéldányt, ahol a típus megegyezik a megadot `type`-val.
+Megtalálja az összes tesztpéldányt, ahol a típus megegyezik a megadott `type`-val.
 
 ### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
@@ -227,7 +227,7 @@ Megtalálja az összes tesztpéldányt, ahol a típus megegyezik a megadot `type
 testInstance.findAllByProps(props)
 ```
 
-Megtalálja az összes tesztpéldányt, ahol a propok megegyeznek a megadot `props`-szal.
+Megtalálja az összes tesztpéldányt, ahol a propok megegyeznek a megadott `props`-szal.
 
 ### `testInstance.instance` {#testinstanceinstance}
 
@@ -269,7 +269,7 @@ testInstance.children
 
 Ennek a tesztpéldánynak a gyermek tesztpéldányai.
 
-## Ötlétek {#ideas}
+## Ötletek {#ideas}
 
 Opcióként átadhatod a `createNodeMock` függvényt a `TestRenderer.create`-nek, ami lehetőséget ad egyedi, hamis refek használatához.
 A `createNodeMock` a jelenlegi elemet fogadja, és egy hamis refobjektumot kell, hogy visszaadjon.
