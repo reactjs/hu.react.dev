@@ -1,6 +1,6 @@
 ---
 id: test-renderer
-title: Teszt renderelő
+title: Tesztrenderelő
 permalink: docs/test-renderer.html
 layout: docs
 category: Reference
@@ -149,7 +149,7 @@ Egy, a renderelt fát képviselő objektumot ad vissza. Ez a fa csak platformspe
 testRenderer.toTree()
 ```
 
-Egy, a renderelt fát képviselő objektumot ad vissza. A reprezentáció részeletesebb, mint amit a `toJSON()` ad vissza, és a felhasználó által írt komponenseket is tartalmazza. Valószínűleg erre a metódusra nem lesz szükséged, kivéve ha a saját állítási könyvtáradat írod a teszt renderelőre építve.
+Egy, a renderelt fát képviselő objektumot ad vissza. A reprezentáció részeletesebb, mint amit a `toJSON()` ad vissza, és a felhasználó által írt komponenseket is tartalmazza. Valószínűleg erre a metódusra nem lesz szükséged, kivéve ha a saját állítási könyvtáradat írod a tesztrenderelőre építve.
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -183,7 +183,6 @@ testRenderer.root
 A gyökér "tesztpéldány" objektumát adja vissza, ami hasznos a fában lévő specifikus csomópontokhoz való állítások írásához. Mélyebben lévő "tesztpéldányok" megtalálásához is használhatod.
 
 ### `testInstance.find()` {#testinstancefind}
-
 ```javascript
 testInstance.find(test)
 ```
