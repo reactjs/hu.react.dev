@@ -1,6 +1,6 @@
 ---
 id: dom-elements
-title: DOM Elements
+title: DOM Elemek
 layout: docs
 category: Reference
 permalink: docs/dom-elements.html
@@ -14,31 +14,31 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-React implements a browser-independent DOM system for performance and cross-browser compatibility. We took the opportunity to clean up a few rough edges in browser DOM implementations.
+A React egy böngészőfüggetlen DOM rendszert implementál a teljesítmény és böngészők közti kompatibilitás érdekében. Éltünk a lehetőséggel és lekerekítettünk néhány érdes sarkot a DOM implementációban.
 
-In React, all DOM properties and attributes (including event handlers) should be camelCased. For example, the HTML attribute `tabindex` corresponds to the attribute `tabIndex` in React. The exception is `aria-*` and `data-*` attributes, which should be lowercased. For example, you can keep `aria-label` as `aria-label`.
+A Reactben minden DOM tulajdonság és attribútum (az eseménykezelőket beleértve) camelCase formában kell, hogy legyen írva. Például a `tabindex` HTML attribútum a `tabIndex`-szel egyenértékű Reactben. A kivétel az `aria-*` és a `data-*` attribútumok, amik kisbetűsek. Például az `aria-label`-t megtarthatod `aria-label`-ként.
 
-## Differences In Attributes {#differences-in-attributes}
+## Attribútumok közti különbségek {#differences-in-attributes}
 
-There are a number of attributes that work differently between React and HTML:
+Számos különbség van a React és a HTML attribútumainak működése között:
 
 ### checked {#checked}
 
-The `checked` attribute is supported by `<input>` components of type `checkbox` or `radio`. You can use it to set whether the component is checked. This is useful for building controlled components. `defaultChecked` is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
+A `checked` attribútum a `checkbox` vagy a `radio` típusú `<input>` komponens által támogatott. Használhatod arra, hogy azt jelöld egy komponens ki van-e választva, vagy sem. Ez hasznos kontrollált komponensek építése esetén. A `defaultChecked` kontrollálatlan megfelelője, ami a komponens létrejöttekor határozza meg, hogy az ki van-e választva, vagy sem.
 
 ### className {#classname}
 
-To specify a CSS class, use the `className` attribute. This applies to all regular DOM and SVG elements like `<div>`, `<a>`, and others.
+Egy CSS osztály meghatározásához használd a `className` attribútumot. Ez minden általános DOM és SVG elemre vonatkozik, mint a `<div>`, `<a>` és a többi.
 
-If you use React with Web Components (which is uncommon), use the `class` attribute instead.
+Ha a Reactet Web Komponensekkel használod (ami ritka), használd inkább a `class` attribútumot.
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` is React's replacement for using `innerHTML` in the browser DOM. In general, setting HTML from code is risky because it's easy to inadvertently expose your users to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. So, you can set HTML directly from React, but you have to type out `dangerouslySetInnerHTML` and pass an object with a `__html` key, to remind yourself that it's dangerous. For example:
+A `dangerouslySetInnerHTML` a React `innerHTML` helyettesítője a böngésző DOM-ban. Általában HTML-t így bevinni kockázatos, mert akarva-akaratlanul [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) támadásnak teszed ki vele a felhasználóidat. Szóval annak ellenére, hogy bevihetsz HTML-t a Reacttel, ki kell írnod a `dangerouslySetInnerHTML` attribútumot, ami egy objektumot fogad egy `__html` tulajdonsággal, ami emlékeztessen arra, hogy ez veszélyes. Például:
 
 ```js
 function createMarkup() {
-  return {__html: 'First &middot; Second'};
+  return {__html: 'Első &middot; Második'};
 }
 
 function MyComponent() {
@@ -48,23 +48,23 @@ function MyComponent() {
 
 ### htmlFor {#htmlfor}
 
-Since `for` is a reserved word in JavaScript, React elements use `htmlFor` instead.
+Mivel a `for` egy JavaScriptnek fenntartott kulcsszó, a React elemek helyette a `htmlFor`-t használják.
 
 ### onChange {#onchange}
 
-The `onChange` event behaves as you would expect it to: whenever a form field is changed, this event is fired. We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
+Az `onChange` esemény úgy viselkedik, ahogy elvárnád: amikor egy űrlap mezője megváltozik, ez az esemény meg lesz hívva. Szándékosan nem használjuk a beépített böngészőviselkedést, mivel az `onChange` egy helytelen elnevezés a viselkedésére, és a React erre az eseményre támaszkodik valósidejű felhasználói bevitelek kezelésére.
 
 ### selected {#selected}
 
-The `selected` attribute is supported by `<option>` components. You can use it to set whether the component is selected. This is useful for building controlled components.
+A `selected` attribútumot az `<option>` komponens támogatja. Használhatod arra, hogy a komponens ki legyen-e választva, vagy sem. Ez hasznos, amikor kontrollált komponenseket kell építeni.
 
 ### style {#style}
 
->Note
+>Megjegyzés
 >
->Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#classname) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
+> Néhány példa a dokumentációban a `style`-t használja a kényelmesség érdekében, de a **style attribútum használata elsődleges elemstílusozásra általában nem ajánlott.** A legtöbb esetben [`className`](#classname) használata ajánlott, ami külső CSS stíluslapokban lévő osztályokra hivatkozik. A `style` a Reactben leggyakrabban rendereléskor dinamikusan kiszámított stílusok hozzáadásához használt. Lásd még [GY.I.K: Stílusozás és CSS](/docs/faq-styling.html).
 
-The `style` attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM `style` JavaScript property, is more efficient, and prevents XSS security holes. For example:
+A `style` attribútum egy camelCase formátumú tulajdonságokkal ellátott JavaScript objektum, CSS sztringek helyett. Ez konzisztens a DOM `style` JavaScript tulajdonságával, hatékonyabb és megelőzi az XSS biztonsági réseket. Például:
 
 ```js
 const divStyle = {
@@ -73,70 +73,70 @@ const divStyle = {
 };
 
 function HelloWorldComponent() {
-  return <div style={divStyle}>Hello World!</div>;
+  return <div style={divStyle}>Helló világ!</div>;
 }
 ```
 
-Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:
+Megjegyzendő hogy a stílusok nincsenek automatikusan prefixálva. Régebbi böngészők támogatásához szolgáltatnod kell a megfelelő tulajdonságokat:
 
 ```js
 const divStyle = {
-  WebkitTransition: 'all', // note the capital 'W' here
-  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+  WebkitTransition: 'all', // Figyeld meg a nagybetűs 'W'-t
+  msTransition: 'all' // Az 'ms' az egyetlen vendor prefixum
 };
 
 function ComponentWithTransition() {
-  return <div style={divStyle}>This should work cross-browser</div>;
+  return <div style={divStyle}>Ennek működnie kell böngészők között</div>;
 }
 ```
 
-Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
+A stíluskulcsok camelCase formátumban vannak, hogy konzisztens legyen az elérésük a DOM-on lévő csomópontokkal JS-ből. (pl. `node.style.backgroundImage`). A vendor prefixumok [kivétel az `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) nagybetűvel kell, hogy kezdődjenek. A `WebkitTransition`-nak ezért van nagy "W"-je.
 
-React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
+A React automatikusan hozzáilleszti a "px"-et bizonyos numerikus sorközi stílustulajdonságok után. Ha más egységet használnál a "px" helyett, az értéket sztringként add meg a kívánt egységgel. Például:
 
 ```js
-// Result style: '10px'
+// Az stílus eredménye: '10px'
 <div style={{ height: 10 }}>
-  Hello World!
+  Helló világ!
 </div>
 
-// Result style: '10%'
+// A stílus eredménye: '10%'
 <div style={{ height: '10%' }}>
-  Hello World!
+  Helló világ!
 </div>
 ```
 
-Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
+Habár nem minden stílustulajdonság van pixel sztringgé átkonvertálva. Néhányan egység nélkül maradnak (pl. `zoom`, `order`, `flex`). Az egység nélküli tulajdonságok teljes listáját [itt](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59) találod.
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-Normally, there is a warning when an element with children is also marked as `contentEditable`, because it won't work. This attribute suppresses that warning. Don't use this unless you are building a library like [Draft.js](https://facebook.github.io/draft-js/) that manages `contentEditable` manually.
+Általában egy figyelmeztetés jelenik meg, amikor egy elem gyermekekkel `contentEditable`-ként is meg van jelölve, mert ez nem fog működni. Ez az attribútu, elnyomja a figyelmeztetést. Csak akkor használd, ha egy könyvtárat készítesz, mint például a [Draft.js](https://facebook.github.io/draft-js/), ami manuálisam kezeli a `contentEditable`-t.
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
-If you use server-side React rendering, normally there is a warning when the server and the client render different content. However, in some rare cases, it is very hard or impossible to guarantee an exact match. For example, timestamps are expected to differ on the server and on the client.
+Ha szerver oldali React renderelést használsz, általában van egy figyelmeztetés, amikor a szerver és a kliens tartalma eltér. Azonban ritka esetekben nagyon nehéz, vagy lehetetlen a tökéletes egyezést garantálni. Például a időbélyegek várhatóan eltérnek a szerveren és a kliensen.
 
-If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
+Ha a `suppressHydrationWarning`-ot `true`-ra állítod, a React nem fog figyelmeztetni az attribútumok, vagy az elem tartalmának eltérése esetén. Ez csak egy szint mélységig működik, és egy menekülési útnak van szánva. Ne használd túl sokat. A hidrálásról többet olvashatsz a [`ReactDOM.hydrate()` dokumentációban](/docs/react-dom.html#hydrate).
 
 ### value {#value}
 
-The `value` attribute is supported by `<input>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+A `value` attribútum az `<input>` és `<textarea>` komponensek által támogatott. Használhatod a komponens értéknek a megadására. Hasznos kontrollált komponensek készítéséhez. A `defaultValue` a kontrollálatlan változata, amivel a komponens értékét akkor tudod állítani, amikor az először jön létre.
 
-## All Supported HTML Attributes {#all-supported-html-attributes}
+## Minden támogatott HTML attribútum {#all-supported-html-attributes}
 
-As of React 16, any standard [or custom](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attributes are fully supported.
+A React 16-tól kezdve minden standard, [vagy egyedi](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attribútum teljesen támogatott.
 
-React has always provided a JavaScript-centric API to the DOM. Since React components often take both custom and DOM-related props, React uses the `camelCase` convention just like the DOM APIs:
+A React mindig is biztosított egy JavaScript centrikus API-t a DOM-hoz. Mivel a React komponensek gyakran használnak mind egyedi és DOM-mal kapcsolatos propokat, a React konvenció alapján `camelCase` formátumot használ úgy, ahogyan a DOM API-k:
 
 ```js
-<div tabIndex="-1" />      // Just like node.tabIndex DOM API
-<div className="Button" /> // Just like node.className DOM API
-<input readOnly={true} />  // Just like node.readOnly DOM API
+<div tabIndex="-1" />      // Pont, mint a node.tabIndex DOM API
+<div className="Button" /> // Pont, mint a node.className DOM API
+<input readOnly={true} />  // Pont, mint a node.readOnly DOM API
 ```
 
-These props work similarly to the corresponding HTML attributes, with the exception of the special cases documented above.
+Ezek a propok nagyon hasonlóan működnek a megegyező HTML attribútumokhoz, a fentebb dokumentált speciális esetek kivételével.
 
-Some of the DOM attributes supported by React include:
+Néhány React által támogatott DOM attribútum:
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
@@ -154,7 +154,7 @@ sizes span spellCheck src srcDoc srcLang srcSet start step style summary
 tabIndex target title type useMap value width wmode wrap
 ```
 
-Similarly, all SVG attributes are fully supported:
+Hasonlóan, minden SVG attribútum teljes mértékben támogatott:
 
 ```
 accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
@@ -193,4 +193,4 @@ xlinkHref xlinkRole xlinkShow xlinkTitle xlinkType xmlns xmlnsXlink xmlBase
 xmlLang xmlSpace y y1 y2 yChannelSelector z zoomAndPan
 ```
 
-You may also use custom attributes as long as they're fully lowercase.
+Használhatsz egyedi attribútumokat is, amíg azok teljesen kisbetűsek.
