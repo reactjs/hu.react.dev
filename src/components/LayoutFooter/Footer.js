@@ -87,7 +87,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
             <ExternalFooterLink
               href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
-              Code of Conduct
+              Magatartási kódex
             </ExternalFooterLink>
             {sectionListCommunity.map(section => (
               <FooterLink
@@ -139,7 +139,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            {`Copyright © ${new Date().getFullYear()} Facebook Inc.`}
+            {`Szerzői jog © ${new Date().getFullYear()} Facebook Inc.`}
           </p>
         </section>
       </div>

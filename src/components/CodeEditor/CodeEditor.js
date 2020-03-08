@@ -62,12 +62,12 @@ class CodeEditor extends Component {
     if (showBabelErrorMessage) {
       errorMessage = (
         <span>
-          Babel could not be loaded.
+          A Babelt nem sikerült betölteni.
           <br />
           <br />
-          This can be caused by an ad blocker. If you're using one, consider
-          adding reactjs.org to the whitelist so the live code examples will
-          work.
+          Ez lehet, hogy egy hirdetés blokkoló miatt történt. Ha használsz ilyet,
+          fontold meg ennek az oldlanak a kivételekhez adását, hogy az élő
+          kódpéldák nyugodtan tudjanak működni.
         </span>
       );
     } else if (error != null) {
@@ -175,7 +175,7 @@ class CodeEditor extends Component {
                   cssProps={{
                     color: colors.white,
                   }}>
-                  Error
+                  Hiba
                 </MetaTitle>
               </div>
               <pre
@@ -206,7 +206,7 @@ class CodeEditor extends Component {
                   padding: '0 10px',
                   backgroundColor: colors.divider,
                 }}>
-                <MetaTitle>Result</MetaTitle>
+                <MetaTitle>Eredmény</MetaTitle>
               </div>
               <div
                 id={containerNodeID}

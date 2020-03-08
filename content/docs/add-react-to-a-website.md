@@ -1,6 +1,6 @@
 ---
 id: add-react-to-a-website
-title: Add React to a Website
+title: React hozzáadása egy weblaphoz
 permalink: docs/add-react-to-a-website.html
 redirect_from:
   - "docs/add-react-to-an-existing-app.html"
@@ -8,127 +8,128 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
-Use as little or as much React as you need.
+Használj pont annyi Reactet, amennyit szeretnél. Se többet, se kevesebbet.
 
-React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need**. Perhaps you only want to add some "sprinkles of interactivity" to an existing page. React components are a great way to do that.
+A React a kezdetektől fogva úgy lett tervezve, hogy fokozatosan lehessen adoptálni és **pontosan annyi Reactet kelljen használnod, amennyire szükség van**. Talán csak néhány "csipetnyi interaktivitást" szeretnél hozzáadni egy meglévő oldalhoz. A React komponensek erre tökéletesen megfelelnek.
 
-The majority of websites aren't, and don't need to be, single-page apps. With **a few lines of code and no build tooling**, try React in a small part of your website. You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+A legtöbb weblap nem single-page alkalmazás, és nem is kell annak lenniük. Próbáld a Reactet **csak pár sornyi kóddal és bárminemű kód transzformáló eszköz nélkül** hozzáadni a weblapod egy kis részéhez. Eztután fokozatosan tudod növelni a jelenlétét, vagy megtarthatod néhány dinamikus widgetként.
 
 ---
 
-- [Add React in One Minute](#add-react-in-one-minute)
-- [Optional: Try React with JSX](#optional-try-react-with-jsx) (no bundler necessary!)
+- [React hozzáadása egy perc alatt](#add-react-in-one-minute)
+- [Választható: Próbáld ki a Reactet JSX-el](#optional-try-react-with-jsx) (csomagoló nem szükséges!)
 
-## Add React in One Minute {#add-react-in-one-minute}
+## React hozzáadása egy perc alatt {#add-react-in-one-minute}
 
-In this section, we will show how to add a React component to an existing HTML page. You can follow along with your own website, or create an empty HTML file to practice.
+Ebben a fejezetben megmutatjuk, hogyan adhatsz hozzá egy React komponenst egy meglévő HTML oldalhoz. Tarts velünk a saját weboldaladdal, vagy készíts egy üres HTML fájlt a gyakorláshoz.
 
-There will be no complicated tools or install requirements -- **to complete this section, you only need an internet connection, and a minute of your time.**
+Nem lesz szükség komplikált eszközökre vagy követelmények telepítésére -- **ahhoz, hogy be tudd fejezni ezt a fejezetet, csak internetelérésre lesz szükség és egy szabad percedre.**
 
-Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+Választható: [Töltsd le a teljes példát (Tömörítve 2KB)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
-### Step 1: Add a DOM Container to the HTML {#step-1-add-a-dom-container-to-the-html}
+### Első lépés: Adj hozzá egy DOM konténert a HTML-hez {#step-1-add-a-dom-container-to-the-html}
 
-First, open the HTML page you want to edit. Add an empty `<div>` tag to mark the spot where you want to display something with React. For example:
+Először nyisd meg a HTML oldalt, amit szerkeszteni szeretnél. Adj hozzá egy üres `<div>` címkét és jelöld meg azt a helyet, ahol valamit Reacttel szeretnél megjeleníteni. Például:
 
 ```html{3}
-<!-- ... existing HTML ... -->
+<!-- ... meglévő HTML ... -->
 
 <div id="like_button_container"></div>
 
-<!-- ... existing HTML ... -->
+<!-- ... meglévő HTML ... -->
 ```
 
-We gave this `<div>` a unique `id` HTML attribute. This will allow us to find it from the JavaScript code later and display a React component inside of it.
+Ennek a `<div>`-nek adtunk egy egyedi `id` HTML attribútumot. Ez lehetővé teszi számunkra, hogy ezt később könnyen megtaláljuk JavaScript kódból, és egy React komponenst jelenítsünk meg benne.
 
->Tip
+>Tipp
 >
->You can place a "container" `<div>` like this **anywhere** inside the `<body>` tag. You may have as many independent DOM containers on one page as you need. They are usually empty -- React will replace any existing content inside DOM containers.
+> Egy ilyen `<div>` "konténert" **bárhol** elhelyezhetsz a `<body>` címkén belül. Használj annyi különálló DOM konténert egy oldalon, ahányat szeretnél. Ezek általában üresek -- a React ki fogja cserélni a DOM konténerek meglévő tartalmát.
 
-### Step 2: Add the Script Tags {#step-2-add-the-script-tags}
+### Második lépés: Add hozzá a script címkéket {#step-2-add-the-script-tags}
 
-Next, add three `<script>` tags to the HTML page right before the closing `</body>` tag:
+A következőben adj hozzá három `<script>` címkét közvetlenül a záró `</body>` címke előtt:
 
 ```html{5,6,9}
-  <!-- ... other HTML ... -->
+  <!-- ... más HTML ... -->
 
-  <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <!-- A React betöltése. -->
+  <!-- Megjegyzés: publikáláskor, cseréld le a "development.js"-t "production.min.js"-re. -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-  <!-- Load our React component. -->
+  <!-- A React komponensünk betöltése. -->
   <script src="like_button.js"></script>
 
 </body>
 ```
 
-The first two tags load React. The third one will load your component code.
+A két első címke a Reactet töltik be. A harmadik a komponensed kódját fogja betölteni.
 
-### Step 3: Create a React Component {#step-3-create-a-react-component}
+### Harmadik lépés: Készíts egy React komponenst {#step-3-create-a-react-component}
 
-Create a file called `like_button.js` next to your HTML page.
+Készíts egy fájlt a HTML oldalad mellett és nevezd el `like_button.js`-nek.
 
-Open **[this starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
+Nyisd meg **[ezt a kezdő kódot](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** és másold be a tartalmát a fájlba, amit készítettél.
 
->Tip
+>Tipp
 >
->This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [hands-on tutorial](/tutorial/tutorial.html) and [main concepts guide](/docs/hello-world.html). For now, let's just get it showing on the screen!
+> Ez a kód egy `LikeButton` nevű React komponenst definiál. Ne aggódj, ha még nem érted -- később át fogjuk venni a React építőelemeit a [gyakorlati tutoriálunkban](/tutorial/tutorial.html) és a [főbb koncepciók útmutatónkban](/docs/hello-world.html). Egyelőre elég, ha meggyőződünk róla, hogy megjelenik a képernyőn!
 
-After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
+
+Adj hozzá két sort a `like_button.js` alján **[a kezdő kód](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** után:
 
 ```js{3,4}
-// ... the starter code you pasted ...
+// ... a kezdő kód, amit bemásoltál ...
 
 const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
-These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it. 
+Ez a két sor kód megtalálja a `<div>`-et, amit a HTML-hez adtunk az első lépésben, és megjeleníti benne a "Tetszik" React komponens gombunkat.
 
-### That's It! {#thats-it}
+### És ennyi! {#thats-it}
 
-There is no step four. **You have just added the first React component to your website.**
+Nincs negyedik lépés. **Ezzel hozzáadtad az első React komponenst a weblapodhoz.**
 
-Check out the next sections for more tips on integrating React.
+Még több React integrálási tippért olvass tovább.
 
-**[View the full example source code](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
+**[Nézd meg a példa teljes forráskódját](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[Töltsd le a teljes példát (Tömörítve 2KB)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
 
-### Tip: Reuse a Component {#tip-reuse-a-component}
+### Tipp: Egy komponens újrafelhasználása {#tip-reuse-a-component}
 
-Commonly, you might want to display React components in multiple places on the HTML page. Here is an example that displays the "Like" button three times and passes some data to it:
+Általában több helyen akarsz React komponenseket megjeleníteni a HTML oldaladon. Íme egy példa, ami a "Tetszik" gombot háromszor jeleníti meg és valamennyi adatot is átad neki:
 
-[View the full example source code](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
+[Nézd meg a példa teljes forráskódját](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[Töltsd le a teljes példát (Tömörítve 2KB)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
 
->Note
+>Megjegyzés
 >
->This strategy is mostly useful while React-powered parts of the page are isolated from each other. Inside React code, it's easier to use [component composition](/docs/components-and-props.html#composing-components) instead.
+> Ez a stratégia akkor a leghatásosabb, ha az oldal Reacttel hajtott részei elzártak egymástól. A React kódon belül egyszerűbb inkább [komponens kompozíciót](/docs/components-and-props.html#composing-components) használni.
 
-### Tip: Minify JavaScript for Production {#tip-minify-javascript-for-production}
+### Tipp: Csökkentsük a JavaScript méretét a publikáláshoz {#tip-minify-javascript-for-production}
 
-Before deploying your website to production, be mindful that unminified JavaScript can significantly slow down the page for your users.
+Mielőtt a weboldalt végstádiumba publikálod, tartsd szem előtt, hogy a nem tömörített JavaScript kód jelentősen lelassíthatja az oldalad a felhasználók számára.
 
-If you already minify the application scripts, **your site will be production-ready** if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
+Ha már csökkented az alkalmazásod scriptjeinek a méretét, **az oldalad készen áll a végstádiumra**, amennyiben a publikált HTML oldalad a `production.min.js` végződésű React verziót tölti be:
 
 ```js
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
-If you don't have a minification step for your scripts, [here's one way to set it up](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
+Ha nincs kódcsökkentő lépésed a scriptekhez, [itt egy módja, hogyan tudod ezt beállítani](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
 
-## Optional: Try React with JSX {#optional-try-react-with-jsx}
+## Választható: Próbáld ki a Reactet JSX-el {#optional-try-react-with-jsx}
 
-In the examples above, we only relied on features that are natively supported by the browsers. This is why we used a JavaScript function call to tell React what to display:
+A fenti példákban csak a böngészők által alapból támogatott funkciókra hagyatkoztunk. Ezért használtunk egy JavaScript függvény meghívást, hogy közöljük a Reacttel, mit jelenítsen meg:
 
 ```js
 const e = React.createElement;
 
-// Display a "Like" <button>
+// Jeleníts meg egy "Tetszik" <button> gombot
 return e(
   'button',
   { onClick: () => this.setState({ liked: true }) },
@@ -136,10 +137,10 @@ return e(
 );
 ```
 
-However, React also offers an option to use [JSX](/docs/introducing-jsx.html) instead:
+Azonban a React a [JSX](/docs/introducing-jsx.html) használatát is lehetővé teszi:
 
 ```js
-// Display a "Like" <button>
+// Jeleníts meg egy "Tetszik" <button> gombot
 return (
   <button onClick={() => this.setState({ liked: true })}>
     Like
@@ -147,56 +148,56 @@ return (
 );
 ```
 
-These two code snippets are equivalent. While **JSX is [completely optional](/docs/react-without-jsx.html)**, many people find it helpful for writing UI code -- both with React and with other libraries.
+Ez a két kódrészlet ekvivalens egymással. Bár **a JSX [teljesen szabadon választható](/docs/react-without-jsx.html)**, sok ember hasznosnak tartja felhasználói felület kód írásához -- mind a Reacttel és más könyvtárak esetében is.
 
-You can play with JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3).
+A JSX-el [ennek az online konverternek](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3) a segítségével játszadozhatsz egy kicsit.
 
-### Quickly Try JSX {#quickly-try-jsx}
+### Próbáld ki a JSX-et gyorsan {#quickly-try-jsx}
 
-The quickest way to try JSX in your project is to add this `<script>` tag to your page:
+Ha a leggyorsabban akarod kipróbálni a JSX-et a projektedben, add hozzá ezt a `<script>` címkét az oldaladhoz:
 
 ```html
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
-Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) that you can download and play with.
+Eztuán bármelyik `<script>` címkében használhatsz JSX-et, amihez hozzáadtad a `type="text/babel"` attribútumot. Itt egy letölthető [HTML példafájl JSX-el](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), játssz vele.
 
-This approach is fine for learning and creating simple demos. However, it makes your website slow and **isn't suitable for production**. When you're ready to move forward, remove this new `<script>` tag and the `type="text/babel"` attributes you've added. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags automatically.
+Ez a megközelítés nem rossz tanulás és egyszerű demók készítése esetén. Azonban lelassítja a weblapodat, és **alkalmatlanná teszi azt publikálásra**. Ha készen állsz a továbblépésre, távolítsd el a `<script>` címkét és a `type="text/babel"` attribútumot, amit az előbb hozzáadtál. Helyette a következő fejezetben beállítasz egy JSX preprocesszort, ami az összes `<script>` címkét automatikusan átalakítja.
 
-### Add JSX to a Project {#add-jsx-to-a-project}
+### JSX hozzáadása egy projekthez {#add-jsx-to-a-project}
 
-Adding JSX to a project doesn't require complicated tools like a bundler or a development server. Essentially, adding JSX **is a lot like adding a CSS preprocessor.** The only requirement is to have [Node.js](https://nodejs.org/) installed on your computer.
+JSX-et hozzáadni egy projekthez nem igányel komplikált eszközöket, mint csomagolók vagy fejlesztői szerver. Alapjában véve a JSX hozzáadása **nagyon hasonló egy CSS preprocesszor hozzáadásához.** Az egyetlen követelmény a [Node.js](https://nodejs.org/) jelenléte a számítógépeden.
 
-Go to your project folder in the terminal, and paste these two commands:
+Menj a projekted mappájához a terminálban és másold be ezt a két parancsot:
 
-1. **Step 1:** Run `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
-2. **Step 2:** Run `npm install babel-cli@6 babel-preset-react-app@3`
+1. **Első lépés:** Futtasd az `npm init -y` parancsot (ha sikertelen, [itt egy javítás](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
+2. **Második lépés:** Futtasd az `npm install babel-cli@6 babel-preset-react-app@3` parancsot
 
->Tip
+>Tipp
 >
->We're **using npm here only to install the JSX preprocessor;** you won't need it for anything else. Both React and the application code can stay as `<script>` tags with no changes.
+> Itt **csak a JSX preprocesszor telepítéséhez használunk npm-et;** semmi másra nem lesz szükséged. Mind a React és az alkalmazásod kódja maradhat `<script>` címkékként bármilyen változtatás nélkül.
 
-Congratulations! You just added a **production-ready JSX setup** to your project.
+Gratulálunk! Ezzel **beállítottad a JSX publikálásra kész** használatát a projektedben.
 
 
-### Run JSX Preprocessor {#run-jsx-preprocessor}
+### A JSX preprocesszor futtatása {#run-jsx-preprocessor}
 
-Create a folder called `src` and run this terminal command:
+Készíts egy `src` nevű mappát és futtasd az alábbi parancsot a terminálodban:
 
 ```
 npx babel --watch src --out-dir . --presets react-app/prod 
 ```
 
->Note
+>Megjegyzés
 >
->`npx` is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>Az `npx` az első sorban nem elírás -- ez egy [csomag futtató eszköz ami az npm 5.2 óta elérhető](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 >
->If you see an error message saying "You have mistakenly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
+> Ha egy hibaüzenetet látsz, ami ezt írja "You have mistakenly installed the `babel` package", valószínűleg kifelejtetted [az előző lépést](#add-jsx-to-a-project). Menj rajta végig ugyanabban a mappában és próbálkozz újra.
 
-Don't wait for it to finish -- this command starts an automated watcher for JSX.
+Ne várj a parancs lefutására -- ez a parancs egy automatikus JSX figyelőt indít el.
 
-If you now create a file called `src/like_button.js` with this **[JSX starter code](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
+Ha most készítesz egy `src/like_button.js` nevű fájlt ezzel a **[JSX kezdő kóddal](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, a figyelő egy előre feldolgozott `like_button.js` fájlt fog készíteni egyszerű JavaScript kóddal, ami a böngésző számára is olvasható. Amikor a JSX forrásfájlt szerkeszted, a konvertálás újra le fog futni automatikusan.
 
-As a bonus, this also lets you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](https://babeljs.io/docs/en/babel-cli/).
+Bónuszként ez modern JavaScript szintaxis funkciók - mint például osztályok - használatát is lehetővé teszi anélkül, hogy régi böngészőkben esetlegesen fellépő hibáktól kéne tartanod. Az imént használt eszköz neve Babel, és ha többet akarsz tanulni róla, nézd meg [annak dokumentációját](https://babeljs.io/docs/en/babel-cli/).
 
-If you notice that you're getting comfortable with build tools and want them to do more for you, [the next section](/docs/create-a-new-react-app.html) describes some of the most popular and approachable toolchains. If not -- those script tags will do just fine!
+Ha úgy érzed, hogy kezdesz megbarátkozni az építő eszközökkel és azt szeretnéd, hogy több munkát végezzenek el helyetted, [a következő fejezet](/docs/create-a-new-react-app.html) a legnépszerűbb és legkönnyebben megközelíthető eszközláncokat írja le. Ha még nem érzed magad készen -- azok a script címkék tökéletesen megfelelnek!

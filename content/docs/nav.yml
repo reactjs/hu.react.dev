@@ -3,9 +3,9 @@
     - id: getting-started
       title: Kezdés
     - id: add-react-to-a-website
-      title: Add hozzá a React-et egy weblaphoz
+      title: React hozzáadása egy weblaphoz
     - id: create-a-new-react-app
-      title: Készíts egy új React alkalmazást
+      title: Új React alkalmazás készítése
     - id: cdn-links
       title: CDN linkek
     - id: release-channels
@@ -36,7 +36,7 @@
     - id: composition-vs-inheritance
       title: Kompozíció és öröklődés
     - id: thinking-in-react
-      title: Gondolkodj React-ben
+      title: Gondolkodj Reactben
 - title: Haladó útmutatók
   items:
     - id: accessibility
@@ -100,8 +100,6 @@
       title: SyntheticEvent
     - id: test-utils
       title: Tesztelői segédprogramok
-    - id: shallow-renderer
-      title: Sekély renderelő
     - id: test-renderer
       title: Teszt renderelő
     - id: javascript-environment-requirements
