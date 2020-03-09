@@ -9,9 +9,9 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
-Gyakran több komponens kell, hogy ugyanazon adat változását tükrözze. Ebben az esetben a megosztott állapot legközelebbi közös ősbe való felemelését ajánljuk. Lássuk, hogy hogyan is működik ez a gyakorlatban.
+Gyakran több komponensnek kell ugyanazon adat változását tükrözze. Ebben az esetben a megosztott állapot legközelebbi közös ősbe való felemelését ajánljuk. Lássuk, hogy hogyan is működik ez a gyakorlatban.
 
-Ebben a fejezetben egy hőmérsékletkalkulátort fogunk készíteni, ami azt számolja ki, hogy a víz forr-e egy adott hőmérsékleten.
+Ebben a fejezetben egy hőmérséklet-kalkulátort fogunk készíteni, ami azt számolja ki, hogy a víz forr-e egy adott hőmérsékleten.
 
 Kezdjük egy `BoilingVerdict` komponenssel. Ez egy `celsius` prop-ot fogad, és kiírja, hogy ez elég-e a víz forrásához:
 
@@ -171,7 +171,7 @@ class TemperatureInput extends React.Component {
 
 Mi azonban azt szeretnénk, ha a két input szinkronban lenne egymással. Ha frissítjük a Celsius inputot, a Fahrenheit-nek tükröznie kell a konvertált hőmérsékletet, és oda-vissza.
 
-A React-ben az állapot megosztása azon komponensek között, amelyek ezt igénylik, úgy történik, hogy az állapotot azok legközelebbi közös ősébe mozgatjuk. Ezt hívjuk az "állapot felemelésének". A `TemperatureInput` helyi állapotát eltávolítjuk és a `Calculator`-ba költöztetjük azt.
+A Reactben az állapot megosztása azon komponensek között, amelyek ezt igénylik, úgy történik, hogy az állapotot azok legközelebbi közös ősébe mozgatjuk. Ezt hívjuk az "állapot felemelésének". A `TemperatureInput` helyi állapotát eltávolítjuk és a `Calculator`-ba költöztetjük azt.
 
 Ha a `Calculator` birtokolja a megosztott állapotot, ezzel a jelenlegi hőmérséklet "igazságának forrásává" válik mindkét input számára. Mindkét inputot utasítani tudja, hogy olyan értéket vegyenek fel, ami konzisztens a másikkal. Mivel mindkét `TemperatureInput` komponens prop-jai ugyanabból a szülő `Calculator` komponensből jönnek, a két input így mindig szinkronban lesz.
 
@@ -188,7 +188,7 @@ Először is, cseréljük le a `this.state.temperature`-t `this.props.temperatur
 
 Azt tudjuk, hogy a [prop-ok csak olvashatóak](/docs/components-and-props.html#props-are-read-only). Mikor a `temperature` a helyi állapotban volt, a `TemperatureInput` csak egyszerűen meg tudta hívni a `this.setState()`-t annak megváltoztatásához. Azzal hogy a `temperature` most prop-ként jön a szülő komponensből, a `TemperatureInput` elvesztette az irányítást felette.
 
-A React-ben ezt általában úgy oldjuk meg, hogy egy komponenst "kontrollálttá" teszünk. Ugyanúgy ahogy a DOM `<input>` fogad egy `value` és egy `onChange` prop-ot, az egyedi `TemperatureInput` is fogadhat egy `temperature` és egy `onTemperatureChange` prop-ot annak szülő komponensétől, a `Calculator`-tól.
+A Reactben ezt általában úgy oldjuk meg, hogy egy komponenst "kontrollálttá" teszünk. Ugyanúgy ahogy a DOM `<input>` fogad egy `value` és egy `onChange` prop-ot, az egyedi `TemperatureInput` is fogadhat egy `temperature` és egy `onTemperatureChange` prop-ot annak szülő komponensétől, a `Calculator`-tól.
 
 Most, amikor a `TemperatureInput` frissíteni akarja annak hőmérsékletét, a `this.props.onTemperatureChange`-t fogja meghívni:
 
@@ -306,13 +306,13 @@ class Calculator extends React.Component {
 Vegyük át mi történik, mikor egy inputot szerkesztesz:
 
 * A React meghívja a DOM `<input>`-on `onChange`-ként definiált függvényt. A mi esetünkben ez a `handleChange` metódus a `TemperatureInput` komponensben.
-* A `handleChange` metódus a `TemperatureInput` komponensben meghívja a `this.props.onTemperatureChange()`-t a kívánt értékkel. Ennek prop-jait, az `onTemperatureChange`-t beleértve, a `Calculator` szülőkomponens szolgáltatja.
+* A `handleChange` metódus a `TemperatureInput` komponensben meghívja a `this.props.onTemperatureChange()`-t a kívánt új értékkel. Ennek prop-jait, az `onTemperatureChange`-t beleértve, a `Calculator` szülőkomponens szolgáltatja.
 * Amikor korábban renderelt, a `Calculator` meghatározta, hogy a Celsius `TemperatureInput` `onTemperatureChange` metódusa a `Calculator` `handleCelsiusChange` metódusa legyen, a Fahrenheit `TemperatureInpiut` `onTemperatureChange` metódusa pedig a `Calculator` `handleFahrenheitChange` metódus. Szóval ezen két `Calculator` metódusok bármelyike meg lesz hívva attól függően, hogy melyik inputot szerkesztjük.
-* Ezekben a metódusokban, a `Calculator` komponens megkéri a React-et, hogy renderelje magát újra a `this.setState()` meghívásával az új beviteli értékkel és az utoljára szerkesztett input mértékegységével.
+* Ezekben a metódusokban, a `Calculator` komponens megkéri a Reactet, hogy renderelje magát újra a `this.setState()` meghívásával az új beviteli értékkel és az utoljára szerkesztett input mértékegységével.
 * A React meghívja a `Calculator` komponens `render` metódusát, hogy megtudja hogyan is nézzen ki a kezelőfelület. Mindkét input értéke újra lesz számolva a jelenlegi hőmérséklet és az aktív mértékegység alapján. Itt történik a hőmérséklet konvertálása.
-* A React meghívja a `TemperatureInput` komponensek egyéni `render` metódusait azok új prop-jaival, amiket a `Calculator` határozott meg. Ezáltal megtudja, hogy hogyan is nézzen ki a kezelőfelület.
-* A React meghívja a `BoilingVerdict` komponens `render` metódusát a Celsiusban megadott hőmérséklet prop-val.
-* A React DOM frissíti a DOM-ot a hőmérséklet vízforralásról szóló ítéletével és a kívánt inputok értékeivel. Az újonnan szerkesztett input a jelenlegi értékét kapja, míg a másik input a konvertálás utáni hőmérsékleti értéket.
+* A React meghívja az egyéni `TemperatureInput` komponensek `render` metódusait azok új prop-jaival, amiket a `Calculator` határozott meg. Ezáltal megtudja, hogy hogyan is nézzen ki a kezelőfelület.
+* A React meghívja a `BoilingVerdict` komponens `render` metódusát a Celsiusban megadott hőmérséklet prop-pal.
+* A React DOM frissíti a DOM-ot a hőmérséklet vízforralásról szóló ítéletével és hogy az egyezzen a kívánt inputok értékeivel. Az újonnan szerkesztett input a jelenlegi értékét kapja, míg a másik input a konvertálás utáni hőmérsékleti értéket.
 
 Minden frissítés ugyanezeken a lépéseken megy keresztül, így az inputok szinkronban maradnak.
 

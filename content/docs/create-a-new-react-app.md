@@ -40,7 +40,7 @@ A React csapat főként ezeket a megoldásokat ajánlja:
 
 A [Create React App](https://github.com/facebookincubator/create-react-app) egy komfortos környezet a **React tanulásához** és a legjobb módja **egy új [single-page](/docs/glossary.html#single-page-application) alkalmazás** készítésére Reactben.
 
-Úgy állítja fel a fejlesztői környezeted, hogy használni tudd a legújabb JavaScript funkciókat, egy kellemes fejlesztői élményt biztosít és optimalizálja az alkalmazásod a végstádiumban. A gépednek rendelkeznie kell Node 8.10 vagy annál újabb, és npm 5.6 vagy annál újabb verzióival. Egy projekt készítéséhez futtasd ezt:
+Úgy állítja fel a fejlesztői környezeted, hogy használni tudd a legújabb JavaScript funkciókat, egy kellemes fejlesztői élményt biztosít és optimalizálja az alkalmazásod a végstádiumban. A gépednek rendelkeznie kell [Node 8.10 vagy annál újabb, és npm 5.6 vagy annál újabb](https://nodejs.org/en/) verzióival. Egy projekt készítéséhez futtasd ezt:
 
 ```bash
 npx create-react-app my-app
@@ -88,6 +88,6 @@ Egy JavaScript eszközlánc tipikusan ezekből áll:
 
 * Egy **fordítóprogram**, mint a [Babel](https://babeljs.io/). Modern JavaScript kód írását teszi lehetővé, ami még így is működni fog régebbi böngészőkben.
 
-Ha inkább szeretnél egy saját JavaScript eszökzláncot összeállítani a semmiből, akkor [nézd meg ezt az útmutatót](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658), ami a Create React App funkcionalitását utánozza.
+Ha inkább szeretnél egy saját JavaScript eszközláncot összeállítani a semmiből, akkor [nézd meg ezt az útmutatót](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658), ami a Create React App funkcionalitását utánozza.
 
 Ne felejts el meggyőződni róla, hogy az egyedi eszközláncod [helyesen van beállítva a végstádiumhoz](/docs/optimizing-performance.html#use-the-production-build).
