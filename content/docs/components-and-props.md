@@ -44,7 +44,11 @@ class Welcome extends React.Component {
 
 A React szemszögéből a fenti két komponens egymással megegyező.
 
+<<<<<<< HEAD
 Az osztályok rendelkeznek pár extra funkcióval, amit a [következő fejezetekben](/docs/state-and-lifecycle.html) beszélünk ki. Addig is a függvény komponenseket használjuk tömörségük miatt.
+=======
+Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ## Egy komponens renderelése {#rendering-a-component}
 
@@ -60,7 +64,11 @@ Azonban az elemek képviselhetnek a felhasználó által definiált komponenseke
 const element = <Welcome name="Sára" />;
 ```
 
+<<<<<<< HEAD
 Ha a React egy olyan elemet lát ami egy felhasználó által definiált komponenst képvisel, akkor leküldi a JSX attribútumokat a komponensnek egy sima objektumként. Ezt az objektumot hívjuk "props"-nak.
+=======
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object "props".
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Például ez a kód a "Helló, Sára" szöveget rendereli az oldalon:
 

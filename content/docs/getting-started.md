@@ -36,7 +36,11 @@ A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használ
 
 ### Online Játszóterek {#online-playgrounds}
 
+<<<<<<< HEAD
 Az Online Játszótereken lehetőséged van kipróbálni a React funkcionalitásait. Próbáld ki a Helló Világ sablont [CodePenen](codepen://hello-world), [CodeSandboxon](https://codesandbox.io/s/new), vagy [Glitchen](https://glitch.com/edit/#!/remix/starter-react-template).
+=======
+If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), or [Stackblitz](https://stackblitz.com/fork/react).
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Ha a saját kódszerkesztődet használnád, [letöltheted ezt a HTML fájlt](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), szerkesztheted és megnyithatod a lokális böngésződben. Ez egy lassú kód transzformációt tartalmaz, így ezt csak a példakód futtatásához ajánljuk.
 
@@ -83,7 +87,11 @@ Ezt a [JavaScript ismertetőt](https://developer.mozilla.org/hu/docs/Web/JavaScr
 
 ### Gyakorlati útmutató {#practical-tutorial}
 
+<<<<<<< HEAD
 Amennyiben inkább a **gyakorlati úton való tanulást preferálod,** látogass el a [gyakorlati útmutatóhoz](/tutorial/tutorial.html). Ebben az útmutatóban egy tic-tac-toe játékot írunk Reactben. Lehetséges, hogy ezt legszívesebben kihagynád, ha nem szoktál játékokat írni -- de mindenesetre adj ennek egy esélyt. Az útmutatóban leírt technikák alapvetőek lesznek *bármely* React applikációban, és ezeknek a begyakorlása által mélyebben megértheted a Reactet.
+=======
+If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not into building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### Lépésenkénti útmutató {#step-by-step-guide}
 

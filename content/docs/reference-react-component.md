@@ -501,7 +501,7 @@ Csak ez a kettő van: `setState()` és `forceUpdate()`.
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater[, callback])
+setState(updater, [callback])
 ```
 
  A `setState()` egy várakozási sorba helyezi a komponens állapotának változásait és utasítja a Reactet, hogy ez a komponens a gyermekeivel együtt újrarendereljen az új állapottal. Ez az elsődleges metódus a kezelői felület frissítéséhez az eseménykezelők és szerver általi válasz hatására.
