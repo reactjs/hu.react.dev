@@ -32,7 +32,7 @@ Tegyük fel, hogy van egy `<div>` valahol a HTML fájlodban:
 
 Ezt hívjuk "gyökér" DOM csomópontnak, mert mindent ami benne van azt a React DOM fogja kezelni.
 
-A React-el készített alkalmazásoknak általában egy gyökér DOM csomópontjuk van. Ha egy már meglévő alkalmazásba akarod a React-et integrálni, annyi elszigetelt gyökér DOM csomópontot vehetsz fel, amennyit szeretnél.
+A React-el készített alkalmazásoknak általában egy gyökér DOM csomópontjuk van. Ha egy már meglévő alkalmazásba akarod a Reactet integrálni, annyi elszigetelt gyökér DOM csomópontot vehetsz fel, amennyit szeretnél.
 
 Egy React elem gyökér DOM csomópontba való rendereléséhez, add meg mindkettőt paraméterként a [`ReactDOM.render()`](/docs/react-dom.html#render) metódusnak:
 
@@ -58,7 +58,7 @@ Ez minden másodpercben meghívja a [`ReactDOM.render()`](/docs/react-dom.html#r
 
 >**Megjegyzés:**
 >
->Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a [`ReactDOM.render()`](/docs/react-dom.html#render) metódust. A következő fejezetekben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbe foglalni [állapotteljes komponensekkel](/docs/state-and-lifecycle.html).
+>Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a [`ReactDOM.render()`](/docs/react-dom.html#render) metódust. A következő fejezetekben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbe foglalni [állapot-teljes komponensekkel](/docs/state-and-lifecycle.html).
 >
 >Ajánljuk, hogy ne ugord át ezeket a témákat, mert egymásra építenek.
 
