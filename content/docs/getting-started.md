@@ -27,30 +27,26 @@ A **React** egy JavaScript könyvtár, amit felhasználói felületek programoz�
 - [Próbáld ki a Reactet](#try-react)
 - [Tanuld meg a Reactet](#learn-react)
 - [Maradj tájékozott](#staying-informed)
-- [Verziókezelt dokumentáció](#versioned-documentation)
+- [Verzió kezelt dokumentáció](#versioned-documentation)
 - [Hiányzik valami?](#something-missing)
 
 ## Próbáld ki a Reactet {#try-react}
 
-A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használhatsz a kódodban amennyit szeretnél.** Ha csak ismerkednél a Reacttel, hozzáádnál néhány interaktív komponenst egy szimpla HTML oldalhoz, vagy akár egy komplex React-alapú alkalmazást készítenél, az ebben a részben található linkek segítségedre lesznek.
+A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használhatsz a kódodban amennyit szeretnél.** Ha csak ismerkednél a Reacttel, hozzáadnál néhány interaktív komponenst egy szimpla HTML oldalhoz, vagy akár egy komplex React-alapú alkalmazást készítenél, az ebben a részben található linkek segítségedre lesznek.
 
 ### Online Játszóterek {#online-playgrounds}
 
-<<<<<<< HEAD
-Az Online Játszótereken lehetőséged van kipróbálni a React funkcionalitásait. Próbáld ki a Helló Világ sablont [CodePenen](codepen://hello-world), [CodeSandboxon](https://codesandbox.io/s/new), vagy [Glitchen](https://glitch.com/edit/#!/remix/starter-react-template).
-=======
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), or [Stackblitz](https://stackblitz.com/fork/react).
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+Az Online Játszótereken lehetőséged van kipróbálni a React funkcionalitásait. Próbáld ki a Helló Világ sablont [CodePenen](codepen://hello-world), [CodeSandboxon](https://codesandbox.io/s/new), [Glitchen](https://glitch.com/edit/#!/remix/starter-react-template), vagy [Stackblitzen](https://stackblitz.com/fork/react).
 
 Ha a saját kódszerkesztődet használnád, [letöltheted ezt a HTML fájlt](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), szerkesztheted és megnyithatod a lokális böngésződben. Ez egy lassú kód transzformációt tartalmaz, így ezt csak a példakód futtatásához ajánljuk.
 
 ### React hozzáadása egy weboldalhoz {#add-react-to-a-website}
 
-[A Reactet egy perc alatt hozzá tudod adni egy meglévő HTML weboldalhoz](/docs/add-react-to-a-website.html). Ezután fokozatosan hozzádhatsz újabb React funkcionalitásokat, vagy egyszerűen csak egy pár dinamikus komponenst is használhatsz belőle.
+[A Reactet egy perc alatt hozzá tudod adni egy meglévő HTML weboldalhoz](/docs/add-react-to-a-website.html). Ezután fokozatosan hozzáadhatsz újabb React funkcionalitásokat, vagy egyszerűen csak egy pár dinamikus komponenst is használhatsz belőle.
 
 ### Készíts egy új React alkalmazást {#create-a-new-react-app}
 
-Ha egy új React projektbe kezdesz, egy [egyszerű HTML oldal script tagekkel](/docs/add-react-to-a-website.html) lehet a legjobb megoldás. Csak egy percbe telik beállítani!
+Ha egy új React projektbe kezdesz, egy [egyszerű HTML oldal script címkékkel](/docs/add-react-to-a-website.html) lehet a legjobb megoldás. Csak egy percbe telik beállítani!
 
 Ahogy az alkalmazásod nőni kezd, elkezdhetsz gondolkodni egy integráltabb megoldásban. Többféle JavaScript eszközláncot is ajánlunk nagyobb alkalmazásokhoz. Ezek mindegyike csak kevés vagy szinte semmilyen konfigurációt nem igényel és segítségükkel teljes hozzáférést nyersz a gazdag React ökoszisztémához. [Tanuld meg hogyan.](/docs/create-a-new-react-app.html)
 
@@ -59,7 +55,7 @@ Ahogy az alkalmazásod nőni kezd, elkezdhetsz gondolkodni egy integráltabb meg
 A kezdő React programozók különféle nyelvekből és hátterekből érkeznek. Reméljük ez a rész segítségedre lesz akár az elméleti vagy a gyakorlatiasabb tanulást kedveled.
 
 * Ha inkább a **gyakorlati úton való tanulást preferálod**, kezdd a [gyakorlati útmutatóval](/tutorial/tutorial.html).
-* Ha inkább **lépésbeken tanulnád meg az elméleti anyagot**, kezdd a [bevezetés a főbb koncepciókba](/docs/hello-world.html) oldalunkkal.
+* Ha inkább **lépésekben tanulnád meg az elméleti anyagot**, kezdd a [bevezetés a főbb koncepciókba](/docs/hello-world.html) oldalunkkal.
 
 Mint az összes többi új technológiának, a Reactnek is van egy tanulási görbéje. Némi türelemmel és sok gyakorlással *meg fogod* tanulni. 
 
@@ -87,19 +83,15 @@ Ezt a [JavaScript ismertetőt](https://developer.mozilla.org/hu/docs/Web/JavaScr
 
 ### Gyakorlati útmutató {#practical-tutorial}
 
-<<<<<<< HEAD
-Amennyiben inkább a **gyakorlati úton való tanulást preferálod,** látogass el a [gyakorlati útmutatóhoz](/tutorial/tutorial.html). Ebben az útmutatóban egy tic-tac-toe játékot írunk Reactben. Lehetséges, hogy ezt legszívesebben kihagynád, ha nem szoktál játékokat írni -- de mindenesetre adj ennek egy esélyt. Az útmutatóban leírt technikák alapvetőek lesznek *bármely* React applikációban, és ezeknek a begyakorlása által mélyebben megértheted a Reactet.
-=======
-If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not into building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+Amennyiben inkább a **gyakorlati úton való tanulást preferálod,** látogass el a [gyakorlati útmutatónkhoz](/tutorial/tutorial.html). Ebben az útmutatóban egy tic-tac-toe játékot írunk Reactben. Lehetséges, hogy ezt legszívesebben kihagynád, ha nem szoktál játékokat írni -- de mindenesetre adj ennek egy esélyt. Az útmutatóban leírt technikák alapvetőek lesznek *bármely* React applikációban, és ezeknek a begyakorlása által mélyebben megértheted a Reactet.
 
 ### Lépésenkénti útmutató {#step-by-step-guide}
 
-Amennyiben inkább **lépésbeken tanulnád meg az elméleti anyagot,** a [bevezetés a főbb koncepciókba](/docs/hello-world.html) a legjobb hely a tanulást elkezdeni. Minden egyes fejezet az előző fejezetekben bevezetett koncepciókra épít, így nem fogsz semmit kihagyni a tanulás során.
+Amennyiben inkább **lépésekben tanulnád meg az elméleti anyagot,** a [bevezetés a főbb koncepciókba](/docs/hello-world.html) a legjobb hely a tanulást elkezdeni. Minden egyes fejezet az előző fejezetekben bevezetett koncepciókra épít, így nem fogsz semmit kihagyni a tanulás során.
 
 ### Gondolkodj Reactben {#thinking-in-react}
 
-Sok React felhasználó tanúskodik arról, hogy a [Gondolkodj Reactben](/docs/thinking-in-react.html) útmutató elolvasása után történt, amikor a React először "bekattant" nekik. Ez valószínűleg az egyik legrégebbi React leírás, de ma még epp ugyanannyira releváns.
+Sok React felhasználó tanúskodik arról, hogy a [Gondolkodj Reactben](/docs/thinking-in-react.html) útmutató elolvasása után történt, amikor a React először "bekattant" nekik. Ez valószínűleg az egyik legrégebbi React leírás, de ma még épp ugyanannyira releváns.
 
 ### Ajánlott kurzusok {#recommended-courses}
 
@@ -111,7 +103,7 @@ Amennyiben már megismerkedtél a [főbb koncepciókkal](/docs/hello-world.html)
 
 ### API referencia {#api-reference}
 
-Ez a fejezet hasznos lehet, ha egy konkrét React API-ról szeretnél többet tanulni. Például a [`React.Component` API referencia](/docs/react-component.html) információt nyújt a `setState()` működéséről, és hogy mire használhatóak a különbőző életciklus metódusok.
+Ez a fejezet hasznos lehet, ha egy konkrét React API-ról szeretnél többet tanulni. Például a [`React.Component` API referencia](/docs/react-component.html) információt nyújt a `setState()` működéséről, és hogy mire használhatóak a különböző életciklus metódusok.
 
 ### Szójegyzék és GYIK {#glossary-and-faq}
 
@@ -125,7 +117,7 @@ Twitteren is követheted a [@reactjs felhasználót](https://twitter.com/reactjs
 
 Nem minden React kiadás érdemli meg a saját blog bejegyzését, de minden kiadásnak van egy saját részletes változási jegyzéke [`CHANGELOG.md` fájl a React repóban](https://github.com/facebook/react/blob/master/CHANGELOG.md), valamint a [Kiadások](https://github.com/facebook/react/releases) oldalon.
 
-## Verziókezelt dokumentáció {#versioned-documentation}
+## Verzió kezelt dokumentáció {#versioned-documentation}
 
 Ez a dokumentáció mindig a legújabb stabil React verziót tükrözi. A React 16 óta a régebbi verziók dokumentációi egy [külön oldalon találhatóak](/versions). Megjegyzendő, hogy a régebbi verziók dokumentációs oldala csak egy pillanatnyi másolat a kiadás pillanatában, és nincs később folyamatosan frissítve.
 
