@@ -177,7 +177,7 @@ const element = {
 
 Ezeket az objektumokat "React elemeknek" nevezzük. Gondolhatunk rájuk úgy, mint annak a leírása amit a képernyőn látni szeretnénk. A React olvassa ezeket az objektumokat és arra használja, hogy a DOM-ot felépítse és naprakészen tartsa.
 
-A következő szekcióban megvizsgáljuk a React elemek DOM-ba való renderelését.
+A [következő szekcióban](/docs/rendering-elements.html) megvizsgáljuk a React elemek DOM-ba való renderelését.
 
 >**Tipp:**
 >

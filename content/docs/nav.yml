@@ -99,7 +99,7 @@
     - id: events
       title: SyntheticEvent
     - id: test-utils
-      title: Tesztelői segédprogramok
+      title: Tesztelői segédeszközök
     - id: test-renderer
       title: Teszt renderelő
     - id: javascript-environment-requirements

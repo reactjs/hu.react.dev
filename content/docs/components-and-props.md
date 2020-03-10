@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
 A React szemszögéből a fenti két komponens egymással megegyező.
 
-Az osztályok rendelkeznek pár extra funkcióval, amit a [következő fejezetekben](/docs/state-and-lifecycle.html) beszélünk ki. Addig is a függvény komponenseket használjuk tömörségük miatt.
+Mind a függvény-, és osztálykomponensek rendelkeznek néhány extra funkcióval, amit a [következő fejezetekben](/docs/state-and-lifecycle.html) beszélünk ki.
 
 ## Egy komponens renderelése {#rendering-a-component}
 
@@ -60,7 +60,7 @@ Azonban az elemek képviselhetnek a felhasználó által definiált komponenseke
 const element = <Welcome name="Sára" />;
 ```
 
-Ha a React egy olyan elemet lát ami egy felhasználó által definiált komponenst képvisel, akkor leküldi a JSX attribútumokat a komponensnek egy sima objektumként. Ezt az objektumot hívjuk "props"-nak.
+Ha a React egy olyan elemet lát, ami egy felhasználó által definiált komponenst képvisel, akkor a JSX attribútumokat és a gyermekeket egy sima objektumként küldi le a komponensnek. Ezt az objektumot hívjuk "props"-nak.
 
 Például ez a kód a "Helló, Sára" szöveget rendereli az oldalon:
 
@@ -120,7 +120,7 @@ ReactDOM.render(
 
 [](codepen://components-and-props/composing-components)
 
-Tipikusan az új React alkalmazásoknak van egy `App` komponensük a legfelsőbb szinten. Azonban ha egy meglévő alkalmazásba integrálod a React-et, dolgozhatsz lentről felfelé fokozatosan haladva, kezdve kis komponensekkel, mint egy `Button` amíg el nem éred a nézet hierarchia csúcsát.
+Tipikusan az új React alkalmazásoknak van egy `App` komponensük a legfelsőbb szinten. Azonban ha egy meglévő alkalmazásba integrálod a Reactet, dolgozhatsz lentről felfelé fokozatosan haladva, kezdve kis komponensekkel, mint egy `Button` amíg el nem éred a nézet hierarchia csúcsát.
 
 ## Komponensek kivonása {#extracting-components}
 
