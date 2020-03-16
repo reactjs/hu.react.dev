@@ -8,7 +8,11 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<<<<<<< HEAD
 A React elemek eseményeinek kezelése nagyon hasonló a DOM elemek eseménykezeléséhez. Viszont van néhány szintaxisbeli különbség: 
+=======
+Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 * A React események elnevezésére camelCase-t használunk kisbetűk helyett.
 * A JSX-ben string helyett függvényt adunk át az eseménykezelőnek.
@@ -130,8 +134,13 @@ class LoggingButton extends React.Component {
   render() {
     // Ez a szintaxis biztosítja a `this` handleClickhez való kötését
     return (
+<<<<<<< HEAD
       <button onClick={(e) => this.handleClick(e)}>
         Kattints rám
+=======
+      <button onClick={() => this.handleClick()}>
+        Click me
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
       </button>
     );
   }
