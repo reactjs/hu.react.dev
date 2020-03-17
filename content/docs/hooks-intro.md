@@ -31,13 +31,8 @@ Ez az új, `useState` nevű függvény az első "Horog" amiről tanulni fogunk, 
 
 >Megjegyzés
 >
-<<<<<<< HEAD
 > A React 16.8.0 az első kiadás ami támogatja a Horgokat. Frissítéskor ne felejtsd el az összes csomagot frissíteni, beleértve a React DOM-ot.
-> A [React Native a 0.59-es kiadás óta]((https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059)) támogatja a Horgokat.
-=======
->React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM.
->React Native supports Hooks since [the 0.59 release of React Native](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059).
->>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
+> A [React Native a 0.59-es kiadás óta](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059) támogatja a Horgokat.
 
 ## Videó bemutató {#video-introduction}
 
