@@ -130,7 +130,7 @@ class LoggingButton extends React.Component {
   render() {
     // Ez a szintaxis biztosítja a `this` handleClickhez való kötését
     return (
-      <button onClick={(e) => this.handleClick(e)}>
+      <button onClick={() => this.handleClick()}>
         Kattints rám
       </button>
     );
