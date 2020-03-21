@@ -114,13 +114,13 @@
       - id: hooks-overview
         title: Horgok egy pillantásra
       - id: hooks-state
-        title: Állapot horog használata
+        title: Állapot Horog használata
       - id: hooks-effect
-        title: Hatás horog használata
+        title: Hatás Horog használata
       - id: hooks-rules
         title: Horgok szabályai
       - id: hooks-custom
-        title: Készítsd el a saját horgod
+        title: Saját horgok készítése
       - id: hooks-reference
         title: Horog API referencia
       - id: hooks-faq
