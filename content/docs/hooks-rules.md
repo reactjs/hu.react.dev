@@ -1,40 +1,40 @@
 ---
 id: hooks-rules
-title: Rules of Hooks
+title: Horgok szabályai
 permalink: docs/hooks-rules.html
 next: hooks-custom.html
 prev: hooks-effect.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+A *Horgok* a React 16.8-as verziójában lettek hozzáadva. Osztályok létrehozása nélkül is lehetőséget kínálnak állapot, és más React funkciók használatához.
 
-Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically:
+A Horgok JavaScript függvények, de használatukkor két szabályt be kell tarts. Szolgáltatunk egy linter plugint, ami ezen szabályok automatikus betartására kényszerít:
 
-### Only Call Hooks at the Top Level {#only-call-hooks-at-the-top-level}
+### Horgokat csakis a legfelsőbb szinten hívj meg {#only-call-hooks-at-the-top-level}
 
-**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+**Ne hívj meg Horgokat ciklusokban, feltételes ágakban, vagy egymásba ágyazott függvényekben.** A Horgokat mindig a React függvényed legfelső szintjén hívd meg. Ennek a szabálynak a betartásával gondoskodsz róla, hogy a Horgok a komponens minden renderelésénél ugyanabban a sorrendben legyenek meghívva. Ez teszi lehetővé a React számára több `useState` és `useEffect` hívás esetén az állapot megőrzését. (Ha kíváncsi vagy, [lentebb](#explanation) ezt részletesen is kifejtjük.)
 
-### Only Call Hooks from React Functions {#only-call-hooks-from-react-functions}
+### Horgokat csakis React függvényekből hívj meg {#only-call-hooks-from-react-functions}
 
-**Don't call Hooks from regular JavaScript functions.** Instead, you can:
+**Ne hívj meg Horgokat általános JavaScript függvényekből.** Ehelyett:
 
-* ✅ Call Hooks from React function components.
-* ✅ Call Hooks from custom Hooks (we'll learn about them [on the next page](/docs/hooks-custom.html)).
+* ✅ Horgokat React függvénykomponensekből hívj meg.
+* ✅ Horgokat egyedi Horgokból hívj meg (erről többet fogunk tanulni [a következő oldalon](/docs/hooks-custom.html)).
 
-By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+Ennek a szabálynak a betartásával gondoskodsz róla, hogy minden állapotteljes komponenslogika tisztán kiolvasható legyen a forráskódból.
 
 ## ESLint Plugin {#eslint-plugin}
 
-We released an ESLint plugin called [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces these two rules. You can add this plugin to your project if you'd like to try it:
+Kiadtunk egy ESLint plugint [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) néven, ami ezt a két szabályt segít betartani. ha ki szeretnéd próbálni, hoígy tudod hozzáadni a projektedhez:
 
-This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+Ezt a plugint a [Create React App](/docs/create-a-new-react-app.html#create-react-app) alapból tartalmazza.
 
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
 ```
 
 ```js
-// Your ESLint configuration
+// Az ESLint konfigurációd
 {
   "plugins": [
     // ...
@@ -42,32 +42,32 @@ npm install eslint-plugin-react-hooks --save-dev
   ],
   "rules": {
     // ...
-    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+    "react-hooks/rules-of-hooks": "error", // Ellenőrzi a Horgok szabályainak betartását
+    "react-hooks/exhaustive-deps": "warn" // Ellenőrzi a hatásfüggőségeket
   }
 }
 ```
 
-**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
+**[A saját Horgod](/docs/hooks-custom.html) írásához most továbbléphetsz a következő oldalra.** Ezen az oldalon tovább magyarázzuk az érveléseinket ezen szabályok mellett.
 
-## Explanation {#explanation}
+## Magyarázat {#explanation}
 
-As we [learned earlier](/docs/hooks-state.html#tip-using-multiple-state-variables), we can use multiple State or Effect Hooks in a single component:
+Ahogy [korábban megtanultuk](/docs/hooks-state.html#tip-using-multiple-state-variables), egy komponensben egyszerre több Állapot és Hatás Horgod it használhatunk:
 
 ```js
 function Form() {
-  // 1. Use the name state variable
+  // 1. Használd a név állapotváltozót
   const [name, setName] = useState('Mary');
 
-  // 2. Use an effect for persisting the form
+  // 2. Használj egy hatást az űrlap megőrzésére
   useEffect(function persistForm() {
     localStorage.setItem('formData', name);
   });
 
-  // 3. Use the surname state variable
+  // 3. Használd a családi név állapotváltozót
   const [surname, setSurname] = useState('Poppins');
 
-  // 4. Use an effect for updating the title
+  // 4. Használj egy hatást a dokumentum címének frissítéséhez
   useEffect(function updateTitle() {
     document.title = name + ' ' + surname;
   });
@@ -76,32 +76,32 @@ function Form() {
 }
 ```
 
-So how does React know which state corresponds to which `useState` call? The answer is that **React relies on the order in which Hooks are called**. Our example works because the order of the Hook calls is the same on every render:
+Szóval hogyan is tudja a React, hogy melyik állapothoz melyik melyik `useState` hívás tartozik? A válasz, hogy **a React a Horgok meghívásának sorrendjére hagyatkozik**. A példánk azélrt működik, mert a Horgok meghívásának sorrendje minden renderelés során ugyanaz:
 
 ```js
 // ------------
-// First render
+// Első renderelés
 // ------------
-useState('Mary')           // 1. Initialize the name state variable with 'Mary'
-useEffect(persistForm)     // 2. Add an effect for persisting the form
-useState('Poppins')        // 3. Initialize the surname state variable with 'Poppins'
-useEffect(updateTitle)     // 4. Add an effect for updating the title
+useState('Mary')           // 1. Inicializáld a név állapotváltozót 'Mary'-vel
+useEffect(persistForm)     // 2. Adj hozzá egy hatást az űrlap megőrzéséért
+useState('Poppins')        // 3. Inicializáld a családi név állapotváltozót 'Poppins'-szal
+useEffect(updateTitle)     // 4. Adj hozzá egy hatást a cím frissítéséért
 
 // -------------
-// Second render
+// Második renderelés
 // -------------
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-useEffect(persistForm)     // 2. Replace the effect for persisting the form
-useState('Poppins')        // 3. Read the surname state variable (argument is ignored)
-useEffect(updateTitle)     // 4. Replace the effect for updating the title
+useState('Mary')           // 1. Olvasd ki a énv állapotváltozót (az argumentum ignorálva van)
+useEffect(persistForm)     // 2. Cseréld le a hatást az űrlap megőrzéséért
+useState('Poppins')        // 3. Olvasd ki a családi név állapotváltozót (az argumentum ignorálva van)
+useEffect(updateTitle)     // 4. Cseréld ki a hatást a cím frissítéséért
 
 // ...
 ```
 
-As long as the order of the Hook calls is the same between renders, React can associate some local state with each of them. But what happens if we put a Hook call (for example, the `persistForm` effect) inside a condition?
+Egészen addig, amíg a Horgok meghívása nem változik a renderelések között, a React asszociálni tudja a helyi állapotokat ezekkel. De mi történik, ha az egyik Horog mehívását (például a `persistForm` hatást) egy feltételbe tesszük?
 
 ```js
-  // 🔴 We're breaking the first rule by using a Hook in a condition
+  // 🔴 Ezzel megszegjük az első szabályt, mivel a Horgot egy feltételben használjuk
   if (name !== '') {
     useEffect(function persistForm() {
       localStorage.setItem('formData', name);
@@ -109,30 +109,30 @@ As long as the order of the Hook calls is the same between renders, React can as
   }
 ```
 
-The `name !== ''` condition is `true` on the first render, so we run this Hook. However, on the next render the user might clear the form, making the condition `false`. Now that we skip this Hook during rendering, the order of the Hook calls becomes different:
+A `name !== ''` feltétel `true` az első rendereléskor, szóval lefuttatjuk a Horgot. Azonban a következő rendereléskor a felhasználó törölheti az űrlapot, ezzel `false`-ra állítva feltételt. Most, hogy a renderelés során kihagyjuk a Horog meghívását, a Horgok meghívásának sorrendje megváltozik:
 
 ```js
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-// useEffect(persistForm)  // 🔴 This Hook was skipped!
-useState('Poppins')        // 🔴 2 (but was 3). Fail to read the surname state variable
-useEffect(updateTitle)     // 🔴 3 (but was 4). Fail to replace the effect
+useState('Mary')           // 1. Olvasd ki a énv állapotváltozót (az argumentum ignorálva van)
+// useEffect(persistForm)  // 🔴 Ez a Horog ki lett hagyva!
+useState('Poppins')        // 🔴 2 (de az előbb 3 volt). Nem tudja kiolvasni a családi név állapotváltozót
+useEffect(updateTitle)     // 🔴 3 (de az előbb 4 volt). Nem tudja kicserélni a hatást
 ```
 
-React wouldn't know what to return for the second `useState` Hook call. React expected that the second Hook call in this component corresponds to the `persistForm` effect, just like during the previous render, but it doesn't anymore. From that point, every next Hook call after the one we skipped would also shift by one, leading to bugs.
+A React nem tudhatta, hogy mit adjon vissza a második `useState` Horog meghívásakor. A React arra számított, hogy a komponensben lévő második Horog meghívása a `persistForm` hatásnaak felel meg, ahogyan az előző rendereléskor is, de most már nem ez a helyzet. Mostantól minden Horog meghívás a kihagyás után el van csúszva eggyel, ami hibákhoz vezet.
 
-**This is why Hooks must be called on the top level of our components.** If we want to run an effect conditionally, we can put that condition *inside* our Hook:
+**Ezért kell, hogy a Horgok csak a komponensünk legfelsőbb szintjén legyenek meghívva.** Ha egy hatást feltételesen szeretnénk futtatni, vigyük át a feltételt a Horgon *belülre*:
 
 ```js
   useEffect(function persistForm() {
-    // 👍 We're not breaking the first rule anymore
+    // 👍 Így már nem szegjük meg az első szabályt
     if (name !== '') {
       localStorage.setItem('formData', name);
     }
   });
 ```
 
-**Note that you don't need to worry about this problem if you use the [provided lint rule](https://www.npmjs.com/package/eslint-plugin-react-hooks).** But now you also know *why* Hooks work this way, and which issues the rule is preventing.
+**Jegyezd meg, hogy ettől a problémától nem kell tartanod, ha használod a [szolgáltatott lint szabályt](https://www.npmjs.com/package/eslint-plugin-react-hooks).** De most már azt is tudod, hogy *miért* működnek így a Horgok, és milyen hibákat előz meg a szabály.
 
-## Next Steps {#next-steps}
+## Következő lépések {#next-steps}
 
-Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.
+Végre, készen állunk [saját Horgaid írásának](/docs/hooks-custom.html) tanulására! Az Egyedi Horgok lehetővé teszik a React által szolgáltatott Horgokat saját absztrakcicióidba kombinálni, és állapotteljes logika újrafelhasználását különböző komponensek között.
