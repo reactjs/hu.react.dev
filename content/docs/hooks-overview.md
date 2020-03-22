@@ -267,6 +267,6 @@ function Todos() {
 
 Hűha, ez gyors volt! Ha néhány dolog nem teljesen volt világos, vagy részletesebben szeretnél valamiről tanulni, elolvashatod a következő oldalakat, kezdve az [Állapot Horog](/docs/hooks-state.html) dokumentációjával.
 
-Megnézheted a [Horgok API referencia](/docs/hooks-reference.html) oldalát, és a [Horgok GY.I.K](/docs/hooks-faq.html) oldalát is.
+Megnézheted a [Horgok API referencia](/docs/hooks-reference.html) oldalát, és a [Horgok GY.I.K.](/docs/hooks-faq.html) oldalát is.
 
 Végezetül ne hagy ki a [bemutató oldalt](/docs/hooks-intro.html), ami a horgok hozzáadásának a *miértjét* magyarázza el, és hogy hogyan fogjuk őket osztályok mellett használni -- az alkalmazásaink átírása nélkül.
