@@ -120,7 +120,7 @@
       - id: hooks-rules
         title: Horgok szabályai
       - id: hooks-custom
-        title: Készítsd el a saját horgod
+        title: Saját Horgok készítése
       - id: hooks-reference
         title: Horog API referencia
       - id: hooks-faq
