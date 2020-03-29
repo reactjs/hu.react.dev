@@ -1,16 +1,16 @@
 ---
 id: hooks-custom
-title: Building Your Own Hooks
+title: Saját Horgok készítése
 permalink: docs/hooks-custom.html
 next: hooks-reference.html
 prev: hooks-rules.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+A *Horgok* a React 16.8-as verziójában lettek hozzáadva. Osztályok létrehozása nélkül is lehetőséget kínálnak állapot, és más React funkciók használatához.
 
-Building your own Hooks lets you extract component logic into reusable functions.
+A saját Horgok készítésével lehetőséged van komponenslogika újrafelhasználható függvényekbe való kivonására.
 
-When we were learning about [using the Effect Hook](/docs/hooks-effect.html#example-using-hooks-1), we saw this component from a chat application that displays a message indicating whether a friend is online or offline:
+Amikor [a Hatás Horog használatáról](/docs/hooks-effect.html#example-using-hooks-1) tanultunk, láttuk, hogy ez a csevegőalkalmazás komponens egy üzenetet jelenít meg arról, hogy egy barátunk státusza éppen online vagy offline:
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -30,13 +30,13 @@ function FriendStatus(props) {
   });
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Betöltés...';
   }
   return isOnline ? 'Online' : 'Offline';
 }
 ```
 
-Now let's say that our chat application also has a contact list, and we want to render names of online users with a green color. We could copy and paste similar logic above into our `FriendListItem` component but it wouldn't be ideal:
+Most tegyük fel, hogy a csevegőalkalmazásunk rendelkezik egy kontaktlistával is, és az online lévő felhasználók neveit zöld színnel akarjuk renderelni. Átmásolhatjuk a hasonló logikát a `FriendListItem` komponensből, de ez nem lenne ideális:
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -63,15 +63,15 @@ function FriendListItem(props) {
 }
 ```
 
-Instead, we'd like to share this logic between `FriendStatus` and `FriendListItem`.
+Ehelyett jó lenne megosztani ezt a logikát a `FriendStatus` és `FriendListItem` komponensek között.
 
-Traditionally in React, we've had two popular ways to share stateful logic between components: [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html). We will now look at how Hooks solve many of the same problems without forcing you to add more components to the tree.
+Hagyományosan a Reactben két népszerű módja létezett állapot teljes logika komponensek közti megosztására: [render propok](/docs/render-props.html) és [felsőbb rendű komponensek](/docs/higher-order-components.html). Most azt nézzük meg, hogy a Horgok hogyan oldják meg majdnem ugyanazokat a problémákat anélkül, hogy arra kényszerítenének bennünket, hogy új komponenseket adjunk hozzá a fához.
 
-## Extracting a Custom Hook {#extracting-a-custom-hook}
+## Egy egyedi Horog kivonása {#extracting-a-custom-hook}
 
-When we want to share logic between two JavaScript functions, we extract it to a third function. Both components and Hooks are functions, so this works for them too!
+Amikor logikát szeretnénk megosztani két JavaScript függvény között, azt ki szoktuk vonni egy harmadik függvénybe. Mindkét komponens és a Horgok is függvények, szóval ez itt is működni fog!
 
-**A custom Hook is a JavaScript function whose name starts with "`use`" and that may call other Hooks.** For example, `useFriendStatus` below is our first custom Hook:
+**Egy egyedi Horog egy JavaScript függvény, aminek a neve a "`use`" előtaggal kezdődik, és meghívhat más Horgokat is.** Például az alábbi `useFrientStatus` az első egyedi Horgunk:
 
 ```js{3}
 import { useState, useEffect } from 'react';
@@ -94,11 +94,11 @@ function useFriendStatus(friendID) {
 }
 ```
 
-There's nothing new inside of it -- the logic is copied from the components above. Just like in a component, make sure to only call other Hooks unconditionally at the top level of your custom Hook.
+Semmi új nincs benne -- a logika a fentebbi komponensből lett átmásolva. Ahogyan egy komponensben is, itt szintén ügyelj rá, hogy a Horgokat ne feltételesen hívd meg, az egyedi Horog legfelsőbb szintjén.
 
-Unlike a React component, a custom Hook doesn't need to have a specific signature. We can decide what it takes as arguments, and what, if anything, it should return. In other words, it's just like a normal function. Its name should always start with `use` so that you can tell at a glance that the [rules of Hooks](/docs/hooks-rules.html) apply to it.
+Egy React komponenssel ellentétben, egy egyedi Horognak nem kell egy specifikus szignatúrával rendelkeznie. Mi dönthetünk az argumentumokról, és hogy mit adjon vissza, ha egyáltalán bármit is vissza kell adnia. Más szóval ez csak egy egyszerű függvény. A neve mindig `use`-val kell hogy kezdődjön annak érdekében, hogy első pillantásra el tudd dönteni, hogy vonatkoznak-e rá a [Horgok szabályai](/docs/hooks-rules.html).
 
-The purpose of our `useFriendStatus` Hook is to subscribe us to a friend's status. This is why it takes `friendID` as an argument, and returns whether this friend is online:
+A `useFriendStatus` Horgunk lényege, hogy feliratkozzon egy barátunk státuszára. Ezért fogad egy `friendID`-t argumentumként, és adja vissza ennek a barátnak az online státuszát:
 
 ```js
 function useFriendStatus(friendID) {
@@ -110,20 +110,21 @@ function useFriendStatus(friendID) {
 }
 ```
 
-Now let's see how we can use our custom Hook.
+Most lássuk, hogy hogyan tudjuk használni az egyedi Horgunkat.
 
-## Using a Custom Hook {#using-a-custom-hook}
+## Egyedi Horog használata {#using-a-custom-hook}
 
-In the beginning, our stated goal was to remove the duplicated logic from the `FriendStatus` and `FriendListItem` components. Both of them want to know whether a friend is online.
+A kezdetben a kitűzött célunk az volt, hogy eltávolítsuk a duplikált logikát a `FriendStatus` és `FriendListitem` 
+komponensekből. Mindkettő a barátunk státuszát szeretné tudni.
 
-Now that we've extracted this logic to a `useFriendStatus` hook, we can *just use it:*
+Most hogy kivontuk ezt a logikát egy `useFriendStatus` horogba, *egyszerűen elkezdhetjük ezt használni*:
 
 ```js{2}
 function FriendStatus(props) {
   const isOnline = useFriendStatus(props.friend.id);
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Betöltés...';
   }
   return isOnline ? 'Online' : 'Offline';
 }
@@ -141,19 +142,19 @@ function FriendListItem(props) {
 }
 ```
 
-**Is this code equivalent to the original examples?** Yes, it works in exactly the same way. If you look closely, you'll notice we didn't make any changes to the behavior. All we did was to extract some common code between two functions into a separate function. **Custom Hooks are a convention that naturally follows from the design of Hooks, rather than a React feature.**
+**Ez a kód megegyezik az eredeti példával?** Igen, pontosan ugyanúgy működik. Ha közelebbről is megnézed, észreveheted, hogy semmilyen változást nem eszközöltünk a viselkedésen. Csak annyit tettünk, hogy kivontunk valamennyi közös kódot két függvényből egy különálló függvénybe. **Az egyedi Horgok egy olyan konvenció, ami természetesen következik a Horgok tervezéséből, inkább mint hogy egy React funkció lenne.**
 
-**Do I have to name my custom Hooks starting with “`use`”?** Please do. This convention is very important. Without it, we wouldn't be able to automatically check for violations of [rules of Hooks](/docs/hooks-rules.html) because we couldn't tell if a certain function contains calls to Hooks inside of it.
+**Muszáj az egyedi Horgaim neveit "`use`"-val kezdenem?** Kérünk, tedd. Ez a konvenció nagyon fontos. Enélkül nem tudjuk automatikusan leellenőrizni, hogy a [Horgok szabályai](/docs/hooks-rules.html) meg lettek-e szegve, mert nem tudhatjuk, hogy egy bizonyos függvényen belül vannak-e Horog meghívások.
 
-**Do two components using the same Hook share state?** No. Custom Hooks are a mechanism to reuse *stateful logic* (such as setting up a subscription and remembering the current value), but every time you use a custom Hook, all state and effects inside of it are fully isolated.
+**Két, ugyanazt a Horgot használó komponens saját állapotukat is megosztja?** Nem. Az egyedi Horgok egy mechanizmus *állapot teljes logika* újrafelhasználására (mint például feliratkozás, vagy jelenlegi érték megjegyzése), de minden alkalommal amikor egy egyedi Horgot használsz, minden állapot és hatás teljesen elzártan működik.
 
-**How does a custom Hook get isolated state?** Each *call* to a Hook gets isolated state. Because we call `useFriendStatus` directly, from React's point of view our component just calls `useState` and `useEffect`. And as we [learned](/docs/hooks-state.html#tip-using-multiple-state-variables) [earlier](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), we can call `useState` and `useEffect` many times in one component, and they will be completely independent.
+**Hogyan kap egy egyedi Horog elzárt állapotot?** A Horog minden *meghívása* elzárt állapottal rendelkezik. Mivel a `useFriendStatus`-t közvetlenül hívjuk meg, a React szemszögéből a komponensünk csak `useState` és `useEffect` hívásokat végez. És ahogy [korábban](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns) [megtanultuk](/docs/hooks-state.html#tip-using-multiple-state-variables), a `useState` és `useEffect` akárhányszor meghívható egy komponensben, és azok teljesen függetlenek lesznek.
 
-### Tip: Pass Information Between Hooks {#tip-pass-information-between-hooks}
+### Tipp: Információ átadása Horgok között {#tip-pass-information-between-hooks}
 
-Since Hooks are functions, we can pass information between them.
+Mivel a Horgok függvények, át tudunk adni információt közöttük.
 
-To illustrate this, we'll use another component from our hypothetical chat example. This is a chat message recipient picker that displays whether the currently selected friend is online:
+Hogy ezt illusztráljuk, egy másik komponenst használunk az elméleti csevegőalkalmazás példánkból. Ez egy csevegő üzenet címzettválasztó, ami azt jelzi, hogy a jelenleg választott barátunk online van-e.
 
 ```js{8-9,13}
 const friendList = [
@@ -184,24 +185,24 @@ function ChatRecipientPicker() {
 }
 ```
 
-We keep the currently chosen friend ID in the `recipientID` state variable, and update it if the user chooses a different friend in the `<select>` picker.
+A választott barát azonosítóját a `recipientID` állapot változóban tartjuk, és frissítjük, ha a felhasználó egy másik barátot választ a `<select>` menüből.
 
-Because the `useState` Hook call gives us the latest value of the `recipientID` state variable, we can pass it to our custom `useFriendStatus` Hook as an argument:
+Mivel a `useState` Horog meghívás a a `recipientID` állapot változó legújabb értékét adja vissza, ezt átadhatjuk a `useFriendStatus` Horognak argumentumként:
 
 ```js
   const [recipientID, setRecipientID] = useState(1);
   const isRecipientOnline = useFriendStatus(recipientID);
 ```
 
-This lets us know whether the *currently selected* friend is online. If we pick a different friend and update the `recipientID` state variable, our `useFriendStatus` Hook will unsubscribe from the previously selected friend, and subscribe to the status of the newly selected one.
+Így tudjuk, ha a *jelenleg kiválasztott* barátunk online van-e. Ha egy másik barátot választunk, és frissítjük a `recipientID` állapot változót, a `useFrindStatus` Horgunk leiratkozik az előzőleg választott barátunkról, és feliratkozik az újonnan választott státuszára.
 
-## `useYourImagination()` {#useyourimagination}
+## `useYourImagination()` (Használd a képzeleted) {#useyourimagination}
 
-Custom Hooks offer the flexibility of sharing logic that wasn't possible in React components before. You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. What's more, you can build Hooks that are just as easy to use as React's built-in features.
+Az egyedi Horgok olyan flexibilitást nyújtanak logika megosztására, ami korábban nem volt lehetséges a React komponensekben. Írhatsz egy egyedi Horgot ami űrlapkezeléstől animáción, deklaratív feliratkozásokon, és időzítőkön át, valószínűleg általunk nem is gondolt eseteket is lefed. Mi több, olyan Horgokat építhetsz, amiket ugyanolyan könnyű használni, mint a React beépített funkcióit.
 
-Try to resist adding abstraction too early. Now that function components can do more, it's likely that the average function component in your codebase will become longer. This is normal -- don't feel like you *have to* immediately split it into Hooks. But we also encourage you to start spotting cases where a custom Hook could hide complex logic behind a simple interface, or help untangle a messy component.
+Próbálj a korai absztrakcióknak ellenállni. Most, hogy a függvénykomponensek többet tudnak csinálni, valószínű, hogy, az átlag függvénykomponensed a kódbázisodban hosszabb lesz. Ez normális -- ne érezd úgy, hogy *muszáj* azonnal Horgokra lebontanod azt. De arra is bátorítunk, hogy próbálj meg olyan esetek után fürkészni, ahol egy komplex logikát egy egyszerű interfész mögé tudnál rejteni, vagy egy zavaros komponenst tudsz átláthatóbbá tenni egyedi Horgokkal.
 
-For example, maybe you have a complex component that contains a lot of local state that is managed in an ad-hoc way. `useState` doesn't make centralizing the update logic any easier so you might prefer to write it as a [Redux](https://redux.js.org/) reducer:
+Lehet például, hogy van egy komplex komponensed, ami sok helyi állapotot tartalmaz, amit alkalmi módon kezelsz. A `useState` nem teszi egyszerűbbé a frissítési logika centralizálását, szóval lehet, hogy egy [Redux](https://redux.js.org/) szerű redukátort inkább preferálnál:
 
 ```js
 function todosReducer(state, action) {
@@ -211,16 +212,16 @@ function todosReducer(state, action) {
         text: action.text,
         completed: false
       }];
-    // ... other actions ...
+    // ... más akciók ...
     default:
       return state;
   }
 }
 ```
 
-Reducers are very convenient to test in isolation, and scale to express complex update logic. You can further break them apart into smaller reducers if necessary. However, you might also enjoy the benefits of using React local state, or might not want to install another library.
+A redukátorok nagyon kézenfekvő elzártan tesztelni, és jól skálázódik komplex frissítési logika kifejezése esetén. Továbbá kisebb redukátorokra is lebonthatod őket, ha szükséges. Azonban lehet, hogy szimplán élvezed a React helyi állapotának előnyeit, vagy csak nem akarsz egy extra könyvtárat telepíteni.
 
-So what if we could write a `useReducer` Hook that lets us manage the *local* state of our component with a reducer? A simplified version of it might look like this:
+Szóval mi lenne, ha írni tudnánk egy `useReducer` Horgot, ami a komponensünk *helyi* állapotát tudná kezelni egy redukátorral? Egy leegyszerűsített változat így nézne ki:
 
 ```js
 function useReducer(reducer, initialState) {
@@ -235,7 +236,7 @@ function useReducer(reducer, initialState) {
 }
 ```
 
-Now we could use it in our component, and let the reducer drive its state management:
+Ezt így tudnánk használni a komponensünkben, ahol a redukátor hajtaná az állapotkezelést:
 
 ```js{2}
 function Todos() {
@@ -249,4 +250,4 @@ function Todos() {
 }
 ```
 
-The need to manage local state with a reducer in a complex component is common enough that we've built the `useReducer` Hook right into React. You'll find it together with other built-in Hooks in the [Hooks API reference](/docs/hooks-reference.html).
+Az igény arra, hogy komplex komponensek helyi állapotát kezelni tudjuk egy redukátorral elég általános, így a `useReducer` Horgot közvetlenül beépítettük a Reactbe. Megtalálható a többi beépített Horoggal együtt, a [Horgok API referencia](/docs/hooks-reference.html) oldalon.
