@@ -15,7 +15,7 @@ const TestRenderer = require('react-test-renderer'); // ES5 npm-mel
 
 ## Áttekintés {#overview}
 
-Ez a csomag egy React renderelőt nyújt, ami React komponensek, tiszta JavaScript objektumokként való  renderelését teszi lehetővé, a DOM és natív mobilkörnyezetek nélkül.
+Ez a csomag egy React renderelőt nyújt, ami React komponensek, tiszta JavaScript objektumokként való renderelését teszi lehetővé, a DOM és natív mobilkörnyezetek nélkül.
 
 Alapjában véve, ez a csomag a platform nézethierarchiájáról (ami hasonló a DOM fához) való pillanatképek készítését teszi egyszerűbbé, amiket egy React DOM, vagy React Native komponens renderel böngésző, vagy [jsdom](https://github.com/tmpvar/jsdom) használata nélkül.
 
@@ -40,7 +40,7 @@ console.log(testRenderer.toJSON());
 
 Használhatod a Jest pillanatkép-tesztelő funkcióját a JSON fa automatikus fájlba való kimentéséhez, és hogy le tudd ellenőrizni, hogy a tesztjeid megváltoztak-e: [Itt tanulhatsz róla többet](https://jestjs.io/docs/en/snapshot-testing).
 
-A kimenetet be is tudod járni, hogy konkrét csomópontokhoz tudj állítsokat írni.
+A kimenetet be is tudod járni, hogy konkrét csomópontokhoz tudj állításokat írni.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -103,7 +103,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Al']);
 TestRenderer.create(element, options);
 ```
 
-Egy `TestRenderer` példányt készít, az átadott React elemmel. Nem a valós DOM-ot használja, de így is kirendereli a teljes komponensfát a memóriába, hogy állításokat tudj róla írni. Egy [TestRenderer példányt](#testrenderer-instance) ad vissza.
+Egy `TestRenderer` példányt készít az átadott React elemmel. Nem a valós DOM-ot használja, de így is kirendereli a teljes komponensfát a memóriába, hogy állításokat tudj róla írni. Egy [TestRenderer példányt](#testrenderer-instance) ad vissza.
 
 ### `TestRenderer.act()` {#testrendereract}
 
@@ -111,7 +111,7 @@ Egy `TestRenderer` példányt készít, az átadott React elemmel. Nem a valós 
 TestRenderer.act(callback);
 ```
 
-Hasonló a [`react-dom/test-utils` csomag `act()` segédmetódusához](/docs/test-utils.html#act), a `TestRenderer.act` előkészít egy kompnenst az állítások írásához. Használd az `act()` ezen verzióját a `TestRenderer.create` és `testRenderer.update` hívások becsomagolásához.
+Hasonló a [`react-dom/test-utils` csomag `act()` segédmetódusához](/docs/test-utils.html#act), a `TestRenderer.act` előkészít egy komponenst az állítások írásához. Használd az `act()` ezen verzióját a `TestRenderer.create` és `testRenderer.update` hívások becsomagolásához.
 
 ```javascript
 import {create, act} from 'react-test-renderer';
@@ -149,7 +149,7 @@ Egy, a renderelt fát képviselő objektumot ad vissza. Ez a fa csak platformspe
 testRenderer.toTree()
 ```
 
-Egy, a renderelt fát képviselő objektumot ad vissza. A reprezentáció részeletesebb, mint amit a `toJSON()` ad vissza, és a felhasználó által írt komponenseket is tartalmazza. Valószínűleg erre a metódusra nem lesz szükséged, kivéve ha a saját állítási könyvtáradat írod a tesztrenderelőre építve.
+Egy, a renderelt fát képviselő objektumot ad vissza. A reprezentáció részletesebb, mint amit a `toJSON()` ad vissza, és a felhasználó által írt komponenseket is tartalmazza. Valószínűleg erre a metódusra nem lesz szükséged, kivéve ha a saját állítási könyvtáradat írod a tesztrenderelőre építve.
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -235,7 +235,7 @@ Megtalálja az összes tesztpéldányt, ahol a propok megegyeznek a megadott `pr
 testInstance.instance
 ```
 
-Ennek a tesztpéldánynak megfelelő komponenspéldány. Csak osztálykomponenseknél elérhető, mivel függvénykomponenseknek nincsenek példányai. A `this` érték megegyezik az adott komponensben.
+Ennek a tesztpéldánynak megfelelő komponenspéldány. Csak osztálykomponenseknél elérhető, mivel függvénykomponenseknek nincsenek példányai. Az adott komponens `this` értékével egyezik meg.
 
 ### `testInstance.type` {#testinstancetype}
 
