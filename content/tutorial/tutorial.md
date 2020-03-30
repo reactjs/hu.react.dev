@@ -16,7 +16,7 @@ Ez a tutoriál nem feltételez korábbi React ismereteket.
 
 ## Mielőtt elkezdjük a Tutoriált {#before-we-start-the-tutorial}
 
-Ebben a tutoriálban egy kis játékot fogunk készíteni. **Csábító lehet átugrani, mivel nem játékokat készítesz -- de azért adj neki egy esélyt.** A technikák amiket itt tanulsz alapvetőek bármilyen React alkalmazáshoz, és ha ezeket sikerül elsajátítanod, úgy sokkal jobban meg fogod érteni a React működését.
+Ebben a tutoriálban egy kis játékot fogunk készíteni. **Csábító lehet átugrani, mivel nem játékokat készítesz -- de azért adj neki egy esélyt.** A technikák, amiket itt tanulsz, alapvetőek bármilyen React alkalmazáshoz, és ha ezeket sikerül elsajátítanod, úgy sokkal jobban meg fogod érteni a React működését.
 
 >Tipp
 >
@@ -51,15 +51,15 @@ Ha először szeretnéd átnézni a JavaScriptet, akkor [ezt az útmutatót](htt
 
 Ezt a tutoriált kétféleképpen is elvégezheted: kódolhatsz a böngésződből, vagy felállíthatsz egy helyi fejlesztői környezetet.
 
-### "1. Opció: kódolj a böngésződben" {#setup-option-1-write-code-in-the-browser}
+### 1. Opció: kódolj a böngésződben {#setup-option-1-write-code-in-the-browser}
 
 A leggyorsabban így állhatsz neki!
 
-Először is nyisd meg a **[Kezdő kódot](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** egy új fülön. Az új fül egy új, üres tic-tac-toe táblát, és a React kódot kell hogy mutassa. Ez a React az, amit ebben a tutoriálban szerkeszteni fogunk.
+Először is nyisd meg a **[Kezdő kódot](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** egy új fülön. Az új fül egy új, üres tic-tac-toe táblát és a React kódot kell, hogy mutassa. Ez a React kód az, amit ebben a tutoriálban szerkeszteni fogunk.
 
 Ugord át a második opciót, és a React áttekintéséhez menj az [Áttekintés](#overview) szekcióhoz.
 
-### "2. Opció: helyi fejlesztői környezet" {#setup-option-2-local-development-environment}
+### 2. Opció: helyi fejlesztői környezet {#setup-option-2-local-development-environment}
 
 Ez az opció szabadon választható, és nem kötelező a tutoriál elvégzéséhez!
 
@@ -122,13 +122,13 @@ Ha bármikor elakadsz, a [közösségi támogatási források](/community/suppor
 
 ## Áttekintés {#overview}
 
-Most hogy minden készen áll, kezdjük a React áttekintésével!
+Most, hogy minden készen áll, kezdjük a React áttekintésével!
 
 ### Mi az a React? {#what-is-react}
 
 A React egy deklaratív, effektív, és rugalmas JavaScript könyvtár, felhasználói felületek készítéséhez. Lehetővé teszi komplex felhasználói felületek összeállítását izolált kódrészletekből, amiket "komponenseknek" hívunk.
 
-A React rendelkezik egy pár komponenstípussal, de most kezdjük a `React.Comoponent` alosztállyal:
+A React rendelkezik egy pár komponenstípussal, de most kezdjük a `React.Component` alosztállyal:
 
 ```javascript
 class ShoppingList extends React.Component {
@@ -149,11 +149,11 @@ class ShoppingList extends React.Component {
 // Példa használata: <ShoppingList name="Mark" />
 ```
 
-Nemsokára beszélünk a vicces XML szerű címkékről is. A komponensek segítségével mondjuk meg a Reactnek, hogy mit szeretnénk látni a képernyőn. Ha az adatunk megváltozik, a React hatékonyan frissíti és újrarendereli a komponensünket.
+Nemsokára beszélünk a vicces XML-szerű címkékről is. A komponensek segítségével mondjuk meg a Reactnek, hogy mit szeretnénk látni a képernyőn. Ha az adatunk megváltozik, a React hatékonyan frissíti és újrarendereli a komponensünket.
 
 Itt a ShoppingList egy **React komponensosztály**, vagy **React komponenstípus**. Egy komponens paramétereket fogad, amiket **props**-nak hívunk (angol "properties" rövidítése), és egy nézethierarchiát ad vissza, a `render` metóduson keresztül.
 
-A `render` metódus egy *leírását* adja vissza annak, amit a képernyőn szeretnél látni. A React fogja a leírást, és megjeleníti az eredményt. Pontosabban, a `render` metódus egy **React elem**-et ad vissza, ami egy könnyűsúlyú leírása annak, amit renderelni kell. A legtöbb React fejlesztő egy speciális szintaxist használ, ezt "JSX"-nek hívják, ami könnyebbé teszi ezen a struktúrák írását. A `<div />` szintaxist `React.createEelement('div')`-té transzformáljuk kompiláláskor. A fenti példa egyenértékű az alábbival:
+A `render` metódus egy *leírását* adja vissza annak, amit a képernyőn szeretnél látni. A React fogja a leírást, és megjeleníti az eredményt. Pontosabban, a `render` metódus egy **React elem**-et ad vissza, ami egy könnyűsúlyú leírása annak, amit renderelni kell. A legtöbb React fejlesztő egy speciális szintaxist használ, ezt "JSX"-nek hívják, ami könnyebbé teszi ezen struktúrák írását. A `<div />` szintaxist `React.createEelement('div')`-té transzformáljuk kompiláláskor. A fenti példa egyenértékű az alábbival:
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -1011,7 +1011,7 @@ Most pedig `képezzük le` a `history`-t a Game komponens `render` metódusában
 
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Menj erre ide, lépés: #' + move :
+        'Menj ide, lépés: #' + move :
         'Menj a játék kezdetéhez';
       return (
         <li>
@@ -1051,7 +1051,7 @@ A tic-tac-toe játék lépéstörténetében minden lépéshez létrehozunk egy 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
 
-Beszéljük meg mit is jelent a fenti figyelmeztetés.
+Beszéljük meg, mit is jelent a fenti figyelmeztetés.
 
 ### Azonosító kulcs választása {#picking-a-key}
 
