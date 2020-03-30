@@ -44,7 +44,7 @@
           href: /tutorial/tutorial.html#inspecting-the-starter-code
           forceInternal: true
         - id: passing-data-through-props
-          title: Adattovábbítás prop-okkal
+          title: Adattovábbítás propokkal
           href: /tutorial/tutorial.html#passing-data-through-props
           forceInternal: true
         - id: making-an-interactive-component
