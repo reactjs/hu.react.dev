@@ -94,7 +94,7 @@ function useFriendStatus(friendID) {
 }
 ```
 
-Semmi új nincs benne -- a logika a fentebbi komponensből lett átmásolva. Ahogyan egy komponensben is, itt szintén ügyelj rá, hogy a Horgokat ne feltételesen hívd meg, az egyedi Horog legfelsőbb szintjén.
+Semmi új nincs benne -- a logika a fentebbi komponensből lett átmásolva. Ahogyan egy komponensben is, itt szintén ügyelj rá, hogy a Horgokat ne feltételesen hívd meg az egyedi Horog legfelsőbb szintjén.
 
 Egy React komponenssel ellentétben, egy egyedi Horognak nem kell egy specifikus szignatúrával rendelkeznie. Mi dönthetünk az argumentumokról, és hogy mit adjon vissza, ha egyáltalán bármit is vissza kell adnia. Más szóval ez csak egy egyszerű függvény. A neve mindig `use`-val kell hogy kezdődjön annak érdekében, hogy első pillantásra el tudd dönteni, hogy vonatkoznak-e rá a [Horgok szabályai](/docs/hooks-rules.html).
 
@@ -194,7 +194,7 @@ Mivel a `useState` Horog meghívás a a `recipientID` állapot változó legúja
   const isRecipientOnline = useFriendStatus(recipientID);
 ```
 
-Így tudjuk, ha a *jelenleg kiválasztott* barátunk online van-e. Ha egy másik barátot választunk, és frissítjük a `recipientID` állapot változót, a `useFrindStatus` Horgunk leiratkozik az előzőleg választott barátunkról, és feliratkozik az újonnan választott státuszára.
+Így tudjuk, ha a *jelenleg kiválasztott* barátunk online van-e. Ha egy másik barátot választunk, és frissítjük a `recipientID` állapot változót, a `useFriendStatus` Horgunk leiratkozik az előzőleg választott barátunkról, és feliratkozik az újonnan választott státuszára.
 
 ## `useYourImagination()` (Használd a képzeleted) {#useyourimagination}
 
@@ -202,7 +202,7 @@ Az egyedi Horgok olyan flexibilitást nyújtanak logika megosztására, ami kor�
 
 Próbálj a korai absztrakcióknak ellenállni. Most, hogy a függvénykomponensek többet tudnak csinálni, valószínű, hogy, az átlag függvénykomponensed a kódbázisodban hosszabb lesz. Ez normális -- ne érezd úgy, hogy *muszáj* azonnal Horgokra lebontanod azt. De arra is bátorítunk, hogy próbálj meg olyan esetek után fürkészni, ahol egy komplex logikát egy egyszerű interfész mögé tudnál rejteni, vagy egy zavaros komponenst tudsz átláthatóbbá tenni egyedi Horgokkal.
 
-Lehet például, hogy van egy komplex komponensed, ami sok helyi állapotot tartalmaz, amit alkalmi módon kezelsz. A `useState` nem teszi egyszerűbbé a frissítési logika centralizálását, szóval lehet, hogy egy [Redux](https://redux.js.org/) szerű redukátort inkább preferálnál:
+Lehet például, hogy van egy komplex komponensed, ami sok helyi állapotot tartalmaz, amit alkalmi módon kezelsz. A `useState` nem teszi egyszerűbbé a frissítési logika centralizálását, szóval lehet, hogy egy [Redux](https://redux.js.org/)-szerű redukátort inkább preferálnál:
 
 ```js
 function todosReducer(state, action) {
@@ -219,7 +219,7 @@ function todosReducer(state, action) {
 }
 ```
 
-A redukátorok nagyon kézenfekvő elzártan tesztelni, és jól skálázódik komplex frissítési logika kifejezése esetén. Továbbá kisebb redukátorokra is lebonthatod őket, ha szükséges. Azonban lehet, hogy szimplán élvezed a React helyi állapotának előnyeit, vagy csak nem akarsz egy extra könyvtárat telepíteni.
+A redukátorokat nagyon kézenfekvő elzártan tesztelni, és jól skálázódnak komplex frissítési logika kifejezése esetén. Továbbá kisebb redukátorokra is lebonthatod őket, ha szükséges. Azonban lehet, hogy szimplán élvezed a React helyi állapotának előnyeit, vagy csak nem akarsz egy extra könyvtárat telepíteni.
 
 Szóval mi lenne, ha írni tudnánk egy `useReducer` Horgot, ami a komponensünk *helyi* állapotát tudná kezelni egy redukátorral? Egy leegyszerűsített változat így nézne ki:
 
