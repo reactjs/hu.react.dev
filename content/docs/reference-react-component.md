@@ -15,50 +15,50 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
+Ez az oldal egy részletes API referenciát tartalmaz a React Component osztálydefiníciójáról. Feltételezzük, hogy már tisztában vagy a React alapkoncepcióival, mint a [Komponensek és Propok](/docs/components-and-props.html), valamint az [Állapot és Életciklus](/docs/state-and-lifecycle.html). Ha még nem, akkor ezeket olvasd el először.
 
-## Overview {#overview}
+## Áttekintés {#overview}
 
-React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
+Reactben egy komponenst osztályként vagy metódusként is definiálhatsz. Azok a komponensek, amiket osztályként definiáltak, több funkcionalitással rendelkeznek, amiket részletesen kifejtünk ezen az oldalon. Egy React komponens definiálásához ki kell terjesztenünk a `React.Component`-et:
 
 ```js
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Helló, {this.props.name}</h1>;
   }
 }
 ```
 
-The only method you *must* define in a `React.Component` subclass is called [`render()`](#render). All the other methods described on this page are optional.
+Az egyetlen metódus amit *kötelező* definiálni egy `React.Component`-ben, az úgynevezett [`render()`](#render) metódus. Az összes többi függvény, amit ezen az oldalon bemutatunk, opcionális.  
 
-**We strongly recommend against creating your own base component classes.** In React components, [code reuse is primarily achieved through composition rather than inheritance](/docs/composition-vs-inheritance.html).
+**Erősen ellenezzük a saját alaposztály definiálását.** A React komponensekben [a kód újrafelhasználását elsősorban kompozíción keresztül érjük el az öröklődés helyett](/docs/composition-vs-inheritance.html).
 
->Note:
+>Megjegyzés:
 >
->React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+>A Reactben nem kötelező ES6 szintaxist használni. Ha inkább szeretnéd elkerülni, helyette használhatod a `create-react-class` modult vagy egy hasonló egyedi absztrakciót. Látogass el a [React használata ES6 nélkül](/docs/react-without-es6.html) szekcióhoz, hogy többet megtudj erről. 
 
-### The Component Lifecycle {#the-component-lifecycle}
+### A komponens életciklus {#the-component-lifecycle}
 
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+Minden egyes komponenshez több "életciklusmetódus" is tartozik, amiket felülírhatsz, hogy az életciklusa különböző pontjain tudj kódot futtatni. **Ezt az [életciklus diagramot](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) használhatod puskaként.** Az alábbi listában a legtöbbet használt életciklusmetódusok **félkövér betűvel** vannak jelölve. A többit általában csak ritkán használjuk.
 
-#### Mounting {#mounting}
+#### Létrehozás {#mounting}
 
-These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+Ezek a metódusok a következő sorrendben hívódnak meg, amikor egy komponens létrejön és belekerül a DOM-ba:
 
 - [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [**`render()`**](#render)
 - [**`componentDidMount()`**](#componentdidmount)
 
->Note:
+>Megjegyzés:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>Ezek a metódusok elavulttá lettek minősítve és [elkerülendőek](/blog/2018/03/27/update-on-async-rendering.html) új kód írásakor:
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
-#### Updating {#updating}
+#### Frissítés {#updating}
 
-An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+Egy frissítés történhet propok vagy állapot változása esetén. Ezek a metódusok a következő sorrendben hajtódnak végre egy komponens újrarenderelésekor:  
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
@@ -66,50 +66,50 @@ An update can be caused by changes to props or state. These methods are called i
 - [`getSnapshotBeforeUpdate()`](#getsnapshotbeforeupdate)
 - [**`componentDidUpdate()`**](#componentdidupdate)
 
->Note:
+>Megjegyzés:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>Ezek a metódusok elavulttá lettek minősítve és [elkerülendőek](/blog/2018/03/27/update-on-async-rendering.html) új kód írásakor:
 >
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
-#### Unmounting {#unmounting}
+#### Leválasztás {#unmounting}
 
-This method is called when a component is being removed from the DOM:
+Ez a metódus hívódik meg, amikor egy komponens eltávolítódik a DOM-ból:
 
 - [**`componentWillUnmount()`**](#componentwillunmount)
 
-#### Error Handling {#error-handling}
+#### Hibakezelés {#error-handling}
 
-These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+Ezek a metódusok hívódnak meg, amikor hiba történik renderelés közben, egy életciklusmetódusban, vagy bármely gyermekkomponens konstruktorában.
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
-### Other APIs {#other-apis}
+### Egyéb API-k {#other-apis}
 
-Each component also provides some other APIs:
+Minden egyes komponensnek van néhány egyéb API-ja is:
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)
 
-### Class Properties {#class-properties}
+### Osztálytulajdonságok {#class-properties}
 
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 
-### Instance Properties {#instance-properties}
+### Példánytulajdonságok {#instance-properties}
 
   - [`props`](#props)
   - [`state`](#state)
 
 * * *
 
-## Reference {#reference}
+## Referencia {#reference}
 
-### Commonly Used Lifecycle Methods {#commonly-used-lifecycle-methods}
+### Legtöbbet használt életciklusmetódusok {#commonly-used-lifecycle-methods}
 
-The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+Az ebben a részben található metódusok lefedik a használati esetek nagyrészét, amikkel a React komponensek írása közben találkozhatsz. **Vizuális referenciaként nézd meg ezt az [életcikus diagramot](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -117,23 +117,23 @@ The methods in this section cover the vast majority of use cases you'll encounte
 render()
 ```
 
-The `render()` method is the only required method in a class component.
+A `render()` metódus az egyetlen kötelezően implementálandó metódus egy osztálykomponensben.
 
-When called, it should examine `this.props` and `this.state` and return one of the following types:
+Amikor meghívódik, a `this.props` és `this.state` alapján vissza kell adnia a következők valamelyikét:
 
-- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
-- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
-- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
-- **String and numbers.** These are rendered as text nodes in the DOM.
-- **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
+- **React elemek.** Általában [JSX](/docs/introducing-jsx.html) definiálja. Például mind a `<div />` és a `<MyComponent />` is React elemek, amik a Reactet sorrendben egy DOM csomópont és egy felhasználó által definiált komponens renderelésére utasítják.
+- **Tömbök és töredékek.** Ezek több elemet is vissza tudnak adni egyszerre a render függvényből. Részletekért lásd a [töredékek](/docs/fragments.html) dokumentációját.
+- **Portálok**. Ez egy különálló DOM alfát tud renderelni. Részletekért lásd a [portálok](/docs/portals.html) dokumentációját.
+- **Sztringek és számok.** Ezek szövegként kerülnek renderelésre a DOM-ban.
+- **Logikai változók vagy `null`**. Nem renderel semmit. (Többnyire azért van, hogy segítse a `return test && <Child />` mintát, ahol a `test` egy logikai változó.)
 
-The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
+A `render()` tiszta függvény kell, hogy legyen, ami azt jelenti, hogy nem módosítja a komponens állapotát, minden egyes híváskor ugyanazt adja vissza, és közvetlenül nem kommunikál a böngészővel.
 
-If you need to interact with the browser, perform your work in `componentDidMount()` or the other lifecycle methods instead. Keeping `render()` pure makes components easier to think about.
+Ha a böngészővel kell kommunikálnod, ezt a `componentDidMount()`-ban vagy más életciklusmetódusokban tedd meg. A `render()` tisztán tartása segít a komponens egyszerűbbé tételében.
 
-> Note
+> Megjegyzés
 >
-> `render()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> A `render()` nem hívódik meg, ha a [`shouldComponentUpdate()`](#shouldcomponentupdate) hamisat ad vissza.
 
 * * *
 
@@ -143,47 +143,47 @@ If you need to interact with the browser, perform your work in `componentDidMoun
 constructor(props)
 ```
 
-**If you don't initialize state and you don't bind methods, you don't need to implement a constructor for your React component.**
+**Nem kell konstruktort implementálnod a React komponensedben, ha nem inicializálod a helyi állapotot és nem bind-olsz metódusokat.**
 
-The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
+Egy React komponens konstruktora a DOM-ba helyeződés előtt hívódik meg. Egy `React.Component` konstruktorában először a `super(props)`-t kell meghívni minden más hívás előtt. Enélkül a `this.props` undefined értékű lesz a konstruktorban, ami hibákhoz vezethet.
 
-Typically, in React constructors are only used for two purposes:
+A React konstruktorokat általában kétféle okból használjuk:
 
-* Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
-* Binding [event handler](/docs/handling-events.html) methods to an instance.
-
-You **should not call `setState()`** in the `constructor()`. Instead, if your component needs to use local state, **assign the initial state to `this.state`** directly in the constructor:
+* Inicializálni a [helyi állapotot](/docs/state-and-lifecycle.html) egy objektum `this.state`-hez rendelésével.
+* Hozzákötni [eseménykezelő](/docs/handling-events.html) metódusokat egy komponenspéldányhoz.
+  
+**Nem szabad a `setState()`-et** meghívni a `constructor()`-ban. Ehelyett, ha a komponensednek helyi állapotot kell használnia, **rendeld hozzá a kezdő állapotot a `this.state`-hez** közvetlenül a konstruktorban:
 
 ```js
 constructor(props) {
   super(props);
-  // Don't call this.setState() here!
+  // Ne hívd meg a this.setState()-et itt!
   this.state = { counter: 0 };
   this.handleClick = this.handleClick.bind(this);
 }
 ```
 
-Constructor is the only place where you should assign `this.state` directly. In all other methods, you need to use `this.setState()` instead.
+A konstruktor az egyetlen hely, ahol a `this.state`-hez közvetlenül hozzárendelhetsz egy értéket. Mindenhol máshol a `this.setState()`-et használd ehelyett.
 
-Avoid introducing any side-effects or subscriptions in the constructor. For those use cases, use `componentDidMount()` instead.
+Kerüld el a mellékhatások bevezetését vagy a feliratkozásokat a konstruktorban. Ezekre az esetekre inkább a `componentDidMount()`-ot használd.
 
->Note
+>Megjegyzés
 >
->**Avoid copying props into state! This is a common mistake:**
+>**Kerüld el a propok helyi állapotba való másolását! Ez egy gyakori hiba:**
 >
 >```js
 >constructor(props) {
 >  super(props);
->  // Don't do this!
+>  // Ezt ne csináld!
 >  this.state = { color: props.color };
 >}
 >```
 >
->The problem is that it's both unnecessary (you can use `this.props.color` directly instead), and creates bugs (updates to the `color` prop won't be reflected in the state).
+>A probléma az, hogy ez mind felesleges (a `this.props.color`-t közvetlenül is tudod használni ehelyett), mind pedig hibákat generál (a `color` prop frissülése nem fog megjelenni a helyi állapotban).
 >
->**Only use this pattern if you intentionally want to ignore prop updates.** In that case, it makes sense to rename the prop to be called `initialColor` or `defaultColor`. You can then force a component to "reset" its internal state by [changing its `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) when necessary.
+>**Ezt csak akkor használd, ha direkt szeretnéd figyelmen kívül hagyni a prop frissüléseit.** Ebben az esetben a propot átnevezhetjük `initialColor`-nak (vagyis kezdeti szín) vagy `defaultColor`-nak (alapszín). Ezután kényszerítheted a komponenst, hogy "újraindítsa" a belső állapotát [a `key` megváltoztatásával](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key), amikor szükséges.
 >
->Read our [blog post on avoiding derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html) to learn about what to do if you think you need some state to depend on the props.
+>Olvasd el a [blogbejegyzésünket a származtatott állapot elkerüléséről](/blog/2018/06/07/you-probably-dont-need-derived-state.html), ha tudni szeretnéd, hogy mit csinálj, amikor úgy gondolod, hogy szükséged van az állapot propokból való származtatására.
 
 
 * * *
@@ -194,11 +194,11 @@ Avoid introducing any side-effects or subscriptions in the constructor. For thos
 componentDidMount()
 ```
 
-`componentDidMount()` is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+A `componentDidMount()` rögtön azután hívódik meg, miután a komponens létrejött (belekerült a fába). Az inicializálás, ami DOM csomópontokat igényel, ide kerül. Ha távoli végpontból kell adatokat betöltened, ez egy jó hely a hálózati kérés elindítására.
 
-This method is a good place to set up any subscriptions. If you do that, don't forget to unsubscribe in `componentWillUnmount()`.
+Ez a metódus arra is jó, ha feliratozásokat kell felállítanod. Ha ezt teszed, ne felejts el leiratkozni a `componentWillUnmount()`-ban.
 
-You **may call `setState()` immediately** in `componentDidMount()`. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the `constructor()` instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+A **`setState()`-et akár azonnal is meghívhatod** a `componentDidMount()`-ban. Ez egy extra renderelést fog eredményezni, de ez azelőtt fog megtörténni, mielőtt a böngésző frissíti a képernyőt. Ez garantálja, hogy habár a `render()` kétszer fog meghívódni ebben az esetben, a felhasználó nem fogja a közbenső állapotot látni. Ezt a mintát óvatosan használd, mivel sokszor teljesítményproblémákat okoz. A legtöbb esetben ehelyett már a `constructor()`-ban hozzá tudod rendelni a kezdeti értéket a helyi állapothoz. Azonban szükséges lehet például dialógusok vagy címkék esetében, amik egy DOM csomópont helyzetétől vagy méretétől függenek. 
 
 * * *
 
@@ -208,26 +208,26 @@ You **may call `setState()` immediately** in `componentDidMount()`. It will trig
 componentDidUpdate(prevProps, prevState, snapshot)
 ```
 
-`componentDidUpdate()` is invoked immediately after updating occurs. This method is not called for the initial render.
+A `componentDidUpdate()` rögtön egy frissítés után hívódik meg. Ez a metódus nem hívódik meg a kezdeti rendereléskor.
 
-Use this as an opportunity to operate on the DOM when the component has been updated. This is also a good place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed).
+Ez egy jó alkalom arra, hogy változtatásokat hajts végre a DOM-on, amikor egy komponens frissült. Ez egy jó hely arra is, hogy hálózati kéréseket hajts végre, de csak akkor, ha összehasonlítod a jelenlegi propokat az előző propokkal (például nincs szükség a hálózati kérésre, ha a propok nem változtak). 
 
 ```js
 componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
+  // Tipikus használat (ne felejtsd el a propokat összehasonlítani):
   if (this.props.userID !== prevProps.userID) {
     this.fetchData(this.props.userID);
   }
 }
 ```
 
-You **may call `setState()` immediately** in `componentDidUpdate()` but note that **it must be wrapped in a condition** like in the example above, or you'll cause an infinite loop. It would also cause an extra re-rendering which, while not visible to the user, can affect the component performance. If you're trying to "mirror" some state to a prop coming from above, consider using the prop directly instead. Read more about [why copying props into state causes bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+A **`setState()`-et akár azonnal is meghívhatod** a `componentDidUpdate()`-ben, de figyelj arra, hogy ennek **egy feltételben kell elhelyezkednie**, mint a fenti példában, különben egy végtelen ciklus lesz az eredmény. Ez ugyancsak okoz egy extra újrarenderelést, ami bár nem látható a felhasználó számára, de befolyásolhatja a komponens teljesítményét. Ha a helyi állapot egy részét a propból képzed le, fontold meg ehelyett a prop közvetlen használatát. Itt olvashatsz többet a [hibákról, amik a propok helyi állapotba való másolásakor fordulnak elő](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined.
+Ha a komponensed implementálja a `getSnapshotBeforeUpdate()` életciklus metódust (ami ritka), az érték, amit visszaad, a `componentDidUpdate()` egy harmadik paramétereként lesz átadva. Egyébként ez a paraméter undefined értékű lesz. 
 
-> Note
+> Megjegyzés
 >
-> `componentDidUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> A `componentDidUpdate()` nem lesz meghívva, ha a [`shouldComponentUpdate()`](#shouldcomponentupdate) hamisat ad vissza.
 
 * * *
 
@@ -237,15 +237,15 @@ If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is
 componentWillUnmount()
 ```
 
-`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`.
+A `componentWillUnmount()` rögtön azután hívódik meg, hogy a komponens lecsatolódott és megsemmisült. Bármilyennemű takarítást itt végezz el, például időzítők érvénytelenítése, hálózati kérések visszavonása, vagy azon feliratkozások törlése, amik a `componentDidMount()`-ban lettek létrehozva.
 
-You **should not call `setState()`** in `componentWillUnmount()` because the component will never be re-rendered. Once a component instance is unmounted, it will never be mounted again.
+A **`setState()`-et soha ne hívd meg** a `componentWillUnmount()`-ban, mivel a komponens nem fog újrarenderelődni. Ha egy komponenspéldány lecsatolódott, már nem fog újra létrejönni.
 
 * * *
 
-### Rarely Used Lifecycle Methods {#rarely-used-lifecycle-methods}
+### Ritkán használt életciklusmetódusok {#rarely-used-lifecycle-methods}
 
-The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+A metódusok ebben a részben ritka használati eseteknek felelnek meg. Néha hasznosak, de a legtöbb komponensed nem fogja használni egyiket sem. **A legtöbbet ezek közül [ezen az életciklus diagramon](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) láthatod, ha rákattintatsz a "Show less common lifecycles" (Mutassa a kevésbé használt életciklusmetódusokat is) jelölőnégyzetre a tetején.**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -254,17 +254,17 @@ The methods in this section correspond to uncommon use cases. They're handy once
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
+A `shouldComponentUpdate()`-t akkor használd, amikor a Reacttel tudatni szeretnéd, hogy a komponens kimenetét nem befolyásolja a jelenlegi állapot vagy prop változás. Az alapviselkedés az, hogy minden egyes állapotváltozáskor újrarenderelődik, és a legtöbb esetben elég erre az alapviselkedésre támaszkodni.   
 
-`shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
+A `shouldComponentUpdate()` a renderelés előtt hívódik meg, amikor éppen új propokat vagy új helyi állapotot kap a komponens. Alapból `true`-t ad vissza. Ez a metódus nem hívódik meg a kezdeti rendereléskor, vagy amikor a `forceUpdate()` használva van.
 
-This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a rendering, as this can lead to bugs. **Consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent)** instead of writing `shouldComponentUpdate()` by hand. `PureComponent` performs a shallow comparison of props and state, and reduces the chance that you'll skip a necessary update.
+Ez a metódus kizárólag **[teljesítmény-optimalizálásra](/docs/optimizing-performance.html) használatos.** Ne támaszkodj erre, ha szeretnél "meggátolni" egy renderelést, mivel ez hibákhoz vezethet. **Fontold meg a beépített [`PureComponent`](/docs/react-api.html#reactpurecomponent)** használatát a kézzel írt `shouldComponentUpdate()` helyett. A `PureComponent` egy sekély összehasonlítást hajt végre a propokon és állapoton, és csökkenti az esélyét, hogy egy szükséges frissítés kimarad.
 
-If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped. Note that returning `false` does not prevent child components from re-rendering when *their* state changes.
+Ha biztos vagy abban, hogy kézzel szeretnéd megírni, összehasonlíthatod a `this.props`-ot a `nextProps`-szal és a `this.state`-et a `nextState`-tel, és `false`-ot adj vissza, ha a frissítés kihagyható. Megjegyzendő, hogy a `false` visszatérési érték nem fogja megakadályozni a gyermekek újrarenderelését, amikor az *ő saját* állapotuk változik meg.
 
-We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+Nem ajánlatos mély összehasonlítást végezni a `JSON.stringify()` használatával a `shouldComponentUpdate()`-ben. Ez nagyon nem hatékony és a teljesítmény rovására megy.
 
-Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
+Jelenleg, ha a `shouldComponentUpdate()` `false`-ot ad vissza, akkor az [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), és [`componentDidUpdate()`](#componentdidupdate) metódusok nem lesznek meghívva. Elképzelhető, hogy a React a jövőben a `shouldComponentUpdate()`-t csak ajánlásként fogja használni, és `false` visszatérési érték esetében is újrarenderelheti a komponenst.
 
 * * *
 
@@ -274,22 +274,22 @@ Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_component
 static getDerivedStateFromProps(props, state)
 ```
 
-`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
+A `getDerivedStateFromProps` közvetlenül a renderelés előtt hajtódik végre a kezdeti renderelésnél és frissítéskor is. Ennek egy objektumot kell visszaadnia az állapot módosításához, vagy null-t, hogy ne módosítson semmit.
 
-This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
+Ez a metódus csak [ritka használati esetekre](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) való, amikor a helyi állapot a propok változásaitól függ. Például hasznos lehet egy `<Transition>` komponens implementálására, ami összehasonlítja az előző és a következő gyermekeit, hogy eldöntse, melyiket animálja kifelé vagy befelé.
 
-Deriving state leads to verbose code and makes your components difficult to think about.  
-[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+A leszármaztatott állapot beszédes kódhoz vezet, ami a komponenseidet kevésbé átláthatóvá teszi.  
+[Győződj meg róla, hogy tisztában vagy egyszerűbb alternatívákkal is:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
-* If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
+* Ha muszáj **mellékhatást végrehajtanod** (például adatlekérés vagy animáció) egy propokban történt változás hatására, használd a [`componentDidUpdate`](#componentdidupdate) életciklus metódust ehelyett.
 
-* If you want to **re-compute some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+* Ha **adatokat akarsz újraszámítani csak akkor, ha prop változás történt**, [használj egy memoizálás segítőt](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 
-* If you want to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+* Ha **"újra kell inicializálni" az állapot egy részét prop változás hatására**, fontold meg a komponens [teljesen kontrollálttá tételét](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component), vagy [teljesen kontrollálatlaná tételét egy `key`-vel](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) ehelyett.
 
-This method doesn't have access to the component instance. If you'd like, you can reuse some code between `getDerivedStateFromProps()` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+Ennek a metódusnak nincs hozzáférése a komponenspéldányhoz. Ha szeretnéd, újrahasználhatsz némi kódot a `getDerivedStateFromProps()` és a többi osztálymetódus között a propok és helyi állapot tiszta függvényeinek kiemelésével az osztálydefiníción kívülre.
 
-Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
+Megjegyzendő, hogy ez a metódus *minden egyes* renderelődéskor meghívódik, októl függetlenül. Ez ellentétes az `UNSAFE_componentWillReceiveProps` viselkedésével, ami csak akkor hívódik meg, ha az újrarenderelődés a szülőkomponens miatt történt, és nem a helyi `setState` hívás által.
 
 * * *
 
@@ -299,41 +299,41 @@ Note that this method is fired on *every* render, regardless of the cause. This 
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`.
+A `getSnapshotBeforeUpdate()` rögtön azelőtt hívódik meg, hogy a legutóbb renderelt kimenet el van mentve pl. a DOM-ba. Ez lehetővé teszi, hogy a komponens kiragadjon információkat a DOM-ból (pl. görgetési pozíció), mielőtt az potenciálisan megváltozna. Bármely érték, amit ez a metódus visszaad, a `componentDidUpdate()`-nek lesz átadva.
 
-This use case is not common, but it may occur in UIs like a chat thread that need to handle scroll position in a special way.
+Ez a használati eset nem gyakori, de előfordulhat olyan felhasználói felületeken, mint például egy csevegőalkalmazás, aminek speciálisan kell kezelnie a görgetési pozíciót.
 
-A snapshot value (or `null`) should be returned.
+Egy pillanatfelvételi érték (vagy `null`) legyen a visszatérés értéke.
 
-For example:
+Például:
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` because there may be delays between "render" phase lifecycles (like `render`) and "commit" phase lifecycles (like `getSnapshotBeforeUpdate` and `componentDidUpdate`).
+A fenti példákban fontos, hogy kiolvassuk a `scrollHeight` értékét a `getSnapshotBeforeUpdate`-ben, mivel időeltolódás lehet a "renderelési" életciklus fázis (mint a `render`) és "elmentési" életciklus fázis (mint a `getSnapshotBeforeUpdate` vagy a `componentDidUpdate`) között.
 
 * * *
 
-### Error boundaries {#error-boundaries}
+### Hibahatárok {#error-boundaries}
 
-[Error boundaries](/docs/error-boundaries.html) are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+A [hibahatárok](/docs/error-boundaries.html) React komponensek, amik elkapják a JavaScript hibákat bárhol a komponensfában, kinaplózzák ezeket, és egy tartalék UI-t jelenítenek meg az összeomlott komponensfa helyett. A hibahatárok elkapják a hibákat renderelés közben, az életciklusmetódusokban, és a teljes gyermekkomponensfa konstruktoraiban.
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`. Updating state from these lifecycles lets you capture an unhandled JavaScript error in the below tree and display a fallback UI.
+Egy osztálykomponens hibahatárrá válik, ha definiálja a `static getDerivedStateFromError()` és/vagy a `componentDidCatch()` életciklus metódust. Az állapotváltoztatás ezekben az életciklusokban lehetővé teszi az alatta lévő fában történő kezeletlen JavaScript hibák elkapását és egy tartelék komponens megjelenítését.
 
-Only use error boundaries for recovering from unexpected exceptions; **don't try to use them for control flow.**
+Csak akkor használd ezeket a hibahatárokat, ha váratlan hibákat szeretnél helyreállítani; **ne használd a normál működés irányítására.**
 
-For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
+További részletekért lásd a [*Hibakezelés React 16-ban*](/blog/2017/07/26/error-handling-in-react-16.html) szekciót.
 
-> Note
+> Megjegyzés
 > 
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+> A hibahatárok csak a fában **alattuk** lévő komponensek hibáit kapják el. Egy hibahatár nem tud elkapni egy saját magában történő hibát.
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
 static getDerivedStateFromError(error)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives the error that was thrown as a parameter and should return a value to update state.
+Ez az életciklusmetódus akkor hívódik meg, amikor egy hiba dobódott egy alatta lévő komponensben.
+Paraméterként kapja meg a dobott hibát és egy olyan értéket kell visszaadnia, ami az állapotot fogja frissíteni.
 
 ```js{7-10,13-16}
 class ErrorBoundary extends React.Component {
@@ -343,14 +343,14 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Frissíti az állapotot, hogy a következő renderelésnél a tartalék UI jelenjen meg
     return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      // Bármilyen tartalék UI-t renderelhetsz itt
+      return <h1>Valami hiba történt.</h1>;
     }
 
     return this.props.children; 
@@ -358,10 +358,10 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
+> Megjegyzés
 >
-> `getDerivedStateFromError()` is called during the "render" phase, so side-effects are not permitted.
-For those use cases, use `componentDidCatch()` instead.
+> A `getDerivedStateFromError()` a "renderelési" fázis alatt hívódik meg, úgyhogy a mellékhatások nem megengedettek.
+ Azokra az esetekre inkább a `componentDidCatch()`-t használd.
 
 * * *
 
@@ -371,15 +371,15 @@ For those use cases, use `componentDidCatch()` instead.
 componentDidCatch(error, info)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives two parameters:
+Ez az életciklusmetódus egy alatta lévő komponensben történt hiba dobása után hívódik meg. 
+Két paramétert fogad:
 
-1. `error` - The error that was thrown.
-2. `info` - An object with a `componentStack` key containing [information about which component threw the error](/docs/error-boundaries.html#component-stack-traces).
+1. `error` - A dobott hiba.
+2. `info` - Egy objektum, amiben van egy `componentStack` kulcs, ami [információt tartalmaz a komponensről, amelyik a hibát dobta](/docs/error-boundaries.html#component-stack-traces).
 
 
-`componentDidCatch()` is called during the "commit" phase, so side-effects are permitted.
-It should be used for things like logging errors:
+A `componentDidCatch()` az "elmentési" fázis közben hívódik meg, úgyhogy a mellékhatások itt meg vannak engedve.
+Ez olyan dolgokra használható, mint például hibák naplózása:
 
 ```js{12-19}
 class ErrorBoundary extends React.Component {
@@ -389,12 +389,12 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Frissíti az állapotot, hogy a következő renderelésnél a tartalék UI jelenjen meg
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
+    // "componentStack" példa:
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
@@ -404,8 +404,8 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      // Bármilyen tartalék UI-t renderelhetsz itt
+      return <h1>Valami hiba történt.</h1>;
     }
 
     return this.props.children; 
@@ -413,16 +413,16 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
+> Megjegyzés
 > 
-> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
-> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+> Hiba esetén egy tartelék UI-t renderelhetsz a `componentDidCatch()`-ben a `setState` meghívásával, de ez elavulttá válik majd a következő kiadásokban.
+> Ehelyett használd a `static getDerivedStateFromError()`-t a tartalék UI renderelésére.
 
 * * *
 
-### Legacy Lifecycle Methods {#legacy-lifecycle-methods}
+### Elavult életciklusmetódusok {#legacy-lifecycle-methods}
 
-The lifecycle methods below are marked as "legacy". They still work, but we don't recommend using them in the new code. You can learn more about migrating away from legacy lifecycle methods in [this blog post](/blog/2018/03/27/update-on-async-rendering.html).
+Az alábbi életciklusmetódusok "elavulttá" váltak. Még mindig működnek, de új kódban már nem ajánljuk a használatát. Ebben a [blogbejegyzésben](/blog/2018/03/27/update-on-async-rendering.html) többet megtudhatsz az elavult életciklusmetódusok lecseréléséről.
 
 ### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
@@ -430,15 +430,15 @@ The lifecycle methods below are marked as "legacy". They still work, but we don'
 UNSAFE_componentWillMount()
 ```
 
-> Note
+> Megjegyzés
 >
-> This lifecycle was previously named `componentWillMount`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> Ezt az életciklust előzőleg `componentWillMount`-nak hívták. Ez a név a 17-es verzióig működni fog. Használd a [`rename-unsafe-lifecycles` kódmódosítót](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles), hogy automatikusan frissítsd a komponenseidet.
 
-`UNSAFE_componentWillMount()` is invoked just before mounting occurs. It is called before `render()`, therefore calling `setState()` synchronously in this method will not trigger an extra rendering. Generally, we recommend using the `constructor()` instead for initializing state.
+`UNSAFE_componentWillMount()` közvetlenül a betöltés előtt hívódik meg. Ez a `render()` előtt van, így a `setState()` szinkron hívása ebben a metódusban nem fog extra renderelést előidézni. Mi általában a `constructor()`-t ajánljuk az állapot inicializálására.
 
-Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
+Kerüld el a mellékhatások vagy feliratkozások bevezetését ebben a metódusban. Azokra az esetekre inkább a `componentDidMount()`-ot használd.
 
-This is the only lifecycle method called on server rendering.
+Ez az egyetlen életciklusmetódus ami meghívódik a szerveren rendereléskor.
 
 * * *
 
@@ -448,25 +448,25 @@ This is the only lifecycle method called on server rendering.
 UNSAFE_componentWillReceiveProps(nextProps)
 ```
 
-> Note
+> Megjegyzés
 >
-> This lifecycle was previously named `componentWillReceiveProps`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> Ezt az életciklust előzőleg `componentWillReceiveProps`-nak hívták. Ez a név a 17-es verzióig működni fog. Használd a [`rename-unsafe-lifecycles` kódmódosítót](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles), hogy automatikusan frissítsd a komponenseidet.
 
-> Note:
+> Megjegyzés:
 >
-> Using this lifecycle method often leads to bugs and inconsistencies
+> Ennek az életciklusmetódusnak a használata gyakran vezet hibákhoz és inkonzisztenciákhoz
 >
-> * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
-> * If you used `componentWillReceiveProps` for **re-computing some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
-> * If you used `componentWillReceiveProps` to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+> * Ha **mellékhatást kell végrehajtanod**, (például adatlekérés vagy egy animáció) a propokban történt változások határásra, használd a [`componentDidUpdate`](#componentdidupdate) életciklust ehelyett.
+> * Ha a `componentWillReceiveProps`-ot használtad az **adatok újraszámítására a propok változásai alapján**, [használj memoizálás segítőt ehelyett](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+> * Ha a `componentWillReceiveProps`-ot használtad, hogy **"újrainicializáld" az  állapot egy részét a propok változásának hatására**, fontold meg a komponens [teljesen kontrollálttá tételét](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component), vagy [teljesen kontrollálatlanná egy `key`-vel](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) ehelyett.
 >
-> For other use cases, [follow the recommendations in this blog post about derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+> A többi használati esetben [kövesd az ajánlásokat, amik ebben a származtatott állapotról szóló blogbejegyzésben találhatóak](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-`UNSAFE_componentWillReceiveProps()` is invoked before a mounted component receives new props. If you need to update the state in response to prop changes (for example, to reset it), you may compare `this.props` and `nextProps` and perform state transitions using `this.setState()` in this method.
+Az `UNSAFE_componentWillReceiveProps()` azelőtt hívódik meg, mielőtt egy betöltött komponens új propokat kapna. Ha meg kell változtatnod az állapotot a propok változásának hatására, (például, újrainicializálás), összehasonlíthatod a `this.props`-ot a `nextProps`-szal és állapotot változtathatsz a `this.setState()`-tel ebben a metódusban.
 
-Note that if a parent component causes your component to re-render, this method will be called even if props have not changed. Make sure to compare the current and next values if you only want to handle changes.
+Megjegyzendő, hogy ha egy szülő komponens miatt renderelődik újra a komponensed, ez a metódus meghívódik akkor is, ha a propok nem változtak. Hasonlítsd össze a jelenlegi és következő értékeket, ha csak a változásokat akarod lekezelni.
 
-React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props during [mounting](#mounting). It only calls this method if some of component's props may update. Calling `this.setState()` generally doesn't trigger `UNSAFE_componentWillReceiveProps()`.
+A React nem hívja meg az `UNSAFE_componentWillReceiveProps()`-t a kezdeti prop értékekkel a [betöltés](#mounting) közben. Csak akkor hívja meg ezt a metódust, ha a komponens néhány propja frissülhet. A `this.setState()` meghívása általában nem idézi elő az `UNSAFE_componentWillReceiveProps()` meghívását.
 
 * * *
 
@@ -476,49 +476,49 @@ React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props durin
 UNSAFE_componentWillUpdate(nextProps, nextState)
 ```
 
-> Note
+> Mejegyzés
 >
-> This lifecycle was previously named `componentWillUpdate`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> Ezt az életciklust előzőleg `componentWillUpdate`-nek hívták. Ez a név a 17-es verzióig működni fog. Használd a [`rename-unsafe-lifecycles` kódmódosítót](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles), hogy automatikusan frissítsd a komponenseidet.
 
-`UNSAFE_componentWillUpdate()` is invoked just before rendering when new props or state are being received. Use this as an opportunity to perform preparation before an update occurs. This method is not called for the initial render.
+Az `UNSAFE_componentWillUpdate()` közvetlenül renderelés előtt hívódik meg, amikor új propok és állapotok kerülnek fogadásra. Ez egy jó lehetőség arra, hogy előkészítést végezzünk el egy frissítés előtt. Ez a metódus nem hívódik meg a kezdeti rendereléskor.
 
-Note that you cannot call `this.setState()` here; nor should you do anything else (e.g. dispatch a Redux action) that would trigger an update to a React component before `UNSAFE_componentWillUpdate()` returns.
+Megjegyzendő, hogy itt nem hívhatod meg a `this.setState()`-et; valamint bármi mást sem (pl. kezdeményezni egy Redux műveletet), ami egy frissítést kezdeményezne a React komponensben a `UNSAFE_componentWillUpdate()` visszatérése előtt.
 
-Typically, this method can be replaced by `componentDidUpdate()`. If you were reading from the DOM in this method (e.g. to save a scroll position), you can move that logic to `getSnapshotBeforeUpdate()`.
+Általában ez a metódus kicserélhető a `componentDidUpdate()`-tel. Ha ebben a metódusban a DOM-ból olvastál ki (pl. a görgetési pozíció elmentése), ezt a logikát áthelyezheted a `getSnapshotBeforeUpdate()`-be.
 
-> Note
+> Megjegyzés
 >
-> `UNSAFE_componentWillUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> A `UNSAFE_componentWillUpdate()` nem hívódik meg, ha a [`shouldComponentUpdate()`](#shouldcomponentupdate) hamisat ad vissza.
 
 * * *
 
-## Other APIs {#other-apis-1}
+## Egyéb API-k {#other-apis-1}
 
-Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components.
+A fenti életciklusmetódusokkal ellentétben (amiket a React hív meg neked), a következő metódusokat *te magad* hívhatod meg a komponenseidből.
 
-There are just two of them: `setState()` and `forceUpdate()`.
+Csak ez a kettő van: `setState()` és `forceUpdate()`.
 
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater[, callback])
+setState(updater, [callback])
 ```
 
-`setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.
+ A `setState()` egy várakozási sorba helyezi a komponens állapotának változásait és utasítja a Reactet, hogy ez a komponens a gyermekeivel együtt újrarendereljen az új állapottal. Ez az elsődleges metódus a kezelői felület frissítéséhez az eseménykezelők és szerver általi válasz hatására.
 
-Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
+Gondolj a `setState()`-re mint *kérés*, egy azonnali parancs helyett a komponens frissítésére. A jobb észlelt teljesítmény érdekében a React dönthet úgy, hogy késlelteti a végrehajtást, és aztán több komponenst is egyszerre frissít. A React nem garantálja, hogy az állapotfrissítések azonnal megtörténnek.
 
-`setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, read about the `updater` argument below.
+A `setState()` nem mindig frissíti rögtön a komponenst. Lehet, hogy összevonja más frissítésekkel, vagy késlelteti a frissítést. Emiatt a `this.state` kiolvasása rögtön a `setState()` meghívása után egy potenciális buktató. Ehelyett használd a `componentDidUpdate`-t vagy a `setState` callbackjét (`setState(updater, callback)`), ezek közül bármelyik garantáltan lefut egy frissítés megtörténte után. Ha az állapotot egy előző állapot alapján kell beállítanod, olvass az `updater` argumentumról alább.
 
-`setState()` will always lead to a re-render unless `shouldComponentUpdate()` returns `false`. If mutable objects are being used and conditional rendering logic cannot be implemented in `shouldComponentUpdate()`, calling `setState()` only when the new state differs from the previous state will avoid unnecessary re-renders.
+A `setState()` mindig újrarendereléshez vezet, kivéve, ha a `shouldComponentUpdate()` `false`-ot ad vissza. Ha megváltoztatható objektumokat használsz és nem lehet implementálni feltételes renderelő logikát a `shouldComponentUpdate()`-ben, a felesleges renderelések elkerülése érdekében a `setState()`-et csak akkor hívd meg, ha az új állapot különbözik az előzőtől.
 
-The first argument is an `updater` function with the signature:
+Az első argumentum egy `updater` függvény az alábbi szignatúrával:
 
 ```javascript
 (state, props) => stateChange
 ```
 
-`state` is a reference to the component state at the time the change is being applied. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `state` and `props`. For instance, suppose we wanted to increment a value in state by `props.step`:
+A `state` egy referencia a komponens állapotára a frissítés idejében. Ezt nem szabad közvetlenül módosítani. Ehelyett a változásokat reprezentáld egy új objektumban a `state` és `props` alapján. Például tegyük fel, hogy meg akarjuk növelni egy állapotváltozó értéket `props.step`-pel:
 
 ```javascript
 this.setState((state, props) => {
@@ -526,23 +526,23 @@ this.setState((state, props) => {
 });
 ```
 
-Both `state` and `props` received by the updater function are guaranteed to be up-to-date. The output of the updater is shallowly merged with `state`.
+Mind `state` és `props` értéke, amit a frissítőfüggvény (updater) által kaptunk, garantáltan friss lesz. A frissítőfüggvény kimenete a `state`-tel kerül sekélyen összefésülésre.
 
-The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
+A `setState()` második paramétere egy opcionális callback függvény, ami akkor lesz meghívva, amikor a `setState` lefutott és a komponens újrarenderelt. Mi általában hasonló logikához a `componentDidUpdate()`-et ajánljuk ehelyett.
 
-You may optionally pass an object as the first argument to `setState()` instead of a function:
+A `setState()` első argumentuma függvény helyett lehet objektum is:
 
 ```javascript
 setState(stateChange[, callback])
 ```
 
-This performs a shallow merge of `stateChange` into the new state, e.g., to adjust a shopping cart item quantity:
+Ez a `stateChange` egy sekély összefésülését végzi el az új állapotba, pl., amikor egy kosár elemeinek számát változtatod meg:
 
 ```javascript
 this.setState({quantity: 2})
 ```
 
-This form of `setState()` is also asynchronous, and multiple calls during the same cycle may be batched together. For example, if you attempt to increment an item quantity more than once in the same cycle, that will result in the equivalent of:
+A `setState()` ezen formája aszinkron, és az egy ciklus alatt bekövetkező hívások összevonódhatnak. Például, ha egy elem értéket többször is megnöveled egy cikluson belül, az ezzel lesz ekvivalens:
 
 ```javaScript
 Object.assign(
@@ -553,7 +553,7 @@ Object.assign(
 )
 ```
 
-Subsequent calls will override values from previous calls in the same cycle, so the quantity will only be incremented once. If the next state depends on the current state, we recommend using the updater function form, instead:
+Az ugyanabban a ciklusban lévő egymás utáni hívások felülírják egymást, így az elem értéke csak egyszer lesz megnövelve. Ha a következő állapot a jelenlegi állapotra épül, a frissítőfüggvény használatát javasoljuk ehelyett:
 
 ```js
 this.setState((state) => {
@@ -561,11 +561,11 @@ this.setState((state) => {
 });
 ```
 
-For more detail, see:
+További részletekért lásd:
 
-* [State and Lifecycle guide](/docs/state-and-lifecycle.html)
-* [In depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
-* [In depth: Why isn't `this.state` updated immediately?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+* [Állapot és Életciklus leírása](/docs/state-and-lifecycle.html)
+* [Részletesen: Mikor és miért vonódnak össze a `setState()` hívások?](https://stackoverflow.com/a/48610973/458193)
+* [Részletesen: Miért nem frissül a `this.state` azonnal?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 
 * * *
 
@@ -575,19 +575,19 @@ For more detail, see:
 component.forceUpdate(callback)
 ```
 
-By default, when your component's state or props change, your component will re-render. If your `render()` method depends on some other data, you can tell React that the component needs re-rendering by calling `forceUpdate()`.
+Alapesetben, amikor a komponensed állapota vagy propjai változnak, a komponensed újrarenderelődik. Ha a `render()` metódusod valami más adattól is függ, utasíthatod a Reactet az újrarenderelésre a `forceUpdate()` meghívásával.
 
-Calling `forceUpdate()` will cause `render()` to be called on the component, skipping `shouldComponentUpdate()`. This will trigger the normal lifecycle methods for child components, including the `shouldComponentUpdate()` method of each child. React will still only update the DOM if the markup changes.
+A `forceUpdate()` meghívása a `render()` hívását fogja előidézni a komponensben, kihagyva a `shouldComponentUpdate()`-t. Ez ugyanakkor előidézi a normális életciklusmetódusok meghívását a gyermekkomponensekben a `shouldComponentUpdate()`-tel együtt. Viszont a React ugyanúgy csak akkor frissíti a DOM-ot, ha változás történt.
 
-Normally you should try to avoid all uses of `forceUpdate()` and only read from `this.props` and `this.state` in `render()`.
+Általában elkerülendő a `forceUpdate()` használata és csak a `this.props` és `this.state`-ből olvass a `render()`-ben.
 
 * * *
 
-## Class Properties {#class-properties-1}
+## Osztálytulajdonságok {#class-properties-1}
 
 ### `defaultProps` {#defaultprops}
 
-`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for undefined props, but not for null props. For example:
+A `defaultProps` egy tulajdonságként lehet definiálva magán a komponensen, hogy beállítsa a propok alapértékeit az osztályon. Ez az undefined értékű propoknál használatos, a null értékűeknél nem. Például:
 
 ```js
 class CustomButton extends React.Component {
@@ -599,19 +599,19 @@ CustomButton.defaultProps = {
 };
 ```
 
-If `props.color` is not provided, it will be set by default to `'blue'`:
+Ha a `props.color` nincs megadva, az alapértéke `'blue'` lesz:
 
 ```js
   render() {
-    return <CustomButton /> ; // props.color will be set to blue
+    return <CustomButton /> ; // A props.color blue-ra lesz állítva
   }
 ```
 
-If `props.color` is set to null, it will remain null:
+Ha a `props.color` értéke null, null is marad:
 
 ```js
   render() {
-    return <CustomButton color={null} /> ; // props.color will remain null
+    return <CustomButton color={null} /> ; // A props.color értéke null marad
   }
 ```
 
@@ -619,24 +619,24 @@ If `props.color` is set to null, it will remain null:
 
 ### `displayName` {#displayname}
 
-The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes or when you create a higher-order component, see [Wrap the Display Name for Easy Debugging](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
+A `displayName` szöveg hibakeresésnél használatos. Általában ezt nem kell explicit módon beállítanod, mivel ez az a függvény vagy osztály nevéből van kikövetkeztetve, amelyik definiálja a komponenst. Ezt lehet, hogy be akarod állítani, ha expliciten szeretnél egy másik nevet megjeleníteni hibakeresés miatt, vagy amikor egy magasabb rendű komponenst hozol létre, lásd a [Csomagold be a megjelenítési nevet a könnyebb hibakeresés érdekében](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) szekciót a részletekért.
 
 * * *
 
-## Instance Properties {#instance-properties-1}
+## Példánytulajdonságok {#instance-properties-1}
 
 ### `props` {#props}
 
-`this.props` contains the props that were defined by the caller of this component. See [Components and Props](/docs/components-and-props.html) for an introduction to props.
+A `this.props` a propokat tartalmazza, amik ennek a komponensnek a meghívója által lettek definiálva. Lásd a [Komponensek és Propok](/docs/components-and-props.html) szekciót a propok bemutatásához.
 
-In particular, `this.props.children` is a special prop, typically defined by the child tags in the JSX expression rather than in the tag itself.
+A `this.props.children` egy speciális prop, ami általában a JSX kifejezés gyermekcímkéi által van meghatározva a szülő címke helyett.
 
 ### `state` {#state}
 
-The state contains data specific to this component that may change over time. The state is user-defined, and it should be a plain JavaScript object.
+Az állapot komponensspecifikus adatot tartalmaz, ami idővel változhat. Az állapot felhasználó által definiált, és egyszerű JavaScript objektumnak kell lennie.
 
-If some value isn't used for rendering or data flow (for example, a timer ID), you don't have to put it in the state. Such values can be defined as fields on the component instance.
+Ha egy érték nincs rendereléshez vagy adatáramláshoz használva (például egy időzítő azonosítója), nem kell az állapotba tenned. Az ilyen értékeket mezőkként definiálhatod a komponenspéldányon.
 
-See [State and Lifecycle](/docs/state-and-lifecycle.html) for more information about the state.
+Lásd az [Állapot és Életciklus](/docs/state-and-lifecycle.html) leírást további információkért az állapotról.
 
-Never mutate `this.state` directly, as calling `setState()` afterwards may replace the mutation you made. Treat `this.state` as if it were immutable.
+Soha ne változtasd meg a `this.state`-et közvetlenül, mivel a `setState()` hívás lehet, hogy megváltoztatja ezt később. Tekintsd a `this.state`-et úgy, mintha megváltoztathatatlan lenne.

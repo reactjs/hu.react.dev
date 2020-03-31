@@ -1,25 +1,25 @@
 ---
 id: test-renderer
-title: Test Renderer
+title: Tesztrenderelő
 permalink: docs/test-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**Importálás**
 
 ```javascript
 import TestRenderer from 'react-test-renderer'; // ES6
-const TestRenderer = require('react-test-renderer'); // ES5 with npm
+const TestRenderer = require('react-test-renderer'); // ES5 npm-mel
 ```
 
-## Overview {#overview}
+## Áttekintés {#overview}
 
-This package provides a React renderer that can be used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
+Ez a csomag egy React renderelőt nyújt, ami React komponensek, tiszta JavaScript objektumokként való renderelését teszi lehetővé, a DOM és natív mobilkörnyezetek nélkül.
 
-Essentially, this package makes it easy to grab a snapshot of the platform view hierarchy (similar to a DOM tree) rendered by a React DOM or React Native component without using a browser or [jsdom](https://github.com/tmpvar/jsdom).
+Alapjában véve, ez a csomag a platform nézethierarchiájáról (ami hasonló a DOM fához) való pillanatképek készítését teszi egyszerűbbé, amiket egy React DOM, vagy React Native komponens renderel böngésző, vagy [jsdom](https://github.com/tmpvar/jsdom) használata nélkül.
 
-Example:
+Példa:
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -38,9 +38,9 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](https://jestjs.io/docs/en/snapshot-testing).
+Használhatod a Jest pillanatkép-tesztelő funkcióját a JSON fa automatikus fájlba való kimentéséhez, és hogy le tudd ellenőrizni, hogy a tesztjeid megváltoztak-e: [Itt tanulhatsz róla többet](https://jestjs.io/docs/en/snapshot-testing).
 
-You can also traverse the output to find specific nodes and make assertions about them.
+A kimenetet be is tudod járni, hogy konkrét csomópontokhoz tudj állításokat írni.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -49,14 +49,14 @@ function MyComponent() {
   return (
     <div>
       <SubComponent foo="bar" />
-      <p className="my">Hello</p>
+      <p className="my">Helló</p>
     </div>
   )
 }
 
 function SubComponent() {
   return (
-    <p className="sub">Sub</p>
+    <p className="sub">Al</p>
   );
 }
 
@@ -64,7 +64,7 @@ const testRenderer = TestRenderer.create(<MyComponent />);
 const testInstance = testRenderer.root;
 
 expect(testInstance.findByType(SubComponent).props.foo).toBe('bar');
-expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
+expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Al']);
 ```
 
 ### TestRenderer {#testrenderer}
@@ -72,7 +72,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 * [`TestRenderer.create()`](#testrenderercreate)
 * [`TestRenderer.act()`](#testrendereract)
 
-### TestRenderer instance {#testrenderer-instance}
+### TestRenderer példány {#testrenderer-instance}
 
 * [`testRenderer.toJSON()`](#testrenderertojson)
 * [`testRenderer.toTree()`](#testrenderertotree)
@@ -95,7 +95,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 * [`testInstance.parent`](#testinstanceparent)
 * [`testInstance.children`](#testinstancechildren)
 
-## Reference {#reference}
+## Referencia {#reference}
 
 ### `TestRenderer.create()` {#testrenderercreate}
 
@@ -103,7 +103,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. Returns a [TestRenderer instance](#testrenderer-instance).
+Egy `TestRenderer` példányt készít az átadott React elemmel. Nem a valós DOM-ot használja, de így is kirendereli a teljes komponensfát a memóriába, hogy állításokat tudj róla írni. Egy [TestRenderer példányt](#testrenderer-instance) ad vissza.
 
 ### `TestRenderer.act()` {#testrendereract}
 
@@ -111,27 +111,27 @@ Create a `TestRenderer` instance with the passed React element. It doesn't use t
 TestRenderer.act(callback);
 ```
 
-Similar to the [`act()` helper from `react-dom/test-utils`](/docs/test-utils.html#act), `TestRenderer.act` prepares a component for assertions. Use this version of `act()` to wrap calls to `TestRenderer.create` and `testRenderer.update`.
+Hasonló a [`react-dom/test-utils` csomag `act()` segédmetódusához](/docs/test-utils.html#act), a `TestRenderer.act` előkészít egy komponenst az állítások írásához. Használd az `act()` ezen verzióját a `TestRenderer.create` és `testRenderer.update` hívások becsomagolásához.
 
 ```javascript
 import {create, act} from 'react-test-renderer';
-import App from './app.js'; // The component being tested
+import App from './app.js'; // A tesztelendő komponens
 
-// render the component
+// rendereld a komponenst
 let root; 
 act(() => {
   root = create(<App value={1}/>)
 });
 
-// make assertions on root 
+// írj állításokat a gyökérhez
 expect(root.toJSON()).toMatchSnapshot();
 
-// update with some different props
+// frissítsd néhány eltérő proppal
 act(() => {
-  root = root.update(<App value={2}/>);
+  root.update(<App value={2}/>);
 })
 
-// make assertions on root 
+// írj állításokat a gyökérhez
 expect(root.toJSON()).toMatchSnapshot();
 ```
 
@@ -141,7 +141,7 @@ expect(root.toJSON()).toMatchSnapshot();
 testRenderer.toJSON()
 ```
 
-Return an object representing the rendered tree. This tree only contains the platform-specific nodes like `<div>` or `<View>` and their props, but doesn't contain any user-written components. This is handy for [snapshot testing](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+Egy, a renderelt fát képviselő objektumot ad vissza. Ez a fa csak platformspecifikus csomópontokat és azok propjait tartalmazza, mint a `<div>`, vagy `<View>`, a felhasználó által írt komponenseket viszont nem. Ez jól jön [pillanatkép-teszteléskor](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
@@ -149,7 +149,7 @@ Return an object representing the rendered tree. This tree only contains the pla
 testRenderer.toTree()
 ```
 
-Return an object representing the rendered tree. The representation is more detailed than the one provided by `toJSON()`, and includes the user-written components. You probably don't need this method unless you're writing your own assertion library on top of the test renderer.
+Egy, a renderelt fát képviselő objektumot ad vissza. A reprezentáció részletesebb, mint amit a `toJSON()` ad vissza, és a felhasználó által írt komponenseket is tartalmazza. Valószínűleg erre a metódusra nem lesz szükséged, kivéve ha a saját állítási könyvtáradat írod a tesztrenderelőre építve.
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -157,15 +157,14 @@ Return an object representing the rendered tree. The representation is more deta
 testRenderer.update(element)
 ```
 
-Re-render the in-memory tree with a new root element. This simulates a React update at the root. If the new element has the same type and key as the previous element, the tree will be updated; otherwise, it will re-mount a new tree.
+Újrarendereli a memóriában lévő fát egy új gyökérelemmel. Ez egy React frissítést szimulál a gyökéren. Ha az új elemnek ugyanaz a típusa és kulcsa mint az előzőnek, a fa frissítve lesz; máskülönben egy új fa lesz létrehozva.
 
 ### `testRenderer.unmount()` {#testrendererunmount}
 
 ```javascript
 testRenderer.unmount()
 ```
-
-Unmount the in-memory tree, triggering the appropriate lifecycle events.
+Leválaszt egy memóriában lévő fát, a megfelelő életciklus-események meghívásával.
 
 ### `testRenderer.getInstance()` {#testrenderergetinstance}
 
@@ -173,7 +172,7 @@ Unmount the in-memory tree, triggering the appropriate lifecycle events.
 testRenderer.getInstance()
 ```
 
-Return the instance corresponding to the root element, if available. This will not work if the root element is a function component because they don't have instances.
+Ha elérhető, egy, a gyökérelemhez tartózó példányt ad vissza. Ha a gyökérelem egy függvénykomponens, ez nem fog működni, mivel a függvényeknek nincsenek példányaik.
 
 ### `testRenderer.root` {#testrendererroot}
 
@@ -181,15 +180,14 @@ Return the instance corresponding to the root element, if available. This will n
 testRenderer.root
 ```
 
-Returns the root "test instance" object that is useful for making assertions about specific nodes in the tree. You can use it to find other "test instances" deeper below.
+A gyökér "tesztpéldány" objektumát adja vissza, ami hasznos a fában lévő specifikus csomópontokhoz való állítások írásához. Mélyebben lévő "tesztpéldányok" megtalálásához is használhatod.
 
 ### `testInstance.find()` {#testinstancefind}
-
 ```javascript
 testInstance.find(test)
 ```
 
-Find a single descendant test instance for which `test(testInstance)` returns `true`. If `test(testInstance)` does not return `true` for exactly one test instance, it will throw an error.
+Megtalálja azt az egyetlen leszármazott tesztpéldányt, ami esetében a `test(testInstance)` `true` értéket ad vissza. Egy hibát dob, ha a `test(testInstance)` nem csak egy tesztpéldány esetén ad vissza `true` értéket.
 
 ### `testInstance.findByType()` {#testinstancefindbytype}
 
@@ -197,7 +195,7 @@ Find a single descendant test instance for which `test(testInstance)` returns `t
 testInstance.findByType(type)
 ```
 
-Find a single descendant test instance with the provided `type`. If there is not exactly one test instance with the provided `type`, it will throw an error.
+Megtalálja azt az egyetlen leszármazott tesztpéldányt, aminek a típusa megegyezik a megadott `type`-pal. Egy hibát dob, ha nem csak egy tesztpéldány létezik a megadott `type` típussal.
 
 ### `testInstance.findByProps()` {#testinstancefindbyprops}
 
@@ -205,7 +203,7 @@ Find a single descendant test instance with the provided `type`. If there is not
 testInstance.findByProps(props)
 ```
 
-Find a single descendant test instance with the provided `props`. If there is not exactly one test instance with the provided `props`, it will throw an error.
+Megtalálja azt az egyetlen leszármazott tesztpéldányt, aminek a propjai megegyeznek a megadott `props`-szal. Egy hibát dob, ha nem csak egy tesztpéldány létezik a megadott `props` propokkal.
 
 ### `testInstance.findAll()` {#testinstancefindall}
 
@@ -213,7 +211,7 @@ Find a single descendant test instance with the provided `props`. If there is no
 testInstance.findAll(test)
 ```
 
-Find all descendant test instances for which `test(testInstance)` returns `true`.
+Megtalálja az összes tesztpéldányt, aminél a `test(testInstance)` `true` értéket ad vissza.
 
 ### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
@@ -221,7 +219,7 @@ Find all descendant test instances for which `test(testInstance)` returns `true`
 testInstance.findAllByType(type)
 ```
 
-Find all descendant test instances with the provided `type`.
+Megtalálja az összes tesztpéldányt, ahol a típus megegyezik a megadott `type`-val.
 
 ### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
@@ -229,7 +227,7 @@ Find all descendant test instances with the provided `type`.
 testInstance.findAllByProps(props)
 ```
 
-Find all descendant test instances with the provided `props`.
+Megtalálja az összes tesztpéldányt, ahol a propok megegyeznek a megadott `props`-szal.
 
 ### `testInstance.instance` {#testinstanceinstance}
 
@@ -237,7 +235,7 @@ Find all descendant test instances with the provided `props`.
 testInstance.instance
 ```
 
-The component instance corresponding to this test instance. It is only available for class components, as function components don't have instances. It matches the `this` value inside the given component.
+Ennek a tesztpéldánynak megfelelő komponenspéldány. Csak osztálykomponenseknél elérhető, mivel függvénykomponenseknek nincsenek példányai. Az adott komponens `this` értékével egyezik meg.
 
 ### `testInstance.type` {#testinstancetype}
 
@@ -245,7 +243,7 @@ The component instance corresponding to this test instance. It is only available
 testInstance.type
 ```
 
-The component type corresponding to this test instance. For example, a `<Button />` component has a type of `Button`.
+Ennek a tesztpéldánynak megfelelő komponenstípus. Például, a `<Button/>` komponens típusa `Button`.
 
 ### `testInstance.props` {#testinstanceprops}
 
@@ -253,7 +251,7 @@ The component type corresponding to this test instance. For example, a `<Button 
 testInstance.props
 ```
 
-The props corresponding to this test instance. For example, a `<Button size="small" />` component has `{size: 'small'}` as props.
+Ennek a tesztpéldánynak megfelelő propok. Például, a `<Button size="small" />` propjai `{size: 'small'}`.
 
 ### `testInstance.parent` {#testinstanceparent}
 
@@ -261,7 +259,7 @@ The props corresponding to this test instance. For example, a `<Button size="sma
 testInstance.parent
 ```
 
-The parent test instance of this test instance.
+Ennek a tesztpéldánynak a szülő tesztpéldánya.
 
 ### `testInstance.children` {#testinstancechildren}
 
@@ -269,13 +267,13 @@ The parent test instance of this test instance.
 testInstance.children
 ```
 
-The children test instances of this test instance.
+Ennek a tesztpéldánynak a gyermek tesztpéldányai.
 
-## Ideas {#ideas}
+## Ötletek {#ideas}
 
-You can pass `createNodeMock` function to `TestRenderer.create` as the option, which allows for custom mock refs.
-`createNodeMock` accepts the current element and should return a mock ref object.
-This is useful when you test a component that relies on refs.
+Opcióként átadhatod a `createNodeMock` függvényt a `TestRenderer.create`-nek, ami lehetőséget ad egyedi, hamis refek használatához.
+A `createNodeMock` a jelenlegi elemet fogadja, és egy hamis refobjektumot kell, hogy visszaadjon.
+Ez hasznos, amikor egy reftől függő komponenst tesztelsz.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -299,7 +297,7 @@ TestRenderer.create(
   {
     createNodeMock: (element) => {
       if (element.type === 'input') {
-        // mock a focus function
+        // készíts egy hamis focus függvényt
         return {
           focus: () => {
             focused = true;

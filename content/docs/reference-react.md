@@ -128,7 +128,7 @@ A `React.memo` egy [felsőbb rendű komponens](/docs/higher-order-components.htm
 
 Ha a függvény komponensed ugyanazt rendereli ugyanazon propok esetében, csomagold be egy `React.memo` meghívásba, hogy bizonyos esetekben memoizálni tudd az eredményt a teljesítmény fokozása érdekében. Ez azt jelenti, hogy a React kihagyja a komponens renderelését, és újrafelhasználja az utoljára renderelt eredményt.
 
-A `React.memo` csak a prop változásokat érinti. Ha a `React.memo`-ba csomagolt függvényed implementációja rendelkezik egy [`useState`](/docs/hooks-state.html) vagy [`useContext`](/docs/hooks-reference.html#usecontext) horoggal, az újra lesz renderelve amennyiben az állapot vagy a kontextus megváltozik.
+A `React.memo` csak a propok változásait figzeli. Ha a `React.memo`-val körbevett függvényed implementációja rendelkezik egy [`useState`](/docs/hooks-state.html) vagy [`useContext`](/docs/hooks-reference.html#usecontext) horoggal, az újra lesz renderelve, amennyiben az állapot vagy a kontextus megváltozik.
 
 Komplex prop objektumok esetében alapértelmezés szerint csak sekély összehasonlítást végez. Ha teljes kontrollt szeretnél az összehasonlítás felett, a második argumentumként megadhatsz egy egyedi összehasonlító függvényt.
 

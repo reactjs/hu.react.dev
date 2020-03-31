@@ -32,9 +32,9 @@ Tegyük fel, hogy van egy `<div>` valahol a HTML fájlodban:
 
 Ezt hívjuk "gyökér" DOM csomópontnak, mert mindent ami benne van azt a React DOM fogja kezelni.
 
-A React-el készített alkalmazásoknak általában egy gyökér DOM csomópontjuk van. Ha egy már meglévő alkalmazásba akarod a React-et integrálni, annyi elszigetelt gyökér DOM csomópontot vehetsz fel, amennyit szeretnél.
+A React-el készített alkalmazásoknak általában egy gyökér DOM csomópontjuk van. Ha egy már meglévő alkalmazásba akarod a Reactet integrálni, annyi elszigetelt gyökér DOM csomópontot vehetsz fel, amennyit szeretnél.
 
-Egy React elem gyökér DOM csomópontba való rendereléséhez, add meg mindkettőt paraméterként a `ReactDOM.render()` metódusnak:
+Egy React elem gyökér DOM csomópontba való rendereléséhez, add meg mindkettőt paraméterként a [`ReactDOM.render()`](/docs/react-dom.html#render) metódusnak:
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -46,7 +46,7 @@ Ez egy "Helló, világ"-ot jelenít meg az oldalon.
 
 A React elemek [megváltoztathatatlanok](https://en.wikipedia.org/wiki/Immutable_object). Ha egyszer készítettél egy elemet, már nem tudod annak gyermekeit vagy attribútumait módosítani. Egy elem olyan mint egy sima képkocka egy filmben: az felhasználói felületet reprezentálja egy adott pillanatban.
 
-Az eddigi tudásunkkal az egyetlen módja a felhasználói felületünk frissítésének ha egy új elemet hozunk létre, és megadjuk paraméterként a `ReactDOM.render()`-nek.
+Az eddigi tudásunkkal az egyetlen módja a felhasználói felületünk frissítésének, ha egy új elemet hozunk létre, és megadjuk paraméterként a [`ReactDOM.render()`](/docs/react-dom.html#render)-nek.
 
 Vedd ezt a ketyegő óra példát:
 
@@ -54,11 +54,11 @@ Vedd ezt a ketyegő óra példát:
 
 [](codepen://rendering-elements/update-rendered-element)
 
-Ez minden másodpercben meghívja a `ReactDOM.render()`-t a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) visszahívó metódusából.
+Ez minden másodpercben meghívja a [`ReactDOM.render()`](/docs/react-dom.html#render)-t a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) visszahívó metódusából.
 
 >**Megjegyzés:**
 >
->Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a `ReactDOM.render()` metódust. A következő fejezetben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbe foglalni [állapot-teljes komponensekkel](/docs/state-and-lifecycle.html).
+>Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a [`ReactDOM.render()`](/docs/react-dom.html#render) metódust. A következő fejezetekben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbe foglalni [állapot-teljes komponensekkel](/docs/state-and-lifecycle.html).
 >
 >Ajánljuk, hogy ne ugord át ezeket a témákat, mert egymásra építenek.
 
@@ -72,4 +72,4 @@ Ezt megerősítheted a [legutolsó példa](codepen://rendering-elements/update-r
 
 Hacsak egy elemet is készítünk ami leírja a teljes felhasználói felület fát minden egyes kettyenéshez, a React DOM akkor is csak a megváltozott szövegcsomópontok tartalmát fogja frissíteni.
 
-Tapasztalataink szerint úgy gondolni a felhasználói felületre hogy az hogyan is nézzen ki egy adott pillanatban ahelyett hogy hogyan fog változni az idő múlásával, egy csomó programhibát gátol meg.
+Tapasztalataink szerint, úgy gondolkodni a felhasználói felületről, hogy az hogyan fog kinézni egy adott pillanatban ahelyett, hogy hogyan fog változni az idő múlásával, rengeteg programhibát gátol meg.

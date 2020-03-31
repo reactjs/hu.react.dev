@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -70,26 +71,23 @@ A React normalizálja az eseményeket annak érdekében, hogy a tulajdonságaik 
 
 Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" fázisban. Egy eseménykezelő regisztrálásához a "capture" fázisban add hozzá a `Capture` szót az esemény nevéhez; például az `onClick` helyett használd az `onClickCapture`-t kattintási események kezeléséhez a capture fázisban.
 
-- [Áttekintés {#overview}](#%c3%81ttekint%c3%a9s-overview)
-  - [Esemény összegyűjtése {#event-pooling}](#esem%c3%a9ny-%c3%b6sszegy%c5%b1jt%c3%a9se-event-pooling)
-- [Támogatott események {#supported-events}](#t%c3%a1mogatott-esem%c3%a9nyek-supported-events)
-- [Referencia {#reference}](#referencia-reference)
-  - [Vágópadesemények {#clipboard-events}](#v%c3%a1g%c3%b3pad-esem%c3%a9nyek-clipboard-events)
-  - [Kompozíció-események {#composition-events}](#kompoz%c3%adci%c3%b3-esem%c3%a9nyek-composition-events)
-  - [Billentyűzet-események {#keyboard-events}](#billenty%c5%b1zet-esem%c3%a9nyek-keyboard-events)
-  - [Fókuszálás-események {#focus-events}](#f%c3%b3kusz%c3%a1l%c3%a1s-esem%c3%a9nyek-focus-events)
-  - [Űrlapesemények {#form-events}](#%c5%b0rlapesem%c3%a9nyek-form-events)
-  - [Egéresemények {#mouse-events}](#eg%c3%a9resem%c3%a9nyek-mouse-events)
-  - [Mutatóesemények {#pointer-events}](#mutat%c3%b3esem%c3%a9nyek-pointer-events)
-  - [Kiválasztás-események {#selection-events}](#kiv%c3%a1laszt%c3%a1s-esem%c3%a9nyek-selection-events)
-  - [Érintőesemények {#touch-events}](#%c3%89rint%c5%91esem%c3%a9nyek-touch-events)
-  - [Felhasználói felület eseményei {#ui-events}](#felhaszn%c3%a1l%c3%b3i-fel%c3%bclet-esem%c3%a9nyei-ui-events)
-  - [Görgőesemények {#wheel-events}](#g%c3%b6rg%c5%91esem%c3%a9nyek-wheel-events)
-  - [Médiaesemények {#media-events}](#m%c3%a9diaesem%c3%a9nyek-media-events)
-  - [Képesemények {#image-events}](#k%c3%a9pesem%c3%a9nyek-image-events)
-  - [Animáció-események {#animation-events}](#anim%c3%a1ci%c3%b3esem%c3%a9nyek-animation-events)
-  - [Átmenet-események {#transition-events}](#%c3%81tmenet-esem%c3%a9nyek-transition-events)
-  - [Egyéb események {#other-events}](#egy%c3%a9b-esem%c3%a9nyek-other-events)
+- [Vágólapesemények](#clipboard-events)
+- [Kompozíció-események](#composition-events)
+- [Billentyűzet-események](#keyboard-events)
+- [Fókuszálás-események](#focus-events)
+- [Űrlapesemények](#form-events)
+- [Egéresemények](#mouse-events)
+- [Általános események](#generic-events)
+- [Mutatóesemények](#pointer-events)
+- [Kiválasztás-események](#selection-events)
+- [Érintőesemények](#touch-events)
+- [Felhasználói felület eseményei](#ui-events)
+- [Görgőesemények](#wheel-events)
+- [Médiaesemények](#media-events)
+- [Képesemények](#image-events)
+- [Animáció-események](#animation-events)
+- [Átmenet-események](#transition-events)
+- [Egyéb események](#other-events)
 
 * * *
 
@@ -180,11 +178,21 @@ DOMEventTarget relatedTarget
 Eseménynevek:
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit 
 ```
 
 Még több információért az onChange eseményről, nézd meg az [Űrlapok](/docs/forms.html) fejezetet.
 For more information about the onChange event, see [Forms](/docs/forms.html).
+
+* * *
+
+### Általános események {#generic-events}
+
+Eseménynevek:
+
+```
+onError onLoad
+```
 
 * * *
 

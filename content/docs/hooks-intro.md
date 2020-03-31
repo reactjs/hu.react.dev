@@ -32,7 +32,7 @@ Ez az új, `useState` nevű függvény az első "Horog" amiről tanulni fogunk, 
 >Megjegyzés
 >
 > A React 16.8.0 az első kiadás ami támogatja a Horgokat. Frissítéskor ne felejtsd el az összes csomagot frissíteni, beleértve a React DOM-ot.
-> A [React Native a 0.59-es kiadás óta]((https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059)) támogatja a Horgokat.
+> A [React Native a 0.59-es kiadás óta](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059) támogatja a Horgokat.
 
 ## Videó bemutató {#video-introduction}
 
