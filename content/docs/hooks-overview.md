@@ -8,11 +8,11 @@ prev: hooks-intro.html
 
 A *Horgok* a React 16.8-as verziójában lettek hozzáadva. Osztályok létrehozása nélkül is lehetőséget kínálnak állapot, és más React funkciók használatához.
 
-A horgok [visszafelé kompatibilisek](/docs/hooks-intro.html#no-breaking-changes). Ez az oldal tapasztalt React felhasználóknak ad egy áttekintést a Horgokról. Ez egy gyorsütemű áttekintés. Ha ez összezavaró, keress egy ilyen sárga dobozt:
+A horgok [visszafelé kompatibilisek](/docs/hooks-intro.html#no-breaking-changes). Ez az oldal tapasztalt React felhasználóknak ad egy áttekintést a Horgokról. Ez egy gyorsütemű áttekintés. Ha összezavarodnál, keress egy ilyen sárga dobozt:
 
 >Részletes magyarázat
 >
->Olvasd el a [Motiváció](/docs/hooks-intro.html#motivation) részt, hogy megértsd miért is adjuk a Horgokat a Reacthez.
+>Olvasd el a [Motiváció](/docs/hooks-intro.html#motivation) részt, hogy megértsd, miért is adjuk a Horgokat a Reacthez.
 
 **↑↑↑ Minden szekció egy ilyen sárga dobozzal végződik.** Részletes magyarázatokat linkelnek.
 
@@ -38,9 +38,9 @@ function Example() {
 }
 ```
 
-Itt, a `useState` egy *Horog* (mindjárt arról is beszélünk, hogy ez mit is jelent). Egy függvénykomponensben hívjuk meg, hogy ahohz állapotot tudjunk rendelni. A React újrarenderelések között megőrzi ezt az állapot. A `useState` egy párt ad vissza: a *jelenlegi* állapotértéket, és egy függvényt amivel azt frissíteni tudjuk. Ezt a függvényt meghívhatod egy esemény kezelőből, vagy máshonnan is. Hasonló az osztályokban megtalálható `this.setState`-hez, kivéve, hogy ez nem egyesíti a régi és az új állapotokat. (Az [Állapot Horog használata](/docs/hooks-state.html) fejezetben mutatni fogunk egy példát, ami összehasonlítja a `useState`-t és a `this.state`-t.)
+Itt, a `useState` egy *Horog* (mindjárt arról is beszélünk, hogy ez mit is jelent). Egy függvénykomponensben hívjuk meg, hogy ahhoz állapotot tudjunk rendelni. A React az újrarenderelések között megőrzi ezt az állapot. A `useState` egy párt ad vissza: a *jelenlegi* állapotértéket, és egy függvényt, amivel azt frissíteni tudjuk. Ezt a függvényt meghívhatod egy eseménykezelőből, vagy máshonnan is. Hasonló az osztályokban megtalálható `this.setState`-hez, kivéve, hogy ez nem egyesíti a régi és az új állapotokat. (Az [Állapot Horog használata](/docs/hooks-state.html) fejezetben mutatni fogunk egy példát, ami összehasonlítja a `useState`-t és a `this.state`-t.)
 
-A `useState` egyetlen argumentuma, az állapot kezdeti értéke. A fenti példában ez `0`, mert a számlálónk nullától indul. Jegyezd meg, hogy a `this.state`-től eltérően, az állapot itt nem egy objektum -- bár lehetne, ha azt szeretnéd. A kezdeti állapot argumentum csupán az első renderelés alkalmával van használva.
+A `useState` egyetlen argumentuma az állapot kezdeti értéke. A fenti példában ez `0`, mert a számlálónk nullától indul. Jegyezd meg, hogy a `this.state`-től eltérően az állapot itt nem egy objektum -- bár lehetne, ha azt szeretnéd. A kezdeti állapot argumentum csupán az első renderelés alkalmával van használva.
 
 #### Több állapotváltozó deklarálása {#declaring-multiple-state-variables}
 
@@ -62,7 +62,7 @@ A [tömb lebontó](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 A horgok függvények, amik "beleakaszkodnak" a React állapot és életciklus funkciókba függvénykomponensekből. A horgok nem működnek osztálykomponensekben -- a React használatát teszik lehetővé, osztályok nélkül. (Meglévő komponensek átírását egyik napról a másikra [nem ajánljuk](/docs/hooks-intro.html#gradual-adoption-strategy), de új komponensekben elkezdhetsz Horgokat használni, ha szeretnéd.)
 
-A React biztosít néjány beépített Horgot, mint a `useState`. Saját Horgokat is készíthetsz, ha állapotteljes viselkedést szeretnél különböző komponensek között megosztani. Először nézzük a beépített Horgokat.
+A React biztosít néhány beépített Horgot, mint a `useState`. Saját Horgokat is készíthetsz, ha állapotteljes viselkedést szeretnél különböző komponensek között megosztani. Először nézzük a beépített Horgokat.
 
 >Részletes magyarázat
 >
@@ -99,7 +99,7 @@ function Example() {
 }
 ```
 
-Amikor meghívod a `useEffect`-et, azt közlöd a Reacttel, hogy az futtassa a "kiható" függvényed azután, hogy a változásokat eszközölte a DOM-on. A hatások a komponensen belül vannak deklarálva, hogy hozzáférjenek a propokhoz és az állapothoz. Alapértelmezés szerint a React minden renderelés után lefuttatja ezeket a hatásokat -- **beleértve** az első renderelést is. (A [Hatás Horog használata](/docs/hooks-effect.html) fejezetben beszélni fogunk arról, hogy ez hogyan összehasonlítható az osztályok életciklusaival.)
+Amikor meghívod a `useEffect`-et, azt közlöd a Reacttel, hogy az futtassa a "hatás" függvényed azután, hogy a változásokat eszközölte a DOM-on. A hatások a komponensen belül vannak deklarálva, hogy hozzáférjenek a propokhoz és az állapothoz. Alapértelmezés szerint a React minden renderelés után lefuttatja ezeket a hatásokat -- **beleértve** az első renderelést is. (A [Hatás Horog használata](/docs/hooks-effect.html) fejezetben beszélni fogunk arról, hogy ez hogyan hasonlítható össze az osztályok életciklusaival.)
 
 A hatások opcionálisan azt is közölhetik, hogy hogyan "takarítsanak fel" maguk után egy függvény visszaadásával. Például ez a komponens egy hatást használ egy barát online státuszára való feliratkozásához, és arról való leiratkozással takarít fel maga után:
 
@@ -128,7 +128,7 @@ function FriendStatus(props) {
 }
 ```
 
-Ebben a példában a React akkor iratkozik le a `ChatAPI`-ről, amikor a komponens leválik, valamint a hatás újrahívása előtt is, későbbi renderelések következtében. (Ha szeretnéd, létezik módja annak, hogy [közöld a Reacttel újrafeliratkozások átugrását](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects), amennyiben a `props.friend.id` amit a `ChatAPI`-nek adtunk át nem változott.)
+Ebben a példában a React akkor iratkozik le a `ChatAPI`-ről, amikor a komponens leválik, valamint a hatás újrahívása előtt is, későbbi renderelések következtében. (Ha szeretnéd, létezik módja annak, hogy [közöld a Reacttel az újrafeliratkozások átugrását](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects), amennyiben a `props.friend.id` amit a `ChatAPI`-nek adtunk át nem változott.)
 
 Ahogyan a `useState` esetében is, úgy több hatást is használhatsz egy komponensen belül:
 
@@ -174,7 +174,7 @@ Szolgáltatunk egy [linter plugint](https://www.npmjs.com/package/eslint-plugin-
 
 ## 💡 Készítsd el a saját horgod {#building-your-own-hooks}
 
-Néha szeretnénk állapotteljes logikát megosztani komponensek között. Hagyomásosan ennek a problémának két népszerű megoldása létezett: [felsőbb rendű komponensek](/docs/higher-order-components.html) és [render propok](/docs/render-props.html). Az egyedi horgok ezt a problémát oldják meg, extra komponensek a komponensfádhoz való hozzáadása nélkül.
+Néha szeretnénk állapotteljes logikát megosztani komponensek között. Hagyományosan ennek a problémának két népszerű megoldása létezett: [felsőbb rendű komponensek](/docs/higher-order-components.html) és [render propok](/docs/render-props.html). Az egyedi horgok ezt a problémát oldják meg, extra komponensek a komponensfádhoz való hozzáadása nélkül.
 
 Korábban ezen az oldalon bemutattuk a `FriendStatus` komponenst ami meghívja a `useState` és `useEffect` horgokat egy barát online státuszára való feliratkozáshoz. Tegyük fel, hogy egy másik komponensben újra fel szeretnénk használni a feliratkozó logikát.
 
@@ -229,11 +229,11 @@ function FriendListItem(props) {
 }
 ```
 
-Ezen komponensek állapota egymástól teljesen független. A horgok az *állapotteljes logika* újrafelhasználásának egy módja, nem maguknak az állapotoknak. Valójában minden egyes horog *meghívás*-nak teljesen elzárt állapota van -- szóval ugynazt az egyedi horgot akár kétszer is használhatod egy komponensen belül.
+Ezen komponensek állapota egymástól teljesen független. A horgok az *állapotteljes logika* újrafelhasználásának egy módja, nem maguknak az állapotoknak. Valójában minden egyes horog *meghívás*-nak teljesen elzárt állapota van -- szóval ugyanazt az egyedi horgot akár kétszer is használhatod egy komponensen belül.
 
 Az egyedi horgok sokkal inkább egy közös egyezmény eredményei, mint egy egyedi funkció. Ha egy függvény neve a "`use`" szóval kezdődik, és más horgokat hív meg, akkor azt mondjuk, hogy az egy egyedi horog. A `useSomething` elnevezési gyakorlat a módja, ami lehetővé teszi a linter pluginunknak horgokat használó kódban hibákat találni.
 
-Írhatsz egyedi horgokat ami a felhasználási esetek egy széles skáláját fedi le, mint például űrlapok kezelése, animációk, deklaratív feliratkozások, időzítők, és valószínűleg sok más eset, amiket nem vettünk figyelembe. Izgatottan figyeljük, hogy a React közösség milyen egyedi horgokkal rukkol elő.
+Írhatsz egyedi horgokat, ami a felhasználási esetek egy széles skáláját fedi le, mint például űrlapok kezelése, animációk, deklaratív feliratkozások, időzítők, és valószínűleg sok más eset, amiket nem vettünk figyelembe. Izgatottan figyeljük, hogy a React közösség milyen egyedi horgokkal rukkol elő.
 
 >Részletes magyarázat
 >
@@ -269,4 +269,4 @@ Hűha, ez gyors volt! Ha néhány dolog nem teljesen volt világos, vagy részle
 
 Megnézheted a [Horgok API referencia](/docs/hooks-reference.html) oldalát, és a [Horgok GY.I.K.](/docs/hooks-faq.html) oldalát is.
 
-Végezetül ne hagy ki a [bemutató oldalt](/docs/hooks-intro.html), ami a horgok hozzáadásának a *miértjét* magyarázza el, és hogy hogyan fogjuk őket osztályok mellett használni -- az alkalmazásaink átírása nélkül.
+Végezetül ne hagyd ki a [bemutató oldalt](/docs/hooks-intro.html), ami a horgok hozzáadásának a *miértjét* magyarázza el, és hogy hogyan fogjuk őket osztályok mellett használni -- az alkalmazásaink átírása nélkül.
