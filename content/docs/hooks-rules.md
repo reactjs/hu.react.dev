@@ -25,7 +25,7 @@ Ennek a szabálynak a betartásával gondoskodsz róla, hogy minden állapottelj
 
 ## ESLint Plugin {#eslint-plugin}
 
-Kiadtunk egy ESLint plugint [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) néven, ami ezt a két szabályt segít betartani. ha ki szeretnéd próbálni, hoígy tudod hozzáadni a projektedhez:
+Kiadtunk egy ESLint plugint [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) néven, ami ezt a két szabályt segít betartani. Ha ki szeretnéd próbálni, így tudod hozzáadni a projektedhez:
 
 Ezt a plugint a [Create React App](/docs/create-a-new-react-app.html#create-react-app) alapból tartalmazza.
 
@@ -52,7 +52,7 @@ npm install eslint-plugin-react-hooks --save-dev
 
 ## Magyarázat {#explanation}
 
-Ahogy [korábban megtanultuk](/docs/hooks-state.html#tip-using-multiple-state-variables), egy komponensben egyszerre több Állapot és Hatás Horgod it használhatunk:
+Ahogy [korábban megtanultuk](/docs/hooks-state.html#tip-using-multiple-state-variables), egy komponensben egyszerre több Állapot és Hatás Horgot is használhatunk:
 
 ```js
 function Form() {
@@ -76,7 +76,7 @@ function Form() {
 }
 ```
 
-Szóval hogyan is tudja a React, hogy melyik állapothoz melyik melyik `useState` hívás tartozik? A válasz, hogy **a React a Horgok meghívásának sorrendjére hagyatkozik**. A példánk azélrt működik, mert a Horgok meghívásának sorrendje minden renderelés során ugyanaz:
+Szóval hogyan is tudja a React, hogy melyik állapothoz melyik `useState` hívás tartozik? A válasz, hogy **a React a Horgok meghívásának sorrendjére hagyatkozik**. A példánk azért működik, mert a Horgok meghívásának sorrendje minden renderelés során ugyanaz:
 
 ```js
 // ------------
@@ -98,7 +98,7 @@ useEffect(updateTitle)     // 4. Cseréld ki a hatást a cím frissítéséért
 // ...
 ```
 
-Egészen addig, amíg a Horgok meghívása nem változik a renderelések között, a React asszociálni tudja a helyi állapotokat ezekkel. De mi történik, ha az egyik Horog mehívását (például a `persistForm` hatást) egy feltételbe tesszük?
+Egészen addig, amíg a Horgok meghívása nem változik a renderelések között, a React asszociálni tudja a helyi állapotokat ezekkel. De mi történik, ha az egyik Horog meghívását (például a `persistForm` hatást) egy feltételbe tesszük?
 
 ```js
   // 🔴 Ezzel megszegjük az első szabályt, mivel a Horgot egy feltételben használjuk
@@ -118,7 +118,7 @@ useState('Poppins')        // 🔴 2 (de az előbb 3 volt). Nem tudja kiolvasni 
 useEffect(updateTitle)     // 🔴 3 (de az előbb 4 volt). Nem tudja kicserélni a hatást
 ```
 
-A React nem tudhatta, hogy mit adjon vissza a második `useState` Horog meghívásakor. A React arra számított, hogy a komponensben lévő második Horog meghívása a `persistForm` hatásnaak felel meg, ahogyan az előző rendereléskor is, de most már nem ez a helyzet. Mostantól minden Horog meghívás a kihagyás után el van csúszva eggyel, ami hibákhoz vezet.
+A React nem tudhatta, hogy mit adjon vissza a második `useState` Horog meghívásakor. A React arra számított, hogy a komponensben lévő második Horog meghívása a `persistForm` hatásnak felel meg, ahogyan az előző rendereléskor is, de most már nem ez a helyzet. Mostantól minden Horog meghívás a kihagyás után el van csúszva eggyel, ami hibákhoz vezet.
 
 **Ezért kell, hogy a Horgok csak a komponensünk legfelsőbb szintjén legyenek meghívva.** Ha egy hatást feltételesen szeretnénk futtatni, vigyük át a feltételt a Horgon *belülre*:
 
@@ -135,4 +135,4 @@ A React nem tudhatta, hogy mit adjon vissza a második `useState` Horog meghív�
 
 ## Következő lépések {#next-steps}
 
-Végre, készen állunk [saját Horgaid írásának](/docs/hooks-custom.html) tanulására! Az Egyedi Horgok lehetővé teszik a React által szolgáltatott Horgokat saját absztrakcicióidba kombinálni, és állapotteljes logika újrafelhasználását különböző komponensek között.
+Végre, készen állunk [saját Horgaid írásának](/docs/hooks-custom.html) tanulására! Az Egyedi Horgok lehetővé teszik a React által szolgáltatott Horgokat saját absztrakcióidba kombinálni, és állapotteljes logika újrafelhasználását különböző komponensek között.
