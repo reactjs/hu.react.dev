@@ -6,7 +6,7 @@ layout: docs
 category: Reference
 ---
 
-Az a referencia útmutató `SyntheticEvent` csomagolót dokumentálja, ami a React Esemény Rendszerét képzi. Ha többet szeretnél tanulni, nézd meg az [Események kezelése](/docs/handling-events.html) útmutatót.
+Ez a referencia útmutató a `SyntheticEvent` csomagolót dokumentálja, ami a React Eseményrendszere egy részét képzi. Ha többet szeretnél tanulni erről, nézd meg az [Események kezelése](/docs/handling-events.html) útmutatót.
 
 ## Áttekintés {#overview}
 
@@ -35,15 +35,15 @@ string type
 >
 > A v0.14-től kezdve `false` érték visszaadása egy eseménykezelőben nem állítja meg az esemény terjedését. Ehelyett manuálisan kell, hogy meghívd vagy az `e.stopPropagation()`-t, vagy az `e.preventDefault`-ot, attól függően melyik a helyes a te esetedben.
 
-### Esemény összegyűjtése {#event-pooling}
+### Események összegyűjtése {#event-pooling}
 
-A `SyntheticEvent` egy medencében gyűlik. Ez azt jelenti, hogy a `SyntheticEvent` objektum újra fel lesz használva és minden tulajdonság ki lesz nullozva az esemény callbackjének meghívása után.
+A `SyntheticEvent` egy közös készletben van. Ez azt jelenti, hogy a `SyntheticEvent` objektum újrafelhasználható és minden tulajdonság ki lesz nullázva az esemény callbackjének meghívása után.
 Ez a teljesítmény növelése érdekében történik.
 Így az eseményhez nem férhetsz aszinkron módon.
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => kinullozott objektum.
+  console.log(event); // => kinullázott objektum.
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -95,7 +95,7 @@ Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" f
 
 ## Referencia {#reference}
 
-### Vágópadesemények {#clipboard-events}
+### Vágólapesemények {#clipboard-events}
 
 Eseménynevek:
 
