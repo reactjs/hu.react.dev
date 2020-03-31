@@ -1,80 +1,80 @@
 ---
 id: hooks-overview
-title: Hooks at a Glance
+title: Horgok egy pillantásra
 permalink: docs/hooks-overview.html
 next: hooks-state.html
 prev: hooks-intro.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+A *Horgok* a React 16.8-as verziójában lettek hozzáadva. Osztályok létrehozása nélkül is lehetőséget kínálnak állapot, és más React funkciók használatához.
 
-Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). This page provides an overview of Hooks for experienced React users. This is a fast-paced overview. If you get confused, look for a yellow box like this:
+A horgok [visszafelé kompatibilisek](/docs/hooks-intro.html#no-breaking-changes). Ez az oldal tapasztalt React felhasználóknak ad egy áttekintést a Horgokról. Ez egy gyorsütemű áttekintés. Ha összezavarodnál, keress egy ilyen sárga dobozt:
 
->Detailed Explanation
+>Részletes magyarázat
 >
->Read the [Motivation](/docs/hooks-intro.html#motivation) to learn why we're introducing Hooks to React.
+>Olvasd el a [Motiváció](/docs/hooks-intro.html#motivation) részt, hogy megértsd, miért is adjuk a Horgokat a Reacthez.
 
-**↑↑↑ Each section ends with a yellow box like this.** They link to detailed explanations.
+**↑↑↑ Minden szekció egy ilyen sárga dobozzal végződik.** Részletes magyarázatokat linkelnek.
 
-## 📌 State Hook {#state-hook}
+## 📌 Állapot horog {#state-hook}
 
-This example renders a counter. When you click the button, it increments the value:
+Ez a példa egy számlálót renderel. A gombra kattintáskor növeli az értéket:
 
 ```js{1,4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Egy új állapot változó deklarálása, amit "count"-nak fogunk hívni
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>{count} alkalommal kattintottál</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Kattints rám
       </button>
     </div>
   );
 }
 ```
 
-Here, `useState` is a *Hook* (we'll talk about what this means in a moment). We call it inside a function component to add some local state to it. React will preserve this state between re-renders. `useState` returns a pair: the *current* state value and a function that lets you update it. You can call this function from an event handler or somewhere else. It's similar to `this.setState` in a class, except it doesn't merge the old and new state together. (We'll show an example comparing `useState` to `this.state` in [Using the State Hook](/docs/hooks-state.html).)
+Itt, a `useState` egy *Horog* (mindjárt arról is beszélünk, hogy ez mit is jelent). Egy függvénykomponensben hívjuk meg, hogy ahhoz állapotot tudjunk rendelni. A React az újrarenderelések között megőrzi ezt az állapot. A `useState` egy párt ad vissza: a *jelenlegi* állapotértéket, és egy függvényt, amivel azt frissíteni tudjuk. Ezt a függvényt meghívhatod egy eseménykezelőből, vagy máshonnan is. Hasonló az osztályokban megtalálható `this.setState`-hez, kivéve, hogy ez nem egyesíti a régi és az új állapotokat. (Az [Állapot Horog használata](/docs/hooks-state.html) fejezetben mutatni fogunk egy példát, ami összehasonlítja a `useState`-t és a `this.state`-t.)
 
-The only argument to `useState` is the initial state. In the example above, it is `0` because our counter starts from zero. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
+A `useState` egyetlen argumentuma az állapot kezdeti értéke. A fenti példában ez `0`, mert a számlálónk nullától indul. Jegyezd meg, hogy a `this.state`-től eltérően az állapot itt nem egy objektum -- bár lehetne, ha azt szeretnéd. A kezdeti állapot argumentum csupán az első renderelés alkalmával van használva.
 
-#### Declaring multiple state variables {#declaring-multiple-state-variables}
+#### Több állapotváltozó deklarálása {#declaring-multiple-state-variables}
 
-You can use the State Hook more than once in a single component:
+Az Állapot Horgot többször is használhatod egy komponensen belül:
 
 ```js
 function ExampleWithManyStates() {
-  // Declare multiple state variables!
+  // Deklarálj egyszerre több állapotváltozót!
   const [age, setAge] = useState(42);
-  const [fruit, setFruit] = useState('banana');
-  const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+  const [fruit, setFruit] = useState('banán');
+  const [todos, setTodos] = useState([{ text: 'Tanuld meg a Horgokat' }]);
   // ...
 }
 ```
 
-The [array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) syntax lets us give different names to the state variables we declared by calling `useState`. These names aren't a part of the `useState` API. Instead, React assumes that if you call `useState` many times, you do it in the same order during every render. We'll come back to why this works and when this is useful later.
+A [tömb lebontó](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) szintaxis lehetővé teszi számunkra különféle nevet adni a `useState` hívásakor a deklarált állapotváltozóknak. Ezek a nevek nem a `useState` API részei. Ehelyett a React feltételezi, hogy ha a `useState`-t többször is meghívod, akkor ezt minden renderelés során ugyanabban a sorrendben teszed. Később vissza fogunk térni arra, hogy ez miért működik, és mikor igazán hasznos.
 
-#### But what is a Hook? {#but-what-is-a-hook}
+#### De mi is egy Horog igazából? {#but-what-is-a-hook}
 
-Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don't work inside classes -- they let you use React without classes. (We [don't recommend](/docs/hooks-intro.html#gradual-adoption-strategy) rewriting your existing components overnight but you can start using Hooks in the new ones if you'd like.)
+A horgok függvények, amik "beleakaszkodnak" a React állapot és életciklus funkciókba függvénykomponensekből. A horgok nem működnek osztálykomponensekben -- a React használatát teszik lehetővé, osztályok nélkül. (Meglévő komponensek átírását egyik napról a másikra [nem ajánljuk](/docs/hooks-intro.html#gradual-adoption-strategy), de új komponensekben elkezdhetsz Horgokat használni, ha szeretnéd.)
 
-React provides a few built-in Hooks like `useState`. You can also create your own Hooks to reuse stateful behavior between different components. We'll look at the built-in Hooks first.
+A React biztosít néhány beépített Horgot, mint a `useState`. Saját Horgokat is készíthetsz, ha állapotteljes viselkedést szeretnél különböző komponensek között megosztani. Először nézzük a beépített Horgokat.
 
->Detailed Explanation
+>Részletes magyarázat
 >
->You can learn more about the State Hook on a dedicated page: [Using the State Hook](/docs/hooks-state.html).
+>Az Állapot Horogról az annak dedikált oldalon többet tanulhatsz: [Állapot Horog használata](/docs/hooks-state.html).
 
-## ⚡️ Effect Hook {#effect-hook}
+## ⚡️ Hatás Horog {#effect-hook}
 
-You've likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations "side effects" (or "effects" for short) because they can affect other components and can't be done during rendering.
+Valószínűleg hajtottál már végre adatlehívást, feliratkozást, vagy manuális DOM változást React komponensekből. Ezeket a műveleteket "mellékhatásoknak" (vagy röviden csak "hatásoknak") hívjuk, mert más komponensekre is kihatással lehetnek, és renderelés közben nem elvégezhető műveletek. 
 
-The Effect Hook, `useEffect`, adds the ability to perform side effects from a function component. It serves the same purpose as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in React classes, but unified into a single API. (We'll show examples comparing `useEffect` to these methods in [Using the Effect Hook](/docs/hooks-effect.html).)
+A Hatás Horog, `useEffect`, mellékhatások elvégzését teszi lehetővé függvénykomponensekből. Ugyanazt a célt szolgálja mint a React osztálybeli `componentDidMount`, `componentDidUpdate`, és `componentWillUnmount`, de egy egyszerű API-be sűrítve. (A [Hatás Horog használata](/docs/hooks-state.html) fejezetben mutatni fogunk egy példát, ami összehasonlítja a `useEffect`-et ezekkel a metódusokkal.)
 
-For example, this component sets the document title after React updates the DOM:
+Például ez a komponens a dokumentum címét változtatja meg azután, hogy a React frissítette a DOM-ot:
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -82,26 +82,26 @@ import React, { useState, useEffect } from 'react';
 function Example() {
   const [count, setCount] = useState(0);
 
-  // Similar to componentDidMount and componentDidUpdate:
+  // Hasonló a componentDidMount és componentDidUpdate-hez:
   useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
+    // A dokumentum címének frissítése a böngésző API segítségével
+    document.title = `${count} alkalommal kattintottál`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>{count} alkalommal kattintottál</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Kattints rám
       </button>
     </div>
   );
 }
 ```
 
-When you call `useEffect`, you're telling React to run your "effect" function after flushing changes to the DOM. Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render -- *including* the first render. (We'll talk more about how this compares to class lifecycles in [Using the Effect Hook](/docs/hooks-effect.html).)
+Amikor meghívod a `useEffect`-et, azt közlöd a Reacttel, hogy az futtassa a "hatás" függvényed azután, hogy a változásokat eszközölte a DOM-on. A hatások a komponensen belül vannak deklarálva, hogy hozzáférjenek a propokhoz és az állapothoz. Alapértelmezés szerint a React minden renderelés után lefuttatja ezeket a hatásokat -- **beleértve** az első renderelést is. (A [Hatás Horog használata](/docs/hooks-effect.html) fejezetben beszélni fogunk arról, hogy ez hogyan hasonlítható össze az osztályok életciklusaival.)
 
-Effects may also optionally specify how to "clean up" after them by returning a function. For example, this component uses an effect to subscribe to a friend's online status, and cleans up by unsubscribing from it:
+A hatások opcionálisan azt is közölhetik, hogy hogyan "takarítsanak fel" maguk után egy függvény visszaadásával. Például ez a komponens egy hatást használ egy barát online státuszára való feliratkozásához, és arról való leiratkozással takarít fel maga után:
 
 ```js{10-16}
 import React, { useState, useEffect } from 'react';
@@ -122,21 +122,21 @@ function FriendStatus(props) {
   });
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Betöltés...';
   }
   return isOnline ? 'Online' : 'Offline';
 }
 ```
 
-In this example, React would unsubscribe from our `ChatAPI` when the component unmounts, as well as before re-running the effect due to a subsequent render. (If you want, there's a way to [tell React to skip re-subscribing](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects) if the `props.friend.id` we passed to `ChatAPI` didn’t change.)
+Ebben a példában a React akkor iratkozik le a `ChatAPI`-ről, amikor a komponens leválik, valamint a hatás újrahívása előtt is, későbbi renderelések következtében. (Ha szeretnéd, létezik módja annak, hogy [közöld a Reacttel az újrafeliratkozások átugrását](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects), amennyiben a `props.friend.id` amit a `ChatAPI`-nek adtunk át nem változott.)
 
-Just like with `useState`, you can use more than a single effect in a component:
+Ahogyan a `useState` esetében is, úgy több hatást is használhatsz egy komponensen belül:
 
 ```js{3,8}
 function FriendStatusWithCounter(props) {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `${count} alkalommal kattintottál`;
   });
 
   const [isOnline, setIsOnline] = useState(null);
@@ -153,32 +153,32 @@ function FriendStatusWithCounter(props) {
   // ...
 ```
 
-Hooks let you organize side effects in a component by what pieces are related (such as adding and removing a subscription), rather than forcing a split based on lifecycle methods.
+A Horgok lehetővé teszik mellékhatások összerendezését egy komponensben a darabok összefüggését alapul véve (mint például feliratkozások hozzáadása, eltávolítása) ahelyett, hogy ezek feldarabolására kényszerülnél az életciklus metódusok miatt.
 
->Detailed Explanation
+>Részletes magyarázat
 >
->You can learn more about `useEffect` on a dedicated page: [Using the Effect Hook](/docs/hooks-effect.html).
+>A Hatás Horogról az annak dedikált oldalon többet tanulhatsz: [Hatás Horog használata](/docs/hooks-effect.html).
 
-## ✌️ Rules of Hooks {#rules-of-hooks}
+## ✌️ A horgok szabályai {#rules-of-hooks}
 
-Hooks are JavaScript functions, but they impose two additional rules:
+A horgok JavaScript függvények, de további két szabályt szabnak meg:
 
-* Only call Hooks **at the top level**. Don’t call Hooks inside loops, conditions, or nested functions.
-* Only call Hooks **from React function components**. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks -- your own custom Hooks. We'll learn about them in a moment.)
+* Horgokat csakis a **legfelsőbb szinten** hívj meg. Ne hívj meg horgokat ciklusokban, feltételes ágakban, vagy egymásba ágyazott függvényekben.
+* Horgokat csakis **React függvénykomponensekből** hívj meg. Ne hívj meg horgokat általános JavaScript függvényekből. (Csakis egy másik helye létezik a horgok szabályos meghívásának -- a saját, egyedi horgaidban. Ezekről nemsokára tanulni fogunk.)
 
-We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically. We understand these rules might seem limiting or confusing at first, but they are essential to making Hooks work well.
+Szolgáltatunk egy [linter plugint](https://www.npmjs.com/package/eslint-plugin-react-hooks), ami ezen szabályok automatikus betartására kényszerít. Megértjük, ha ezek a szabályok elsőre korlátozónak és összezavarónak tűnnek, de alapvetőek a horgok helyes működéséhez.
 
->Detailed Explanation
+>Részletes magyarázat
 >
->You can learn more about these rules on a dedicated page: [Rules of Hooks](/docs/hooks-rules.html).
+>Ezekről a szabályokról az ezeknek dedikált oldalon többet tanulhatsz: [Horgok szabályai](/docs/hooks-rules.html).
 
-## 💡 Building Your Own Hooks {#building-your-own-hooks}
+## 💡 Készítsd el a saját horgod {#building-your-own-hooks}
 
-Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: [higher-order components](/docs/higher-order-components.html) and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
+Néha szeretnénk állapotteljes logikát megosztani komponensek között. Hagyományosan ennek a problémának két népszerű megoldása létezett: [felsőbb rendű komponensek](/docs/higher-order-components.html) és [render propok](/docs/render-props.html). Az egyedi horgok ezt a problémát oldják meg, extra komponensek a komponensfádhoz való hozzáadása nélkül.
 
-Earlier on this page, we introduced a `FriendStatus` component that calls the `useState` and `useEffect` Hooks to subscribe to a friend's online status. Let's say we also want to reuse this subscription logic in another component.
+Korábban ezen az oldalon bemutattuk a `FriendStatus` komponenst ami meghívja a `useState` és `useEffect` horgokat egy barát online státuszára való feliratkozáshoz. Tegyük fel, hogy egy másik komponensben újra fel szeretnénk használni a feliratkozó logikát.
 
-First, we'll extract this logic into a custom Hook called `useFriendStatus`:
+Először is kivonjuk a logikát egy egyedi horogba, amit `useFriendStatus`-nak hívunk:
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
@@ -201,9 +201,9 @@ function useFriendStatus(friendID) {
 }
 ```
 
-It takes `friendID` as an argument, and returns whether our friend is online.
+Ez egy `friendID`-t fogad argumentumként, és a barátunk online állapotát adja vissza.
 
-Now we can use it from both components:
+Így már mindkét komponensben használhatjuk:
 
 
 ```js{2}
@@ -211,7 +211,7 @@ function FriendStatus(props) {
   const isOnline = useFriendStatus(props.friend.id);
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Betöltés...';
   }
   return isOnline ? 'Online' : 'Offline';
 }
@@ -229,19 +229,19 @@ function FriendListItem(props) {
 }
 ```
 
-The state of these components is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+Ezen komponensek állapota egymástól teljesen független. A horgok az *állapotteljes logika* újrafelhasználásának egy módja, nem maguknak az állapotoknak. Valójában minden egyes horog *meghívás*-nak teljesen elzárt állapota van -- szóval ugyanazt az egyedi horgot akár kétszer is használhatod egy komponensen belül.
 
-Custom Hooks are more of a convention than a feature. If a function's name starts with "`use`" and it calls other Hooks, we say it is a custom Hook. The `useSomething` naming convention is how our linter plugin is able to find bugs in the code using Hooks.
+Az egyedi horgok sokkal inkább egy közös egyezmény eredményei, mint egy egyedi funkció. Ha egy függvény neve a "`use`" szóval kezdődik, és más horgokat hív meg, akkor azt mondjuk, hogy az egy egyedi horog. A `useSomething` elnevezési gyakorlat a módja, ami lehetővé teszi a linter pluginunknak horgokat használó kódban hibákat találni.
 
-You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. We are excited to see what custom Hooks the React community will come up with.
+Írhatsz egyedi horgokat, ami a felhasználási esetek egy széles skáláját fedi le, mint például űrlapok kezelése, animációk, deklaratív feliratkozások, időzítők, és valószínűleg sok más eset, amiket nem vettünk figyelembe. Izgatottan figyeljük, hogy a React közösség milyen egyedi horgokkal rukkol elő.
 
->Detailed Explanation
+>Részletes magyarázat
 >
->You can learn more about custom Hooks on a dedicated page: [Building Your Own Hooks](/docs/hooks-custom.html).
+>Az egyedik horgokról az ennek dedikált oldalon többet tanulhatsz: [Saját horgok készítése](/docs/hooks-custom.html).
 
-## 🔌 Other Hooks {#other-hooks}
+## 🔌 Egyéb horgok {#other-hooks}
 
-There are a few less commonly used built-in Hooks that you might find useful. For example, [`useContext`](/docs/hooks-reference.html#usecontext) lets you subscribe to React context without introducing nesting:
+Van néhány kevésbé használt beépített horog is, amit hasznosnak találhatsz. Például a [`useContext`](/docs/hooks-reference.html#usecontext) lehetővé teszi a React kontextusokra való feliratkozást, egymásba ágyazások nélkül:
 
 ```js{2,3}
 function Example() {
@@ -251,7 +251,7 @@ function Example() {
 }
 ```
 
-And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local state of complex components with a reducer:
+És a [`useReducer`](/docs/hooks-reference.html#usereducer), ami komplex komponensek állapotának kezelését teszi lehetővé reducer-ek segítségével:
 
 ```js{2}
 function Todos() {
@@ -259,14 +259,14 @@ function Todos() {
   // ...
 ```
 
->Detailed Explanation
+>Részletes magyarázat
 >
->You can learn more about all the built-in Hooks on a dedicated page: [Hooks API Reference](/docs/hooks-reference.html).
+>Minden beépített horogról az ennek dedikált oldalon többet tanulhatsz: [Horgok API referencia](/docs/hooks-reference.html).
 
-## Next Steps {#next-steps}
+## Következő lépések {#next-steps}
 
-Phew, that was fast! If some things didn't quite make sense or you'd like to learn more in detail, you can read the next pages, starting with the [State Hook](/docs/hooks-state.html) documentation.
+Hűha, ez gyors volt! Ha néhány dolog nem teljesen volt világos, vagy részletesebben szeretnél valamiről tanulni, elolvashatod a következő oldalakat, kezdve az [Állapot Horog](/docs/hooks-state.html) dokumentációjával.
 
-You can also check out the [Hooks API reference](/docs/hooks-reference.html) and the [Hooks FAQ](/docs/hooks-faq.html).
+Megnézheted a [Horgok API referencia](/docs/hooks-reference.html) oldalát, és a [Horgok GY.I.K.](/docs/hooks-faq.html) oldalát is.
 
-Finally, don't miss the [introduction page](/docs/hooks-intro.html) which explains *why* we're adding Hooks and how we'll start using them side by side with classes -- without rewriting our apps.
+Végezetül ne hagyd ki a [bemutató oldalt](/docs/hooks-intro.html), ami a horgok hozzáadásának a *miértjét* magyarázza el, és hogy hogyan fogjuk őket osztályok mellett használni -- az alkalmazásaink átírása nélkül.
