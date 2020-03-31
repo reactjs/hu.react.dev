@@ -206,7 +206,7 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-Az `onMouseEnter` és `onMouseLeave` események a normális bubbling helyett abból az elemből terjednek, amibe épp egérrel beleléptek, afelé az elem felé, amibe épp beleléptek, és nincs capture fázisuk.
+Az `onMouseEnter` és `onMouseLeave` események a normális bubbling helyett abból az elemből terjednek, amiből az egér épp kilépett, afelé az elem felé, amibe belelépett, és nincs capture fázisuk.
 
 Tulajdonságok:
 
@@ -238,7 +238,7 @@ onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-Az `onPointerEnter` és `onPointerLeave` események a normális bubbling helyett abból az elemből terjednek, amibe épp egérrel beleléptek, afelé az elem felé, amibe épp beleléptek, és nincs capture fázisuk.
+Az `onPointerEnter` és `onPointerLeave` események a normális bubbling helyett abból az elemből terjednek, amiből a mutató épp kilépett, afelé az elem felé, amibe belelépett, és nincs capture fázisuk.
 
 Tulajdonságok:
 
