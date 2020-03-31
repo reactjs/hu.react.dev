@@ -101,7 +101,7 @@
     - id: test-utils
       title: Tesztelői segédeszközök
     - id: test-renderer
-      title: Teszt renderelő
+      title: Tesztrenderelő
     - id: javascript-environment-requirements
       title: JS környezeti követelmények
     - id: glossary
@@ -120,7 +120,7 @@
       - id: hooks-rules
         title: Horgok szabályai
       - id: hooks-custom
-        title: Saját horgok készítése
+        title: Saját Horgok készítése
       - id: hooks-reference
         title: Horog API referencia
       - id: hooks-faq
