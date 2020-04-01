@@ -1,38 +1,38 @@
 ---
 id: hooks-state
-title: Using the State Hook
+title: Állapot Horog használata
 permalink: docs/hooks-state.html
 next: hooks-effect.html
 prev: hooks-overview.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+A *Horgok* a React egy új kiegészítése a 16.8-as verziótól kezdve. Lehetővé teszik számodra állapotok és más React funkciók használatát osztályok írása nélkül.
 
-The [introduction page](/docs/hooks-intro.html) used this example to get familiar with Hooks:
+A [bevezető](/docs/hooks-intro.html) ezt a példát használta a Horgok bemutatására:
 
 ```js{4-5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Egy új állapotváltozó deklarálása, amit "count"-nak nevezünk el
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>{count} alkalommal kattintottál</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Kattints rám
       </button>
     </div>
   );
 }
 ```
 
-We'll start learning about Hooks by comparing this code to an equivalent class example.
+A Horgok bevezetéseképpen először ezt a kódot fogjuk összehasonlítani egy osztályok segítségével írt megfelelőjével:
 
-## Equivalent Class Example {#equivalent-class-example}
+## Osztállyal írt ekvivalens  {#equivalent-class-example}
 
-If you used classes in React before, this code should look familiar:
+Ha már használtál React osztályokat, ez a kód ismerősnek tűnhet: 
 
 ```js
 class Example extends React.Component {
@@ -46,9 +46,9 @@ class Example extends React.Component {
   render() {
     return (
       <div>
-        <p>You clicked {this.state.count} times</p>
+        <p>{this.state.count} alkalommal kattintottál</p>
         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          Click me
+          Kattints rám
         </button>
       </div>
     );
@@ -56,39 +56,39 @@ class Example extends React.Component {
 }
 ```
 
-The state starts as `{ count: 0 }`, and we increment `state.count` when the user clicks a button by calling `this.setState()`. We'll use snippets from this class throughout the page.
+Az állapot először `{ count: 0 }` értéket vesz fel, ezután megnöveljük a `state.count` értékét, amikor a felhasználó rákattint a gombra, a `this.setState()` meghívásával. A későbbiekben ebből az osztályból fogunk idézni.
 
->Note
+>Megjegyzés
 >
->You might be wondering why we're using a counter here instead of a more realistic example. This is to help us focus on the API while we're still making our first steps with Hooks.
+>Esetleg elgondolkozhattál azon, hogy miért egy számlálót használunk itt egy realisztikusabb példa helyett. Ez azért van, hogy az API-ra tudjunk fókuszálni, amíg még csak ismerkedünk a Horgokkal.
 
-## Hooks and Function Components {#hooks-and-function-components}
+## Horgok és függvénykomponensek {#hooks-and-function-components}
 
-As a reminder, function components in React look like this:
+Emlékeztetőül, a függvénykomponensek így néznek ki Reactben:
 
 ```js
 const Example = (props) => {
-  // You can use Hooks here!
+  // Itt használhatsz Horgokat!
   return <div />;
 }
 ```
 
-or this:
+vagy így:
 
 ```js
 function Example(props) {
-  // You can use Hooks here!
+  // Itt használhatsz Horgokat!
   return <div />;
 }
 ```
 
-You might have previously known these as "stateless components". We're now introducing the ability to use React state from these, so we prefer the name "function components".
+Ezeket előzőleg "állapot nélküli komponenseknek" hívtuk. Mostantól kezdve viszont már használhatsz állapotot is ezekben, így ezentúl inkább "függvénykomponensekként" hivatkozunk rájuk.
 
-Hooks **don't** work inside classes. But you can use them instead of writing classes.
+A Horgok **nem** működnek osztályokon belül. De használhatod őket osztályok helyett.
 
-## What's a Hook? {#whats-a-hook}
+## Mi is a Horog? {#whats-a-hook}
 
-Our new example starts by importing the `useState` Hook from React:
+Az új példánk a `useState` Horog importálásával kezdődik:
 
 ```js{1}
 import React, { useState } from 'react';
@@ -98,17 +98,17 @@ function Example() {
 }
 ```
 
-**What is a Hook?** A Hook is a special function that lets you "hook into" React features. For example, `useState` is a Hook that lets you add React state to function components. We'll learn other Hooks later.
+**Mi is a Horog?** A Horog egy speciális függvény, aminek a segítségével "beleakaszkodhatsz" React funkciókba. Például a `useState` egy olyan Horog, aminek a segítségével állapotot adhatsz hozzá a függvénykomponensekhez. Később többféle Horgot is megvizsgálunk.
 
-**When would I use a Hook?** If you write a function component and realize you need to add some state to it, previously you had to convert it to a class. Now you can use a Hook inside the existing function component. We're going to do that right now!
+**Mikor használjak Horgokat?** Ha van egy függvénykomponensed, amihez állapotot szeretnél hozzáadni, előzőleg osztállyá kellett konvertálnod. Mostantól kezdve viszont Horgokat is használhatsz ehelyett a meglévő függvénykomponensben. Most ezt fogjuk kipróbálni!
 
->Note:
+>Megjegyzés:
 >
->There are some special rules about where you can and can't use Hooks within a component. We'll learn them in [Rules of Hooks](/docs/hooks-rules.html).
+>Van néhány speciális szabály, hogy hol és hogyan használhatsz Horgokat egy komponensen belül. Ezekről a [Horgok szabályai](/docs/hooks-rules.html) fejezetben tanulunk majd.
 
-## Declaring a State Variable {#declaring-a-state-variable}
+## Állapotváltozó deklarálása {#declaring-a-state-variable}
 
-In a class, we initialize the `count` state to `0` by setting `this.state` to `{ count: 0 }` in the constructor:
+Egy osztályban a `count` állapotváltozó `0`-ra inicializálása a  `this.state` `{ count: 0 }`-ra állításával történik a konstruktorban:
 
 ```js{4-6}
 class Example extends React.Component {
@@ -120,76 +120,76 @@ class Example extends React.Component {
   }
 ```
 
-In a function component, we have no `this`, so we can't assign or read `this.state`. Instead, we call the `useState` Hook directly inside our component:
+Egy függvénykomponensben nincs `this`, így nem tudjuk beállítani vagy kiolvasni a `this.state`-et. Ehelyett közvetlenül a `useState` Horgot hívjuk meg a komponensben:
 
 ```js{4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Egy új állapotváltozó deklarálása, amit "count"-nak nevezünk el
   const [count, setCount] = useState(0);
 ```
 
-**What does calling `useState` do?** It declares a "state variable". Our variable is called `count` but we could call it anything else, like `banana`. This is a way to "preserve" some values between the function calls — `useState` is a new way to use the exact same capabilities that `this.state` provides in a class. Normally, variables "disappear" when the function exits but state variables are preserved by React.
+**Mit csinál a `useState` hívás?** Ez egy "állapotváltozót" deklarál. A mi változónkat `count`-nak hívják, de bármi másnak is elnevezhetjük, például `banana`. Ez egy módszer az értékek "megőrzésére" a függvényhívások között — a `useState` egy új módszer ugyanarra, amit a  `this.state`-tel érünk el az osztályokban. Normális esetben a változók "eltűnnek" a függvény hívásának befejezésekor, de az állapotváltozókat a React megőrzi.
 
-**What do we pass to `useState` as an argument?** The only argument to the `useState()` Hook is the initial state. Unlike with classes, the state doesn't have to be an object. We can keep a number or a string if that's all we need. In our example, we just want a number for how many times the user clicked, so pass `0` as initial state for our variable. (If we wanted to store two different values in state, we would call `useState()` twice.)
+**Mit adunk át argumentumként a `useState`-nek?** Az egyetlen argumentum a `useState()` Horogban a kezdeti állapot. Az osztályokkal ellentétben az állapotváltozónak nem kell objektumnak lennie. Használhatunk egy sima számot vagy sztringet, ha csak erre van épp szükségünk. A fenti példánkban csak egy számra van szükségünk a felhasználói kattintások számának tárolására, így `0`-t adunk meg kezdeti értékként. (Ha két különböző értéket szeretnénk tárolni az állapotban, a `useState()`-et kétszer hívnánk meg.)
 
-**What does `useState` return?** It returns a pair of values: the current state and a function that updates it. This is why we write `const [count, setCount] = useState()`. This is similar to `this.state.count` and `this.setState` in a class, except you get them in a pair. If you're not familiar with the syntax we used, we'll come back to it [at the bottom of this page](/docs/hooks-state.html#tip-what-do-square-brackets-mean).
+**Mit ad vissza a `useState`?** Két értéket ad vissza: a jelenlegi állapotváltozót és egy függvényt, amivel ezt frissíteni tudjuk. Ezért írjuk így: `const [count, setCount] = useState()`. Ez hasonló a `this.state.count` és `this.setState`-hez egy osztályban, kivéve, hogy ezek párban érkeznek. Ha még nem barátkoztál meg ezzel a szintaxissal, vissza fogunk erre térni az [oldal alján](/docs/hooks-state.html#tip-what-do-square-brackets-mean).
 
-Now that we know what the `useState` Hook does, our example should make more sense:
+Most, hogy tudjuk, hogy mit csinál a `useState` Horog, a példánk jobban érthető:
 
 ```js{4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Egy új állapotváltozó deklarálása, amit "count"-nak fogunk hívni
   const [count, setCount] = useState(0);
 ```
 
-We declare a state variable called `count`, and set it to `0`. React will remember its current value between re-renders, and provide the most recent one to our function. If we want to update the current `count`, we can call `setCount`.
+Egy `count` állapotváltozót deklarálunk és `0`-ra állítjuk. A React megjegyzi az értékét a renderelések között, és a legfrissebb értéket adja át függvényünknek. Ha meg szeretnénk változtatni a `count` értékét, meghívhatjuk a `setCount`-ot.
 
->Note
+>Megjegyzés
 >
->You might be wondering: why is `useState` not named `createState` instead?
+>Esetleg ezen tűnődhetsz: a `useState`-et miért nem `createState`-nek hívjuk?
 >
->"Create" wouldn't be quite accurate because the state is only created the first time our component renders. During the next renders, `useState` gives us the current state. Otherwise it wouldn't be "state" at all! There's also a reason why Hook names *always* start with `use`. We'll learn why later in the [Rules of Hooks](/docs/hooks-rules.html).
+>A "Create" (létrehozás) nem lenne teljesen pontos megnevezés, mivel az állapot csak az első renderelés alkalmával hozódik létre. A későbbi renderelésekkor a `useState` a legfrissebb állapotot adja vissza. Különben nem lenne "állapot"! Egy másik oka is van, hogy a Horog nevek miért *mindig* `use`-zal kezdődnek. Hogy miért, arról a [Horgok szabályai](/docs/hooks-rules.html) részben tanulunk majd.
 
-## Reading State {#reading-state}
+## Az állapot kiolvasása {#reading-state}
 
-When we want to display the current count in a class, we read `this.state.count`:
+Ha a jelenlegi count értéket szeretnénk kiolvasni egy osztályban, a `this.state.count`-et olvassuk:
 
 ```js
-  <p>You clicked {this.state.count} times</p>
+  <p>{this.state.count} alkalommal kattintottál</p>
 ```
 
-In a function, we can use `count` directly:
+Egy függvényben a `count` változót közvetlenül tudjuk használni:
 
 
 ```js
-  <p>You clicked {count} times</p>
+  <p>{count} alkalommal kattintottál</p>
 ```
 
-## Updating State {#updating-state}
+## Az állapot módosítása {#updating-state}
 
-In a class, we need to call `this.setState()` to update the `count` state:
+Egy osztályban a `count` változót a `this.setState()` meghívásával tudjuk módosítani:
 
 ```js{1}
   <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-    Click me
+    Kattints rám
   </button>
 ```
 
-In a function, we already have `setCount` and `count` as variables so we don't need `this`:
+Egy függvényben már van `setCount` és `count` változónk, így nincs szükségünk a `this`-re:
 
 ```js{1}
   <button onClick={() => setCount(count + 1)}>
-    Click me
+    Kattints rám
   </button>
 ```
 
-## Recap {#recap}
+## Összefoglalás {#recap}
 
-Let's now **recap what we learned line by line** and check our understanding.
+Most **összegezzünk, hogy mit tanultunk eddig sorról-sorra** és figyeljük meg, hogy mindent értünk-e.
 
 <!--
   I'm not proud of this line markup. Please somebody fix this.
@@ -203,78 +203,78 @@ Let's now **recap what we learned line by line** and check our understanding.
  5:
  6:    return (
  7:      <div>
- 8:        <p>You clicked {count} times</p>
+ 8:        <p>{count} alkalommal kattintottál</p>
  9:        <button onClick={() => setCount(count + 1)}>
-10:         Click me
+10:         Kattints rám
 11:        </button>
 12:      </div>
 13:    );
 14:  }
 ```
 
-* **Line 1:** We import the `useState` Hook from React. It lets us keep local state in a function component.
-* **Line 4:** Inside the `Example` component, we declare a new state variable by calling the `useState` Hook. It returns a pair of values, to which we give names. We're calling our variable `count` because it holds the number of button clicks. We initialize it to zero by passing `0` as the only `useState` argument. The second returned item is itself a function. It lets us update the `count` so we'll name it `setCount`.
-* **Line 9:** When the user clicks, we call `setCount` with a new value. React will then re-render the `Example` component, passing the new `count` value to it.
+* **1. sor:** A `useState` Horgot beimportáljuk Reactből. Ennek a segítségével helyi állapotot tarthatunk a függvénykomponensünkben.
+* **4. sor:** Az `Example` komponensben egy új állapotváltozót deklarálunk a `useState` Horog meghívásával. Ez egy pár változót ad vissza, amit most el fogunk nevezni. A első változót `count`-nak hívjuk, mivel ez tárolja a kattintások számát. `0`-ként inicializáljuk, amit a `useState` egyetlen argumentumaként adunk át. A második kapott változó egy függvény. Ezzel fogjuk módosítani a `count` változót, ezért ezt `setCount`-nak hívjuk.
+* **9. sor:** Amikor a felhasználó a gombra kattint, meghívjuk a `setCount`-ot az új értékkel. Ezután a React újrarendereli az `Example` komponenst a `count` új értékével.
 
-This might seem like a lot to take in at first. Don't rush it! If you're lost in the explanation, look at the code above again and try to read it from top to bottom. We promise that once you try to "forget" how state works in classes, and look at this code with fresh eyes, it will make sense.
+Elképzelhető, hogy ez kezdésképpen túl sok információ egyszerre. Ne siesd el! Ha elvesztél a magyarázatban, nézd meg újra a fenti kódot és próbáld kiolvasni fentről lefelé. Megígérjük, hogy amint megpróbálod "elfelejteni", hogy hogyan működik az állapot az osztályokban és friss szemekkel nézel erre a példára, máris értelmet fog nyerni.
 
-### Tip: What Do Square Brackets Mean? {#tip-what-do-square-brackets-mean}
+### Tipp: Mit jelentenek a szögletes zárójelek? {#tip-what-do-square-brackets-mean}
 
-You might have noticed the square brackets when we declare a state variable:
+Már valószínűleg észrevetted a szögletes zárójeleket, amikor egy állapotváltozót deklarálunk:
 
 ```js
   const [count, setCount] = useState(0);
 ```
 
-The names on the left aren't a part of the React API. You can name your own state variables:
+A baloldali nevek nem részei a React API-nek. Ezeket bárhogy hívhatod:
 
 ```js
   const [fruit, setFruit] = useState('banana');
 ```
 
-This JavaScript syntax is called ["array destructuring"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring). It means that we're making two new variables `fruit` and `setFruit`, where `fruit` is set to the first value returned by `useState`, and `setFruit` is the second. It is equivalent to this code:
+Ezt a JavaScript szintaxist ["tömb lebontásnak"](https://developer.mozilla.org/hu/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) hívjuk. Ez azt jelenti, hogy két új változót csinálunk, ami `fruit` és `setFruit` lesz, ahol a `fruit` az első értéke lesz annak, amit a `useState` visszaad és `setFruit` a második. Ez ekvivalens ezzel a kóddal:
 
 ```js
-  var fruitStateVariable = useState('banana'); // Returns a pair
-  var fruit = fruitStateVariable[0]; // First item in a pair
-  var setFruit = fruitStateVariable[1]; // Second item in a pair
+  var fruitStateVariable = useState('banana'); // Egy párt ad vissza
+  var fruit = fruitStateVariable[0]; // Az első változó
+  var setFruit = fruitStateVariable[1]; // A második változó
 ```
 
-When we declare a state variable with `useState`, it returns a pair — an array with two items. The first item is the current value, and the second is a function that lets us update it. Using `[0]` and `[1]` to access them is a bit confusing because they have a specific meaning. This is why we use array destructuring instead.
+Amikor `useState`-tel deklarálunk egy új állapotváltozót, egy párt fog visszaadni — egy tömböt két elemmel. Az első elem a jelenlegi érték, a második egy függvény, amivel az értéket módosíthatjuk. A `[0]` és `[1]` használata kissé zavaró, mivel ennek sajátos jelentése van. Ezért inkább a tömb lebontást használjuk.
 
->Note
+>Megjegyzés
 >
->You might be curious how React knows which component `useState` corresponds to since we're not passing anything like `this` back to React. We'll answer [this question](/docs/hooks-faq.html#how-does-react-associate-hook-calls-with-components) and many others in the FAQ section.
+>Lehet, hogy kíváncsi vagy, hogy honnan tudja a React, hogy melyik `useState` hívás melyik komponensnek felel meg, mivel nem adunk át semmiféle `this`-t a Reactnek. Ezt a kérdést [itt fogjuk megválaszolni](/docs/hooks-faq.html#how-does-react-associate-hook-calls-with-components) több más kérdéssel együtt a GY.I.K. oldalon.
 
-### Tip: Using Multiple State Variables {#tip-using-multiple-state-variables}
+### Tipp: Több állapotváltozó használata {#tip-using-multiple-state-variables}
 
-Declaring state variables as a pair of `[something, setSomething]` is also handy because it lets us give *different* names to different state variables if we want to use more than one:
+Állapotváltozók `[something, setSomething]` párként való definiálása azért is hasznos, mivel *különböző* neveket tudunk adni különböző állapotváltozóknak, ha többet is szeretnénk használni:
 
 ```js
 function ExampleWithManyStates() {
-  // Declare multiple state variables!
+  // Több állapotváltozó deklarálása!
   const [age, setAge] = useState(42);
   const [fruit, setFruit] = useState('banana');
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
 ```
 
-In the above component, we have `age`, `fruit`, and `todos` as local variables, and we can update them individually:
+A fenti komponensben van egy `age`, `fruit` és `todos` lokális változónk, és külön-külön tudjuk ezeket módosítani:
 
 ```js
   function handleOrangeClick() {
-    // Similar to this.setState({ fruit: 'orange' })
+    // Hasonló a this.setState({ fruit: 'orange' })-hez
     setFruit('orange');
   }
 ```
 
-You **don't have to** use many state variables. State variables can hold objects and arrays just fine, so you can still group related data together. However, unlike `this.setState` in a class, updating a state variable always *replaces* it instead of merging it.
+Nem **kell** több változót használnod. Az állapotváltozók objektumokat és tömböket is tudnak tárolni, így az összetartozó adatokat egy helyen tudod tárolni. Viszont az osztálybeli `this.setState`-tel ellentétben a módosítás mindig *lecseréli* az állapotot az összefésülés helyett.
 
-We provide more recommendations on splitting independent state variables [in the FAQ](/docs/hooks-faq.html#should-i-use-one-or-many-state-variables).
+Több ajánlást is olvashatsz a független állapotváltozók felosztásáról [a GY.I.K.-ben](/docs/hooks-faq.html#should-i-use-one-or-many-state-variables).
 
-## Next Steps {#next-steps}
+## Következő lépések {#next-steps}
 
-On this page we've learned about one of the Hooks provided by React, called `useState`. We're also sometimes going to refer to it as the "State Hook". It lets us add local state to React function components -- which we did for the first time ever!
+Ezen az oldalon az egyik React által szolgáltatott Horogról tanultuk, amit `useState`-nek hívnak. Néha úgy is fogunk erre hivatkozni, mint az "Állapot Horog". Ezáltal helyi állapotot tudunk a függvénykomponensekhez adni -- amit most először csináltunk!
 
-We also learned a little bit more about what Hooks are. Hooks are functions that let you "hook into" React features from function components. Their names always start with `use`, and there are more Hooks we haven't seen yet.
+Arról is tanultunk egy kicsit, hogy mik azok a Horgok. A Horgok függvények, amikkel "beleakaszkodhatsz" React funkciókba a függvénykomponensekből. A nevük mindig `use`-zal kezdődik és vannak még egyéb Horgok is, amikről még nem esett szó.
 
-**Now let's continue by [learning the next Hook: `useEffect`.](/docs/hooks-effect.html)** It lets you perform side effects in components, and is similar to lifecycle methods in classes.
+**Most folytassuk [a következő Horog megtanulásával: `useEffect`.](/docs/hooks-effect.html)** Ezzel mellékhatásokat végezhetsz el egy komponensben és hasonló az osztálybeli életciklus metódusokhoz.
