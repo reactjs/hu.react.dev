@@ -82,7 +82,7 @@ function Example(props) {
 }
 ```
 
-Ezeket előzőleg "állapot nélküli komponenseknek" hívtuk. Mostantól kezdve viszont már használhatsz állapotot is ezekben, így ezentúl inkább "függvénykomponensekként" hívatkozunk rájuk.
+Ezeket előzőleg "állapot nélküli komponenseknek" hívtuk. Mostantól kezdve viszont már használhatsz állapotot is ezekben, így ezentúl inkább "függvénykomponensekként" hivatkozunk rájuk.
 
 A Horgok **nem** működnek osztályokon belül. De használhatod őket osztályok helyett.
 
@@ -226,13 +226,13 @@ Már valószínűleg észrevetted a szögletes zárójeleket, amikor egy állapo
   const [count, setCount] = useState(0);
 ```
 
-A baloldai nevek nem részei a React API-nek. Ezeket bárhogy hívhatod:
+A baloldali nevek nem részei a React API-nek. Ezeket bárhogy hívhatod:
 
 ```js
   const [fruit, setFruit] = useState('banana');
 ```
 
-Ezt a JavaScript szintaxist ["tömb lebontásnak"](https://developer.mozilla.org/hu/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) hívjuk. Ez azt jelenti, hogy két új változót csinálunk, ami `fruit` és `setFruit` lesz, ahol a `fruit` az első értéke lesz annak, amit a `useState` visszad és `setFruit` a második. Ez ekvivalens ezzel a kóddal:
+Ezt a JavaScript szintaxist ["tömb lebontásnak"](https://developer.mozilla.org/hu/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) hívjuk. Ez azt jelenti, hogy két új változót csinálunk, ami `fruit` és `setFruit` lesz, ahol a `fruit` az első értéke lesz annak, amit a `useState` visszaad és `setFruit` a második. Ez ekvivalens ezzel a kóddal:
 
 ```js
   var fruitStateVariable = useState('banana'); // Egy párt ad vissza
@@ -240,7 +240,7 @@ Ezt a JavaScript szintaxist ["tömb lebontásnak"](https://developer.mozilla.org
   var setFruit = fruitStateVariable[1]; // A második változó
 ```
 
-Amikor `useState`-tel deklarálunk egy új állapotváltozót, egy párt fog visszadni — egy tömböt két elemmel. Az első elem a jelenlegi érték, a második egy függvény, amivel az értéket módosíthatjuk. A `[0]` és `[1]` használata kissé zavaró, mivel ennek sajátos jelentése van. Ezért inkább a tömb lebontást használjuk.
+Amikor `useState`-tel deklarálunk egy új állapotváltozót, egy párt fog visszaadni — egy tömböt két elemmel. Az első elem a jelenlegi érték, a második egy függvény, amivel az értéket módosíthatjuk. A `[0]` és `[1]` használata kissé zavaró, mivel ennek sajátos jelentése van. Ezért inkább a tömb lebontást használjuk.
 
 >Megjegyzés
 >
@@ -248,7 +248,7 @@ Amikor `useState`-tel deklarálunk egy új állapotváltozót, egy párt fog vis
 
 ### Tipp: Több állapotváltozó használata {#tip-using-multiple-state-variables}
 
-Állapotváltozók `[something, setSomething]` párkét való definiálása azért is hasznos, mivel *különböző* neveket tudunk adni különböző állapotváltozóknak, ha többet is szeretnénk használni:
+Állapotváltozók `[something, setSomething]` párként való definiálása azért is hasznos, mivel *különböző* neveket tudunk adni különböző állapotváltozóknak, ha többet is szeretnénk használni:
 
 ```js
 function ExampleWithManyStates() {
@@ -267,7 +267,7 @@ A fenti komponensben van egy `age`, `fruit` és `todos` lokális változónk, é
   }
 ```
 
-Nem **kell** több változót használnod. Az állapotváltozók objektumokat és tömböket is tudnak tárolni, így az összetartozó adatokat egy helyen tudod tárolni. Viszont az oszálybeli `this.setState`-tel ellentétben a módosítás mindig *lecseréli* az állapotot az összefésülés helyett.
+Nem **kell** több változót használnod. Az állapotváltozók objektumokat és tömböket is tudnak tárolni, így az összetartozó adatokat egy helyen tudod tárolni. Viszont az osztálybeli `this.setState`-tel ellentétben a módosítás mindig *lecseréli* az állapotot az összefésülés helyett.
 
 Több ajánlást is olvashatsz a független állapotváltozók felosztásáról [a GY.I.K.-ben](/docs/hooks-faq.html#should-i-use-one-or-many-state-variables).
 
