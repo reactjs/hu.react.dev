@@ -75,6 +75,7 @@ handleChange(event) {
   this.setState({value: event.target.value.toUpperCase()});
 }
 ```
+Egy kontrollált komponensben a bemenet értékét mindig a React állapot vezérli. Habár ez azt jelenti, hogy egy kicsivel több kódot kell írnod, de így ezt az értéket több komponensnek is át tudod adni, vagy eseménykezelőkből a kezdeti állapotba állítani.
 
 ## A textarea címke {#the-textarea-tag}
 
