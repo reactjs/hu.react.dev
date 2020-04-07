@@ -68,7 +68,6 @@ class NameForm extends React.Component {
 
 Mivel a `value` attribútum be van állítva az elemen, a megjelenített érték mindig `this.state.value` lesz, ez teszi a React állapotot az egyéni igazságforrássá. Mivel a `handleChange` minden egyes billentyűleütéskor frissíti a React állapotot, a megjelenített érték is frissülni fog a felhasználó bevitele eredményeképpen.
 
-<<<<<<< HEAD
 Egy kontrollált komponensben minden állapotmódosításhoz hozzá kell rendelni egy eseménykezelő függvényt. Ez egyszerűvé teszi a felhasználó által bevitt adat módosítását vagy érvényesítését. Például ha szeretnénk biztosítani, hogy a nevek csupa nagybetűvel legyenek írva, így módosíthatjuk a `handleChange`-t:   
 
 ```javascript{2}
@@ -76,9 +75,7 @@ handleChange(event) {
   this.setState({value: event.target.value.toUpperCase()});
 }
 ```
-=======
-With a controlled component, the input's value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
->>>>>>> fa5e6e7a988b4cb465601e4c3beece321edeb812
+Egy kontrollált komponensben a bemenet értékét mindig a React állapot vezérli. Habár ez azt jelenti, hogy egy kicsivel több kódot kell írnod, de így ezt az értéket több komponensnek is át tudod adni, vagy eseménykezelőkből a kezdeti állapotba állítani.
 
 ## A textarea címke {#the-textarea-tag}
 
