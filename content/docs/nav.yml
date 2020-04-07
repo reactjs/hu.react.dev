@@ -58,7 +58,7 @@
     - id: jsx-in-depth
       title: JSX-ről mélyebben
     - id: optimizing-performance
-      title: A teljesítmény optimalizálása
+      title: Teljesítmény optimalizálása
     - id: portals
       title: Portálok
     - id: profiler

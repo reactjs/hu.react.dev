@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "Tutoriál: Bevezetés a Reactbe"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -12,97 +12,97 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-This tutorial doesn't assume any existing React knowledge.
+Ez a tutoriál nem feltételez korábbi React ismereteket.
 
-## Before We Start the Tutorial {#before-we-start-the-tutorial}
+## Mielőtt elkezdjük a Tutoriált {#before-we-start-the-tutorial}
 
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
+Ebben a tutoriálban egy kis játékot fogunk készíteni. **Csábító lehet átugrani, mivel nem játékokat készítesz -- de azért adj neki egy esélyt.** A technikák, amiket itt tanulsz, alapvetőek bármilyen React alkalmazáshoz, és ha ezeket sikerül elsajátítanod, úgy sokkal jobban meg fogod érteni a React működését.
 
->Tip
+>Tipp
 >
->This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
+>Ez a tutoriál azoknak szól, akik a **gyakorlatias tanulást** szeretik. Ha te az alap koncepciók tanulását preferálod, nézd meg a [lépésről-lépésre útmutatónkat](/docs/hello-world.html). Elképzelhető, hogy ezt a tutoriált és az útmutatót egymás kiegészítésének találod majd.
 
-The tutorial is divided into several sections:
+Ez a tutoriál szekciókra van felosztva:
 
-* [Setup for the Tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-* [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-* [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
-* [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+* [Beállítások a Tutoriálhoz](#setup-for-the-tutorial) ad egy **kezdőpontot** a tutoriál követéséhez.
+* [Áttekintés](#overview) megtanítja a React **alapokat**: komponensek, propok, és a state (állapot).
+* [Játék befejezése](#completing-the-game) segít a **leggyakoribb technikák** elsajátításában a Reactben.
+* [Időutazás hozzáadása](#adding-time-travel) egy **átfogóbb képet** ad a React egyedi erősségeiről.
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+Nem kell minden egyes szekciót egyszerre befejezned, hogy eredményes légy. Próbálj meg olyan messzire eljutni, amennyire tudsz -- akkor is, ha ez egy, vagy két szekció.
 
-### What Are We Building? {#what-are-we-building}
+### Mit készítünk? {#what-are-we-building}
 
-In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
+Ebben a tutoriálban megmutatjuk, hogy hogyan készíthetsz egy tic-tac-toe játékot Reactben.
 
-You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+Itt megnézheted, hogy mit is készítünk: **[Végeredmény](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. Ha a kódot nem teljesen érted, vagy ha nem világos a szintaxis, ne aggódj! A tutoriál célja, hogy megértesse veled a Reactet, és annak szintaxisát.
 
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+Ajánljuk, hogy mielőtt folytatnád ezt a tutoriált, olvass utána a tic-tac-toe játéknak. Az egyik funkció amit észrevehetsz, az a jobb oldalon lévő számozott lista a játék táblájáról. Ez a lista tartalmazza az összes korábbi lépést, ami a játék menete során folyamatosan frissül.
 
-You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+Ha megismerkedtél a tic-tac-toe játékkal, nyugodtan zárd be. Ez a tutoriál egy egyszerű sablont használ kiindulópontként. A következő lépés felkészíteni téged, hogy elkezdhessük a játék fejlesztését.
 
-### Prerequisites {#prerequisites}
+### Előfeltételek {#prerequisites}
 
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
+Feltételezzük, hogy van már valami tapasztalatod a HTML-el és JavaScripttel, de a tutoriál követése akkor sem lehet probléma, ha egy másik programozói nyelvből jössz. Továbbá feltételezzük, hogy olyan programozói koncepciók, mint a függvények, objektumok, tömbök és - egy bizonyos fokig - az osztályok is ismertek számodra.
 
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
+Ha először szeretnéd átnézni a JavaScriptet, akkor [ezt az útmutatót](https://developer.mozilla.org/hu/docs/Web/JavaScript/a_javascript_ujboli_bemutatasa) ajánljuk. Megjegyzés: Ebben a tutoriálban pár ES6 (a JavaScript jelenlegi verziója) funkciót is használunk, többek között [nyílfunkciókat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [osztályokat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), és [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) utasításokat. A [Babel REPL](babel://es5-syntax-example) segítségével leellenőrízheted, hogy az ES6 mivé lesz lefordítva.
 
-## Setup for the Tutorial {#setup-for-the-tutorial}
+## Beállítások a Tutoriálhoz {#setup-for-the-tutorial}
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+Ezt a tutoriált kétféleképpen is elvégezheted: kódolhatsz a böngésződből, vagy felállíthatsz egy helyi fejlesztői környezetet.
 
-### Setup Option 1: Write Code in the Browser {#setup-option-1-write-code-in-the-browser}
+### 1. Opció: kódolj a böngésződben {#setup-option-1-write-code-in-the-browser}
 
-This is the quickest way to get started!
+A leggyorsabban így állhatsz neki!
 
-First, open this **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
+Először is nyisd meg a **[Kezdő kódot](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** egy új fülön. Az új fül egy új, üres tic-tac-toe táblát és a React kódot kell, hogy mutassa. Ez a React kód az, amit ebben a tutoriálban szerkeszteni fogunk.
 
-You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
+Ugord át a második opciót, és a React áttekintéséhez menj az [Áttekintés](#overview) szekcióhoz.
 
-### Setup Option 2: Local Development Environment {#setup-option-2-local-development-environment}
+### 2. Opció: helyi fejlesztői környezet {#setup-option-2-local-development-environment}
 
-This is completely optional and not required for this tutorial!
+Ez az opció szabadon választható, és nem kötelező a tutoriál elvégzéséhez!
 
 <br>
 
 <details>
 
-<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
+<summary><b>Választható: Instrukciók helyi környezetből való követéshez, a kedvenc szövegszerkesztődhöz</b></summary>
 
-This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
+Ahhoz, hogy követni tudd a tutoriált egy általad választott szerkesztőből, ez az opció kicsivel több beállítást igényel. Íme a lépések:
 
-1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
+1. Győződj meg róla, hogy a [Node.js](https://nodejs.org/en/) egy jelenlegi verziója telepítve van.
+2. Kövesd a [Create React App telepítési útmutatóját](/docs/create-a-new-react-app.html#create-react-app) egy új projekt létrehozásához.
 
 ```bash
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Törölj minden fájlt az új projekt `src/` mappájában.
 
-> Note:
+> Megjegyzés:
 >
->**Don't delete the entire `src` folder, just the original source files inside it.** We'll replace the default source files with examples for this project in the next step.
+>**Ne töröld az egész `src` mappát, csak az eredeti forrásfájlokat a mappában.** A következő lépésben ki fogjuk cserélni az alap forrásfájlokat ebben a projektben.
 
 ```bash
 cd my-app
 cd src
 
-# If you're using a Mac or Linux:
+# Ha Macet, vagy Linuxot használsz:
 rm -f *
 
-# Or, if you're on Windows:
+# Vagy ha Windowson vagy:
 del *
 
-# Then, switch back to the project folder
+# Ezután lépj vissza a projekt mappába
 cd ..
 ```
 
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. Hozz létre egy `index.css` fájlt a `src/` mappában, tartalma pedig legyen [ez a CSS kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+5. Hozz létre egy `index.js` fájlt a `src/` mappában, tartalma pedig legyen [ez a JS kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
-6. Add these three lines to the top of `index.js` in the `src/` folder:
+6. Add hozzá a következő három sort az `index.js` fájl tetejéhez, a `src/` mappában:
 
 ```js
 import React from 'react';
@@ -110,32 +110,32 @@ import ReactDOM from 'react-dom';
 import './index.css';
 ```
 
-Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
+Ha mindent jól csináltál, és most lefuttatod az `npm start` parancsot a projekt mappájában, és megnyitod a `http://localhost:3000`-t a böngészőben, egy üres tic-tac-toe mezőt kell, hogy láss.
 
-We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
+Szintaxis kiemeléshez a következő [instrukciókat](https://babeljs.io/docs/editors) ajánljuk.
 
 </details>
 
-### Help, I'm Stuck! {#help-im-stuck}
+### Segítség, elakadtam! {#help-im-stuck}
 
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+Ha bármikor elakadsz, a [közösségi támogatási források](/community/support.html) segíthet. Különösen a [Reactiflux Chat](https://discord.gg/reactiflux) lehet hasznos, ha gyorsan szeretnél segítséget kapni. Ha nem érkezik válasz, vagy még mindig el vagy akadva, nyiss egy issue-t és segítünk.
 
-## Overview {#overview}
+## Áttekintés {#overview}
 
-Now that you're set up, let's get an overview of React!
+Most, hogy minden készen áll, kezdjük a React áttekintésével!
 
-### What Is React? {#what-is-react}
+### Mi az a React? {#what-is-react}
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
+A React egy deklaratív, effektív, és rugalmas JavaScript könyvtár, felhasználói felületek készítéséhez. Lehetővé teszi komplex felhasználói felületek összeállítását izolált kódrészletekből, amiket "komponenseknek" hívunk.
 
-React has a few different kinds of components, but we'll start with `React.Component` subclasses:
+A React rendelkezik egy pár komponenstípussal, de most kezdjük a `React.Component` alosztállyal:
 
 ```javascript
 class ShoppingList extends React.Component {
   render() {
     return (
       <div className="shopping-list">
-        <h1>Shopping List for {this.props.name}</h1>
+        <h1>{this.props.name} bevásárlólistája</h1>
         <ul>
           <li>Instagram</li>
           <li>WhatsApp</li>
@@ -146,51 +146,51 @@ class ShoppingList extends React.Component {
   }
 }
 
-// Example usage: <ShoppingList name="Mark" />
+// Példa használata: <ShoppingList name="Mark" />
 ```
 
-We'll get to the funny XML-like tags soon. We use components to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
+Nemsokára beszélünk a vicces XML-szerű címkékről is. A komponensek segítségével mondjuk meg a Reactnek, hogy mit szeretnénk látni a képernyőn. Ha az adatunk megváltozik, a React hatékonyan frissíti és újrarendereli a komponensünket.
 
-Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props` (short for "properties"), and returns a hierarchy of views to display via the `render` method.
+Itt a ShoppingList egy **React komponensosztály**, vagy **React komponenstípus**. Egy komponens paramétereket fogad, amiket **props**-nak hívunk (angol "properties" rövidítése), és egy nézethierarchiát ad vissza, a `render` metóduson keresztül.
 
-The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
+A `render` metódus egy *leírását* adja vissza annak, amit a képernyőn szeretnél látni. A React fogja a leírást, és megjeleníti az eredményt. Pontosabban, a `render` metódus egy **React elem**-et ad vissza, ami egy könnyűsúlyú leírása annak, amit renderelni kell. A legtöbb React fejlesztő egy speciális szintaxist használ, ezt "JSX"-nek hívják, ami könnyebbé teszi ezen struktúrák írását. A `<div />` szintaxist `React.createEelement('div')`-té transzformáljuk kompiláláskor. A fenti példa egyenértékű az alábbival:
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
-  React.createElement('h1', /* ... h1 children ... */),
-  React.createElement('ul', /* ... ul children ... */)
+  React.createElement('h1', /* ... h1 gyermekei ... */),
+  React.createElement('ul', /* ... ul gyermekei ... */)
 );
 ```
 
-[See full expanded version.](babel://tutorial-expanded-version)
+[Nézd meg a teljes verziót.](babel://tutorial-expanded-version)
 
-If you're curious, `createElement()` is described in more detail in the [API reference](/docs/react-api.html#createelement), but we won't be using it in this tutorial. Instead, we will keep using JSX.
+Ha érdekel a `createElement()` részletesebb leírása, nézd meg az [API referenciát](/docs/react-api.html#createelement), de ebben a tutoriálban ezt nem fogjuk használni. A JSX-et viszont igen.
 
-JSX comes with the full power of JavaScript. You can put *any* JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
+A JSX rendelkezik a JavaScript minden erejével. A JSX-be *bármilyen* JavaScript kifejezést tehetsz, kapcsos zárójelek közé. Minden React elem egy JavaScript objektum, amit változókban tárolhatsz, vagy körbeküldhetsz a programodban.
 
-The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+A fenti `ShoppingList` komponens csak beépített DOM komponenseket renderel, mint a `<div />` és az `<li />`. De összeállíthatsz és renderelhetsz egyedi React komponenseket is. Például a `<ShoppingList />` írásával utalhatunk az egész bevásárlólistára. Minden React komponens elzártan és függetlenül operálhat; ez lehetővé teszi számodra komplex felhasználói kezelőfelületek építését egyszerű komponensekből.
 
-## Inspecting the Starter Code {#inspecting-the-starter-code}
+## Kezdő kód ellenőrzése {#inspecting-the-starter-code}
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+Ha a tutoriálon a **böngésződből** fogsz dolgozni, nyisd meg ezt a kódot egy új fülön: **[Kezdő kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Ha **helyi környezetben** fogsz dolgozni, nyisd meg a `src/index.js` fájlt a projekt mappádban (már korábban szerkesztetted a fájlt a [beállítások](#setup-option-2-local-development-environment) részben).
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+Ez a Kezdő kód az alapja annak, amit készítünk. A CSS stíluslapot megadtuk, hogy csak a Reactre és a tic-tac-toe játék programozására kelljen fókuszálnod.
 
-By inspecting the code, you'll notice that we have three React components:
+A kód tanulmányozásával megállapíthatod, hogy háromféle React komponensünk van:
 
 * Square
 * Board
 * Game
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+A Square komponens egy egyszerű `<button>`-t renderel, amíg a Board 9 Square-t. A Game komponens egy játéktáblát renderel helyőrző értékekkel, amiket később módosítunk. Jelenleg nincs egyetlen interaktív komponens sem.
 
-### Passing Data Through Props {#passing-data-through-props}
+### Adattovábbítás propokkal {#passing-data-through-props}
 
-To get our feet wet, let's try passing some data from our Board component to our Square component.
+Hogy végre bemocskoljuk a kezünk, küldjünk adatot a Board komponensből a Square komponensnek.
 
-We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
+Erősen ajánljuk, hogy minden kódot kézzel írj a tutoriál során, és ne használj másolás/beillesztést. Ez hozzá fog járulni ahhoz, hogy jobban megértsd mi is történik, és később minden magától jön majd.
 
-In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
+A Board `renderSquare` metódusában változtasd meg a kódot, hogy egy `value` propot tudj küldeni a Square komponensnek:
 
 ```js{3}
 class Board extends React.Component {
@@ -200,7 +200,7 @@ class Board extends React.Component {
 }
 ```
 
-Change Square's `render` method to show that value by replacing `{/* TODO */}` with `{this.props.value}`:
+Változtasd meg a Square komponens `render` metódusát úgy, hogy átírod a `{/* TODO */}` részt `{this.props.value}`-ra:
 
 ```js{5}
 class Square extends React.Component {
@@ -214,28 +214,28 @@ class Square extends React.Component {
 }
 ```
 
-Before:
+Előtte:
 
 ![React Devtools](../images/tutorial/tictac-empty.png)
 
-After: You should see a number in each square in the rendered output.
+Utána: Egy számot kell láss minden négyzetben a renderelés során.
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+Gratulálunk! Sikeresen "leküldtél egy propot" egy szülő Board komponensből egy gyermek Square komponensnek. React alkalmazásokban a propok leküldésével tudsz információt mozgatni szülőktől gyermek komponenseknek.
 
-### Making an Interactive Component {#making-an-interactive-component}
+### Készíts egy interaktív komponenst {#making-an-interactive-component}
 
-Let's fill the Square component with an "X" when we click it.
-First, change the button tag that is returned from the Square component's `render()` function to this:
+Töltsük ki a Square komponenst egy "X"-szel, rákattintás esetén.
+Először is változtasd meg a button címkét a `render()` metódus visszatérésében erre:
 
 ```javascript{4}
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { alert('kattintás'); }}>
         {this.props.value}
       </button>
     );
@@ -243,17 +243,17 @@ class Square extends React.Component {
 }
 ```
 
-If you click on a Square now, you should see an alert in your browser.
+Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 
->Note
+>Megjegyzés
 >
->To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>A kevesebb gépelés és a [`this` félreérthető viselkedésének](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) elkerülése érdekében, innentől a [nyílfunkció szintaxist](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) fogjuk használni az eseménykezelőkhöz:
 >
 >```javascript{4}
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => alert('kattintás')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,13 +261,13 @@ If you click on a Square now, you should see an alert in your browser.
 >}
 >```
 >
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+>Vedd észre, hogy az `onClick={() => alert('kattintás')}` segítségével *egy függvényt* küldünk le propként `onClick` néven. A React csak kattintás után fogja meghívni ezt a függvényt. Gyakori hiba csak ennyit írni `onClick={alert('kattintás')}`, és elfelejteni a `() =>` részt. Ez meghívná a függvényt a komponens minden újrarenderelésénél.
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+Következő lépésként azt próbáljuk elérni, hogy a Square komponens "emlékezzen" arra, hogy rá lett kattintva, és töltse ki magát egy "X"-szel. Ahhoz, hogy komponensek "emlékezni" tudjanak, **state**-t (állapotot) használnak.
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+React komponensekben állapotot a `this.state` segítségével deklarálhatunk, a konstruktorban. A `this.state` állapotra úgy kell tekintenünk, hogy az privát legyen abban az osztályban, amiben az definiálva lett. Tároljuk a Square jelenlegi értékét a `this.state` objektumban, és változtassuk azt meg, ha a Square-re kattintunk.
 
-First, we'll add a constructor to the class to initialize the state:
+Először is adjunk hozzá egy konstruktort az osztályhoz, hogy inicializáljuk az állapotot:
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -280,7 +280,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => alert('kattintás')}>
         {this.props.value}
       </button>
     );
@@ -288,17 +288,17 @@ class Square extends React.Component {
 }
 ```
 
->Note
+>Megjegyzés
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start with a `super(props)` call.
+>[JavaScript osztályokban](https://developer.mozilla.org/hu/docs/Web/JavaScript/Reference/Classes) mindig meg kell hívnod a `super` metódust, amikor definiálod a konstruktort egy alosztályban. Minden React komponensosztály, ami rendelkezik egy `constructor`-ral, egy `super(props)` hívással kell, hogy kezdődjön.
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+Most pedig változtassuk meg a Square `render` metódusát, hogy az állapot jelenlegi értékét mutassa:
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
-* Put the `className` and `onClick` props on separate lines for better readability.
+* Cseréld ki a `this.props.value`-t `this.state.value`-ra, a `<button>` címkében.
+* Cseréld ki az `onClick={...}` eseménykezelőt erre: `onClick={() => this.setState({value: 'X'})}`.
+* Tedd a `className` és `onClick` propokat külön sorokba, a jobb olvashatóság érdekében.
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+Ezen változtatások után a `<button>` címke, amit a Square `render` metódusa visszaad, így néz ki:
 
 ```javascript{12-13,15}
 class Square extends React.Component {
@@ -322,44 +322,44 @@ class Square extends React.Component {
 }
 ```
 
-By calling `this.setState` from an `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+Amikor a Square komponens `render` metódusában az `onClick` kezelő meghívja a `this.setState` metódust, a React  minden alkalommal újra fogja renderelni a Square komponenst, amikor a `<button>` elemre rákattintunk. A frissítés után a Square `this.state.value` értéke `'X'` lesz, tehát egy `X`-szet fogunk látni a játéktáblán. Ha bármelyik Square-re kattintasz, egy `X` kell hogy megjelenjen.
 
-When you call `setState` in a component, React automatically updates the child components inside of it too.
+Amikor a `setState` metódust meghívjuk egy komponensben, a React automatikusan frissíti annak minden gyermek komponensét is.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
-### Developer Tools {#developer-tools}
+### Fejlesztői eszközök {#developer-tools}
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+A React Devtools fejlesztői eszközök kiegészítő [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)-hoz és [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)-hoz segít a React komponens fa vizsgálatában, a böngésződ fejlesztői eszközeivel.
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+A React DevTools segít ellenőrizni a React komponenseid propjait és állapotait (state).
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tabs ("⚛️ Components" and "⚛️ Profiler") will appear as the last tabs to the right. Use "⚛️ Components" to inspect the component tree.
+A React DevTools telepítése után kattints bármelyik elemre jobb egérgombbal az oldalon, majd kattints a "Vizsgálat"-ra a fejlesztői eszközök megnyitásához. Ekkor a React fülek ("⚛️ Components" és "⚛️ Profiler") megjelennek a jobb oldalon utolsó két fülként. A komponensfa vizsgálatához használd a "⚛️ Components" fület.
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**Ha azonban a CodePen-en dolgozol, szükség lesz pár extra lépésre ahhoz, hogy egy működjön:**
 
-1. Log in or register and confirm your email (required to prevent spam).
-2. Click the "Fork" button.
-3. Click "Change View" and then choose "Debug mode".
-4. In the new tab that opens, the devtools should now have a React tab.
+1. Jelentkezz be, vagy regisztrálj, és erősítsd meg az e-mailed (spam elkerülése érdekében).
+2. Kattints a "Fork" gombra.
+3. Kattints a "Change View"-ra, majd válaszd a "Debug mode"-t.
+4. Az új megnyíló fülön, a fejlesztői eszközökben lesz egy React fül.
 
-## Completing the Game {#completing-the-game}
+## Játék befejezése {#completing-the-game}
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
+Kész vagyunk a tic-tac-toe játék alap építőelemeivel. Egy teljes játékhoz azonban az "X"-szek és "O"-k elhelyezésének a váltakozására van szükségünk a játéktáblán, és szükségünk van egy módra, hogy megállapíthassuk a győztest.
 
-### Lifting State Up {#lifting-state-up}
+### Állapot felemelése {#lifting-state-up}
 
-Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+Jelenleg minden Square komponens külön kezeli a játék állapotát. A győztes ellenőrzéséhez mind a 9 négyzet értékét egy helyen fogjuk kezelni.
 
-We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
+Azt gondolhatnánk, hogy a Board komponens csak egyszerűen végigkérdezi minden Square állapotát. Bár ez lehetséges a Reactben, nem támogatjuk, mert így a kód nehezen érthetővé válik, fogékony lesz hibákra, és nehéz lesz újraírni. Ehelyett a legjobb módszer az, ha a játék állapotát a szülő Board komponensben tároljuk minden Square komponens helyett. A Board komponens meg tudja mondani minden Square komponensnek mit mutasson propok leküldésével, [ahogyan egy számot is leküldtünk minden Square komponensnek](#passing-data-through-props)
 
-**To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
+**Több gyermekből való adatgyűjtéshez, vagy ahhoz, hogy két gyermekkomponens kommunikálni tudjon egymással, az állapotot, amin a komponensek osztozni fognak, egy közös szülőkomponensben kell, hogy deklaráld. A szülőkomponens ezután le tudja küldeni a megosztott állapotot a gyermekeknek propok segítségével; ez szinkronizálja a gyermekeket egymással és a szülő komponensükkel.**
 
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out.
+A helyi állapot felemelése egy szülő komponensbe gyakori tevékenység, amikor React komponenseket írunk újra. -- Ragadjuk meg az alkalmat, és próbáljuk ezt ki gyakorlatban.
 
-Add a constructor to the Board and set the Board's initial state to contain an array of 9 nulls corresponding to the 9 squares:
+Adj hozzá egy konstruktort a Board komponenshez, és állítsd be a kezdő állapotot, hogy az tartalmazzon egy tömböt 9 null értékkel, amik a 9 négyzetnek felelnek meg:
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -375,7 +375,7 @@ class Board extends React.Component {
   }
 ```
 
-When we fill the board in later, the `this.state.squares` array will look something like this:
+Amikor később a táblát töltjük ki, a `this.state.sqares` tömb valahogy így fog kinézni:
 
 ```javascript
 [
@@ -385,7 +385,7 @@ When we fill the board in later, the `this.state.squares` array will look someth
 ]
 ```
 
-The Board's `renderSquare` method currently looks like this:
+A Board komponens `renderSquare` metódusa jelenleg így néz ki:
 
 ```javascript
   renderSquare(i) {
@@ -393,9 +393,9 @@ The Board's `renderSquare` method currently looks like this:
   }
 ```
 
-In the beginning, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component). This is why Square currently ignores the `value` prop passed to it by the Board.
+Kezdetben, ahhoz számokat mutassunk 0-tól 8-ig minden Square komponensben, [leküldtük a `value` propot](#passing-data-through-props) a Board komponensből. Egy másik korábbi lépésben lecseréltük a számokat "X" jelekre, amit a [Square komponens saját állapota határozott meg](#making-an-interactive-component). A Square komponens jelenleg ezért nem veszi figyelembe a `value` prop értékét, amit a Board komponens küld neki.
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
+Most megint igénybe fogjuk venni a propküldési mechanizmust. Úgy módosítjuk a Board komponenst, hogy az értesítsen minden Square komponenst annak jelenlegi értékéről (`'X'`, `'O'`, vagy `null`). A `squares` tömböt már korábban definiáltuk a Board komponens konstruktorában, és most úgy módosítjuk a Board komponens `renderSquare` metódusát, hogy az ebből a tömbből olvasson:
 
 ```javascript{2}
   renderSquare(i) {
@@ -403,13 +403,13 @@ We will now use the prop passing mechanism again. We will modify the Board to in
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+Így most minden Square komponens fogadni fog egy `value` propot, ami lehet `'X'`, `'O'`, vagy üres négyzetek esetében `null`.
 
-Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+A következőben meg kell változtatnunk mi történjen, ha a Square komponensre rákattintanak. Most már a Board komponens kezeli melyik négyzetek vannak kitöltve. Valahogy el kell érnünk, hogy a Square komponens frissítse a Board állapotát. Mivel az állapot privát arra a komponensre nézve amiben az definiálva van, a Board állapota nem frissíthető közvetlenül a Square komponensből.
 
-Instead, we'll pass down a function from the Board to the Square, and we'll have Square call that function when a square is clicked. We'll change the `renderSquare` method in Board to:
+Ehelyett leküldünk egy függvényt a Board komponensből a Square-nek, és hagyjuk, hogy a Square meghívja ezt a függvényt, amikor egy négyzetre kattintanak. Ehhez meg kell változtatnunk a `renderSquare` metódust a Board komponensben:
 
 ```javascript{5}
   renderSquare(i) {
@@ -422,17 +422,17 @@ Instead, we'll pass down a function from the Board to the Square, and we'll have
   }
 ```
 
->Note
+>Megjegyzés
 >
->We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
+>Az olvashatóság érdekében a visszaküldött elemet több sorba tördeljük, és hozzáadunk zárójeleket is, hogy a JavaScript ne adjon pontosvesszőt a `return` után, ezzel elrontva a kódunkat.
 
-Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
+Így már két propot küldünk le a Board-ból a Square-nek: `value` és `onClick`. Az `onClick` prop egy függvény, amit a Square meg tud hívni, ha rákattintanak. A Square komponensen a következő változásokat eszközöljük:
 
-* Replace `this.state.value` with `this.props.value` in Square's `render` method
-* Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
-* Delete the `constructor` from Square because Square no longer keeps track of the game's state
+* Cseréld le a `this.state.value`-t `this.props.value`-ra a Square `render` metódusában
+* Cseréld le a `this.setState()`-t `this.props.onClick()`-re a Square `render` metódusában
+* Töröld a `constructor`-t  a Square komponensből, mivel az többé nem követi a játék állását
 
-After these changes, the Square component looks like this:
+A Square komponens így néz ki a változtatások után:
 
 ```javascript{1,2,6,8}
 class Square extends React.Component {
@@ -449,19 +449,19 @@ class Square extends React.Component {
 }
 ```
 
-When a Square is clicked, the `onClick` function provided by the Board is called. Here's a review of how this is achieved:
+Amikor a Square komponensre rákattintanak, az `onClick` függvény meg lesz hívva, amit a Board komponens szolgáltat. Íme egy összefoglaló, hogy ez hogyan is lehetséges:
 
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+1. Az `onClick` prop a beépített DOM `<button>` komponensben közli a Reacttel, hogy állítson fel egy eseményfigyelőt kattintásra.
+2. Amikor a gombra kattintanak, a React meghívja az `onClick` eseményfigyelőt, ami a Square komponens `render()` metódusában definiálva lett.
+3. Ez az eseményfigyelő meghívja a `this.props.onClick()` függvényt. A Square `onClick` propja a Board komponensben lett definiálva.
+4. Mivel a Board leküldte az `onClick={() => this.handleClick(i)}` propot a Square komponensnek, a Square meghívja a `this.handleClick(i)` függvényt, ha rákattintanak.
+5. Mivel a `handleClick()` metódust még nem definiáltuk, a kódunk összeomlik. Ha most kattintasz egy négyzetre, egy piros hibát kell látnod a képernyőt, ami valami olyat mond, hogy "this.handleClik is not a function", azaz "a this.handleClick nem függvény".
 
->Note
+>Megjegyzés
 >
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `onClick` prop or Board's `handleClick` method, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>A `<button>` gombelem `onClick` attribútuma speciális jelentéssel bír a React számára, mivel ez egy beépített komponens. Egy egyedi komponens esetén, mint például a Square, a megnevezés tőled függ. A Square `onClick` propjának más nevet is adhatunk, vagy akár a Board `handleClick` metódusának, és a kód ugyanúgy működne. A Reactben, közös megállapodás alapján `on[Event]`-nek hívjuk azokat a propokat, amik eseményeket képviselnek és `handle[Event]`-nek azokat a metódusokat amik eseményeket kezelnek.
 
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
+Ha rákattintunk egy Square komponensre, egy hibát kell hogy kapjunk, mivel a `handleClick` még nincs definiálva. Most hozzáadjuk a `handleClick` metódust a Board osztályhoz:
 
 ```javascript{9-13}
 class Board extends React.Component {
@@ -488,7 +488,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = 'Következő játékos X';
 
     return (
       <div>
@@ -514,63 +514,63 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
+Ezen változtatások után újra rá tudunk kattintani a Square komponensekre, hogy kitöltsük őket, ahogy eddig is. Azonban az állapot most már a Board komponensben van tárolva ahelyett, hogy minden Square külön tárolná a saját állapotát. Ha a Board állapota megváltozik, a Square komponens automatikusan újra fog renderelni. Minden négyzet állapotának a Board komponensben való tárolása lehetővé teszi, hogy a jövőben megállapítsuk a győztest.
 
-Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
+Mivel a Square komponens többé nem kezel állapotot, a Square komponens most már csak a Board komponenstől fogad értékeket, és értesíti azt, ha rákattintanak. React nyelven ez azt jelenti, hogy a Square komponensek  **kontrollált komponensek**. A Board komponens teljes mértékben irányítja őket.
 
-Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
+Vedd észre, hogy a `handleClick` metódusban meghívjuk a `.slice()` metódust a tömbön, hogy a `squares` tömb egy másolatát módosítsuk, ne az eredetit. A következő szekcióban elmagyarázzuk, hogy miért készítjük ezt a `squares` tömb másolatot.
 
-### Why Immutability Is Important {#why-immutability-is-important}
+### Megváltoztathatatlanság fontossága {#why-immutability-is-important}
 
-In the previous code example, we suggested that you use the `.slice()` method to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+Az előző kódpéldában azt tanácsoltuk, hogy a `.slice()` metódussal készítsünk egy `squares` tömb másolatot, hogy ne az eredeti tömböt módosítsuk. Most megvitatjuk a megváltoztathatatlanságot, és hogy miért fontos ennek megtanulása.
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
+Adatváltoztatásra két általános megközelítés létezik. Az első megközelítés az, hogy *közvetlenül megváltoztatjuk* az adat értékét. A második megközelítés lecserélni az adatot egy másolattal, ami tartalmazza a kívánt változtatásokat.
 
-#### Data Change with Mutation {#data-change-with-mutation}
+#### Adatváltozás mutációval {#data-change-with-mutation}
 ```javascript
-var player = {score: 1, name: 'Jeff'};
+var player = {score: 1, name: 'György'};
 player.score = 2;
-// Now player is {score: 2, name: 'Jeff'}
+// A player most {score: 2, name: 'György'}
 ```
 
-#### Data Change without Mutation {#data-change-without-mutation}
+#### Adatváltozás mutáció nélkül {#data-change-without-mutation}
 ```javascript
-var player = {score: 1, name: 'Jeff'};
+var player = {score: 1, name: 'György'};
 
 var newPlayer = Object.assign({}, player, {score: 2});
-// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+// A player változatlan, a newPlayer pedig {score: 2, name: 'György'}
 
-// Or if you are using object spread syntax proposal, you can write:
+// Vagy ha használod az objektum kiterítési szintaxisjavaslatot, ezt is írhatod:
 // var newPlayer = {...player, score: 2};
 ```
 
-The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
+A végeredmény ugyanaz, de azzal, hogy nem közvetlenül változtatjuk meg az eredeti (vagy eredeti alá rendelt) adatot, hasznos lehet a lent leírt okokból.
 
-#### Complex Features Become Simple {#complex-features-become-simple}
+#### Komplex tulajdonságok válnak egyszerűvé {#complex-features-become-simple}
 
-Immutability makes complex features much easier to implement. Later in this tutorial, we will implement a "time travel" feature that allows us to review the tic-tac-toe game's history and "jump back" to previous moves. This functionality isn't specific to games -- an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game's history intact, and reuse them later.
+A megváltoztathatatlansággal bonyolult tulajdonságok válnak egyszerűen implementálhatóvá. Ebben a tutoriálban később implementálni fogunk egy "időutazó" funkciót, ami lehetővé teszi számunkra a tic-tac-toe játék lépéstörténetének tanulmányozását, és abban való korábbi lépésre való "visszaugrást". Ez a funkció nem egyedi játékokra -- a visszavonási képesség, vagy újracsinálni bizonyos tevékenységeket, egy gyakori követelmény alkalmazásokban. A közvetlen adatváltozás elkerülésével érintetlenül tudjuk tartani a játék lépéstörténetének korábbi verzióit, és ezt később újrahasznosíthatjuk.
 
-#### Detecting Changes {#detecting-changes}
+#### Változások észlelése {#detecting-changes}
 
-Detecting changes in mutable objects is difficult because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
+A változások észlelése megváltoztatható objektumokban nehéz feladat, mivel azok közvetlenül módosíthatóak. Ez az észlelés megköveteli a megváltoztatható objektumtól, hogy azt összehasonlítsuk saját maga korábbi másolataihoz és a teljes objektumfa bejárását.
 
-Detecting changes in immutable objects is considerably easier. If the immutable object that is being referenced is different than the previous one, then the object has changed.
+A változások észlelése egy megváltoztathatatlan objektum esetén jelentősen egyszerűbb. Ha a megváltoztathatatlan objektum, amire referálunk különbözik a korábbitól, akkor az objektum megváltozott.
 
-#### Determining When to Re-Render in React {#determining-when-to-re-render-in-react}
+#### Újrarenderelés megállapítása Reactben {#determining-when-to-re-render-in-react}
 
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering.
+A megváltoztathatatlanság legfőbb előnye, hogy az segít a Reactben _tiszta komponensek_ építésében. A megváltoztathatatlan adat könnyen megállapíthatja, ha valamilyen változás történt, ami azt segít megállapítani, hogy egy komponensnek újra kell-e renderelnie.
 
-You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
+A `shouldComponentUpdate()` metódusról, és hogy hogyan készíts *tiszta komponenseket*, a [Teljesítmény optimalizálása](/docs/optimizing-performance.html#examples) olvasásával tanulhatsz többet.
 
-### Function Components {#function-components}
+### Függvénykomponensek {#function-components}
 
-We'll now change the Square to be a **function component**.
+Most átalakítjuk a Square komponenst egy **függvénykomponenssé**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+A Reactben a **függvénykomponensek** egy egyszerűbb módja komponensek írásának, amik csak egy `render` metódust tartalmaznak, és nincs saját állapotuk. Ahelyett hogy osztályokat definiálunk, amik a `React.Component` kiterjesztései, írhatunk egy függvényt, ami veszi a `prop`-okat inputként, és azt adja vissza, amit renderelni kéne. A függvénykomponensek írása kevésbé időigényes, és sok komponens kifejezhető így.
 
-Replace the Square class with this function:
+Cseréld le a Square osztályt erre a függvényre:
 
 ```javascript
 function Square(props) {
@@ -582,19 +582,19 @@ function Square(props) {
 }
 ```
 
-We have changed `this.props` to `props` both times it appears.
+Lecseréltük a `this.props`-t `props`-ra mindkét helyen, ahol megjelent.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
->Note
+>Megjegyzés
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
+>Amikor módosítottuk a Square függvényt egy függvénykomponensre, az `onClick={() => this.props.onClick()}`-t is megváltoztattuk egy rövidebb `onClick={props.onClick}` formára (vedd észre *mindkét* zárójel hiányát).
 
-### Taking Turns {#taking-turns}
+### Szerepváltás {#taking-turns}
 
-We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
+Most pedig ki kell javítanunk egy egyértelmű hibát a tic-tac-toe játékunkban: "O"-kat még nem lehet felvinni a táblára.
 
-We'll set the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
+Most beállítjuk az "X"-szet alapértelmezett első lépésnek. Az alapértelmezett lépést a kezdő állapot módosításával állíthatjuk be, a Board konstruktorában:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -607,7 +607,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
+Minden alkalommal, mikor egy játékos lép, az `xIsNext` (egy boolean) értékét váltogatjuk, hogy meg tudjuk határozni melyik játékos következik, és hogy a játék állása el legyen mentve. Módosítsuk a Board `handleClick` metódusát, hogy váltogassa az `xIsNext` értékét:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -620,19 +620,19 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
   }
 ```
 
-With this change, "X"s and "O"s can take turns. Try it!
+Ezzel a változtatással, az "X"-szek és az "O"-k most már váltakoznak. Próbáld ki!
 
-Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
+Változtassuk meg a "státusz" szöveget is a Board `render` metódusában, hogy azt is mutassa, hogy ki a következő játékos:
 
 ```javascript{2}
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const status = 'Következő játékos: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
-      // the rest has not changed
+      // más változás nincs
 ```
 
-After applying these changes, you should have this Board component:
+Ezen változtatások után a Board komponensed így kell hogy kinézzen:
 
 ```javascript{6,11-16,29}
 class Board extends React.Component {
@@ -663,7 +663,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       <div>
@@ -689,11 +689,11 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
 
-### Declaring a Winner {#declaring-a-winner}
+### Győztes kihirdetése {#declaring-a-winner}
 
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. Copy this helper function and paste it at the end of the file:
+Most hogy már mutatjuk ki a következő játékos, azt is mutatnunk kéne, ha a játékot valaki megnyeri, és nincs több lépésre szükség. Másold be ezt a segédfüggvényt a fájl végére:
 
 ```javascript
 function calculateWinner(squares) {
@@ -717,25 +717,25 @@ function calculateWinner(squares) {
 }
 ```
 
-Given an array of 9 squares, this function will check for a winner and return `'X'`, `'O'`, or `null` as appropriate.
+Adott egy 9 négyzetet tartalmazó tömb, ez a függvény leellenőrzi hogy van-e győztes, és ennek megfelelően visszaadhat `'X'`-szet, `'O'`-t, vagy `null` értéket.
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
+A `calculateWinner(squares)` függvényt meghívjuk a Board `render` metódusában, hogy megtudjuk van-e győztes. Ha egy játékos nyert, akkor mutathatunk valami olyan szöveget mint: "Győztes: X" vagy "Győztes: O". Cseréljük le a `status` deklarációját is a Board `render` metódusában erre a kódra:
 
 ```javascript{2-8}
   render() {
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Győztes: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
-      // the rest has not changed
+      // más változás nincs
 ```
 
-We can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
+Most már megváltoztathatjuk a Board `handleClick` metódusát is, hogy az korán térjen vissza, ignorálva a kattintásokat, ha valaki megnyerte a játékot, vagy ha a Square már ki van töltve:
 
 ```javascript{3-5}
   handleClick(i) {
@@ -751,25 +751,25 @@ We can now change the Board's `handleClick` function to return early by ignoring
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you're* probably the real winner here.
+Gratulálunk! Most már van egy működő tic-tac-toe játékod. És közben megtanultad a React alapjait is. Szóval igazából itt *te vagy* az igazi nyertes.
 
-## Adding Time Travel {#adding-time-travel}
+## Időutazás hozzáadása {#adding-time-travel}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+Egy utolsó gyakorlatként tegyük lehetővé az "időutazást" korábbi játékállásokhoz.
 
-### Storing a History of Moves {#storing-a-history-of-moves}
+### Lépéstörténet tárolása {#storing-a-history-of-moves}
 
-If we mutated the `squares` array, implementing time travel would be very difficult.
+Ha mutáltuk (közvetlen megváltoztatás) volna a `squares` tömböt, az időutazás implementálása nagyon bonyolult lenne.
 
-However, we used `slice()` to create a new copy of the `squares` array after every move, and [treated it as immutable](#why-immutability-is-important). This will allow us to store every past version of the `squares` array, and navigate between the turns that have already happened.
+Mi azonban a `slice()` metódust használtuk új `squares` tömb másolatok létrehozásához minden lépésnél, és így [megváltoztathatatlanként kezeltük azt](#why-immutability-is-important). Ez lehetővé teszi majd a `squares` tömb minden korábbi verziójának eltárolását, és hogy navigálni tudjunk a már megtörtént lépések között.
 
-We'll store the past `squares` arrays in another array called `history`. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+A korábbi `squares` tömböket egy új, `history` nevű tömbben fogjuk tárolni. A `history` tömb a tábla minden állását tartalmazza az elsőtől az utolsó lépésig, és így néz ki:
 
 ```javascript
 history = [
-  // Before first move
+  // Az első lépés előtt
   {
     squares: [
       null, null, null,
@@ -777,7 +777,7 @@ history = [
       null, null, null,
     ]
   },
-  // After first move
+  // Az első lépés után
   {
     squares: [
       null, null, null,
@@ -785,7 +785,7 @@ history = [
       null, null, null,
     ]
   },
-  // After second move
+  // A második lépés után
   {
     squares: [
       null, null, null,
@@ -797,15 +797,15 @@ history = [
 ]
 ```
 
-Now we need to decide which component should own the `history` state.
+Most el kell döntenünk, hogy melyik komponens birtokolja a `history` állapotot.
 
-### Lifting State Up, Again {#lifting-state-up-again}
+### Állapot ismételt felemelése {#lifting-state-up-again}
 
-We'll want the top-level Game component to display a list of past moves. It will need access to the `history` to do that, so we will place the `history` state in the top-level Game component.
+Szeretnénk, ha a legfelsőbb szintű Game komponens mutatná a korábbi lépések listáját. Ehhez hozzá kell hogy férjen a `history`-hoz, szóval a `history` állapotot a legfelsőbb szintű Game komponensbe helyezzük.
 
-Placing the `history` state into the Game component lets us remove the `squares` state from its child Board component. Just like we ["lifted state up"](#lifting-state-up) from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board's data, and lets it instruct the Board to render previous turns from the `history`.
+A `history` állapot Game komponensben való elhelyezésével eltávolíthatjuk a `squares` állapotot annak gyermekkomponenséből, a Board komponensből. Ugyanúgy, ahogy a Square komponensből ["felemeltük az állapotot"](#lifting-state-up) a Board komponensbe, most felemeljük azt a Board-ból a legfelsőbb szintű Game komponensbe. Ez teljes felügyeletet ad a Game komponensnek a Board adatai felett, és utasíthatja a Board komponenst korábbi állások renderelésére a `history`-ból.
 
-First, we'll set up the initial state for the Game component within its constructor:
+Először is beállítjuk a kezdeti állapotot a Game komponens konstruktorában:
 
 ```javascript{2-10}
 class Game extends React.Component {
@@ -826,7 +826,7 @@ class Game extends React.Component {
           <Board />
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
+          <div>{/* státusz */}</div>
           <ol>{/* TODO */}</ol>
         </div>
       </div>
@@ -835,13 +835,13 @@ class Game extends React.Component {
 }
 ```
 
-Next, we'll have the Board component receive `squares` and `onClick` props from the Game component. Since we now have a single click handler in Board for many Squares, we'll need to pass the location of each Square into the `onClick` handler to indicate which Square was clicked. Here are the required steps to transform the Board component:
+Ezután beállítjuk, hogy a Board komponens a Game komponensből fogadja a `squares` és `onClick` propokat. Mivel már van egy egyszerű kattintáskezelőnk a Board-ban több Square komponenshez, meg kell mondanunk minden egyes Square komponens pozícióját is az `onClick` kezelőnek, hogy jelezzük melyik Square-re kattintottak. Íme a szükséges lépések a Board komponens átalakításához:
 
-* Delete the `constructor` in Board.
-* Replace `this.state.squares[i]` with `this.props.squares[i]` in Board's `renderSquare`.
-* Replace `this.handleClick(i)` with `this.props.onClick(i)` in Board's `renderSquare`.
+* Töröld a `constructor`-t a Board-ban.
+* Cseréld le a `this.state.squares[i]`-t `this.props.squares[i]`-re a Board `renderSquare` metódusában.
+* Cseréld le a `this.handleClick(i)`-t `this.props.onClick(i)`-re a Board `renderSquare` metódusában.
 
-The Board component now looks like this:
+A Board komponens most így néz ki:
 
 ```javascript{17,18}
 class Board extends React.Component {
@@ -870,9 +870,9 @@ class Board extends React.Component {
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Győztes: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -899,7 +899,7 @@ class Board extends React.Component {
 }
 ```
 
-We'll update the Game component's `render` function to use the most recent history entry to determine and display the game's status:
+Frissítsük a Game komponens `render` metódusát, hogy az a legfrissebb history bejegyzést használja a játék státuszának megjelenítéséhez:
 
 ```javascript{2-11,16-19,22}
   render() {
@@ -909,9 +909,9 @@ We'll update the Game component's `render` function to use the most recent histo
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Győztes: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -931,7 +931,7 @@ We'll update the Game component's `render` function to use the most recent histo
   }
 ```
 
-Since the Game component is now rendering the game's status, we can remove the corresponding code from the Board's `render` method. After refactoring, the Board's `render` function looks like this:
+Mivel most már a Game komponens rendereli a játék státuszát, eltávolíthatjuk az ennek megfelelő kódot a Board `render` metódusából. Az újraírás után a Board `render` metódusa így néz ki:
 
 ```js{1-4}
   render() {
@@ -957,7 +957,8 @@ Since the Game component is now rendering the game's status, we can remove the c
   }
 ```
 
-Finally, we need to move the `handleClick` method from the Board component to the Game component. We also need to modify `handleClick` because the Game component's state is structured differently. Within the Game's `handleClick` method, we concatenate new history entries onto `history`.
+Utoljára pedig át kell helyeznünk a `handleClick` metódust a Board komponensből a Game komponensbe. Módosítanunk is kell a `handleClick`-et, mivel a Game komponens állapota másként van strukturálva.
+A Game `handleClick` metódusában összefűzzük a history bejegyzéseket a `history` állapotba.
 
 ```javascript{2-4,10-12}
   handleClick(i) {
@@ -977,30 +978,30 @@ Finally, we need to move the `handleClick` method from the Board component to th
   }
 ```
 
->Note
+>Megjegyzés
 >
->Unlike the array `push()` method you might be more familiar with, the `concat()` method doesn't mutate the original array, so we prefer it.
+>A tömb `push()` metódusával ellentétben, amit már korábbról ismerhetsz, a `concat()` metódus nem módosítja a korábbi tömböt, szóval ezt részesítjük előnyben.
 
-At this point, the Board component only needs the `renderSquare` and `render` methods. The game's state and the `handleClick` method should be in the Game component.
+Ezen a ponton a Board komponensnek csak a `renderSquare` és `render` metódusokra van szüksége. A játék állapota és a `handleClick` metódusok a Game komponensben kell legyenek.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
 
-### Showing the Past Moves {#showing-the-past-moves}
+### Korábbi lépések mutatása {#showing-the-past-moves}
 
-Since we are recording the tic-tac-toe game's history, we can now display it to the player as a list of past moves.
+Mivel feljegyezzük a tic-tac-toe játék lépéstörténetét, most már mutatni tudjuk a játékosnak a korábbi lépések listáját.
 
-We learned earlier that React elements are first-class JavaScript objects; we can pass them around in our applications. To render multiple items in React, we can use an array of React elements.
+Korábban megtanultuk, hogy a React elemek elsőosztályú JavaScript objektumok; körbe tudjuk őket küldözgetni az alkalmazásban. Hogy több elemet tudjunk renderelni Reactben, használhatunk egy tömböt, ami React elemeket tartalmaz.
 
-In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) that is commonly used for mapping data to other data, for example:
+A JavaScriptben a tömbök rendelkeznek egy [`map()` metódussal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), amit gyakran használnak adatok más adatra leképezésére, mint például:
 
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 ```
 
-Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
+A `map` metódus használatával le tudjuk képezni a lépéstörténetünket React elemekre, amik gombokat képviselnek a képernyőn, és egy gomblistára, amikkel "ugrálni" tudunk korábbi lépésekre.
 
-Let's `map` over the `history` in the Game's `render` method:
+Most pedig `képezzük le` a `history`-t a Game komponens `render` metódusában:
 
 ```javascript{6-15,34}
   render() {
@@ -1010,8 +1011,8 @@ Let's `map` over the `history` in the Game's `render` method:
 
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+        'Menj ide, lépés: #' + move :
+        'Menj a játék kezdetéhez';
       return (
         <li>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -1021,9 +1022,9 @@ Let's `map` over the `history` in the Game's `render` method:
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Győztes: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Következő játékos ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -1043,62 +1044,62 @@ Let's `map` over the `history` in the Game's `render` method:
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+A tic-tac-toe játék lépéstörténetében minden lépéshez létrehozunk egy `<li>`-t, ami tartalmaz egy `<button>` gombot. A gomb rendelkezik egy `onClick` kezelővel, ami meghív egy `this.jumpTo()` metódust. A `jumpTo()` metódust még nem implementáltuk. Egyenlőre egy listát kell látnunk a lépésekről, amik már megtörténtek a játék során, és egy figyelmeztetést a fejlesztői eszközözök konzolban, ami azt mondja:
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
 
-Let's discuss what the above warning means.
+Beszéljük meg, mit is jelent a fenti figyelmeztetés.
 
-### Picking a Key {#picking-a-key}
+### Azonosító kulcs választása {#picking-a-key}
 
-When we render a list, React stores some information about each rendered list item. When we update a list, React needs to determine what has changed. We could have added, removed, re-arranged, or updated the list's items.
+Amikor egy listát renderelünk, a React minden renderelt listaelemről tárol valamennyi információt. Amikor frissítünk egy listát, a Reactnek tudnia kell, hogy mi változott. Hozzá tudtunk adni, eltávolítani vagy megváltoztatni a lista sorrendjét, vagy megváltoztatni a lista elemeit.
 
-Imagine transitioning from
-
-```html
-<li>Alexa: 7 tasks left</li>
-<li>Ben: 5 tasks left</li>
-```
-
-to
+Képzeld el az átmenetet erről
 
 ```html
-<li>Ben: 9 tasks left</li>
-<li>Claudia: 8 tasks left</li>
-<li>Alexa: 5 tasks left</li>
+<li>Aladár: 7 feladat van vissza</li>
+<li>Balázs: 5 feladat van vissza</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that we swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what we intended. Because React cannot know our intentions, we need to specify a *key* property for each list item to differentiate each list item from its siblings. One option would be to use the strings `alexa`, `ben`, `claudia`. If we were displaying data from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+erre
 
 ```html
-<li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
+<li>Balázs: 9 feladat van vissza</li>
+<li>Klaudia: 8 feladat van vissza</li>
+<li>Aladár: 5 feladat van vissza</li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved. Keys tell React about the identity of each component which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+Ha valaki ezt olvasná a frissített számlálók mellett, valószínűleg azt mondaná, hogy Aladár és Balázs fel lett cserélve, és Klaudia be lett illesztve Aladár és Balázs közé. Azonban a React egy számítógépes program, nem érti mit is szerettünk volna elérni. Mivel a React nem ismeri a szándékainkat, minden listabejegyzésnek meg kell adnunk egy *kulcs* tulajdonságot, hogy az meg tudja különböztetni a bejegyzéseket annak testvéreitől. Egy alternatíva lehet a sztringek `aladar`, `balazs`, `klaudia` használata. Ha az adatokat egy adatbázisból jelenítenénk meg, akkor használhatnánk Aladár, Balázs és Klaudia adatbázis azonosítókulcsát egyedi kulcsnak.
 
-`key` is a special and reserved property in React (along with `ref`, a more advanced feature). When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it belongs in `props`, `key` cannot be referenced using `this.props.key`. React automatically uses `key` to decide which components to update. A component cannot inquire about its `key`.
+```html
+<li key={user.id}>{user.name}: {user.taskCount} feladat van vissza</li>
+```
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+Mikor egy listát renderelünk újra, a React veszi minden lista elemének a kulcsát, és megkeresi az előző listaelemet a megegyező kulccsal. Ha a jelenlegi lista tartalmaz egy kulcsot, amit korábban nem, a React készít egy új komponenst. Ha a jelenlegi listában már nincs jelen egy korábban létező kulcs, a React törli az előző komponenst. Ha két kulcs egyezik, a komponens mozgatva lett. A kulcsok azonosítanak minden komponenst a Reactnek, ami lehetővé teszi annak az állapotok kezelését újrarenderelések között. Ha egy komponens kulcsa megváltozik, a komponens törölve lesz és újra létre lesz hozva, egy új állapottal.
 
-If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
+A `key` egy speciális fenntartott tulajdonság a Reactben (a `ref`-el egyetemben, ami egy sokkal haladóbb funkció). Mikor egy új elemet készítünk, a React kivonja a `key` tulajdonságot, és közvetlenül eltárolja azt a visszaadott elemen. Ha úgy is tűnik, hogy a `key` a `prop`-ok közé tartozik, a `key`-re nem tudunk referálni a `this.prop.key`-vel. A React automatikusan használja a `key`-t, hogy eldöntse melyik komponenseket frissítse. Egy komponens nem tud annak `key` tulajdonságáról érdeklődni.
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+**Erősen ajánlott, hogy dinamikus listák esetében rendes kulcsokat rendelj hozzá a listaelemekhez.** Ha nem rendelkezel egy megfelelő kulccsal, fontold meg az adatod átalakítását, hogy létezzen megfelelő kulcs.
+
+Ha nincs kulcs megadva, a React egy figyelmeztetést fog adni, és a tömb indexét fogja megadni alapértelmezett kulcsként. A tömb indexének kulcsként való használata problémás lehet, ha egy lista újra lesz rendezve, vagy új elem lesz hozzáadva, vagy egy elem lesz törölve. A `key={i}` határozott megadása elnémítja a figyelmeztetést, de ugyanaz a probléma áll majd fenn, mint a tömbindexek esetében, és a legtöbb esetben nem ajánlott.
+
+A kulcsoknak nem kell globálisan egyedinek lenniük; csupán komponensek, és azok testvérei között kell, hogy egyediek legyenek.
 
 
-### Implementing Time Travel {#implementing-time-travel}
+### Időutazás implementálása {#implementing-time-travel}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+A tic-tac-toe játék lépéstörténetében minden korábbi lépésnek van egy egyedi azonosítója: ez a lépés sorszáma. A lépések soha nincsenek átrendezve, törölve, beillesztve más lépések közé, szóval ebben az esetben tömbindex használata kulcsként biztonságosnak számít.
 
-In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
+A Game komponens render metódusában hozzá tudjuk adni a kulcsot így `<li key={move}>` és a React figyelmeztetése a kulcsokról el kell, hogy tűnjön:
 
 ```js{6}
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+        'Menj erre ide, lépés: #' + move :
+        'Menj a játék kezdetéhez';
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -1107,11 +1108,11 @@ In the Game component's `render` method, we can add the key as `<li key={move}>`
     });
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
 
-Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
+Bármelyik listabejegyzés gombjára kattintva egy hiba ugrik fel, mert a `jumpTo` metódus nincs definiálva. Mielőtt implementálnánk a `jumpTo` metódust, adjuk hozzá a `stepNumber`-t a Game komponens állapotához, hogy jelezzük melyik lépést látjuk éppen.
 
-First, add `stepNumber: 0` to the initial state in Game's `constructor`:
+Először is add hozzá a `stepNumber: 0`-t a kezdeti állapothoz a Game `contructor`-ban:
 
 ```js{8}
 class Game extends React.Component {
@@ -1127,11 +1128,11 @@ class Game extends React.Component {
   }
 ```
 
-Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We also set `xIsNext` to true if the number that we're changing `stepNumber` to is even:
+Ezután definiáljuk a `jumpTo` metódust a Game komponensben, hogy frissíteni tudjuk a `stepNumber`-t. Valamint az `xIsNext` értékét is igazra állítjuk, ha egy páros számot változtatunk:
 
 ```javascript{5-10}
   handleClick(i) {
-    // this method has not changed
+    // ez a metódus nem változott
   }
 
   jumpTo(step) {
@@ -1142,15 +1143,15 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
   }
 
   render() {
-    // this method has not changed
+    // ez a metódus nem változott
   }
 ```
 
-We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+Most pedig egy pár változtatást eszközölünk a Game `handleClick` metódusában, egy négyzetre kattintáskor lesz meghívva.
 
-The `stepNumber` state we've added reflects the move displayed to the user now. After we make a new move, we need to update `stepNumber` by adding `stepNumber: history.length` as part of the `this.setState` argument. This ensures we don't get stuck showing the same move after a new one has been made.
+A hozzáadott `stepNumber` állapot most már tükrözi a felhasználó által látott lépést. Ha lépünk egyet, frissítenünk kell a `stepNumber`-t azzal, hogy hozzáadjuk azt a `this.setState` argumentumához: `stepNumber: history.length`. Ez azt biztosítja, hogy ne ragadjunk le mindig ugyanannak a lépésnek a mutatásával minden új lépés után.
 
-We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now become incorrect.
+Cseréljük le a `this.state.history` olvasását is erre: `this.state.history.slice(0, this.state.stepNumber + 1)`. Ez azt biztosítja, hogy ha "visszautazunk az időben", és egy újat lépünk, akkor eltekintünk a "jövő" lépéseitől, amik így már helytelenek lennének.
 
 ```javascript{2,13}
   handleClick(i) {
@@ -1171,7 +1172,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
   }
 ```
 
-Finally, we will modify the Game component's `render` method from always rendering the last move to rendering the currently selected move according to `stepNumber`:
+Végezetül módosítsuk a Game komponens `render` metódusát, hogy a mindig legutolsó lépés renderelése helyett, inkább a kiválasztott lépést renderelje, amit `stepNumber` határoz meg:
 
 ```javascript{3}
   render() {
@@ -1179,33 +1180,33 @@ Finally, we will modify the Game component's `render` method from always renderi
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
-    // the rest has not changed
+    // más változás nincs
 ```
 
-If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+Ha most rákattintunk bármelyik lépésre a játéktörténetben, a tic-tac-toa tábla azonnal úgy frissül, hogy azt az állást mutassa, ami a rákattintott lépés után történt.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
+**[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
-### Wrapping Up {#wrapping-up}
+### Összegzés {#wrapping-up}
 
-Congratulations! You've created a tic-tac-toe game that:
+Gratulálunk! Készítettél egy tic-tac-toe játékot ami:
 
-* Lets you play tic-tac-toe,
-* Indicates when a player has won the game,
-* Stores a game's history as a game progresses,
-* Allows players to review a game's history and see previous versions of a game's board.
+* Lehetővé teszi a tic-tac-toe játszását,
+* Kihirdeti a győztest,
+* Elmenti a játék lépéstörténetét a játék közben,
+* Lehetővé teszi a játékosoknak újranézni a játéktábla korábbi állásait.
 
-Nice work! We hope you now feel like you have a decent grasp on how React works.
+Szép munka! Reméljük, hogy ezek után te is úgy érzed, sikerült megragadnod a React működésének lényegét.
 
-Check out the final result here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
+Nézd meg a végeredményt itt: **[Végeredmény](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game which are listed in order of increasing difficulty:
+Ha van egy kis extra időd, vagy szeretnéd gyakorolni a React új képességeidet, íme pár ötlet a tic-tac-toe játék tökéletesítéséhez, nehézség szerint növekvő sorrendben:
 
-1. Display the location for each move in the format (col, row) in the move history list.
-2. Bold the currently selected item in the move list.
-3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
-4. Add a toggle button that lets you sort the moves in either ascending or descending order.
-5. When someone wins, highlight the three squares that caused the win.
-6. When no one wins, display a message about the result being a draw.
+1. Mutasd minden lépés pozícióját az (oszlop, sor) formátumban a lépéstörténet listában.
+2. Tedd kövérré a jelenleg kiválasztott element a lépés listában.
+3. Írd át a Board komponenst úgy, hogy az két ciklust használjon négyzetek készítéséhez belekódolás helyett.
+4. Adj hozzá egy kapcsoló gombot, ami lehetővé teszi a lépések szortírozását növekvő vagy csökkenő sorrendben.
+5. Ha valaki nyer, emeld ki a három négyzetet, ami lehetővé tette a játékosnak a nyerést.
+6. Ha senki sem nyer, mutass egy üzenetet döntetlen eredményről.
 
-Throughout this tutorial, we touched on React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).
+Ezen a tutoriálon keresztül olyan React koncepciókat érintettünk mint elemek, komponensek, propok és állapot. Ezen témák részletesebb magyarázatához nézd meg a [dokumentáció többi részét](/docs/hello-world.html). Ha többet szeretnél tanulni komponensek definiálásról, nézd meg a [`React.Component` API hivatkozását](/docs/react-component.html).
