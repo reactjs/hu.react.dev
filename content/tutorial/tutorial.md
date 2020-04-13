@@ -265,7 +265,7 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 
 Következő lépésként azt próbáljuk elérni, hogy a Square komponens "emlékezzen" arra, hogy rá lett kattintva, és töltse ki magát egy "X"-szel. Ahhoz, hogy komponensek "emlékezni" tudjanak, **state**-t (állapotot) használnak.
 
-React komponensekben állapotot a `this.state` segítségével deklarálhatunk, a konstruktorban. A `this.state` állapotra úgy kell tekintenünk, hogy az privát legyen abban az osztályban, amiben az definiálva lett. Tároljuk a Square jelenlegi értékét a `this.state` objektumban, és változtassuk azt meg, ha a Square-re kattintunk.
+React komponensekben állapotot a `this.state` segítségével deklarálhatunk a konstruktorban. A `this.state` állapotra úgy kell tekintenünk, hogy az privát legyen abban az osztályban, amiben az definiálva lett. Tároljuk a Square jelenlegi értékét a `this.state` objektumban, és változtassuk azt meg, ha a Square-re kattintunk.
 
 Először is adjunk hozzá egy konstruktort az osztályhoz, hogy inicializáljuk az állapotot:
 
@@ -455,7 +455,7 @@ Amikor a Square komponensre rákattintanak, az `onClick` függvény meg lesz hí
 2. Amikor a gombra kattintanak, a React meghívja az `onClick` eseményfigyelőt, ami a Square komponens `render()` metódusában definiálva lett.
 3. Ez az eseményfigyelő meghívja a `this.props.onClick()` függvényt. A Square `onClick` propja a Board komponensben lett definiálva.
 4. Mivel a Board leküldte az `onClick={() => this.handleClick(i)}` propot a Square komponensnek, a Square meghívja a `this.handleClick(i)` függvényt, ha rákattintanak.
-5. Mivel a `handleClick()` metódust még nem definiáltuk, a kódunk összeomlik. Ha most kattintasz egy négyzetre, egy piros hibát kell látnod a képernyőt, ami valami olyat mond, hogy "this.handleClik is not a function", azaz "a this.handleClick nem függvény".
+5. Mivel a `handleClick()` metódust még nem definiáltuk, a kódunk összeomlik. Ha most kattintasz egy négyzetre, egy piros hibát kell látnod a képernyőn, ami valami olyat mond, hogy "this.handleClick is not a function", azaz "a this.handleClick nem függvény".
 
 >Megjegyzés
 >
@@ -560,7 +560,7 @@ A változások észlelése egy megváltoztathatatlan objektum esetén jelentőse
 
 #### Újrarenderelés megállapítása Reactben {#determining-when-to-re-render-in-react}
 
-A megváltoztathatatlanság legfőbb előnye, hogy az segít a Reactben _tiszta komponensek_ építésében. A megváltoztathatatlan adat könnyen megállapíthatja, ha valamilyen változás történt, ami azt segít megállapítani, hogy egy komponensnek újra kell-e renderelnie.
+A megváltoztathatatlanság legfőbb előnye, hogy az segít a Reactben _tiszta komponensek_ építésében. A megváltoztathatatlan adat könnyen megállapíthatja, ha valamilyen változás történt, ami azt segít meghatározni, hogy egy komponensnek újra kell-e renderelnie.
 
 A `shouldComponentUpdate()` metódusról, és hogy hogyan készíts *tiszta komponenseket*, a [Teljesítmény optimalizálása](/docs/optimizing-performance.html#examples) olvasásával tanulhatsz többet.
 
@@ -717,7 +717,7 @@ function calculateWinner(squares) {
 }
 ```
 
-Adott egy 9 négyzetet tartalmazó tömb, ez a függvény leellenőrzi hogy van-e győztes, és ennek megfelelően visszaadhat `'X'`-szet, `'O'`-t, vagy `null` értéket.
+Adott egy 9 négyzetet tartalmazó tömb, ez a függvény leellenőrzi, hogy van-e győztes, és ennek megfelelően visszaadhat `'X'`-szet, `'O'`-t, vagy `null` értéket.
 
 A `calculateWinner(squares)` függvényt meghívjuk a Board `render` metódusában, hogy megtudjuk van-e győztes. Ha egy játékos nyert, akkor mutathatunk valami olyan szöveget mint: "Győztes: X" vagy "Győztes: O". Cseréljük le a `status` deklarációját is a Board `render` metódusában erre a kódra:
 
@@ -735,7 +735,7 @@ A `calculateWinner(squares)` függvényt meghívjuk a Board `render` metódusáb
       // más változás nincs
 ```
 
-Most már megváltoztathatjuk a Board `handleClick` metódusát is, hogy az korán térjen vissza, ignorálva a kattintásokat, ha valaki megnyerte a játékot, vagy ha a Square már ki van töltve:
+Most már megváltoztathatjuk a Board `handleClick` metódusát is, hogy az előbb térjen vissza, ignorálva a kattintásokat, ha valaki megnyerte a játékot, vagy ha a Square már ki van töltve:
 
 ```javascript{3-5}
   handleClick(i) {
@@ -1203,7 +1203,7 @@ Nézd meg a végeredményt itt: **[Végeredmény](https://codepen.io/gaearon/pen
 Ha van egy kis extra időd, vagy szeretnéd gyakorolni a React új képességeidet, íme pár ötlet a tic-tac-toe játék tökéletesítéséhez, nehézség szerint növekvő sorrendben:
 
 1. Mutasd minden lépés pozícióját az (oszlop, sor) formátumban a lépéstörténet listában.
-2. Tedd kövérré a jelenleg kiválasztott element a lépés listában.
+2. Tedd félkövérré az aktuálisan kiválasztott elemet a lépés listában.
 3. Írd át a Board komponenst úgy, hogy az két ciklust használjon négyzetek készítéséhez belekódolás helyett.
 4. Adj hozzá egy kapcsoló gombot, ami lehetővé teszi a lépések szortírozását növekvő vagy csökkenő sorrendben.
 5. Ha valaki nyer, emeld ki a három négyzetet, ami lehetővé tette a játékosnak a nyerést.
