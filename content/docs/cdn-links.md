@@ -3,7 +3,7 @@ id: cdn-links
 title: CDN linkek
 permalink: docs/cdn-links.html
 prev: create-a-new-react-app.html
-next: hello-world.html
+next: release-channels.html
 ---
 
 A React és a ReactDOM egyaránt elérhető CDN-en keresztül.
