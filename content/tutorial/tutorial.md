@@ -1196,11 +1196,7 @@ Gratulálunk! Készítettél egy tic-tac-toe játékot ami:
 * Elmenti a játék lépéstörténetét a játék közben,
 * Lehetővé teszi a játékosoknak újranézni a játéktábla korábbi állásait.
 
-<<<<<<< HEAD
 Szép munka! Reméljük, hogy ezek után te is úgy érzed, sikerült megragadnod a React működésének lényegét.
-=======
-Nice work! We hope you now feel like you have a decent grasp of how React works.
->>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 
 Nézd meg a végeredményt itt: **[Végeredmény](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
