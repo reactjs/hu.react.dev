@@ -316,7 +316,7 @@ Vegyük át gyorsan mi is történik és a metódusok milyen sorrendben vannak m
 
 5) Ha a `Clock` komponens el lesz távolítva a DOM-ból, a React meghívja a `componentWillUnmount()` életciklus metódust és az időzítő így megáll.
 
-## Az állapot helyes használata {#using-state-Helyesly}
+## Az állapot helyes használata {#using-state-correctly}
 
 Három dolog van, amit tudnod kell a `setState()` metódusról.
 
@@ -418,15 +418,6 @@ Ezért van az, hogy az állapotot gyakran hívjuk helyinek, vagy egységbe zárt
 Egy komponens dönthet úgy, hogy leküldi a saját állapotát prop-ként a gyermek komponenseinek:
 
 ```js
-<<<<<<< HEAD
-<h2>Az idő {this.state.date.toLocaleTimeString()}.</h2>
-```
-
-Ez működik felhasználó által definiált komponensnél is:
-
-```js
-=======
->>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 <FormattedDate date={this.state.date} />
 ```
 
