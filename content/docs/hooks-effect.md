@@ -85,7 +85,7 @@ class Example extends React.Component {
 
 Figyeld meg, hogy **duplikálnunk kell a kódot ebben a két életciklus metódusban.**
 
-Ez azért van, mert sok esetben ugyanazt a mellékhatást szeretnénk végrehajtani attól függetlenül, hogy a komponens most lett létrehozva, vagy csak frissítve lett. Alapvetően ezt minden renderelés után szeretnénk végrehajtani -- de a React osztálykomponenseknek nincs ilyen metódusa. Kiemelhetnénk egy külön metódusba, de még ígyis két helyről kéne azt meghívni.
+Ez azért van, mert sok esetben ugyanazt a mellékhatást szeretnénk végrehajtani attól függetlenül, hogy a komponens most lett létrehozva, vagy csak frissítve lett. Alapvetően ezt minden renderelés után szeretnénk végrehajtani -- de a React osztálykomponenseknek nincs ilyen metódusa. Kiemelhetnénk egy külön metódusba, de még így is két helyről kéne azt meghívni.
 
 Most nézzük, hogy hogyan tudjuk ugyanezt a `useEffect` Horoggal elérni.
 
@@ -271,7 +271,7 @@ Az következő részben részletesebben kielemezzük a `useEffect` néhány tula
 
 ### Tipp: Használj különálló hatásokat különböző funkciók megvalósítására {#tip-use-multiple-effects-to-separate-concerns}
 
-Az egyik probléma  [Motivation](/docs/hooks-intro.html#complex-components-become-hard-to-understand) for Hooks is that class lifecycle methods often contain unrelated logic, but related logic gets broken up into several methods. Here is a component that combines the counter and the friend status indicator logic from the previous examples:
+Az egyik probléma amit a Horgok [Motivációja](/docs/hooks-intro.html#complex-components-become-hard-to-understand) részben kiemeltünk az az, hogy az osztály életciklus metódusok gyakran tartalmaznak egymással össze nem illő logikát, amíg összetartozó logika gyakran több metódusba osztódik fel. Íme egy komponens ami a számláló és a barát online státusz mutatójának logikáját vegyíti az előző példákból:
 
 ```js
 class FriendStatusWithCounter extends React.Component {
