@@ -74,6 +74,8 @@ A következő eszközláncok több rugalmasságot és lehetőséget biztosítana
 
 - A **[Neutrino](https://neutrinojs.org/)** kombinálja a [webpack](https://webpack.js.org/) erejét a presetek egyszerűségével, és tartalmaz egy presetet [React alkalmazásokhoz](https://neutrinojs.org/packages/react/) és [React komponensekhez](https://neutrinojs.org/packages/react-components/).
 
+- Az **[Nx](https://nx.dev/react)** egy full-stack monorepo fejlesztéshez való eszközkészlet, ami egyebek mellett beépített React, Next.js, [Express](https://expressjs.com/) támogatással is rendelkezik.
+
 - A **[Parcel](https://parceljs.org/)** egy gyors, konfigurálást nem igénylő webalkalmazás csomagoló ami [Reacttel is működik](https://parceljs.org/recipes.html#react).
 
 - A **[Razzle](https://github.com/jaredpalmer/razzle)** egy konfigurálást nem igénylő szerveroldali renderelő keretrendszer, de több rugalmasságot biztosít, mint a Next.js.
