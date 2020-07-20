@@ -233,7 +233,7 @@ function Comment(props) {
 
 [](codepen://components-and-props/extracting-components-continued)
 
-A komponensek kivonása elsőre morgós munkának tűnhet, de nagyobb alkalmazások esetén gyorsan megtérül ha egy újrafelhasználható komponens palettával rendelkezünk. Egy jó ökölszabály ha a felhasználói kezelőfelületed valamelyik része többször fel van használva (`Button`, `Panel`, `Avatar`), vagy elég bonyolult saját magában is (`App`, `FeedStory`, `Comment`) akkor jó jelölt lehet egy újrafelhasználható komponensnek.
+A komponensek kivonása elsőre morgós munkának tűnhet, de nagyobb alkalmazások esetén gyorsan megtérül, ha egy újrafelhasználható komponenspalettával rendelkezünk. Egy jó ökölszabály, ha a felhasználói kezelőfelületed valamelyik része többször fel van használva (`Button`, `Panel`, `Avatar`), vagy elég bonyolult saját magában is (`App`, `FeedStory`, `Comment`), akkor jó jelölt lehet arra, hogy egy külön komponensbe emeljük ki.
 
 ## A prop-ok csak olvashatók {#props-are-read-only}
 
