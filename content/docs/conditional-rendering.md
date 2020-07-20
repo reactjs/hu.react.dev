@@ -122,7 +122,11 @@ Változók deklarálása és `if` utasítások használata teljesen rendben van 
 
 ### Helyben kifejtett if logikai && operátorral {#inline-if-with-logical--operator}
 
+<<<<<<< HEAD
 Kapcsos zárójelekkel bármilyen [kifejezést JSX-be tudsz ágyazni](/docs/introducing-jsx.html#embedding-expressions-in-jsx). Ez magába foglalja a logikai `&&` operátort is. Hasznos lehet ha egy elemet feltételesen szeretnénk mutatni:
+=======
+You may [embed expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+>>>>>>> ee75c297574468f888574aae2d9620d64bb5b5a1
 
 ```js{6-10}
 function Mailbox(props) {

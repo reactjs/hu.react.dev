@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  */
@@ -68,9 +68,15 @@ const Acknowlegements = ({data, location}) => (
                 <a href="https://github.com/react">react</a> szervezet nevet GitHubon.
               </li>
               <li>
+<<<<<<< HEAD
                 <a href="https://github.com/voronianski">Dmitri Voronianski</a>nak,{' '}
                 hogy használhatjuk az{' '}
                 <a href="https://labs.voronianski.com/oceanic-next-color-scheme/">
+=======
+                <a href="https://github.com/voronianski">Dmitri Voronianski</a>{' '}
+                for letting us use the{' '}
+                <a href="https://labs.voronianski.dev/oceanic-next-color-scheme/">
+>>>>>>> ee75c297574468f888574aae2d9620d64bb5b5a1
                   Oceanic Next
                 </a>{' '}
                 színsémát ezen az oldalon.
