@@ -1,14 +1,14 @@
 ---
 id: hooks-state
-title: Using the Effect Hook
+title: A Hatás Horog
 permalink: docs/hooks-effect.html
 next: hooks-rules.html
 prev: hooks-state.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+A *Horgok* a React egy új kiegészítése a 16.8-as verziótól kezdve. Lehetővé teszik számodra állapotok és más React funkciók használatát osztályok írása nélkül.
 
-The *Effect Hook* lets you perform side effects in function components:
+A *Hatás Horog* segítségével  mellékhatásokat tudsz elvégezni egy függvénykomponensben:
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -16,42 +16,42 @@ import React, { useState, useEffect } from 'react';
 function Example() {
   const [count, setCount] = useState(0);
 
-  // Similar to componentDidMount and componentDidUpdate:
+  // Hasonló a componentDidMount-hoz és a componentDidUpdate-hez:
   useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
+    // A böngésző API segítségével frissíti a dokumentum címét
+    document.title = `${count} alkalommal kattintottál`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>{count} alkalommal kattintottál</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Kattints rám
       </button>
     </div>
   );
 }
 ```
 
-This snippet is based on the [counter example from the previous page](/docs/hooks-state.html), but we added a new feature to it: we set the document title to a custom message including the number of clicks.
+Ez a kódrészlet az [előző oldali számláló példára](/docs/hooks-state.html) épül, de hozzáadtunk egy új funkciót is: a dokumentum címét átállítottuk egy általunk írt üzenetre, amiben az van benne, hogy hányszor kattintottak.
 
-Data fetching, setting up a subscription, and manually changing the DOM in React components are all examples of side effects. Whether or not you're used to calling these operations "side effects" (or just "effects"), you've likely performed them in your components before.
+Az Adatlekérés, feliratkozás, vagy a DOM manuális frissítése React komponensekben mind példa mellékhatásokra. Még ha nem is szoktad ezeket "mellékhatásoknak" (vagy csak "hatásoknak") hívni, valószínű, hogy már használtad őket a komponenseidben.
 
->Tip
+>Tipp
 >
->If you're familiar with React class lifecycle methods, you can think of `useEffect` Hook as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` combined.
+>Ha már ismered a React osztályok életciklus metódusait, a `useEffect` Horogra gondolhatsz úgy is, mint a `componentDidMount`, `componentDidUpdate`, és `componentWillUnmount` egyesítése.
 
-There are two common kinds of side effects in React components: those that don't require cleanup, and those that do. Let's look at this distinction in more detail.
+Kétféle gyakori mellékhatás létezik React komponensekben: azok, amiknél nincs szükség takarításra, és azok, amiknél van. Most nézzük meg részletesebben, hogy mi ezek között a különbség.
 
-## Effects Without Cleanup {#effects-without-cleanup}
+## Takarítást nem igénylő hatások {#effects-without-cleanup}
 
-Sometimes, we want to **run some additional code after React has updated the DOM.** Network requests, manual DOM mutations, and logging are common examples of effects that don't require a cleanup. We say that because we can run them and immediately forget about them. Let's compare how classes and Hooks let us express such side effects.
+Néha csak **azután szeretnénk egy kódrészletet futtatni, miután a React frissítette a DOM-ot.** Hálózati kérések, manuális DOM manipulálás vagy logolás mind példák arra, amik nem igényelnek takarítást. Ezt azért mondjuk, mert ezeket futtatás után el is felejthetjük. Most hasonlítsuk össze, hogy hogyan tudjuk kifejezni a mellékhatásokat osztályok vagy Horgok segítségével.
 
-### Example Using Classes {#example-using-classes}
+### Példa osztályok használatával {#example-using-classes}
 
-In React class components, the `render` method itself shouldn't cause side effects. It would be too early -- we typically want to perform our effects *after* React has updated the DOM.
+A React osztályokban a `render` metódus önmagában nem kéne, hogy mellékhatásokat okozzon. Ez túl korai lenne -- általában *azután* szeretnénk a hatásokat végrehajtani, hogy a React frissítette a DOM-ot.
 
-This is why in React classes, we put side effects into `componentDidMount` and `componentDidUpdate`. Coming back to our example, here is a React counter class component that updates the document title right after React makes changes to the DOM:
+Emiatt a React osztályokban a mellékhatásokat a `componentDidMount`-ba és a `componentDidUpdate`-be helyezzük. Visszatérve a példánkhoz, itt van egy React számláló osztály, ami frissíti a dokumentum címét rögtön miután a React frissítette a DOM-ot:
 
 ```js{9-15}
 class Example extends React.Component {
@@ -63,19 +63,19 @@ class Example extends React.Component {
   }
 
   componentDidMount() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `${this.state.count} alkalommal kattintottál`;
   }
 
   componentDidUpdate() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `${this.state.count} alkalommal kattintottál`;
   }
 
   render() {
     return (
       <div>
-        <p>You clicked {this.state.count} times</p>
+        <p>{this.state.count} alkalommal kattintottál</p>
         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          Click me
+          Kattints rám
         </button>
       </div>
     );
@@ -83,15 +83,15 @@ class Example extends React.Component {
 }
 ```
 
-Note how **we have to duplicate the code between these two lifecycle methods in class.**
+Figyeld meg, hogy **duplikálnunk kell a kódot ebben a két életciklus metódusban.**
 
-This is because in many cases we want to perform the same side effect regardless of whether the component just mounted, or if it has been updated. Conceptually, we want it to happen after every render -- but React class components don't have a method like this. We could extract a separate method but we would still have to call it in two places.
+Ez azért van, mert sok esetben ugyanazt a mellékhatást szeretnénk végrehajtani attól függetlenül, hogy a komponens most lett létrehozva, vagy csak frissítve lett. Alapvetően ezt minden renderelés után szeretnénk végrehajtani -- de a React osztálykomponenseknek nincs ilyen metódusa. Kiemelhetnénk egy külön metódusba, de még így is két helyről kéne azt meghívni.
 
-Now let's see how we can do the same with the `useEffect` Hook.
+Most nézzük, hogy hogyan tudjuk ugyanezt a `useEffect` Horoggal elérni.
 
-### Example Using Hooks {#example-using-hooks}
+### Példa Horgok használatával {#example-using-hooks}
 
-We've already seen this example at the top of this page, but let's take a closer look at it:
+Már láttuk ugyanezt a példát az oldal tetején, de nézzük meg még egyszer:
 
 ```js{1,6-8}
 import React, { useState, useEffect } from 'react';
@@ -100,55 +100,55 @@ function Example() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `${count} alkalommal kattintottál`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>{count} alkalommal kattintottál</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Kattints rám
       </button>
     </div>
   );
 }
 ```
 
-**What does `useEffect` do?** By using this Hook, you tell React that your component needs to do something after render. React will remember the function you passed (we'll refer to it as our "effect"), and call it later after performing the DOM updates. In this effect, we set the document title, but we could also perform data fetching or call some other imperative API.
+**Mi csinál a `useEffect`?** Ennek a Horognak a használatával megmondhatod a Reactnek, hogy a komponensednek valamit csinálnia kell a renderelés után. A React megjegyzi az átadott függvényt (erre majd úgy hivatkozunk, mint a "hatás") és később, a DOM frissítések után meghívja ezt. Ebben a hatásban beállítjuk a dokumentum címét, de akár adatlekérést vagy valami más API hívást is elvégezhetnénk.
 
-**Why is `useEffect` called inside a component?** Placing `useEffect` inside the component lets us access the `count` state variable (or any props) right from the effect. We don't need a special API to read it -- it's already in the function scope. Hooks embrace JavaScript closures and avoid introducing React-specific APIs where JavaScript already provides a solution.
+**Miért egy komponensen belül hívjuk meg a `useEffect`-et?** A `useEffect` komponensen belül való elhelyezése megengedi, hogy a `count` állapotváltozót (vagy bármelyik másik propot) elérjük közvetlenül a hatásból. Nem kell egy speciális API, hogy kiolvassuk -- ez már benne van a függvény hatókörében. A Horgok a JavaScript closure-öket használják ahelyett, hogy React-specifikus API-kat hoznának létre, mivel a JavaScriptben már van erre megoldás.
 
-**Does `useEffect` run after every render?** Yes! By default, it runs both after the first render *and* after every update. (We will later talk about [how to customize this](#tip-optimizing-performance-by-skipping-effects).) Instead of thinking in terms of "mounting" and "updating", you might find it easier to think that effects happen "after render". React guarantees the DOM has been updated by the time it runs the effects.
+**Lefut-e a `useEffect` mind renderelés után?** Igen! Alapvetően az első rendereléskor *és* minden egyes frissítés után is lefut. (Majd később arról is beszélünk, hogy [hogyan szabjuk személyre ezt](#tip-optimizing-performance-by-skipping-effects).) Ahelyett, hogy "létrehozás"-ban és "frissítés"-ban gondolkozunk, egyszerűbb lehet, ha úgy gondolunk rá, hogy a hatások "renderelés után" történnek. A React garantálja, hogy a DOM már frissült, amikor a hatásokat futtatja.
 
-### Detailed Explanation {#detailed-explanation}
+### Részletes magyarázat {#detailed-explanation}
 
-Now that we know more about effects, these lines should make sense:
+Most, hogy már többet tudunk a hatásokról, ezek a sorok több értelmet nyertek:
 
 ```js
 function Example() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `${count} alkalommal kattintottál`;
   });
 }
 ```
 
-We declare the `count` state variable, and then we tell React we need to use an effect. We pass a function to the `useEffect` Hook. This function we pass *is* our effect. Inside our effect, we set the document title using the `document.title` browser API. We can read the latest `count` inside the effect because it's in the scope of our function. When React renders our component, it will remember the effect we used, and then run our effect after updating the DOM. This happens for every render, including the first one.
+Deklaráljuk a `count` állapotváltozót és megmondjuk a Reactnek, hogy egy hatást kell végrehajtanunk. Átadunk egy függvényt a `useEffect` Horognak. A függvény, amit átadunk *lesz* a hatásunk. A hatásunkon belül beállítjuk a dokumentum címét a `document.title` böngésző API-val. A hatáson belül ki tudjuk olvasni a legfrissebb `count` értéket, mivel ez a függvényünk hatókörében van. Amikor a React rendereli a komponensünket, emlékezni fog a megadott hatásra, és lefuttatja ezt a DOM frissítése után. Ez minden rendereléskor megtörténik az elsőt is beleértve.
 
-Experienced JavaScript developers might notice that the function passed to `useEffect` is going to be different on every render. This is intentional. In fact, this is what lets us read the `count` value from inside the effect without worrying about it getting stale. Every time we re-render, we schedule a _different_ effect, replacing the previous one. In a way, this makes the effects behave more like a part of the render result -- each effect "belongs" to a particular render. We will see more clearly why this is useful [later on this page](#explanation-why-effects-run-on-each-update).
+Gyakorlottabb JavaScript fejlesztők észrevehetik, hogy a `useEffect`-nek átadott függvény minden rendereléskor különböző lesz. Ez szándékosan van így. Valójában emiatt tudjuk kiolvasni a  `count` értékét a hatáson belül anélkül, hogy aggódnunk kéne a frissessége miatt. Minden egyes újrarendereléskor egy _másik_ hatást ütemezünk be felülírva az előzőt. Bizonyos tekintetben emiatt úgy tűnhet, hogy a hatás a renderelés eredményének a részeként viselkedik -- minden egyes hatás egy adott rendereléshez "tartozik". A [későbbieknek](#explanation-why-effects-run-on-each-update) látni fogjuk, hogy ez miért is hasznos.
 
->Tip
+>Tipp
 >
->Unlike `componentDidMount` or `componentDidUpdate`, effects scheduled with `useEffect` don't block the browser from updating the screen. This makes your app feel more responsive. The majority of effects don't need to happen synchronously. In the uncommon cases where they do (such as measuring the layout), there is a separate [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect) Hook with an API identical to `useEffect`.
+>A `componentDidMount`-tal és a `componentDidUpdate`-tel ellentétben a `useEffect`-tel ütemezett hatások nem blokkolják a képernyőfrissítést. Emiatt az appod gyorsabbnak tűnhet. A legtöbb hatásnak nem kell szinkron történnie. Néhány kivételes esetben (például a felhasználói felület lemérése), amikor igen, van egy másik [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect) Horog, aminek az API-ja ugyanaz, mint a `useEffect`-nek.
 
-## Effects with Cleanup {#effects-with-cleanup}
+## Takarítást igénylő hatások {#effects-with-cleanup}
 
-Earlier, we looked at how to express side effects that don't require any cleanup. However, some effects do. For example, **we might want to set up a subscription** to some external data source. In that case, it is important to clean up so that we don't introduce a memory leak! Let's compare how we can do it with classes and with Hooks.
+Korábban megnéztük, hogy hogyan fejezzünk ki takarítást nem igénylő mellékhatásokat. Azonban néhány hatásnak szüksége van rá. Például, amikor **feliratkozunk** egy külső adatfolyamra. Ebben az esetben fontos, hogy takarítást végezzünk, hogy ne okozzunk memóriaszivárgást! Hasonlítsuk össze, hogyan tudjuk ezt osztályokkal és Horgokkal megtenni.
 
-### Example Using Classes {#example-using-classes-1}
+### Példa osztályok használatával {#example-using-classes-1}
 
-In a React class, you would typically set up a subscription in `componentDidMount`, and clean it up in `componentWillUnmount`. For example, let's say we have a `ChatAPI` module that lets us subscribe to a friend's online status. Here's how we might subscribe and display that status using a class:
+Egy React osztályban tipikusan a `componentDidMount`-ban állítanál be egy feliratkozást és a `componentWillUnmount`-ban iratkoznál le. Például, ha mondjuk van egy `ChatAPI` modulunk amivel feliratkozhatunk egy barátunk online állapotára. Egy osztállyal így tudnánk feliratkozni és kiírni az állapotát:
 
 ```js{8-26}
 class FriendStatus extends React.Component {
@@ -187,17 +187,17 @@ class FriendStatus extends React.Component {
 }
 ```
 
-Notice how `componentDidMount` and `componentWillUnmount` need to mirror each other. Lifecycle methods force us to split this logic even though conceptually code in both of them is related to the same effect.
+Figyeld meg, hogy a `componentDidMount` és a `componentWillUnmount` egymás tükörképe. Az életciklus metódusok arra kényszerítenek minket, hogy ezt a logikát felosszuk különböző metódusok között, habár ezek fogalmilag ugyanahhoz a hatáshoz tartoznak.
 
->Note
+>Megjegyzés
 >
->Eagle-eyed readers may notice that this example also needs a `componentDidUpdate` method to be fully correct. We'll ignore this for now but will come back to it in a [later section](#explanation-why-effects-run-on-each-update) of this page.
+>A sasszemű olvasók észrevehették, hogy egy `componentDidUpdate` metódus is kéne ahhoz, hogy ez a példa teljesen korrekt legyen. Ezt most figyelmen kívül hagyjuk, de a [későbbiekben](#explanation-why-effects-run-on-each-update) visszatérünk erre.
 
-### Example Using Hooks {#example-using-hooks-1}
+### Példa Horgok használatával {#example-using-hooks-1}
 
-Let's see how we could write this component with Hooks.
+Nézzük, hogy hogyan tudjuk ezt a komponenst átírni Horgok használatával.
 
-You might be thinking that we'd need a separate effect to perform the cleanup. But code for adding and removing a subscription is so tightly related that `useEffect` is designed to keep it together. If your effect returns a function, React will run it when it is time to clean up:
+Azt gondolhatnád, hogy egy külön hatás kell majd a takarításhoz. De a le- és feliratkozás kódja annyira összefügg, hogy a `useEffect`-et úgy terveztük, hogy ezeket egy helyen tarthassuk. Ha a hatásod egy függvénnyel tér vissza, a React a takarításkor fogja meghívni ezt:
 
 ```js{6-16}
 import React, { useState, useEffect } from 'react';
@@ -211,7 +211,7 @@ function FriendStatus(props) {
     }
 
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
-    // Specify how to clean up after this effect:
+    // Itt add meg, hogy hogyan takarítson ki a hatás lefutása után:
     return function cleanup() {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
@@ -224,17 +224,17 @@ function FriendStatus(props) {
 }
 ```
 
-**Why did we return a function from our effect?** This is the optional cleanup mechanism for effects. Every effect may return a function that cleans up after it. This lets us keep the logic for adding and removing subscriptions close to each other. They're part of the same effect!
+**Miért tértünk vissza egy függvénnyel a hatásból?** Ez az optimális takarítási mechanizmus a hatásokban. Minden hatás visszaadhat egy takarító függvényt. Így a fel- és leiratkozáshoz használt kódot egy helyen tárolhatjuk. Ezek ugyanahhoz a hatáshoz tartoznak!
 
-**When exactly does React clean up an effect?** React performs the cleanup when the component unmounts. However, as we learned earlier, effects run for every render and not just once. This is why React *also* cleans up effects from the previous render before running the effects next time. We'll discuss [why this helps avoid bugs](#explanation-why-effects-run-on-each-update) and [how to opt out of this behavior in case it creates performance issues](#tip-optimizing-performance-by-skipping-effects) later below.
+**Pontosan mikor takarít fel a React egy hatást?** A React akkor takarít, amikor a komponens leválasztódik. Azonban, ahogy korábban megtanultuk, a hatások minden renderelésről lefutnak, és nem csak egyszer. Emiatt a React *minden egyes* rendereléskor kitakarít az előző renderelés után, mielőtt az új hatásokat futtatja. Később megbeszéljük, ez [miért is segít elkerül a bugokat](#explanation-why-effects-run-on-each-update) és [hogyan tiltsuk le ezt a viselkedést a teljesítményproblémák elkerülése végett](#tip-optimizing-performance-by-skipping-effects).
 
->Note
+>Megjegyzés
 >
->We don't have to return a named function from the effect. We called it `cleanup` here to clarify its purpose, but you could return an arrow function or call it something different.
+>Nem kell, hogy elnevezzük a függvényt, amivel visszatérünk a hatásból. Mi `cleanup`-nak (takarításnak) hívtuk itt, hogy egyértelmű legyen a célja, de egy nyílfüggvényt is visszaadhatsz vagy máshogy is hívhatod.
 
-## Recap {#recap}
+## Összefoglalás {#recap}
 
-We've learned that `useEffect` lets us express different kinds of side effects after a component renders. Some effects might require cleanup so they return a function:
+Megtanultuk, hogy a `useEffect`-tel kifejezhetünk különbözőféle hatásokat amik a renderelés után futnak le. Néhány hatásnak szüksége lehet takarításra, így ezek egy függvénnyel térnek vissza:
 
 ```js
   useEffect(() => {
@@ -249,29 +249,29 @@ We've learned that `useEffect` lets us express different kinds of side effects a
   });
 ```
 
-Other effects might not have a cleanup phase, and don't return anything.
+Más hatásoknak nem feltétlenül van szüksége erre, így ezek nem térnek vissza semmivel.
 
 ```js
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `${count} alkalommal kattintottál`;
   });
 ```
 
-The Effect Hook unifies both use cases with a single API.
+A Hatás Horog API-ja mindkét esetet lefedi.
 
 -------------
 
-**If you feel like you have a decent grasp on how the Effect Hook works, or if you feel overwhelmed, you can jump to the [next page about Rules of Hooks](/docs/hooks-rules.html) now.**
+**Ha úgy érzed, hogy már elég jól érted a Hatás Horgok működését, vagy ha ez most túl sok volt, átugorhatsz a [következő oldalra, ami a Horgok szabályairól](/docs/hooks-rules.html) szól.**
 
 -------------
 
-## Tips for Using Effects {#tips-for-using-effects}
+## Tippek a Hatások használatához {#tips-for-using-effects}
 
-We'll continue this page with an in-depth look at some aspects of `useEffect` that experienced React users will likely be curious about. Don't feel obligated to dig into them now. You can always come back to this page to learn more details about the Effect Hook.
+Az következő részben részletesebben kielemezzük a `useEffect` néhány tulajdonságát, ami a gyakorlottabb React felhasználók számára érdekes lehet. Ne érezd azt, hogy ezt most kötelező elolvasnod. A későbbiekben is visszatérhetsz erre az oldalra, hogy többet megtudj a Hatás Horog részleteiről.
 
-### Tip: Use Multiple Effects to Separate Concerns {#tip-use-multiple-effects-to-separate-concerns}
+### Tipp: Használj különálló hatásokat különböző funkciók megvalósítására {#tip-use-multiple-effects-to-separate-concerns}
 
-One of the problems we outlined in the [Motivation](/docs/hooks-intro.html#complex-components-become-hard-to-understand) for Hooks is that class lifecycle methods often contain unrelated logic, but related logic gets broken up into several methods. Here is a component that combines the counter and the friend status indicator logic from the previous examples:
+Az egyik probléma amit a Horgok [Motivációja](/docs/hooks-intro.html#complex-components-become-hard-to-understand) részben kiemeltünk az az, hogy az osztály életciklus metódusok gyakran tartalmaznak egymással össze nem illő logikát, amíg összetartozó logika gyakran több metódusba osztódik fel. Íme egy komponens ami a számláló és a barát online státusz mutatójának logikáját vegyíti az előző példákból:
 
 ```js
 class FriendStatusWithCounter extends React.Component {
@@ -282,7 +282,7 @@ class FriendStatusWithCounter extends React.Component {
   }
 
   componentDidMount() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `${this.state.count} alkalommal kattintottál`;
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
       this.handleStatusChange
@@ -290,7 +290,7 @@ class FriendStatusWithCounter extends React.Component {
   }
 
   componentDidUpdate() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `${this.state.count} alkalommal kattintottál`;
   }
 
   componentWillUnmount() {
@@ -308,15 +308,15 @@ class FriendStatusWithCounter extends React.Component {
   // ...
 ```
 
-Note how the logic that sets `document.title` is split between `componentDidMount` and `componentDidUpdate`. The subscription logic is also spread between `componentDidMount` and `componentWillUnmount`. And `componentDidMount` contains code for both tasks.
+Figyeld meg, hogy a logika, ami beállítja a `document.title`-t, szét van osztva a `componentDidMount` és a `componentDidUpdate` között. A feliratkozási logika pedig szét van osztva a `componentDidMount` és a `componentWillUnmount` között. A `componentDidMount`-ben mindkét logikából van kód.
 
-So, how can Hooks solve this problem? Just like [you can use the *State* Hook more than once](/docs/hooks-state.html#tip-using-multiple-state-variables), you can also use several effects. This lets us separate unrelated logic into different effects:
+Szóval hogyan tudják a Horgok megoldani ezt a problémát? Mint ahogy [az *Állapot* Horgot többször is fel tudod használni](/docs/hooks-state.html#tip-using-multiple-state-variables), ugyanúgy többféle hatást is használhatsz. Ez lehetőséget ad rá, hogy a különböző funkciókat külön hatásokba írjuk.
 
 ```js{3,8}
 function FriendStatusWithCounter(props) {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `${count} alkalommal kattintottál`;
   });
 
   const [isOnline, setIsOnline] = useState(null);
@@ -334,13 +334,13 @@ function FriendStatusWithCounter(props) {
 }
 ```
 
-**Hooks let us split the code based on what it is doing** rather than a lifecycle method name. React will apply *every* effect used by the component, in the order they were specified.
+**A Horgok használatával viselkedés alapján tudjuk felosztani a kódot**, ahelyett, hogy az életciklusok nevei alapján tennénk ezt. A React az *összes* hatást végrehajtja a komponensben a specifikáció sorrendjében.
 
-### Explanation: Why Effects Run on Each Update {#explanation-why-effects-run-on-each-update}
+### Magyarázat: Miért futnak le a hatások minden egyes frissítéskor {#explanation-why-effects-run-on-each-update}
 
-If you're used to classes, you might be wondering why the effect cleanup phase happens after every re-render, and not just once during unmounting. Let's look at a practical example to see why this design helps us create components with fewer bugs.
+Ha az osztályokhoz vagy szokva, elgondolkozhattál rajta, hogy a hatások takarítása miért történik meg minden újrarendereléskor, és nem csak akkor, amikor a komponens leválasztódik. Nézzünk meg egy gyakorlati példát arról, hogy ez a viselkedés miért segít nekünk hibamentesebb komponenseket írni.
 
-[Earlier on this page](#example-using-classes-1), we introduced an example `FriendStatus` component that displays whether a friend is online or not. Our class reads `friend.id` from `this.props`, subscribes to the friend status after the component mounts, and unsubscribes during unmounting:
+[Fentebb ezen az oldalon](#example-using-classes-1) bemutattunk egy `FriendStatus` komponens példát, ami megjeleníti egy barátunk online állapotát. Az osztályunk kiolvassa a `friend.id`-t a `this.props`-ból, feliratkozik a barátunk állapotára a komponens létrejötte után és leiratkozik a leválasztáskor:
 
 ```js
   componentDidMount() {
@@ -358,9 +358,9 @@ If you're used to classes, you might be wondering why the effect cleanup phase h
   }
 ```
 
-**But what happens if the `friend` prop changes** while the component is on the screen? Our component would continue displaying the online status of a different friend. This is a bug. We would also cause a memory leak or crash when unmounting since the unsubscribe call would use the wrong friend ID.
+**De mi történik akkor, ha a `friend` prop megváltozik**, miközben a komponens épp látszik a felületen? A komponensünk továbbra is az előző barát állapotát jelenítené meg. Ez egy bug. Ez memóriaszivárgást vagy az alkalmazás összeomlását is okozhatná, mivel a leiratkozási metódus rossz ID-val hívódik meg.
 
-In a class component, we would need to add `componentDidUpdate` to handle this case:
+Egy osztálykomponensben hozzá kéne adnunk a `componentDidUpdate`-t, hogy ezt az esetet is tudjuk kezelni:
 
 ```js{8-19}
   componentDidMount() {
@@ -371,12 +371,12 @@ In a class component, we would need to add `componentDidUpdate` to handle this c
   }
 
   componentDidUpdate(prevProps) {
-    // Unsubscribe from the previous friend.id
+    // Leiratkozás az előző friend.id-ról
     ChatAPI.unsubscribeFromFriendStatus(
       prevProps.friend.id,
       this.handleStatusChange
     );
-    // Subscribe to the next friend.id
+    // Feliratkozás a következő friend.id-re
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
       this.handleStatusChange
@@ -391,9 +391,9 @@ In a class component, we would need to add `componentDidUpdate` to handle this c
   }
 ```
 
-Forgetting to handle `componentDidUpdate` properly is a common source of bugs in React applications.
+A `componentDidUpdate` rossz használta egy gyakori hibaforrás React alkalmazásokban.
 
-Now consider the version of this component that uses Hooks:
+Most nézzük meg ezt a verziót, ami Horgokat használ:
 
 ```js
 function FriendStatus(props) {
@@ -407,53 +407,53 @@ function FriendStatus(props) {
   });
 ```
 
-It doesn't suffer from this bug. (But we also didn't make any changes to it.)
+Ebben nincs benne ugyanaz a hiba. (De nem is változtattunk semmit rajta.)
 
-There is no special code for handling updates because `useEffect` handles them *by default*. It cleans up the previous effects before applying the next effects. To illustrate this, here is a sequence of subscribe and unsubscribe calls that this component could produce over time:
+Nincs szükség külön kódra, ami a frissítéseket kezeli, mivel a `useEffect` *alapból* lekezeli ezeket. Ez kitakarítja az előző hatásokat, mielőtt az új lefutna. Hogy ezt illusztráljuk, itt van egy sorozat a feliratkozási és leiratkozási hívásokból:
 
 ```js
-// Mount with { friend: { id: 100 } } props
-ChatAPI.subscribeToFriendStatus(100, handleStatusChange);     // Run first effect
+// Létrehozás a { friend: { id: 100 } } propokkal
+ChatAPI.subscribeToFriendStatus(100, handleStatusChange);     // Az első hatás futtatása
 
-// Update with { friend: { id: 200 } } props
-ChatAPI.unsubscribeFromFriendStatus(100, handleStatusChange); // Clean up previous effect
-ChatAPI.subscribeToFriendStatus(200, handleStatusChange);     // Run next effect
+// Frissítés { friend: { id: 200 } } propokkalí
+ChatAPI.unsubscribeFromFriendStatus(100, handleStatusChange); // Az előző hatás kitakarítása
+ChatAPI.subscribeToFriendStatus(200, handleStatusChange);     // A következő hatás futtatása
 
-// Update with { friend: { id: 300 } } props
-ChatAPI.unsubscribeFromFriendStatus(200, handleStatusChange); // Clean up previous effect
-ChatAPI.subscribeToFriendStatus(300, handleStatusChange);     // Run next effect
+// Frissítés { friend: { id: 300 } } propokkal
+ChatAPI.unsubscribeFromFriendStatus(200, handleStatusChange); // Az előző hatás kitakarítása
+ChatAPI.subscribeToFriendStatus(300, handleStatusChange);     // A következő hatás futtatása
 
-// Unmount
-ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // Clean up last effect
+// Leválasztás
+ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // Az utolsó hatás kitakarítása
 ```
 
-This behavior ensures consistency by default and prevents bugs that are common in class components due to missing update logic.
+Ez a viselkedés alapból biztosítja a konzisztenciát és megelőzi a hibákat, amik gyakoriak az osztálykomponensekben az elfelejtett logika miatt.
 
-### Tip: Optimizing Performance by Skipping Effects {#tip-optimizing-performance-by-skipping-effects}
+### Tipp: A teljesítmény optimalizálása a hatások elhagyásával {#tip-optimizing-performance-by-skipping-effects}
 
-In some cases, cleaning up or applying the effect after every render might create a performance problem. In class components, we can solve this by writing an extra comparison with `prevProps` or `prevState` inside `componentDidUpdate`:
+Néhány esetben teljesítményproblémákat okozhat a minden renderelés utáni hatások végrehajtása és azok takarítása. Az osztálykomponensekben ezt megoldhatjuk a `prevProps` és `prevState` összehasonlításával a `componentDidUpdate`-ben belül:
 
 ```js
 componentDidUpdate(prevProps, prevState) {
   if (prevState.count !== this.state.count) {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `${this.state.count} alkalommal kattintottál`;
   }
 }
 ```
 
-This requirement is common enough that it is built into the `useEffect` Hook API. You can tell React to *skip* applying an effect if certain values haven't changed between re-renders. To do so, pass an array as an optional second argument to `useEffect`:
+Ez a követelmény elég gyakori, így bele lett építve a `useEffect` Horog API-jába is. Megmondhatod a Reactnek, hogy *hagyja ki* ezt a hatást, ha bizonyos értékek nem változtak az újrarenderelés során. Ehhez a `useEffect`-nek második paraméterként egy tömböt kell átadni:
 
 ```js{3}
 useEffect(() => {
-  document.title = `You clicked ${count} times`;
-}, [count]); // Only re-run the effect if count changes
+  document.title = `${count} alkalommal kattintottál`;
+}, [count]); // Csak akkor futtatja újra a hatást, ha a count megváltozott
 ```
 
-In the example above, we pass `[count]` as the second argument. What does this mean? If the `count` is `5`, and then our component re-renders with `count` still equal to `5`, React will compare `[5]` from the previous render and `[5]` from the next render. Because all items in the array are the same (`5 === 5`), React would skip the effect. That's our optimization.
+A fenti példában a `[count]`-ot egy második paraméterként adjuk át. Ez mit jelent? Ha a `count`-nak `5` az értéke, akkor a komponensünk újrarenderelődik a `count` változatlan értékével, ami `5`, A React összehasonlítja az `[5]`-öt az előző renderelésből és az `[5]`-öt a következő renderelésből. Mivel a tömb összes eleme megegyezik (`5 === 5`), a React kihagyja a hatást. Ez a mi optimalizálásunk.
 
-When we render with `count` updated to `6`, React will compare the items in the `[5]` array from the previous render to items in the `[6]` array from the next render. This time, React will re-apply the effect because `5 !== 6`. If there are multiple items in the array, React will re-run the effect even if just one of them is different.
+Amikor a `count` értéke `6`-ra frissül, a React összehasonlítja az előző renderelésbeli `[5]` tömb elemeit a következő renderelésbeli `[6]` tömbből. A mostani esetben a React újra lefuttatja a hatást, mivel `5 !== 6`. Ha több eleme is van a tömbnek, a React akkor is újrafuttatja a hatást, ha csak egy elem különbözik.
 
-This also works for effects that have a cleanup phase:
+Ez akkor is működik, ha a hatásnak van egy takarítási fázisa is:
 
 ```js{10}
 useEffect(() => {
@@ -465,25 +465,25 @@ useEffect(() => {
   return () => {
     ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
   };
-}, [props.friend.id]); // Only re-subscribe if props.friend.id changes
+}, [props.friend.id]); // Csak akkor iratkozik fel újra, ha a props.friend.id megváltozott
 ```
 
-In the future, the second argument might get added automatically by a build-time transformation.
+Elképzelhető, hogy a jövőben ez a második argumentum automatikusan lesz hozzáadva egy fordítási transzformációval.
 
->Note
+>Megjegyzés
 >
->If you use this optimization, make sure the array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. Learn more about [how to deal with functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) and [what to do when the array changes too often](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>Ha ezt az optimalizálást használod, bizonyosodj meg róla, hogy **összes érték benne van a komponens hatóköréből (mint a propok és az állapot), amik az idő során változnak, és amit a hatás használ**. Enélkül a kódod elavult értékeket fog tartalmazni az előző renderelésekből. Tudj meg többet arról, hogy [hogyan kezeld a függvényeket](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies), és arról, hogy [mit csináljunk, ha a tömb túl gyakran változik](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
 >
->If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the dependencies array always works.
+>Ha egy hatást csak egyszer szeretnél futtatni és kitakarítani (létrehozáskor és leválasztáskor), átadhatsz egy üres tömböt (`[]`) második argumentumként. Ez megmondja a Reactnek, hogy a hatásod nem függ *semelyik* props vagy állapot értékétől, így ezt nem kell újrafuttatnia. Ez nem egy speciális eset -- abból következik, ahogyan a függőségek amúgy is működnek.
 >
->If you pass an empty array (`[]`), the props and state inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>Ha egy üres tömböt adsz át (`[]`), a propok és állapotváltozók a hatáson belül végig megtartják a kezdeti értéküket. Míg a `[]` átadása második paraméterként közelebb áll a `componentDidMount` és a `componentWillUnmount` már ismert modelljéhez, általában [jobb](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [megoldások](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) vannak arra, hogy hogyan tudjuk megelőzni a hatások túl gyakori futását. Ne felejts el azt sem, hogy a React késlelteti a `useEffect` lefuttatását a böngésző kirajzolási fázisa utánra, így ez az extra munka kevésbé jelent problémát.
 >
->We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>Ajánljuk az [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) szabály használatát, ami része az [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) csomagnak. Ez jelzi, ha a függőségek rosszul vannak megadva, és megoldást javasol.
 
-## Next Steps {#next-steps}
+## Következő lépések {#next-steps}
 
-Congratulations! This was a long page, but hopefully by the end most of your questions about effects were answered. You've learned both the State Hook and the Effect Hook, and there is a *lot* you can do with both of them combined. They cover most of the use cases for classes -- and where they don't, you might find the [additional Hooks](/docs/hooks-reference.html) helpful.
+Gratulálunk! Ez egy hosszú oldal volt, de remélhetőleg a végére a legtöbb kérdésedet megválaszoltuk, ami felvetődött a hatások kapcsán. Mind az Állapot Horogról, mind a Hatás Horogról tanultál, és ezek kombinálásával *sok mindent* el tudsz érni. Ezek lefedik a legtöbb dolgot, amit az osztályoknál is használtunk -- és amit nem, azt megtalálhatod a [további Horgok](/docs/hooks-reference.html) között.
 
-We're also starting to see how Hooks solve problems outlined in [Motivation](/docs/hooks-intro.html#motivation). We've seen how effect cleanup avoids duplication in `componentDidUpdate` and `componentWillUnmount`, brings related code closer together, and helps us avoid bugs. We've also seen how we can separate effects by their purpose, which is something we couldn't do in classes at all.
+Azt is elkezdtük észrevenni, hogy a Horgok hogyan oldják meg a problémákat, amiről a [Motiváció](/docs/hooks-intro.html#motivation) részben írtunk. Láttuk, hogy a takarítási mechanizmus hogyan segít elkerülni a `componentDidUpdate`-ben és a `componentWillUnmount`-ben duplikált kódot, összehozza az összetartozó kódrészeket és segít elkerülni a hibákat. Azt is láttuk, hogy hogyan tudjuk különválasztani a hatásokat céljaik szerint, ami egy olyan dolog, amit az osztályokkal nem tudtunk megtenni.
 
-At this point you might be questioning how Hooks work. How can React know which `useState` call corresponds to which state variable between re-renders? How does React "match up" previous and next effects on every update? **On the next page we will learn about the [Rules of Hooks](/docs/hooks-rules.html) -- they're essential to making Hooks work.**
+Ezen a ponton érdekelhet, hogy hogyan működnek a Horgok. Hogyan tudja a React, hogy melyik `useState` hívás melyik állapotváltozóhoz tartozik az újrarendereléskor? Hogyan "kapcsolja össze" az előző és következő hatásokat minden frissítéskor? **A következő oldalon a [Horgok szabályairól](/docs/hooks-rules.html) fogunk tanulni -- ezek elengedhetetlenek a Horgok helyes használatához.**
