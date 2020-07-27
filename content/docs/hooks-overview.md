@@ -229,7 +229,11 @@ function FriendListItem(props) {
 }
 ```
 
+<<<<<<< HEAD
 Ezen komponensek állapota egymástól teljesen független. A horgok az *állapotteljes logika* újrafelhasználásának egy módja, nem maguknak az állapotoknak. Valójában minden egyes horog *meghívás*-nak teljesen elzárt állapota van -- szóval ugyanazt az egyedi horgot akár kétszer is használhatod egy komponensen belül.
+=======
+The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 Az egyedi horgok sokkal inkább egy közös egyezmény eredményei, mint egy egyedi funkció. Ha egy függvény neve a "`use`" szóval kezdődik, és más horgokat hív meg, akkor azt mondjuk, hogy az egy egyedi horog. A `useSomething` elnevezési gyakorlat a módja, ami lehetővé teszi a linter pluginunknak horgokat használó kódban hibákat találni.
 
