@@ -560,7 +560,11 @@ A változások észlelése egy megváltoztathatatlan objektum esetén jelentőse
 
 #### Újrarenderelés megállapítása Reactben {#determining-when-to-re-render-in-react}
 
+<<<<<<< HEAD
 A megváltoztathatatlanság legfőbb előnye, hogy az segít a Reactben _tiszta komponensek_ építésében. A megváltoztathatatlan adat könnyen megállapíthatja, ha valamilyen változás történt, ami azt segít meghatározni, hogy egy komponensnek újra kell-e renderelnie.
+=======
+The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 A `shouldComponentUpdate()` metódusról, és hogy hogyan készíts *tiszta komponenseket*, a [Teljesítmény optimalizálása](/docs/optimizing-performance.html#examples) olvasásával tanulhatsz többet.
 
