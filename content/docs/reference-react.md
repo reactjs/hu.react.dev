@@ -124,9 +124,15 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
+<<<<<<< HEAD
 A `React.memo` egy [felsőbb rendű komponens](/docs/higher-order-components.html). Hasonló a [`React.PureComponent`](#reactpurecomponent)-hez, csak osztály komponensek helyett függvény komponensekhez való.
 
 Ha a függvény komponensed ugyanazt rendereli ugyanazon propok esetében, csomagold be egy `React.memo` meghívásba, hogy bizonyos esetekben memoizálni tudd az eredményt a teljesítmény fokozása érdekében. Ez azt jelenti, hogy a React kihagyja a komponens renderelését, és újrafelhasználja az utoljára renderelt eredményt.
+=======
+`React.memo` is a [higher order component](/docs/higher-order-components.html).
+
+If your component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 A `React.memo` csak a propok változásait figzeli. Ha a `React.memo`-val körbevett függvényed implementációja rendelkezik egy [`useState`](/docs/hooks-state.html) vagy [`useContext`](/docs/hooks-reference.html#usecontext) horoggal, az újra lesz renderelve, amennyiben az állapot vagy a kontextus megváltozik.
 

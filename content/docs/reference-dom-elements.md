@@ -56,7 +56,12 @@ Az `onChange` esemény úgy viselkedik, ahogy elvárnád: amikor egy űrlap mez�
 
 ### selected {#selected}
 
+<<<<<<< HEAD
 A `selected` attribútumot az `<option>` komponens támogatja. Használhatod arra, hogy a komponens ki legyen-e választva, vagy sem. Ez hasznos, amikor kontrollált komponenseket kell építeni.
+=======
+If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
+Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 ### style {#style}
 
@@ -120,7 +125,11 @@ Ha a `suppressHydrationWarning`-ot `true`-ra állítod, a React nem fog figyelme
 
 ### value {#value}
 
+<<<<<<< HEAD
 A `value` attribútum az `<input>` és `<textarea>` komponensek által támogatott. Használhatod a komponens értéknek a megadására. Hasznos kontrollált komponensek készítéséhez. A `defaultValue` a kontrollálatlan változata, amivel a komponens értékét akkor tudod állítani, amikor az először jön létre.
+=======
+The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 ## Minden támogatott HTML attribútum {#all-supported-html-attributes}
 
