@@ -54,7 +54,11 @@ function ActionLink() {
 }
 ```
 
+<<<<<<< HEAD
 Itt az `e` egy szintetikus esemény. A React ezeket a szintetikus eseményeket a [W3C specifikáció](https://www.w3.org/TR/DOM-Level-3-Events/) alapján definiálja, emiatt nem kell a böngészők közötti kompatibilitással törődnöd. Lásd a [`SyntheticEvent`](/docs/events.html) referenciát, ha többet szeretnél megtudni erről.
+=======
+Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. React events do not work exactly the same as native events. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
+>>>>>>> 657658aa1f19c65e35055ddca4452c98d569552f
 
 Reactben általában nem kell meghívnod az `addEventListener`-t  hogy eseménykezelőket adj hozzá egy DOM elemhez miután az létrejött. Ehelyett szimplán akkor add hozzá, amikor az elem először renderelődik.
 
