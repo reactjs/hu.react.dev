@@ -170,11 +170,7 @@ A JSX rendelkezik a JavaScript minden erejével. A JSX-be *bármilyen* JavaScrip
 
 A fenti `ShoppingList` komponens csak beépített DOM komponenseket renderel, mint a `<div />` és az `<li />`. De összeállíthatsz és renderelhetsz egyedi React komponenseket is. Például a `<ShoppingList />` írásával utalhatunk az egész bevásárlólistára. Minden React komponens elzártan és függetlenül operálhat; ez lehetővé teszi számodra komplex felhasználói kezelőfelületek építését egyszerű komponensekből.
 
-<<<<<<< HEAD
-## Kezdő kód ellenőrzése {#inspecting-the-starter-code}
-=======
-### Inspecting the Starter Code {#inspecting-the-starter-code}
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
+### Kezdő kód ellenőrzése {#inspecting-the-starter-code}
 
 Ha a tutoriálon a **böngésződből** fogsz dolgozni, nyisd meg ezt a kódot egy új fülön: **[Kezdő kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Ha **helyi környezetben** fogsz dolgozni, nyisd meg a `src/index.js` fájlt a projekt mappádban (már korábban szerkesztetted a fájlt a [beállítások](#setup-option-2-local-development-environment) részben).
 
@@ -564,11 +560,7 @@ A változások észlelése egy megváltoztathatatlan objektum esetén jelentőse
 
 #### Újrarenderelés megállapítása Reactben {#determining-when-to-re-render-in-react}
 
-<<<<<<< HEAD
 A megváltoztathatatlanság legfőbb előnye, hogy az segít a Reactben _tiszta komponensek_ építésében. A megváltoztathatatlan adat könnyen megállapíthatja, ha valamilyen változás történt, ami azt segít meghatározni, hogy egy komponensnek újra kell-e renderelnie.
-=======
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 A `shouldComponentUpdate()` metódusról, és hogy hogyan készíts *tiszta komponenseket*, a [Teljesítmény optimalizálása](/docs/optimizing-performance.html#examples) olvasásával tanulhatsz többet.
 

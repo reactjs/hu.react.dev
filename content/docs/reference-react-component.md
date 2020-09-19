@@ -274,11 +274,7 @@ Jelenleg, ha a `shouldComponentUpdate()` `false`-ot ad vissza, akkor az [`UNSAFE
 static getDerivedStateFromProps(props, state)
 ```
 
-<<<<<<< HEAD
-A `getDerivedStateFromProps` közvetlenül a renderelés előtt hajtódik végre a kezdeti renderelésnél és frissítéskor is. Ennek egy objektumot kell visszaadnia az állapot módosításához, vagy null-t, hogy ne módosítson semmit.
-=======
-`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
+A `getDerivedStateFromProps` közvetlenül a renderelés előtt hajtódik végre a kezdeti renderelésnél és frissítéskor is. Az állapot módosításához egy objektumot kell visszaadnia, vagy `null` értéket, hogy ne módosítson semmit.
 
 Ez a metódus csak [ritka használati esetekre](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) való, amikor a helyi állapot a propok változásaitól függ. Például hasznos lehet egy `<Transition>` komponens implementálására, ami összehasonlítja az előző és a következő gyermekeit, hogy eldöntse, melyiket animálja kifelé vagy befelé.
 
@@ -591,11 +587,7 @@ A `forceUpdate()` meghívása a `render()` hívását fogja előidézni a kompon
 
 ### `defaultProps` {#defaultprops}
 
-<<<<<<< HEAD
-A `defaultProps` egy tulajdonságként lehet definiálva magán a komponensen, hogy beállítsa a propok alapértékeit az osztályon. Ez az undefined értékű propoknál használatos, a null értékűeknél nem. Például:
-=======
-`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for `undefined` props, but not for `null` props. For example:
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
+A `defaultProps`-ot egy a komponensen lévő tulajdonságként tudjuk definiálni, a propok alapértékeinek beállításához az osztályon. Ez az `undefined` értékű propoknál használatos, a `null` értékűeknél nem. Például:
 
 ```js
 class CustomButton extends React.Component {
@@ -615,11 +607,7 @@ Ha a `props.color` nincs megadva, az alapértéke `'blue'` lesz:
   }
 ```
 
-<<<<<<< HEAD
-Ha a `props.color` értéke null, null is marad:
-=======
-If `props.color` is set to `null`, it will remain `null`:
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
+Ha a `props.color` értéke `null`, `null` is marad:
 
 ```js
   render() {

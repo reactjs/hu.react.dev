@@ -10,15 +10,9 @@ Ez a referencia útmutató a `SyntheticEvent` csomagolót dokumentálja, ami a R
 
 ## Áttekintés {#overview}
 
-<<<<<<< HEAD
 Az eseménykezelőidnek a `SyntheticEvent` példányai lesznek átadva, ami egy böngészőtől független konténer, a böngésző natív eseményei körül. Ugyanazzal az interfésszel rendelkezik mint a natív események, a `stopPropagation()`-t és a `preventDefault()`-ot beleértve, kivéve, hogy ezek az események a böngészőktől függetlenül egységesen működnek.
 
-Ha azon kapod magad, hogy valamiért szükséged van az egyik mögöttes böngészőeseményre, egyszerűen használd a `nativeEvent` attribútumot, hogy azt kapd. Minden `SyntheticEvent` objektum a következő attribútumokkal rendelkezik:
-=======
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers. 
-
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. The synthetic events are different from, and do not map directly to, the browser's native events. For example in `onMouseLeave` `event.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change at any time. Every `SyntheticEvent` object has the following attributes:
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
+Ha azon kapod magad, hogy valamiért szükséged van az egyik mögöttes böngészőeseményre, `nativeEvent` attribútummal egyszerűen hozzáférhetsz ahhoz. A szintetikus események különböznek, és nem közvetlenül képezik le a natív böngésző eseményeket. Például az `onMouseLeave`-ben az `event.nativeEvent` a `mouseout` eseményre fog mutatni. A pontos leképezés nem része a nyilvános API-nek, és bármikor megváltozhat. Minden `SyntheticEvent` objektum a következő attribútumokkal rendelkezik:
 
 ```javascript
 boolean bubbles
@@ -77,23 +71,27 @@ A React normalizálja az eseményeket annak érdekében, hogy a tulajdonságaik 
 
 Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" fázisban. Egy eseménykezelő regisztrálásához a "capture" fázisban add hozzá a `Capture` szót az esemény nevéhez; például az `onClick` helyett használd az `onClickCapture`-t kattintási események kezeléséhez a capture fázisban.
 
-- [Vágólapesemények](#clipboard-events)
-- [Kompozíció-események](#composition-events)
-- [Billentyűzet-események](#keyboard-events)
-- [Fókuszálás-események](#focus-events)
-- [Űrlapesemények](#form-events)
-- [Egéresemények](#mouse-events)
-- [Általános események](#generic-events)
-- [Mutatóesemények](#pointer-events)
-- [Kiválasztás-események](#selection-events)
-- [Érintőesemények](#touch-events)
-- [Felhasználói felület eseményei](#ui-events)
-- [Görgőesemények](#wheel-events)
-- [Médiaesemények](#media-events)
-- [Képesemények](#image-events)
-- [Animáció-események](#animation-events)
-- [Átmenet-események](#transition-events)
-- [Egyéb események](#other-events)
+- [Áttekintés {#overview}](#áttekintés-overview)
+  - [Események összegyűjtése {#event-pooling}](#események-összegyűjtése-event-pooling)
+- [Támogatott események {#supported-events}](#támogatott-események-supported-events)
+- [Referencia {#reference}](#referencia-reference)
+  - [Vágólapesemények {#clipboard-events}](#vágólapesemények-clipboard-events)
+  - [Kompozíció-események {#composition-events}](#kompozíció-események-composition-events)
+  - [Billentyűzet-események {#keyboard-events}](#billentyűzet-események-keyboard-events)
+  - [Fókuszálás-események {#focus-events}](#fókuszálás-események-focus-events)
+  - [Űrlapesemények {#form-events}](#űrlapesemények-form-events)
+  - [Általános események {#generic-events}](#általános-események-generic-events)
+  - [Egéresemények {#mouse-events}](#egéresemények-mouse-events)
+  - [Mutatóesemények {#pointer-events}](#mutatóesemények-pointer-events)
+  - [Kiválasztás-események {#selection-events}](#kiválasztás-események-selection-events)
+  - [Érintőesemények {#touch-events}](#érintőesemények-touch-events)
+  - [Felhasználói felület eseményei {#ui-events}](#felhasználói-felület-eseményei-ui-events)
+  - [Görgőesemények {#wheel-events}](#görgőesemények-wheel-events)
+  - [Médiaesemények {#media-events}](#médiaesemények-media-events)
+  - [Képesemények {#image-events}](#képesemények-image-events)
+  - [Animáció-események {#animation-events}](#animáció-események-animation-events)
+  - [Átmenet-események {#transition-events}](#átmenet-események-transition-events)
+  - [Egyéb események {#other-events}](#egyéb-események-other-events)
 
 * * *
 
