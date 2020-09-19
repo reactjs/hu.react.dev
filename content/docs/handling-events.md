@@ -54,7 +54,7 @@ function ActionLink() {
 }
 ```
 
-Itt az `e` egy szintetikus esemény. A React ezeket a szintetikus eseményeket a [W3C specifikáció](https://www.w3.org/TR/DOM-Level-3-Events/) alapján definiálja, emiatt nem kell a böngészők közötti kompatibilitással törődnöd. Lásd a [`SyntheticEvent`](/docs/events.html) referenciát, ha többet szeretnél megtudni erről.
+Itt az `e` egy szintetikus esemény. A React ezeket a szintetikus eseményeket a [W3C specifikáció](https://www.w3.org/TR/DOM-Level-3-Events/) alapján definiálja, emiatt nem kell a böngészők közötti kompatibilitással törődnöd. A React események nem teljesen úgy működnek mint a natív események. Ha többen szeretnél erről megtudni, nézd meg a [`SyntheticEvent`](/docs/events.html) referenciát.
 
 Reactben általában nem kell meghívnod az `addEventListener`-t  hogy eseménykezelőket adj hozzá egy DOM elemhez miután az létrejött. Ehelyett szimplán akkor add hozzá, amikor az elem először renderelődik.
 

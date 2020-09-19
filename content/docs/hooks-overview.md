@@ -229,7 +229,7 @@ function FriendListItem(props) {
 }
 ```
 
-Ezen komponensek állapota egymástól teljesen független. A horgok az *állapotteljes logika* újrafelhasználásának egy módja, nem maguknak az állapotoknak. Valójában minden egyes horog *meghívás*-nak teljesen elzárt állapota van -- szóval ugyanazt az egyedi horgot akár kétszer is használhatod egy komponensen belül.
+Ezen komponensek állapota egymástól teljesen független. A horgok az *állapotteljes logika* újrafelhasználásának egy módja, nem maguknak az állapotoknak. Valójában minden egyes horog *meghívás* állapota teljesen elzárt -- szóval akár ugyanazt az egyedi horgot kétszer is használhatod egy komponensen belül.
 
 Az egyedi horgok sokkal inkább egy közös egyezmény eredményei, mint egy egyedi funkció. Ha egy függvény neve a "`use`" szóval kezdődik, és más horgokat hív meg, akkor azt mondjuk, hogy az egy egyedi horog. A `useSomething` elnevezési gyakorlat a módja, ami lehetővé teszi a linter pluginunknak horgokat használó kódban hibákat találni.
 

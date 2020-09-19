@@ -170,7 +170,7 @@ A JSX rendelkezik a JavaScript minden erejével. A JSX-be *bármilyen* JavaScrip
 
 A fenti `ShoppingList` komponens csak beépített DOM komponenseket renderel, mint a `<div />` és az `<li />`. De összeállíthatsz és renderelhetsz egyedi React komponenseket is. Például a `<ShoppingList />` írásával utalhatunk az egész bevásárlólistára. Minden React komponens elzártan és függetlenül operálhat; ez lehetővé teszi számodra komplex felhasználói kezelőfelületek építését egyszerű komponensekből.
 
-## Kezdő kód ellenőrzése {#inspecting-the-starter-code}
+### Kezdő kód ellenőrzése {#inspecting-the-starter-code}
 
 Ha a tutoriálon a **böngésződből** fogsz dolgozni, nyisd meg ezt a kódot egy új fülön: **[Kezdő kód](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. Ha **helyi környezetben** fogsz dolgozni, nyisd meg a `src/index.js` fájlt a projekt mappádban (már korábban szerkesztetted a fájlt a [beállítások](#setup-option-2-local-development-environment) részben).
 

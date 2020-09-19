@@ -124,7 +124,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-A `React.memo` egy [felsőbb rendű komponens](/docs/higher-order-components.html). Hasonló a [`React.PureComponent`](#reactpurecomponent)-hez, csak osztály komponensek helyett függvény komponensekhez való.
+A `React.memo` egy [felsőbb rendű komponens](/docs/higher-order-components.html).
 
 Ha a függvény komponensed ugyanazt rendereli ugyanazon propok esetében, csomagold be egy `React.memo` meghívásba, hogy bizonyos esetekben memoizálni tudd az eredményt a teljesítmény fokozása érdekében. Ez azt jelenti, hogy a React kihagyja a komponens renderelését, és újrafelhasználja az utoljára renderelt eredményt.
 
