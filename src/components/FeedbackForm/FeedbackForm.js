@@ -14,14 +14,14 @@ const FeedbackForm = () => {
   const [feedbackGiven, setFeedbackGiven] = useState(false);
 
   if (feedbackGiven) {
-    return 'Thanks for letting us know!';
+    return 'Köszönjük az értékelésed!';
   } else {
     return (
       <span>
-        Is this page useful?
+        Hasznos volt ez az oldal?
         <button
           css={[sharedStyles.articleLayout.feedbackButton, {marginLeft: '6px'}]}
-          aria-label="Yes"
+          aria-label="Igen"
           onClick={e => {
             e.preventDefault();
             trackCustomEvent({
@@ -44,7 +44,7 @@ const FeedbackForm = () => {
         </button>
         <button
           css={[sharedStyles.articleLayout.feedbackButton, {marginLeft: '3px'}]}
-          aria-label="No"
+          aria-label="Nem"
           onClick={e => {
             e.preventDefault();
             trackCustomEvent({
