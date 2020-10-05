@@ -2,8 +2,6 @@
 id: fragments
 title: Töredékek
 permalink: docs/fragments.html
-prev: context.html
-next: portals.html
 ---
 
 Egy általános minta a React-ben, hogy egy komponens több elemet ad vissza. A töredékek segítenek gyermekek listáját csoportosítani anélkül, hogy új csomópontot adnál a DOM-hoz.

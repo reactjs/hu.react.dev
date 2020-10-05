@@ -39,7 +39,11 @@ Az egyetlen metódus amit *kötelező* definiálni egy `React.Component`-ben, az
 
 ### A komponens életciklus {#the-component-lifecycle}
 
+<<<<<<< HEAD
 Minden egyes komponenshez több "életciklusmetódus" is tartozik, amiket felülírhatsz, hogy az életciklusa különböző pontjain tudj kódot futtatni. **Ezt az [életciklus diagramot](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) használhatod puskaként.** Az alábbi listában a legtöbbet használt életciklusmetódusok **félkövér betűvel** vannak jelölve. A többit általában csak ritkán használjuk.
+=======
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 #### Létrehozás {#mounting}
 
@@ -109,7 +113,11 @@ Minden egyes komponensnek van néhány egyéb API-ja is:
 
 ### Legtöbbet használt életciklusmetódusok {#commonly-used-lifecycle-methods}
 
+<<<<<<< HEAD
 Az ebben a részben található metódusok lefedik a használati esetek nagyrészét, amikkel a React komponensek írása közben találkozhatsz. **Vizuális referenciaként nézd meg ezt az [életcikus diagramot](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+=======
+The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 ### `render()` {#render}
 
@@ -245,7 +253,11 @@ A **`setState()`-et soha ne hívd meg** a `componentWillUnmount()`-ban, mivel a 
 
 ### Ritkán használt életciklusmetódusok {#rarely-used-lifecycle-methods}
 
+<<<<<<< HEAD
 A metódusok ebben a részben ritka használati eseteknek felelnek meg. Néha hasznosak, de a legtöbb komponensed nem fogja használni egyiket sem. **A legtöbbet ezek közül [ezen az életciklus diagramon](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) láthatod, ha rákattintatsz a "Show less common lifecycles" (Mutassa a kevésbé használt életciklusmetódusokat is) jelölőnégyzetre a tetején.**
+=======
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -278,8 +290,13 @@ A `getDerivedStateFromProps` közvetlenül a renderelés előtt hajtódik végre
 
 Ez a metódus csak [ritka használati esetekre](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) való, amikor a helyi állapot a propok változásaitól függ. Például hasznos lehet egy `<Transition>` komponens implementálására, ami összehasonlítja az előző és a következő gyermekeit, hogy eldöntse, melyiket animálja kifelé vagy befelé.
 
+<<<<<<< HEAD
 A leszármaztatott állapot beszédes kódhoz vezet, ami a komponenseidet kevésbé átláthatóvá teszi.  
 [Győződj meg róla, hogy tisztában vagy egyszerűbb alternatívákkal is:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+=======
+Deriving state leads to verbose code and makes your components difficult to think about.
+[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 * Ha muszáj **mellékhatást végrehajtanod** (például adatlekérés vagy animáció) egy propokban történt változás hatására, használd a [`componentDidUpdate`](#componentdidupdate) életciklus metódust ehelyett.
 
@@ -323,9 +340,15 @@ Csak akkor használd ezeket a hibahatárokat, ha váratlan hibákat szeretnél h
 
 További részletekért lásd a [*Hibakezelés React 16-ban*](/blog/2017/07/26/error-handling-in-react-16.html) szekciót.
 
+<<<<<<< HEAD
 > Megjegyzés
 > 
 > A hibahatárok csak a fában **alattuk** lévő komponensek hibáit kapják el. Egy hibahatár nem tud elkapni egy saját magában történő hibát.
+=======
+> Note
+>
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -353,7 +376,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Valami hiba történt.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -408,15 +431,22 @@ class ErrorBoundary extends React.Component {
       return <h1>Valami hiba történt.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
+<<<<<<< HEAD
 > Megjegyzés
 > 
 > Hiba esetén egy tartelék UI-t renderelhetsz a `componentDidCatch()`-ben a `setState` meghívásával, de ez elavulttá válik majd a következő kiadásokban.
 > Ehelyett használd a `static getDerivedStateFromError()`-t a tartalék UI renderelésére.
+=======
+> Note
+>
+> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
+> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 * * *
 
