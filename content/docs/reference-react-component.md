@@ -39,7 +39,7 @@ Az egyetlen metódus amit *kötelező* definiálni egy `React.Component`-ben, az
 
 ### A komponens életciklus {#the-component-lifecycle}
 
-Minden egyes komponenshez több "életciklusmetódus" is tartozik, amiket felülírhatsz, hogy az életciklusa különböző pontjain tudj kódot futtatni. **Ezt az [életciklus diagramot](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) használhatod puskaként.** Az alábbi listában a legtöbbet használt életciklusmetódusok **félkövér betűvel** vannak jelölve. A többit általában csak ritkán használjuk.
+Minden egyes komponenshez több "életciklusmetódus" is tartozik, amiket felülírhatsz, hogy az életciklusa különböző pontjain tudj kódot futtatni. **Ezt az [életciklus diagramot](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) használhatod puskaként.** Az alábbi listában a legtöbbet használt életciklusmetódusok **félkövér betűvel** vannak jelölve. A többit általában csak ritkán használjuk.
 
 #### Létrehozás {#mounting}
 
@@ -109,7 +109,7 @@ Minden egyes komponensnek van néhány egyéb API-ja is:
 
 ### Legtöbbet használt életciklusmetódusok {#commonly-used-lifecycle-methods}
 
-Az ebben a részben található metódusok lefedik a használati esetek nagyrészét, amikkel a React komponensek írása közben találkozhatsz. **Vizuális referenciaként nézd meg ezt az [életcikus diagramot](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+Az ebben a részben található metódusok lefedik a használati esetek nagyrészét, amikkel a React komponensek írása közben találkozhatsz. **Vizuális referenciaként nézd meg ezt az [életcikus diagramot](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -245,7 +245,7 @@ A **`setState()`-et soha ne hívd meg** a `componentWillUnmount()`-ban, mivel a 
 
 ### Ritkán használt életciklusmetódusok {#rarely-used-lifecycle-methods}
 
-A metódusok ebben a részben ritka használati eseteknek felelnek meg. Néha hasznosak, de a legtöbb komponensed nem fogja használni egyiket sem. **A legtöbbet ezek közül [ezen az életciklus diagramon](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) láthatod, ha rákattintatsz a "Show less common lifecycles" (Mutassa a kevésbé használt életciklusmetódusokat is) jelölőnégyzetre a tetején.**
+A metódusok ebben a részben ritka használati eseteknek felelnek meg. Néha hasznosak, de a legtöbb komponensed nem fogja használni egyiket sem. **A legtöbbet ezek közül [ezen az életciklus diagramon](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) láthatod, ha rákattintatsz a "Show less common lifecycles" (Mutassa a kevésbé használt életciklusmetódusokat is) jelölőnégyzetre a tetején.**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -353,7 +353,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Valami hiba történt.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -408,7 +408,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Valami hiba történt.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```

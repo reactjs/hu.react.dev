@@ -152,6 +152,19 @@ Ez azért működik JavaScript-ben, mert a `true && kifejezés` mindig a `kifeje
 
 Ezért ha a feltétel `true`, az elem ami `&&` operátor jobb oldalán van, meg fog jelenni a kimenetben. Ha a feltétel `false` a React figyelmen kívül hagyja az elemet.
 
+Vedd észre, hogy egy falsy kifejezés nem fogja figyelembe venni a `&&` operátor jobb oldalát, hanem a falsy kifejezés értékét adja vissza. Az alábbi példában a render metódus `<div>0</div>`-t fog visszaadni.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      { count && <h1>Üzenetek: {count}</h1>}
+    </div>
+  );
+}
+```
+
 ### Helyben kifejtett if-else feltételes operátorral {#inline-if-else-with-conditional-operator}
 
 A helyben kifejtett feltételes renderelés egy másik módja lehet a JavaScript feltételes operátor [`feltétel ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
