@@ -181,4 +181,4 @@ A [következő szekcióban](/docs/rendering-elements.html) megvizsgáljuk a Reac
 
 >**Tipp:**
 >
->Javasoljuk, hogy általad használt kódszerkesztőben használd a ["Babel" nyelvdefiníciót](https://babeljs.io/docs/en/editors/), így az ES6 és JSX kódrészek is helyesen lesznek kiemelve.
+>Javasoljuk, hogy általad használt kódszerkesztőben használd a ["Babel" nyelvdefiníciót](https://babeljs.io/docs/en/editors), így az ES6 és JSX kódrészek is helyesen lesznek kiemelve.
