@@ -52,10 +52,17 @@ A következőben adj hozzá három `<script>` címkét közvetlenül a záró `<
 ```html{5,6,9}
   <!-- ... más HTML ... -->
 
+<<<<<<< HEAD
   <!-- A React betöltése. -->
   <!-- Megjegyzés: publikáláskor, cseréld le a "development.js"-t "production.min.js"-re. -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
   <!-- A React komponensünk betöltése. -->
   <script src="like_button.js"></script>
@@ -85,7 +92,11 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
+<<<<<<< HEAD
 Ez a két sor kód megtalálja a `<div>`-et, amit a HTML-hez adtunk az első lépésben, és megjeleníti benne a "Tetszik" React komponens gombunkat.
+=======
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+>>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 ### És ennyi! {#thats-it}
 
@@ -116,8 +127,8 @@ Mielőtt a weboldalt végstádiumba publikálod, tartsd szem előtt, hogy a nem 
 Ha már csökkented az alkalmazásod scriptjeinek a méretét, **az oldalad készen áll a végstádiumra**, amennyiben a publikált HTML oldalad a `production.min.js` végződésű React verziót tölti be:
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Ha nincs kódcsökkentő lépésed a scriptekhez, [itt egy módja, hogyan tudod ezt beállítani](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
@@ -185,7 +196,7 @@ Gratulálunk! Ezzel **beállítottad a JSX publikálásra kész** használatát 
 Készíts egy `src` nevű mappát és futtasd az alábbi parancsot a terminálodban:
 
 ```
-npx babel --watch src --out-dir . --presets react-app/prod 
+npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
 >Megjegyzés
