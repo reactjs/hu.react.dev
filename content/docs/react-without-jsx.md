@@ -1,14 +1,14 @@
 ---
 id: react-without-jsx
-title: React Without JSX
+title: React JSX nélkül
 permalink: docs/react-without-jsx.html
 ---
 
-JSX is not a requirement for using React. Using React without JSX is especially convenient when you don't want to set up compilation in your build environment.
+Nem kötelező a JSXet választani, ha Reactot használsz. A React JSX nélkül különösen hasznos, ha nem akarsz külön fordítási lépést létrehoznod a build környezetedben.
 
-Each JSX element is just syntactic sugar for calling `React.createElement(component, props, ...children)`. So, anything you can do with JSX can also be done with just plain JavaScript.
+Minden egyes JSX elem csak egy rövidítés a `React.createElement(component, props, ...children)` metódus hívására. Így, mindent amit JSXel le tudsz írni, meg tudod csinálni JSX nélkül, síma JavaScriptet használva is.
 
-For example, this code written with JSX:
+Például, ez a JSXet használó kódrészlet
 
 ```js
 class Hello extends React.Component {
@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-can be compiled to this code that does not use JSX:
+átírható a következő, JSXet nem használó kódra:
 
 ```js
 class Hello extends React.Component {
@@ -37,12 +37,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+Próbáld ki [az online Babel fordítót](babel://jsx-simple-example), ha szeretnél több példát látni rá, hogyan alakítjuk át a JSXet JavaScriptté.
 
-If you're curious to see more examples of how JSX is converted to JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+A komponens megadható sztringként, a `React.Component` alosztályaként vagy egy sima függvényként.
 
-The component can either be provided as a string, as a subclass of `React.Component`, or a plain function.
-
-If you get tired of typing `React.createElement` so much, one common pattern is to assign a shorthand:
+Ha úgy érzed, hogy túl időigényes mindig kigépelni a `React.createElement`et, egy gyakori megoldás, a függvény egy rövidítéshez rendelése:
 
 ```js
 const e = React.createElement;
@@ -52,8 +51,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+A `React.createElement`nek ezt a rövidített formáját használva, már sokkal kényelmesebben React kódot írni, még JSX nélkül is.
 
-If you use this shorthand form for `React.createElement`, it can be almost as convenient to use React without JSX.
-
-Alternatively, you can refer to community projects such as [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) and [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) which offer a terser syntax.
+Ha inkább más alternatív megoldást keresel, nézz bele a közösségi projektbe mint amilyen a [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) és a [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) amik segíthetnek tömörebb kódot írni.
 
