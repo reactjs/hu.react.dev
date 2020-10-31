@@ -34,36 +34,11 @@ string type
 
 > Megjegyzés:
 >
-> A v0.14-től kezdve `false` érték visszaadása egy eseménykezelőben nem állítja meg az esemény terjedését. Ehelyett manuálisan kell, hogy meghívd vagy az `e.stopPropagation()`-t, vagy az `e.preventDefault`-ot, attól függően melyik a helyes a te esetedben.
-
-### Események összegyűjtése {#event-pooling}
-
-A `SyntheticEvent` egy közös készletben van. Ez azt jelenti, hogy a `SyntheticEvent` objektum újrafelhasználható és minden tulajdonság ki lesz nullázva az esemény callbackjének meghívása után.
-Ez a teljesítmény növelése érdekében történik.
-Így az eseményhez nem férhetsz aszinkron módon.
-
-```javascript
-function onClick(event) {
-  console.log(event); // => kinullázott objektum.
-  console.log(event.type); // => "click"
-  const eventType = event.type; // => "click"
-
-  setTimeout(function() {
-    console.log(event.type); // => null
-    console.log(eventType); // => "click"
-  }, 0);
-
-  // Nem fog működni. A this.state.clickEvent csak null értékeket fog tartalmazni.
-  this.setState({clickEvent: event});
-
-  // Az esemény értékeket még így is ki tudod exportálni.
-  this.setState({eventType: event.type});
-}
-```
+> A React 17-től kezdve az `e.persist()` nem csinál semmit, mivel a `SyntheticEvent` többé nincs ["összegyűtjve"](/docs/legacy-event-pooling.html).
 
 > Megjegyzés:
 >
-> Ha szeretnél az események tulajdonságaihoz aszinkron módon hozzáférni, meg kell hogy hívd az `event.persist()` metódust az eseményen, ami eltávolítja a szintetikus eseményt a medencéből és lehetővé teszi az eseményre mutató hivatkozások megtartását felhasználói kóddal.
+> A v0.14-től kezdve `false` érték visszaadása egy eseménykezelőben nem állítja meg az esemény terjedését. Ehelyett manuálisan kell, hogy meghívd vagy az `e.stopPropagation()`-t, vagy az `e.preventDefault`-ot, attól függően melyik a helyes a te esetedben.
 
 ## Támogatott események {#supported-events}
 
@@ -72,13 +47,15 @@ A React normalizálja az eseményeket annak érdekében, hogy a tulajdonságaik 
 Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" fázisban. Egy eseménykezelő regisztrálásához a "capture" fázisban add hozzá a `Capture` szót az esemény nevéhez; például az `onClick` helyett használd az `onClickCapture`-t kattintási események kezeléséhez a capture fázisban.
 
 - [Áttekintés {#overview}](#áttekintés-overview)
-  - [Események összegyűjtése {#event-pooling}](#események-összegyűjtése-event-pooling)
 - [Támogatott események {#supported-events}](#támogatott-események-supported-events)
 - [Referencia {#reference}](#referencia-reference)
   - [Vágólapesemények {#clipboard-events}](#vágólapesemények-clipboard-events)
   - [Kompozíció-események {#composition-events}](#kompozíció-események-composition-events)
   - [Billentyűzet-események {#keyboard-events}](#billentyűzet-események-keyboard-events)
   - [Fókuszálás-események {#focus-events}](#fókuszálás-események-focus-events)
+    - [onFocus](#onfocus)
+    - [onBlur](#onblur)
+    - [Fókuszálás és fókuszálás elvesztésének detektálása](#fókuszálás-és-fókuszálás-elvesztésének-detektálása)
   - [Űrlapesemények {#form-events}](#űrlapesemények-form-events)
   - [Általános események {#generic-events}](#általános-események-generic-events)
   - [Egéresemények {#mouse-events}](#egéresemények-mouse-events)
@@ -171,9 +148,84 @@ Ezek a fókuszálás-események minden elemen működnek a React DOM-ban, nem cs
 
 Tulajdonságok:
 
-```javascript
+```js
 DOMEventTarget relatedTarget
 ```
+
+#### onFocus
+
+Az `onFocus` esemény akkor van meghívva, amikor az elem (vagy valamelyik elem azon belül) fókuszálva van. Például amikor a felhasználó egy szöveg beivteli mezőre kattint.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onFocus={(e) => {
+        console.log('Fókuszálva a beviteli mezőre');
+      }}
+      placeholder="Az onFocus meg lesz hívva, ha erre a beviteli mezőre kattintasz."
+    />
+  )
+}
+```
+
+#### onBlur
+
+Az `onBlur` esemény akkor van meghívva, amikor a fókuszálás elhagyta az elemet (vagy valamelyik elemet azon belül). Például akkor, amikor a felhasználó egy fókuszált szöveg beviteli mezőn kívülre kattint.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onBlur={(e) => {
+        console.log('Meghívva, mivel a beviteli mező elvesztette a fókuszt');
+      }}
+      placeholder="Az onBlur meg lesz hívva, ha erre a beviteli mezőre kattintasz, majd utána ezen kívülre."
+    />
+  )
+}
+```
+
+#### Fókuszálás és fókuszálás elvesztésének detektálása
+
+You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element. Here is a demo you can copy and paste that shows how to detect focusing a child, focusing the element itself, and focus entering or leaving the whole subtree.
+Használhatod a `currentTarget` és `releatedTarget`-et, hogy meg tudd különböztetni, hogy a fókuszálás vagy fókuszálás elvesztésének eseménye a szülő komponensen _kívülről_ jön-e. Itt egy demo amit kimásolhatsz és beilleszthetsz, ami megmutatja hogyan detektálj fókuszálást egy gyermek elemre, magára az elemre, és fókuszálást vagy fókuszálás elvesztést a teljes alfára.
+
+```javascript
+function Example() {
+  return (
+    <div
+      tabIndex={1}
+      onFocus={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('saját magára fókuszált');
+        } else {
+          console.log('gyermekre fókuszált', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Nincs meghívva gyermekek közti fókuszálás csere közt
+          console.log('fókusz belépés saját magára');
+        }
+      }}
+      onBlur={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('saját maga fókuszálásának elvesztése');
+        } else {
+          console.log('gyermek fókuszálásának elvesztése', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Nincs meghívva gyermekek közti fókuszálás csere közt
+          console.log('fókuszálás elvesztése saját magáról');
+        }
+      }}
+    >
+      <input id="1" />
+      <input id="2" />
+    </div>
+  );
+}
+```
+
 
 * * *
 
@@ -309,6 +361,10 @@ Eseménynevek:
 ```
 onScroll
 ```
+
+>Megjegyzés
+>
+>A React 17-től kezdve az `onScroll` esemény **nem használ "bubbling"-et**. Ez megegyezik a böngésző viselkedésével és meggátolja hogy egymásba ágyazott görgethető elemek eseményeket generáljanak egy távoli szülő elemen.
 
 Tulajdonságok:
 

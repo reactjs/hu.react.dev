@@ -9,18 +9,18 @@ next: release-channels.html
 A React és a ReactDOM egyaránt elérhető CDN-en keresztül.
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 ```
 
 A fenti verziók csak a fejlesztésre értendőek, és nem megfelelőek éles környezetben való használathoz. A React kicsinyített és optimalizált változatai a következő helyen érhetőek el:
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
-A `react` és a `react-dom` adott verziójának betöltéséhez cseréld ki a `16`-ot a verziószámra.
+A `react` és a `react-dom` egy adott verziójának betöltéséhez cseréld ki a `17`-et a kívánt verziószámra.
 
 ### Miért szükséges a `crossorigin` attribútum? {#why-the-crossorigin-attribute}
 
