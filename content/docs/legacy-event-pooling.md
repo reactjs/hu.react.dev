@@ -27,7 +27,7 @@ Ha szeretnél egy esemény tulajdonságaihoz azután hozzáférni hogy az esemé
 
 ```javascript
 function handleChange(e) {
-  // Prevents React from resetting its properties:
+  // Megakadályozza a Reactet a tulajdonságok visszaállításában:
   e.persist();
 
   setTimeout(() => {
