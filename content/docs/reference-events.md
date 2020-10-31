@@ -34,41 +34,11 @@ string type
 
 > Megjegyzés:
 >
-<<<<<<< HEAD
-> A v0.14-től kezdve `false` érték visszaadása egy eseménykezelőben nem állítja meg az esemény terjedését. Ehelyett manuálisan kell, hogy meghívd vagy az `e.stopPropagation()`-t, vagy az `e.preventDefault`-ot, attól függően melyik a helyes a te esetedben.
-
-### Események összegyűjtése {#event-pooling}
-
-A `SyntheticEvent` egy közös készletben van. Ez azt jelenti, hogy a `SyntheticEvent` objektum újrafelhasználható és minden tulajdonság ki lesz nullázva az esemény callbackjének meghívása után.
-Ez a teljesítmény növelése érdekében történik.
-Így az eseményhez nem férhetsz aszinkron módon.
-
-```javascript
-function onClick(event) {
-  console.log(event); // => kinullázott objektum.
-  console.log(event.type); // => "click"
-  const eventType = event.type; // => "click"
-
-  setTimeout(function() {
-    console.log(event.type); // => null
-    console.log(eventType); // => "click"
-  }, 0);
-
-  // Nem fog működni. A this.state.clickEvent csak null értékeket fog tartalmazni.
-  this.setState({clickEvent: event});
-
-  // Az esemény értékeket még így is ki tudod exportálni.
-  this.setState({eventType: event.type});
-}
-```
-=======
-> As of v17, `e.persist()` doesn't do anything because the `SyntheticEvent` is no longer [pooled](/docs/legacy-event-pooling.html).
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
+> A React 17-től kezdve az `e.persist()` nem csinál semmit, mivel a `SyntheticEvent` többé nincs ["összegyűtjve"](/docs/legacy-event-pooling.html).
 
 > Megjegyzés:
 >
-<<<<<<< HEAD
-> Ha szeretnél az események tulajdonságaihoz aszinkron módon hozzáférni, meg kell hogy hívd az `event.persist()` metódust az eseményen, ami eltávolítja a szintetikus eseményt a medencéből és lehetővé teszi az eseményre mutató hivatkozások megtartását felhasználói kóddal.
+> A v0.14-től kezdve `false` érték visszaadása egy eseménykezelőben nem állítja meg az esemény terjedését. Ehelyett manuálisan kell, hogy meghívd vagy az `e.stopPropagation()`-t, vagy az `e.preventDefault`-ot, attól függően melyik a helyes a te esetedben.
 
 ## Támogatott események {#supported-events}
 
@@ -77,13 +47,15 @@ A React normalizálja az eseményeket annak érdekében, hogy a tulajdonságaik 
 Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" fázisban. Egy eseménykezelő regisztrálásához a "capture" fázisban add hozzá a `Capture` szót az esemény nevéhez; például az `onClick` helyett használd az `onClickCapture`-t kattintási események kezeléséhez a capture fázisban.
 
 - [Áttekintés {#overview}](#áttekintés-overview)
-  - [Események összegyűjtése {#event-pooling}](#események-összegyűjtése-event-pooling)
 - [Támogatott események {#supported-events}](#támogatott-események-supported-events)
 - [Referencia {#reference}](#referencia-reference)
   - [Vágólapesemények {#clipboard-events}](#vágólapesemények-clipboard-events)
   - [Kompozíció-események {#composition-events}](#kompozíció-események-composition-events)
   - [Billentyűzet-események {#keyboard-events}](#billentyűzet-események-keyboard-events)
   - [Fókuszálás-események {#focus-events}](#fókuszálás-események-focus-events)
+    - [onFocus](#onfocus)
+    - [onBlur](#onblur)
+    - [Detecting Focus Entering and Leaving](#detecting-focus-entering-and-leaving)
   - [Űrlapesemények {#form-events}](#űrlapesemények-form-events)
   - [Általános események {#generic-events}](#általános-események-generic-events)
   - [Egéresemények {#mouse-events}](#egéresemények-mouse-events)
@@ -97,33 +69,6 @@ Az alábbi eseménykezelők egy esemény által lettek elindítva a "bubbling" f
   - [Animáció-események {#animation-events}](#animáció-események-animation-events)
   - [Átmenet-események {#transition-events}](#átmenet-események-transition-events)
   - [Egyéb események {#other-events}](#egyéb-események-other-events)
-=======
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
-
-## Supported Events {#supported-events}
-
-React normalizes events so that they have consistent properties across different browsers.
-
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
-
-- [Clipboard Events](#clipboard-events)
-- [Composition Events](#composition-events)
-- [Keyboard Events](#keyboard-events)
-- [Focus Events](#focus-events)
-- [Form Events](#form-events)
-- [Generic Events](#generic-events)
-- [Mouse Events](#mouse-events)
-- [Pointer Events](#pointer-events)
-- [Selection Events](#selection-events)
-- [Touch Events](#touch-events)
-- [UI Events](#ui-events)
-- [Wheel Events](#wheel-events)
-- [Media Events](#media-events)
-- [Image Events](#image-events)
-- [Animation Events](#animation-events)
-- [Transition Events](#transition-events)
-- [Other Events](#other-events)
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 * * *
 
@@ -416,15 +361,11 @@ Eseménynevek:
 onScroll
 ```
 
-<<<<<<< HEAD
-Tulajdonságok:
-=======
->Note
+>Megjegyzés
 >
->Starting with React 17, the `onScroll` event **does not bubble** in React. This matches the browser behavior and prevents the confusion when a nested scrollable element fires events on a distant parent.
+>A React 17-től kezdve az `onScroll` esemény **nem használ "bubbling"-et**. Ez megegyezik a böngésző viselkedésével és meggátolja hogy egymásba ágyazott görgethető elemek eseményeket generáljanak egy távoli szülő elemen.
 
-Properties:
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
+Tulajdonságok:
 
 ```javascript
 number detail
