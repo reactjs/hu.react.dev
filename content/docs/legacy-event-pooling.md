@@ -1,29 +1,29 @@
 ---
 id: legacy-event-pooling
-title: Event Pooling
+title: Esemény pooling
 permalink: docs/legacy-event-pooling.html
 ---
 
->Note
+>Megjegyzés
 >
->This page is only relevant for React 16 and earlier, and for React Native.
+>Ez az oldal csak a React 16 és korábbi veziókra, valamint React Native-re vonatkozik.
 >
->React 17 on the web **does not** use event pooling.
+>A React 17 a weben **nem használ** esemény pooling-ot.
 >
->[Read more](/blog/2020/08/10/react-v17-rc.html#no-event-pooling) about this change in React 17.
+>Erről a React 17 változásról [többet itt olvashatsz](/blog/2020/08/10/react-v17-rc.html#no-event-pooling).
 
-The [`SyntheticEvent`](/docs/events.html) objects are pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event event handler has been called. For example, this won't work:
+A [`SyntheticEvent`](/docs/events.html) objektumok egy közös készletben vannak. Ez azt jelenti, hogy a `SyntheticEvent` objektum újrafelhasználható és minden tulajdonság ki lesz nullázva az esemény callbackjének meghívása után. Ez például nem fog működni:
 
 ```javascript
 function handleChange(e) {
-  // This won't work because the event object gets reused.
+  // Ez nem fog műküdni, mert az esemény objektumok újra fel lesznek használva.
   setTimeout(() => {
-    console.log(e.target.value); // Too late!
+    console.log(e.target.value); // Túl késő!
   }, 100);
 }
 ```
 
-If you need to access event object's properties after the event handler has run, you need to call `e.persist()`:
+Ha szeretnél egy esemény tulajdonságaihoz azután hozzáférni hogy az eseménykezelő lefutott, meg kell hogy hívd az `e.persist()` metódust:
 
 ```javascript
 function handleChange(e) {
@@ -31,7 +31,7 @@ function handleChange(e) {
   e.persist();
 
   setTimeout(() => {
-    console.log(e.target.value); // Works
+    console.log(e.target.value); // Ez működik
   }, 100);
 }
 ```
