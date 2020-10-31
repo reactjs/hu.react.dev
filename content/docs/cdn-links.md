@@ -20,11 +20,7 @@ A fenti verziók csak a fejlesztésre értendőek, és nem megfelelőek éles k�
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
-<<<<<<< HEAD
-A `react` és a `react-dom` adott verziójának betöltéséhez cseréld ki a `16`-ot a verziószámra.
-=======
-To load a specific version of `react` and `react-dom`, replace `17` with the version number.
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
+A `react` és a `react-dom` egy adott verziójának betöltéséhez cseréld ki a `17`-et a kívánt verziószámra.
 
 ### Miért szükséges a `crossorigin` attribútum? {#why-the-crossorigin-attribute}
 
