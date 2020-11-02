@@ -37,6 +37,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
 Próbáld ki [az online Babel fordítót](babel://jsx-simple-example), ha szeretnél több példát látni rá, hogyan alakítjuk át a JSXet JavaScriptté.
 
 A komponens megadható sztringként, a `React.Component` alosztályaként vagy egy sima függvényként.
@@ -51,6 +52,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
 A `React.createElement`-nek ezt a rövidített formáját használva, már sokkal kényelmesebb React kódot írni, még JSX nélkül is.
 
 Ha inkább más alternatív megoldást keresel, nézz bele a közösségi projektbe mint amilyen a [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) és a [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) amik segíthetnek tömörebb kódot írni.
