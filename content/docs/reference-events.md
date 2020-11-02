@@ -152,7 +152,7 @@ Tulajdonságok:
 DOMEventTarget relatedTarget
 ```
 
-#### onFocus
+#### onFocus {#onfocus}
 
 Az `onFocus` esemény akkor van meghívva, amikor az elem (vagy valamelyik elem azon belül) fókuszálva van. Például amikor a felhasználó egy szöveg beivteli mezőre kattint.
 
@@ -169,7 +169,7 @@ function Example() {
 }
 ```
 
-#### onBlur
+#### onBlur {#onblur}
 
 Az `onBlur` esemény akkor van meghívva, amikor a fókuszálás elhagyta az elemet (vagy valamelyik elemet azon belül). Például akkor, amikor a felhasználó egy fókuszált szöveg beviteli mezőn kívülre kattint.
 
@@ -186,7 +186,11 @@ function Example() {
 }
 ```
 
+<<<<<<< HEAD
 #### Fókuszálás és fókuszálás elvesztésének detektálása
+=======
+#### Detecting Focus Entering and Leaving {#detecting-focus-entering-and-leaving}
+>>>>>>> 30baecf59de28a8cd3c91a2cd878e3822f864061
 
 You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element. Here is a demo you can copy and paste that shows how to detect focusing a child, focusing the element itself, and focus entering or leaving the whole subtree.
 Használhatod a `currentTarget` és `releatedTarget`-et, hogy meg tudd különböztetni, hogy a fókuszálás vagy fókuszálás elvesztésének eseménye a szülő komponensen _kívülről_ jön-e. Itt egy demo amit kimásolhatsz és beilleszthetsz, ami megmutatja hogyan detektálj fókuszálást egy gyermek elemre, magára az elemre, és fókuszálást vagy fókuszálás elvesztést a teljes alfára.
@@ -225,7 +229,6 @@ function Example() {
   );
 }
 ```
-
 
 * * *
 
