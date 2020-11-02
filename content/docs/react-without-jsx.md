@@ -4,11 +4,11 @@ title: React JSX nélkül
 permalink: docs/react-without-jsx.html
 ---
 
-Nem kötelező a JSXet választani, ha Reactot használsz. A React JSX nélkül különösen hasznos, ha nem akarsz külön fordítási lépést létrehoznod a build környezetedben.
+Nem kötelező a JSX-et választani, ha Reactet használsz. A React JSX nélkül különösen hasznos, ha nem akarsz külön fordítási lépést létrehozni a build környezetedben.
 
-Minden egyes JSX elem csak egy rövidítés a `React.createElement(component, props, ...children)` metódus hívására. Így, mindent amit JSXel le tudsz írni, meg tudod csinálni JSX nélkül, síma JavaScriptet használva is.
+Minden egyes JSX elem csak egy rövidítés a `React.createElement(component, props, ...children)` metódus hívására. Így, mindent amit JSX-szel le tudsz írni, meg tudod csinálni JSX nélkül is, sima JavaScriptet használva.
 
-Például, ez a JSXet használó kódrészlet
+Például, ez a JSX-szet használó kódrészlet:
 
 ```js
 class Hello extends React.Component {
@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-átírható a következő, JSXet nem használó kódra:
+átírható a következő, JSX-szet nem használó kódra:
 
 ```js
 class Hello extends React.Component {
@@ -41,7 +41,7 @@ Próbáld ki [az online Babel fordítót](babel://jsx-simple-example), ha szeret
 
 A komponens megadható sztringként, a `React.Component` alosztályaként vagy egy sima függvényként.
 
-Ha úgy érzed, hogy túl időigényes mindig kigépelni a `React.createElement`et, egy gyakori megoldás, a függvény egy rövidítéshez rendelése:
+Ha úgy érzed, hogy túl időigényes mindig kigépelni a `React.createElement`-et, egy gyakori megoldás, a függvény egy rövidítéshez rendelése:
 
 ```js
 const e = React.createElement;
@@ -51,7 +51,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-A `React.createElement`nek ezt a rövidített formáját használva, már sokkal kényelmesebben React kódot írni, még JSX nélkül is.
+A `React.createElement`-nek ezt a rövidített formáját használva, már sokkal kényelmesebb React kódot írni, még JSX nélkül is.
 
 Ha inkább más alternatív megoldást keresel, nézz bele a közösségi projektbe mint amilyen a [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) és a [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) amik segíthetnek tömörebb kódot írni.
-
