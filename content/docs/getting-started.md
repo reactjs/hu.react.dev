@@ -36,7 +36,7 @@ A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használ
 
 ### Online Játszóterek {#online-playgrounds}
 
-Az Online Játszótereken lehetőséged van kipróbálni a React funkcionalitásait. Próbáld ki a Helló Világ sablont [CodePenen](codepen://hello-world), [CodeSandboxon](https://codesandbox.io/s/new), [Glitchen](https://glitch.com/edit/#!/remix/starter-react-template), vagy [Stackblitzen](https://stackblitz.com/fork/react).
+Az Online Játszótereken lehetőséged van kipróbálni a React funkcionalitásait. Próbáld ki a Helló Világ sablont [CodePenen](codepen://hello-world), [CodeSandboxon](https://codesandbox.io/s/new), vagy [Stackblitzen](https://stackblitz.com/fork/react).
 
 Ha a saját kódszerkesztődet használnád, [letöltheted ezt a HTML fájlt](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), szerkesztheted és megnyithatod a lokális böngésződben. Ez egy lassú kód transzformációt tartalmaz, így ezt csak a példakód futtatásához ajánljuk.
 
