@@ -92,7 +92,7 @@ function getGreeting(user) {
 Idézőjelek segítségével megadhatsz karakterláncokat attribútumként:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <div tabIndex={0}></div>;
 ```
 
 Kapcsos zárójelekkel beágyazhatsz JavaScript kifejezést egy attribútumba:
