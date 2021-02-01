@@ -129,9 +129,15 @@ A React 16-tól kezdve minden standard, [vagy egyedi](/blog/2017/09/08/dom-attri
 A React mindig is biztosított egy JavaScript centrikus API-t a DOM-hoz. Mivel a React komponensek gyakran használnak mind egyedi és DOM-mal kapcsolatos propokat, a React konvenció alapján `camelCase` formátumot használ úgy, ahogyan a DOM API-k:
 
 ```js
+<<<<<<< HEAD
 <div tabIndex="-1" />      // Pont, mint a node.tabIndex DOM API
 <div className="Button" /> // Pont, mint a node.className DOM API
 <input readOnly={true} />  // Pont, mint a node.readOnly DOM API
+=======
+<div tabIndex={-1} />      // Just like node.tabIndex DOM API
+<div className="Button" /> // Just like node.className DOM API
+<input readOnly={true} />  // Just like node.readOnly DOM API
+>>>>>>> 5e2a231e02bd76061fd2f89814ee1e3f9fad82d3
 ```
 
 Ezek a propok nagyon hasonlóan működnek a megegyező HTML attribútumokhoz, a fentebb dokumentált speciális esetek kivételével.
