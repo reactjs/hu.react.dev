@@ -40,7 +40,11 @@ A React csapat főként ezeket a megoldásokat ajánlja:
 
 A [Create React App](https://github.com/facebookincubator/create-react-app) egy komfortos környezet a **React tanulásához** és a legjobb módja **egy új [single-page](/docs/glossary.html#single-page-application) alkalmazás** készítésére Reactben.
 
+<<<<<<< HEAD
 Úgy állítja fel a fejlesztői környezeted, hogy használni tudd a legújabb JavaScript funkciókat, egy kellemes fejlesztői élményt biztosít és optimalizálja az alkalmazásod a végstádiumban. A gépednek rendelkeznie kell [Node 8.10 vagy annál újabb, és npm 5.6 vagy annál újabb](https://nodejs.org/en/) verzióival. Egy projekt készítéséhez futtasd ezt:
+=======
+It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 10.16 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
+>>>>>>> adfa67ad01b7e4c6114921cdf12e9e4cf1a1c786
 
 ```bash
 npx create-react-app my-app
