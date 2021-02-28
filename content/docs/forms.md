@@ -31,7 +31,7 @@ Ezt a kettőt összekombinálhatjuk ha a React állapotot vesszük az "egyedüli
 
 Például ha azt szeretnénk hogy az előző példa kiírja a konzolra a nevet az űrlap beküldésekor, létrehozhatjuk az űrlapot egy kontrollált komponensként: 
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);

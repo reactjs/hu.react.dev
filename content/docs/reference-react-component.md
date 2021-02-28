@@ -413,9 +413,15 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+A React production és fejlesztői kiadásai kis mértékben eltérően kezelik a hibákat a `componentDidCatch()` segítségével.
+
+A fejlesztői kiadás esetében a hibák felbuborékoznak a `window` objektumig, ami azt jelenti hogy bármely `window.onerror` vagy `window.addEventListener('error', callback)` meghívás felfogja a `componentDidCatch()` által elkapott hibákat.
+
+A production kiadásban ehelyett a hibák nem buborékoznak fel, ami azt jelenti, hogy bármely leszármazott hibakezelője csak azokat a hibákat fogja felfogni, amik nem lettek kifejezetten a `componentDidCatch()` metódussal elkapva.
+
 > Megjegyzés
 > 
-> Hiba esetén egy tartelék UI-t renderelhetsz a `componentDidCatch()`-ben a `setState` meghívásával, de ez elavulttá válik majd a következő kiadásokban.
+> Hiba esetén renderelhetsz egy tartelék UI-t a `componentDidCatch()`-ben a `setState` meghívásával, de ez egy jövőbeli kiadásban ez elavulttá válik.
 > Ehelyett használd a `static getDerivedStateFromError()`-t a tartalék UI renderelésére.
 
 * * *
