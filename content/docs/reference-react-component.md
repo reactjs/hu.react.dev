@@ -413,23 +413,16 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
+A React production és fejlesztői kiadásai kis mértékben eltérően kezelik a hibákat a `componentDidCatch()` segítségével.
+
+A fejlesztői kiadás esetében a hibák felbuborékoznak a `window` objektumig, ami azt jelenti hogy bármely `window.onerror` vagy `window.addEventListener('error', callback)` meghívás felfogja a `componentDidCatch()` által elkapott hibákat.
+
+A production kiadásban ehelyett a hibák nem buborékoznak fel, ami azt jelenti, hogy bármely leszármazott hibakezelője csak azokat a hibákat fogja felfogni, amik nem lettek kifejezetten a `componentDidCatch()` metódussal elkapva.
+
 > Megjegyzés
 > 
-> Hiba esetén egy tartelék UI-t renderelhetsz a `componentDidCatch()`-ben a `setState` meghívásával, de ez elavulttá válik majd a következő kiadásokban.
+> Hiba esetén renderelhetsz egy tartelék UI-t a `componentDidCatch()`-ben a `setState` meghívásával, de ez egy jövőbeli kiadásban ez elavulttá válik.
 > Ehelyett használd a `static getDerivedStateFromError()`-t a tartalék UI renderelésére.
-=======
-Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
-
-On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
-
-On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
-
-> Note
->
-> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
-> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
->>>>>>> adfa67ad01b7e4c6114921cdf12e9e4cf1a1c786
 
 * * *
 
