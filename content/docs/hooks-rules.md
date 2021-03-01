@@ -12,7 +12,7 @@ A Horgok JavaScript függvények, de használatukkor két szabályt be kell tart
 
 ### Horgokat csakis a legfelsőbb szinten hívj meg {#only-call-hooks-at-the-top-level}
 
-**Ne hívj meg Horgokat ciklusokban, feltételes ágakban, vagy egymásba ágyazott függvényekben.** A Horgokat mindig a React függvényed legfelső szintjén hívd meg. Ennek a szabálynak a betartásával gondoskodsz róla, hogy a Horgok a komponens minden renderelésénél ugyanabban a sorrendben legyenek meghívva. Ez teszi lehetővé a React számára több `useState` és `useEffect` hívás esetén az állapot megőrzését. (Ha kíváncsi vagy, [lentebb](#explanation) ezt részletesen is kifejtjük.)
+**Ne hívj meg Horgokat ciklusokban, feltételes ágakban, vagy egymásba ágyazott függvényekben.** A Horgokat mindig a React függvényed legfelső szintjén hívd meg, bármely korai visszatérés előtt. Ennek a szabálynak a betartásával gondoskodsz róla, hogy a Horgok a komponens minden renderelésénél ugyanabban a sorrendben legyenek meghívva. Ez teszi lehetővé a React számára több `useState` és `useEffect` hívás esetén az állapot megőrzését. (Ha kíváncsi vagy, [lentebb](#explanation) ezt részletesen is kifejtjük.)
 
 ### Horgokat csakis React függvényekből hívj meg {#only-call-hooks-from-react-functions}
 
