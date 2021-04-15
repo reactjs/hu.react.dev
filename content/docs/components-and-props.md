@@ -245,7 +245,7 @@ function sum(a, b) {
 }
 ```
 
-Egy ilyen függvényt ["tiszta"](https://hu.wikipedia.org/wiki/Tiszta_függvény) függvénynek nevezünk, mert nem kísérli meg megváltoztatni a bemenetét, és mindig ugyanazt az eredményt adja ugyanazon bemenet esetében.
+Egy ilyen függvényt ["tiszta"](https://hu.wikipedia.org/wiki/Tiszta_függvény) függvénynek nevezünk, mert nem kísérli megváltoztatni a bemenetét, és mindig ugyanazt az eredményt adja ugyanazon bemenet esetében.
 
 Összehasonlításképpen ez a függvény nem tiszta, mert megváltoztatja a saját bemenetét:
 
