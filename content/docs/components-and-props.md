@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
 A React szemszögéből a fenti két komponens egymással megegyező.
 
-Mind a függvény-, és osztálykomponensek rendelkeznek néhány extra funkcióval, amit a [következő fejezetekben](/docs/state-and-lifecycle.html) beszélünk ki.
+Mind a függvény-, és osztálykomponensek rendelkeznek néhány extra funkcióval, amit a [következő fejezetekben](/docs/state-and-lifecycle.html) beszélünk meg.
 
 ## Egy komponens renderelése {#rendering-a-component}
 
@@ -245,7 +245,7 @@ function sum(a, b) {
 }
 ```
 
-Egy ilyen függvényt ["tiszta"](https://hu.wikipedia.org/wiki/Tiszta_függvény) függvénynek nevezünk, mert nem kísérli meg megváltoztatni a bemenetét, és mindig ugyanazt az eredményt adja ugyanazon bemenet esetében.
+Egy ilyen függvényt ["tiszta"](https://hu.wikipedia.org/wiki/Tiszta_függvény) függvénynek nevezünk, mert nem kísérli megváltoztatni a bemenetét, és mindig ugyanazt az eredményt adja ugyanazon bemenet esetében.
 
 Összehasonlításképpen ez a függvény nem tiszta, mert megváltoztatja a saját bemenetét:
 
