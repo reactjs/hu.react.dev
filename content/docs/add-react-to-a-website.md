@@ -165,7 +165,7 @@ Ez a megközelítés nem rossz tanulás és egyszerű demók készítése eseté
 
 ### JSX hozzáadása egy projekthez {#add-jsx-to-a-project}
 
-JSX-et hozzáadni egy projekthez nem igányel komplikált eszközöket, mint csomagolók vagy fejlesztői szerver. Alapjában véve a JSX hozzáadása **nagyon hasonló egy CSS preprocesszor hozzáadásához.** Az egyetlen követelmény a [Node.js](https://nodejs.org/) jelenléte a számítógépeden.
+JSX-et hozzáadni egy projekthez nem igényel komplikált eszközöket, mint csomagolók vagy fejlesztői szerver. Alapjában véve a JSX hozzáadása **nagyon hasonló egy CSS preprocesszor hozzáadásához.** Az egyetlen követelmény a [Node.js](https://nodejs.org/) jelenléte a számítógépeden.
 
 Menj a projekted mappájához a terminálban és másold be ezt a két parancsot:
 
@@ -197,6 +197,6 @@ Ne várj a parancs lefutására -- ez a parancs egy automatikus JSX figyelőt in
 
 Ha most készítesz egy `src/like_button.js` nevű fájlt ezzel a **[JSX kezdő kóddal](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, a figyelő egy előre feldolgozott `like_button.js` fájlt fog készíteni egyszerű JavaScript kóddal, ami a böngésző számára is olvasható. Amikor a JSX forrásfájlt szerkeszted, a konvertálás újra le fog futni automatikusan.
 
-Bónuszként ez modern JavaScript szintaxis funkciók - mint például osztályok - használatát is lehetővé teszi anélkül, hogy régi böngészőkben esetlegesen fellépő hibáktól kéne tartanod. Az imént használt eszköz neve Babel, és ha többet akarsz tanulni róla, nézd meg [annak dokumentációját](https://babeljs.io/docs/en/babel-cli/).
+Bónuszként ez modern JavaScript szintaxis funkciók - mint például osztályok - használatát is lehetővé teszi anélkül, hogy régi böngészőkben esetlegesen fellépő hibáktól kellene tartanod. Az imént használt eszköz neve Babel, és ha többet akarsz tanulni róla, nézd meg [annak dokumentációját](https://babeljs.io/docs/en/babel-cli/).
 
 Ha úgy érzed, hogy kezdesz megbarátkozni az építő eszközökkel és azt szeretnéd, hogy több munkát végezzenek el helyetted, [a következő fejezet](/docs/create-a-new-react-app.html) a legnépszerűbb és legkönnyebben megközelíthető eszközláncokat írja le. Ha még nem érzed magad készen -- azok a script címkék tökéletesen megfelelnek!
