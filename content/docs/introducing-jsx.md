@@ -44,7 +44,7 @@ ReactDOM.render(
 
 A JSX-be bármilyen érvényes [JavaScript kifejezést](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) beilleszthetsz kapcsos zárójelek közé. Például a `2 + 2`, `user.firstName`, vagy a `formatName(user)` mind érvényes JavaScript kifejezések.
 
-Az alábbi példában a `formatName (user)` JavaScript függvény meghívásának eredményét ágyazzuk be a `<h1>` elembe.
+Az alábbi példában a `formatName(user)` JavaScript függvény meghívásának eredményét ágyazzuk be a `<h1>` elembe.
 
 ```js{12}
 function formatName(user) {
