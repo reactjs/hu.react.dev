@@ -524,11 +524,7 @@ Vedd észre, hogy a `handleClick` metódusban meghívjuk a `.slice()` metódust 
 
 ### Megváltoztathatatlanság fontossága {#why-immutability-is-important}
 
-<<<<<<< HEAD
 Az előző kódpéldában azt tanácsoltuk, hogy a `.slice()` metódussal készítsünk egy `squares` tömb másolatot, hogy ne az eredeti tömböt módosítsuk. Most megvitatjuk a megváltoztathatatlanságot, és hogy miért fontos ennek megtanulása.
-=======
-In the previous code example, we suggested that you use the `.slice()` method to create a copy of the `squares` array to copy instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
->>>>>>> 446345cfba91b62546f46f88fad893937a826cdc
 
 Adatváltoztatásra két általános megközelítés létezik. Az első megközelítés az, hogy *közvetlenül megváltoztatjuk* az adat értékét. A második megközelítés lecserélni az adatot egy másolattal, ami tartalmazza a kívánt változtatásokat.
 
