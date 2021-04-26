@@ -299,7 +299,11 @@ Megjegyzendő, hogy ez a metódus *minden egyes* renderelődéskor meghívódik,
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
+<<<<<<< HEAD
 A `getSnapshotBeforeUpdate()` rögtön azelőtt hívódik meg, hogy a legutóbb renderelt kimenet el van mentve pl. a DOM-ba. Ez lehetővé teszi, hogy a komponens kiragadjon információkat a DOM-ból (pl. görgetési pozíció), mielőtt az potenciálisan megváltozna. Bármely érték, amit ez a metódus visszaad, a `componentDidUpdate()`-nek lesz átadva.
+=======
+`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to `componentDidUpdate()`.
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
 
 Ez a használati eset nem gyakori, de előfordulhat olyan felhasználói felületeken, mint például egy csevegőalkalmazás, aminek speciálisan kell kezelnie a görgetési pozíciót.
 
