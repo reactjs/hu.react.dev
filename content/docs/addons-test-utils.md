@@ -19,9 +19,17 @@ A `ReactTestUtils` egyszerűvé teszi a React komponensek tesztelését az álta
 
 > Megjegyzés:
 >
+<<<<<<< HEAD
 > Mi a [React Testing Library](https://testing-library.com/react) használatát ajánljuk, ami úgy lett tervezve, hogy olyan komponenstesztek írására bátorítson, amik a végfelhasználó cselekedeit tükrözi.
 >
 > Alternatívaként, az Airbnb is kiadott egy tesztelői segédeszközt [Enzyme](https://airbnb.io/enzyme/) néven, ami egyszerűbbé teszi a React komponenseid kimenetéhez állításokat írni, azt manipulálni és bejárni.
+=======
+> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
+> 
+> For React versions <= 16, the [Enzyme](https://airbnb.io/enzyme/) library makes it easy to assert, manipulate, and traverse your React Components' output.
+
+
+>>>>>>> e60bca04f3da690256ce019bd8907c2b368589ee
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
