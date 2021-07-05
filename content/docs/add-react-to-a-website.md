@@ -159,7 +159,11 @@ Ha a leggyorsabban akarod kipróbálni a JSX-et a projektedben, add hozzá ezt a
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+<<<<<<< HEAD
 Eztuán bármelyik `<script>` címkében használhatsz JSX-et, amihez hozzáadtad a `type="text/babel"` attribútumot. Itt egy letölthető [HTML példafájl JSX-el](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), játssz vele.
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 Ez a megközelítés nem rossz tanulás és egyszerű demók készítése esetén. Azonban lelassítja a weblapodat, és **alkalmatlanná teszi azt publikálásra**. Ha készen állsz a továbblépésre, távolítsd el a `<script>` címkét és a `type="text/babel"` attribútumot, amit az előbb hozzáadtál. Helyette a következő fejezetben beállítasz egy JSX preprocesszort, ami az összes `<script>` címkét automatikusan átalakítja.
 

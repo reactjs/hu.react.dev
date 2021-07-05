@@ -207,7 +207,11 @@ Egy jó ökölszabály, hogy a `map()`-en belül lévő minden elemnek rendelkez
 
 ### A kulcsoknak csak testvéreik között kell egyedinek lenniük {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 A kulcsoknak egyedinek kell lenniük testvéreik között. Azonban nem kell, hogy globálisan is egyediek legyenek. Ugyanazokat a kulcsokat használhatjuk két különböző tömb készítése esetén:
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
