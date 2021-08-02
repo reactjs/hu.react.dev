@@ -226,7 +226,7 @@ function FriendStatus(props) {
 
 **Miért tértünk vissza egy függvénnyel a hatásból?** Ez az optimális takarítási mechanizmus a hatásokban. Minden hatás visszaadhat egy takarító függvényt. Így a fel- és leiratkozáshoz használt kódot egy helyen tárolhatjuk. Ezek ugyanahhoz a hatáshoz tartoznak!
 
-**Pontosan mikor takarít fel a React egy hatást?** A React akkor takarít, amikor a komponens leválasztódik. Azonban, ahogy korábban megtanultuk, a hatások minden renderelésről lefutnak, és nem csak egyszer. Emiatt a React *minden egyes* rendereléskor kitakarít az előző renderelés után, mielőtt az új hatásokat futtatja. Később megbeszéljük, ez [miért is segít elkerül a bugokat](#explanation-why-effects-run-on-each-update) és [hogyan tiltsuk le ezt a viselkedést a teljesítményproblémák elkerülése végett](#tip-optimizing-performance-by-skipping-effects).
+**Pontosan mikor takarít fel a React egy hatást?** A React akkor takarít, amikor a komponens leválasztódik. Azonban, ahogy korábban megtanultuk, a hatások minden renderelésről lefutnak, és nem csak egyszer. Emiatt a React *minden egyes* rendereléskor kitakarít az előző renderelés után, mielőtt az új hatásokat futtatja. Később megbeszéljük, ez [miért is segít elkerülni a bugokat](#explanation-why-effects-run-on-each-update) és [hogyan tiltsuk le ezt a viselkedést a teljesítményproblémák elkerülése végett](#tip-optimizing-performance-by-skipping-effects).
 
 >Megjegyzés
 >
