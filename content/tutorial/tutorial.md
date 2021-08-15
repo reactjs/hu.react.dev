@@ -235,7 +235,11 @@ Először is változtasd meg a button címkét a `render()` metódus visszatér�
 class Square extends React.Component {
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={function() { alert('kattintás'); }}>
+=======
+      <button className="square" onClick={function() { console.log('click'); }}>
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
         {this.props.value}
       </button>
     );
@@ -243,7 +247,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 >Megjegyzés
 >
@@ -253,7 +261,11 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >class Square extends React.Component {
 >  render() {
 >    return (
+<<<<<<< HEAD
 >      <button className="square" onClick={() => alert('kattintás')}>
+=======
+>      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +273,11 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >}
 >```
 >
+<<<<<<< HEAD
 >Vedd észre, hogy az `onClick={() => alert('kattintás')}` segítségével *egy függvényt* küldünk le propként `onClick` néven. A React csak kattintás után fogja meghívni ezt a függvényt. Gyakori hiba csak ennyit írni `onClick={alert('kattintás')}`, és elfelejteni a `() =>` részt. Ez meghívná a függvényt a komponens minden újrarenderelésénél.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 Következő lépésként azt próbáljuk elérni, hogy a Square komponens "emlékezzen" arra, hogy rá lett kattintva, és töltse ki magát egy "X"-szel. Ahhoz, hogy komponensek "emlékezni" tudjanak, **state**-t (állapotot) használnak.
 
@@ -280,7 +296,11 @@ class Square extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={() => alert('kattintás')}>
+=======
+      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
         {this.props.value}
       </button>
     );

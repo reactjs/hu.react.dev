@@ -123,7 +123,11 @@ Ha nincs kódcsökkentő lépésed a scriptekhez, [itt egy módja, hogyan tudod 
 
 ## Választható: Próbáld ki a Reactet JSX-el {#optional-try-react-with-jsx}
 
+<<<<<<< HEAD
 A fenti példákban csak a böngészők által alapból támogatott funkciókra hagyatkoztunk. Ezért használtunk egy JavaScript függvény meghívást, hogy közöljük a Reacttel, mit jelenítsen meg:
+=======
+In the examples above, we only relied on features that are natively supported by browsers. This is why we used a JavaScript function call to tell React what to display:
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 ```js
 const e = React.createElement;
@@ -159,7 +163,11 @@ Ha a leggyorsabban akarod kipróbálni a JSX-et a projektedben, add hozzá ezt a
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+<<<<<<< HEAD
 Eztuán bármelyik `<script>` címkében használhatsz JSX-et, amihez hozzáadtad a `type="text/babel"` attribútumot. Itt egy letölthető [HTML példafájl JSX-el](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), játssz vele.
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 Ez a megközelítés nem rossz tanulás és egyszerű demók készítése esetén. Azonban lelassítja a weblapodat, és **alkalmatlanná teszi azt publikálásra**. Ha készen állsz a továbblépésre, távolítsd el a `<script>` címkét és a `type="text/babel"` attribútumot, amit az előbb hozzáadtál. Helyette a következő fejezetben beállítasz egy JSX preprocesszort, ami az összes `<script>` címkét automatikusan átalakítja.
 

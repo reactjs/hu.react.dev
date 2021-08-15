@@ -40,7 +40,11 @@ A React egy JavaScript könyvtár, ezért feltételezzük, hogy van alapvető is
 
 >Megjegyzés
 >
+<<<<<<< HEAD
 >Ez az útmutató esetenként újabb JavaScript szintaxist használ a példákban. Ha az elmúlt években nem foglalkoztál a JavaScript nyelvvel, [ez a három pont](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) segíteni fog eligazodni.
+=======
+>This guide occasionally uses some newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 
 ## Lássunk neki! {#lets-get-started}
