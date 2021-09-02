@@ -39,9 +39,15 @@ Honnan tudhatod, hogy miből legyen komponens? Használhatod ugyanazt a módszer
 
 Gyakran kell JSON adatokat megjeleníteni a felhasználónak. Mint ahogyan azt te is tapasztalni fogod, ha a modell helyesen van felépítve, akkor a UI (és így a komponensek struktúrája) szépen le fogja azt képezni. Ez annak köszönhető, hogy általában a UI és az adatmodell is ugyanazon *információs architektúra* alapján készül. Különítsd el a UI komponenseidet úgy, hogy minden komponens az adatmodell egy-egy darabjára illeszkedjen.
 
+<<<<<<< HEAD
 ![Komponens diagram](../images/blog/thinking-in-react-components.png)
 
 Amint látod, az app így öt komponensből áll. Dőlt betűvel emeltük ki az egyes komponensek által képviselt adatokat.
+=======
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
+
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
+>>>>>>> a11c2534062bd79cc1e6e34db0e149f928df35bb
 
   1. **`FilterableProductTable` (narancs):** magába foglalja a teljes példánkat
   2. **`SearchBar` (kék):** ez fogadja az *adatbevitelt*
@@ -84,7 +90,11 @@ Ahhoz, hogy a UI interaktív legyen, képesnek kell lenned változásokat kivál
 
 A helyes felépítéshez először a megváltoztatható állapotok minimális halmazára van szükség. A kulcs itt, hogy [Ne ismételd önmagad](https://hu.wikipedia.org/wiki/Ne_ism%C3%A9teld_%C3%B6nmagad). Találd ki az abszolút minimális reprezentációt és számíttass ki minden mást menet közben igény szerint. Ha például egy TODO listát készítesz, legyen egy tömb a teendőkről, de nem kell egy külön változó a darabszámnak. Inkább mikor meg kell jeleníteni az elemek számát csak használd a *length*-et a tömbödből.
 
+<<<<<<< HEAD
 Vegyük végig a példánkban szereplő adatokat:
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> a11c2534062bd79cc1e6e34db0e149f928df35bb
 
   * Az eredeti terméklista
   * A szöveg amit a felhasználó megadott a keresésben

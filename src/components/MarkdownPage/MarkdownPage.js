@@ -97,8 +97,13 @@ const MarkdownPage = ({
                 <div css={{marginTop: 15}}>
                   {date}{' '}
                   {hasAuthors && (
+<<<<<<< HEAD
                     <span>
                       szerzők{' '}
+=======
+                    <span css={{lineHeight: 1.75}}>
+                      by{' '}
+>>>>>>> a11c2534062bd79cc1e6e34db0e149f928df35bb
                       {toCommaSeparatedList(authors, author => (
                         <a
                           css={sharedStyles.link}
@@ -132,8 +137,13 @@ const MarkdownPage = ({
                     </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
+<<<<<<< HEAD
                       href={`https://github.com/reactjs/hu.reactjs.org/tree/master/${markdownRemark.fields.path}`}>
                       Az oldal szerkesztése
+=======
+                      href={`https://github.com/reactjs/reactjs.org/tree/main/${markdownRemark.fields.path}`}>
+                      Edit this page
+>>>>>>> a11c2534062bd79cc1e6e34db0e149f928df35bb
                     </a>
                   </div>
                 )}
