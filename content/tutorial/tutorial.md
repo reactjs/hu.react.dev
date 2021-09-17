@@ -235,7 +235,11 @@ Először is változtasd meg a button címkét a `render()` metódus visszatér�
 class Square extends React.Component {
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={function() { alert('kattintás'); }}>
+=======
+      <button className="square" onClick={function() { console.log('click'); }}>
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
         {this.props.value}
       </button>
     );
@@ -243,7 +247,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 >Megjegyzés
 >
@@ -253,7 +261,11 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >class Square extends React.Component {
 >  render() {
 >    return (
+<<<<<<< HEAD
 >      <button className="square" onClick={() => alert('kattintás')}>
+=======
+>      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +273,11 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >}
 >```
 >
+<<<<<<< HEAD
 >Vedd észre, hogy az `onClick={() => alert('kattintás')}` segítségével *egy függvényt* küldünk le propként `onClick` néven. A React csak kattintás után fogja meghívni ezt a függvényt. Gyakori hiba csak ennyit írni `onClick={alert('kattintás')}`, és elfelejteni a `() =>` részt. Ez meghívná a függvényt a komponens minden újrarenderelésénél.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 Következő lépésként azt próbáljuk elérni, hogy a Square komponens "emlékezzen" arra, hogy rá lett kattintva, és töltse ki magát egy "X"-szel. Ahhoz, hogy komponensek "emlékezni" tudjanak, **state**-t (állapotot) használnak.
 
@@ -280,7 +296,11 @@ class Square extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={() => alert('kattintás')}>
+=======
+      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
         {this.props.value}
       </button>
     );
@@ -524,7 +544,11 @@ Vedd észre, hogy a `handleClick` metódusban meghívjuk a `.slice()` metódust 
 
 ### Megváltoztathatatlanság fontossága {#why-immutability-is-important}
 
+<<<<<<< HEAD
 Az előző kódpéldában azt tanácsoltuk, hogy a `.slice()` metódussal készítsünk egy `squares` tömb másolatot, hogy ne az eredeti tömböt módosítsuk. Most megvitatjuk a megváltoztathatatlanságot, és hogy miért fontos ennek megtanulása.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 Adatváltoztatásra két általános megközelítés létezik. Az első megközelítés az, hogy *közvetlenül megváltoztatjuk* az adat értékét. A második megközelítés lecserélni az adatot egy másolattal, ami tartalmazza a kívánt változtatásokat.
 
