@@ -9,7 +9,11 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<<<<<<< HEAD
 A HTML űrlap elemek kissé máshogy működnek a többi DOM elemhez képest Reactben, mert az űrlap elemek alapvetően egy saját belső állapotot tartanak nyilván. Például ez az űrlap szimpla HTML-ben egy nevet fogad be: 
+=======
+HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+>>>>>>> 78f78a664fcfaa2e5d9650d9662a67a8ab028661
 
 ```html
 <form>
@@ -277,7 +281,11 @@ Valamint, mivel a `setState()` automatikusan [összefésüli a részleges állap
 
 ## Kontrollált bemenet null értéke {#controlled-input-null-value}
 
+<<<<<<< HEAD
 A `value` megadása egy [kontrollált komponensen](/docs/forms.html#controlled-components) megakadályozza a felhasználót abban, hogy az engedélyünk nélkül változtassa meg a beviteli adatokat. Ha megadtál egy `value`-t, de a bemenet mégis szerkeszthető, valószínűleg véletlenül `undefined` vagy `null`-ra állítottad a `value`-t.
+=======
+Specifying the `value` prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+>>>>>>> 78f78a664fcfaa2e5d9650d9662a67a8ab028661
 
 A következő kódrészlet ezt demonstrálja. (A bemenet eleinte nem szerkeszthető, de egy rövid késleltetés után szerkeszthetővé válik.)
 

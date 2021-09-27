@@ -48,9 +48,15 @@ Ha az opcionális visszahívó függvény meg van adva, ez akkor lesz meghívva,
 >
 > A `ReactDOM.render()` nem módosítja a konténer csomópontot (csak a konténer gyermekeit). Egy komponenst lehetséges egy DOM csomópontba úgy beilleszteni, hogy az ne módosítsa a meglévő gyermekeket.
 >
+<<<<<<< HEAD
 > A `ReactDOM.render()` jelenleg egy referenciát ad vissza a gyökér `ReactComponent` példányhoz. Azonban ennek a visszaadott értéknek a használata örökölt/elavult viselkedés
 > és a használata elkerülendő, mivel a jövőbeli React verziók néhány esetben aszinkron módon renderelhetnek komponenseket. Ha szükséged van egy referenciára a gyökér `ReactComponent` példányhoz, a preferált megoldás ha egy 
 > [visszahívó ref](/docs/more-about-refs.html#the-ref-callback-attribute)-et kapcsolsz a gyökérelemhez.
+=======
+> `ReactDOM.render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
+> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
+> [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
+>>>>>>> 78f78a664fcfaa2e5d9650d9662a67a8ab028661
 >
 > A `ReactDOM.render()` használata szerver oldali renderelés hidrálásához elavultnak számít és a React 17-ben el lesz távolítva. Használd inkább a [`hydrate()`](#hydrate) metódust.
 
