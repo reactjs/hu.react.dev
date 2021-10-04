@@ -235,7 +235,11 @@ Először is változtasd meg a button címkét a `render()` metódus visszatér�
 class Square extends React.Component {
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={function() { alert('kattintás'); }}>
+=======
+      <button className="square" onClick={function() { console.log('click'); }}>
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
         {this.props.value}
       </button>
     );
@@ -243,7 +247,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 >Megjegyzés
 >
@@ -253,7 +261,11 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >class Square extends React.Component {
 >  render() {
 >    return (
+<<<<<<< HEAD
 >      <button className="square" onClick={() => alert('kattintás')}>
+=======
+>      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +273,11 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >}
 >```
 >
+<<<<<<< HEAD
 >Vedd észre, hogy az `onClick={() => alert('kattintás')}` segítségével *egy függvényt* küldünk le propként `onClick` néven. A React csak kattintás után fogja meghívni ezt a függvényt. Gyakori hiba csak ennyit írni `onClick={alert('kattintás')}`, és elfelejteni a `() =>` részt. Ez meghívná a függvényt a komponens minden újrarenderelésénél.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 Következő lépésként azt próbáljuk elérni, hogy a Square komponens "emlékezzen" arra, hogy rá lett kattintva, és töltse ki magát egy "X"-szel. Ahhoz, hogy komponensek "emlékezni" tudjanak, **state**-t (állapotot) használnak.
 
@@ -280,7 +296,11 @@ class Square extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={() => alert('kattintás')}>
+=======
+      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
         {this.props.value}
       </button>
     );
@@ -451,11 +471,19 @@ class Square extends React.Component {
 
 Amikor a Square komponensre rákattintanak, az `onClick` függvény meg lesz hívva, amit a Board komponens szolgáltat. Íme egy összefoglaló, hogy ez hogyan is lehetséges:
 
+<<<<<<< HEAD
 1. Az `onClick` prop a beépített DOM `<button>` komponensben közli a Reacttel, hogy állítson fel egy eseményfigyelőt kattintásra.
 2. Amikor a gombra kattintanak, a React meghívja az `onClick` eseményfigyelőt, ami a Square komponens `render()` metódusában definiálva lett.
 3. Ez az eseményfigyelő meghívja a `this.props.onClick()` függvényt. A Square `onClick` propja a Board komponensben lett definiálva.
 4. Mivel a Board leküldte az `onClick={() => this.handleClick(i)}` propot a Square komponensnek, a Square meghívja a `this.handleClick(i)` függvényt, ha rákattintanak.
 5. Mivel a `handleClick()` metódust még nem definiáltuk, a kódunk összeomlik. Ha most kattintasz egy négyzetre, egy piros hibát kell látnod a képernyőn, ami valami olyat mond, hogy "this.handleClick is not a function", azaz "a this.handleClick nem függvény".
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 >Megjegyzés
 >
@@ -524,7 +552,11 @@ Vedd észre, hogy a `handleClick` metódusban meghívjuk a `.slice()` metódust 
 
 ### Megváltoztathatatlanság fontossága {#why-immutability-is-important}
 
+<<<<<<< HEAD
 Az előző kódpéldában azt tanácsoltuk, hogy a `.slice()` metódussal készítsünk egy `squares` tömb másolatot, hogy ne az eredeti tömböt módosítsuk. Most megvitatjuk a megváltoztathatatlanságot, és hogy miért fontos ennek megtanulása.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 Adatváltoztatásra két általános megközelítés létezik. Az első megközelítés az, hogy *közvetlenül megváltoztatjuk* az adat értékét. A második megközelítés lecserélni az adatot egy másolattal, ami tartalmazza a kívánt változtatásokat.
 
