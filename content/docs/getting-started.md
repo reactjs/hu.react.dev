@@ -38,7 +38,11 @@ A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használ
 
 Az Online Játszótereken lehetőséged van kipróbálni a React funkcionalitásait. Próbáld ki a Helló Világ sablont [CodePenen](codepen://hello-world), [CodeSandboxon](https://codesandbox.io/s/new), vagy [Stackblitzen](https://stackblitz.com/fork/react).
 
+<<<<<<< HEAD
 Ha a saját kódszerkesztődet használnád, [letöltheted ezt a HTML fájlt](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), szerkesztheted és megnyithatod a lokális böngésződben. Ez egy lassú kód transzformációt tartalmaz, így ezt csak a példakód futtatásához ajánljuk.
+=======
+If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ### React hozzáadása egy weboldalhoz {#add-react-to-a-website}
 
@@ -115,7 +119,11 @@ A React csapat közleményeinek a [React blog](/blog/) a hivatalos forrása. Min
 
 Twitteren is követheted a [@reactjs felhasználót](https://twitter.com/reactjs), de akkor sem maradsz le semmiről, ha csak a blogot olvasod.
 
+<<<<<<< HEAD
 Nem minden React kiadás érdemli meg a saját blog bejegyzését, de minden kiadásnak van egy saját részletes változási jegyzéke [`CHANGELOG.md` fájl a React repóban](https://github.com/facebook/react/blob/master/CHANGELOG.md), valamint a [Kiadások](https://github.com/facebook/react/releases) oldalon.
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/main/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ## Verzió kezelt dokumentáció {#versioned-documentation}
 

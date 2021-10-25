@@ -176,12 +176,16 @@ A [JSX](/docs/introducing-jsx.html)-ben írt kód át lesz konvertálva, hogy az
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
 
+<<<<<<< HEAD
 Egy `element`-et alapul véve egy új React elemet klónoz és ad vissza. A keletkezett elem rendelkezni fog az eredeti elem és az új propok sekély összefonásával. Az új gyermekek átveszik a meglévő gyermekek helyét. A `key` és `ref` attribútumok meg lesznek tartva az eredeti elemből.
+=======
+Clone and return a new React element using `element` as the starting point. `config` should contain all new props, `key`, or `ref`. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved if no `key` and `ref` present in the `config`.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 A `React.cloneElement()` majdnem ekvivalens ezzel:
 
@@ -189,7 +193,11 @@ A `React.cloneElement()` majdnem ekvivalens ezzel:
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
+<<<<<<< HEAD
 De a `ref` attribútumokat is megőrzi. Ez azt jelenti, hogy ha egy olyan gyermeket kapsz, ami rendelkezik `ref`-el, akkor azt nem fogod véletlenül sem ellopni az ősöktől. Az új elemhez ugyanaz a `ref` lesz hozzákapcsolva.
+=======
+However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element. The new `ref` or `key` will replace old ones if present.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 Ez az API az elavult `React.addons.cloneWithProps()` leváltására lett létrehozva.
 
