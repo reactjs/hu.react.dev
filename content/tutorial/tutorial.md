@@ -235,7 +235,11 @@ Először is változtasd meg a button címkét a `render()` metódus visszatér�
 class Square extends React.Component {
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={function() { alert('kattintás'); }}>
+=======
+      <button className="square" onClick={function() { console.log('click'); }}>
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
         {this.props.value}
       </button>
     );
@@ -243,7 +247,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 >Megjegyzés
 >
@@ -253,7 +261,11 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >class Square extends React.Component {
 >  render() {
 >    return (
+<<<<<<< HEAD
 >      <button className="square" onClick={() => alert('kattintás')}>
+=======
+>      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +273,11 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >}
 >```
 >
+<<<<<<< HEAD
 >Vedd észre, hogy az `onClick={() => alert('kattintás')}` segítségével *egy függvényt* küldünk le propként `onClick` néven. A React csak kattintás után fogja meghívni ezt a függvényt. Gyakori hiba csak ennyit írni `onClick={alert('kattintás')}`, és elfelejteni a `() =>` részt. Ez meghívná a függvényt a komponens minden újrarenderelésénél.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 Következő lépésként azt próbáljuk elérni, hogy a Square komponens "emlékezzen" arra, hogy rá lett kattintva, és töltse ki magát egy "X"-szel. Ahhoz, hogy komponensek "emlékezni" tudjanak, **state**-t (állapotot) használnak.
 
@@ -280,7 +296,11 @@ class Square extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={() => alert('kattintás')}>
+=======
+      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
         {this.props.value}
       </button>
     );
@@ -451,11 +471,19 @@ class Square extends React.Component {
 
 Amikor a Square komponensre rákattintanak, az `onClick` függvény meg lesz hívva, amit a Board komponens szolgáltat. Íme egy összefoglaló, hogy ez hogyan is lehetséges:
 
+<<<<<<< HEAD
 1. Az `onClick` prop a beépített DOM `<button>` komponensben közli a Reacttel, hogy állítson fel egy eseményfigyelőt kattintásra.
 2. Amikor a gombra kattintanak, a React meghívja az `onClick` eseményfigyelőt, ami a Square komponens `render()` metódusában definiálva lett.
 3. Ez az eseményfigyelő meghívja a `this.props.onClick()` függvényt. A Square `onClick` propja a Board komponensben lett definiálva.
 4. Mivel a Board leküldte az `onClick={() => this.handleClick(i)}` propot a Square komponensnek, a Square meghívja a `this.handleClick(i)` függvényt, ha rákattintanak.
 5. Mivel a `handleClick()` metódust még nem definiáltuk, a kódunk összeomlik. Ha most kattintasz egy négyzetre, egy piros hibát kell látnod a képernyőn, ami valami olyat mond, hogy "this.handleClick is not a function", azaz "a this.handleClick nem függvény".
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 >Megjegyzés
 >
@@ -524,7 +552,11 @@ Vedd észre, hogy a `handleClick` metódusban meghívjuk a `.slice()` metódust 
 
 ### Megváltoztathatatlanság fontossága {#why-immutability-is-important}
 
+<<<<<<< HEAD
 Az előző kódpéldában azt tanácsoltuk, hogy a `.slice()` metódussal készítsünk egy `squares` tömb másolatot, hogy ne az eredeti tömböt módosítsuk. Most megvitatjuk a megváltoztathatatlanságot, és hogy miért fontos ennek megtanulása.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 Adatváltoztatásra két általános megközelítés létezik. Az első megközelítés az, hogy *közvetlenül megváltoztatjuk* az adat értékét. A második megközelítés lecserélni az adatot egy másolattal, ami tartalmazza a kívánt változtatásokat.
 
@@ -1046,7 +1078,13 @@ Most pedig `képezzük le` a `history`-t a Game komponens `render` metódusában
 
 **[Nézd meg a teljes kódot ezen a ponton](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 A tic-tac-toe játék lépéstörténetében minden lépéshez létrehozunk egy `<li>`-t, ami tartalmaz egy `<button>` gombot. A gomb rendelkezik egy `onClick` kezelővel, ami meghív egy `this.jumpTo()` metódust. A `jumpTo()` metódust még nem implementáltuk. Egyenlőre egy listát kell látnunk a lépésekről, amik már megtörténtek a játék során, és egy figyelmeztetést a fejlesztői eszközözök konzolban, ami azt mondja:
+=======
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
+
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
@@ -1147,7 +1185,13 @@ Ezután definiáljuk a `jumpTo` metódust a Game komponensben, hogy frissíteni 
   }
 ```
 
+<<<<<<< HEAD
 Most pedig egy pár változtatást eszközölünk a Game `handleClick` metódusában, egy négyzetre kattintáskor lesz meghívva.
+=======
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as that is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+
+We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
 
 A hozzáadott `stepNumber` állapot most már tükrözi a felhasználó által látott lépést. Ha lépünk egyet, frissítenünk kell a `stepNumber`-t azzal, hogy hozzáadjuk azt a `this.setState` argumentumához: `stepNumber: history.length`. Ez azt biztosítja, hogy ne ragadjunk le mindig ugyanannak a lépésnek a mutatásával minden új lépés után.
 
