@@ -98,7 +98,11 @@ Tisztában vagyunk vele, hogy a React fejlesztők termékek leszállítására f
 
 Azt is megértjük, hogy a léc nagyon magas egy új React primitív hozzáadásakor. Az érdeklődő olvasóknak készítettünk egy [részletes RFC-t](https://github.com/reactjs/rfcs/pull/68), ami mélyebbre menően foglalkozik a motivációval és egy extra perspektívát ad a specifikus tervezési döntésekről és az Horgok ihletőiről.
 
+<<<<<<< HEAD
 **Alapvető, hogy a Horgok együtt tudnak működni a meglévő kódoddal, hogy fokozatosan tudd őket adoptálni.** Senki nem sürget a Horgokra migrálással. Ajánljuk a "nagy átírások" elkerülését, főleg meglévő, bonyolult osztálykomponensek esetében. Hogy "Horgokban kezdj el látni", egy új gondolkodásmódot igényel. Tapasztalataink szerint a legjobb mód a Horgok használatára új, és nem kritikus komponensek, de győződj meg róla, hogy a csapatodban mindenki komfortosan érzi magát velük. A Horgok kipróbálása után nyugodtan [küldj nekünk visszajelzést](https://github.com/facebook/react/issues/new), legyen az pozitív, vagy negatív.
+=======
+**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mind shift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 A Horgokkal azt szeretnénk elérni, hogy az osztályok minden jelenleg elérhető használati módját lefedjék, de **az előrelátható jövőben folytatni fogjuk az osztályok támogatását is.** A Facebooknál több tízezer komponenst írtunk osztályokban, és egyáltalán nincs tervben ezek átírása. Ehelyett a Horgokat csak új kódban használjuk közvetlenül osztályok mellett.
 
