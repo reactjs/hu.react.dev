@@ -324,6 +324,12 @@ Az állapot felemelése több "sablon kód" írását eredményezi, mint a kéti
 
 Ha valami prop-ból és állapotból is eredeztethető, akkor annak valószínűleg nem az állapotban van a helye. Például ahelyett hogy mind a `celsiusValue`-t és `fahrenheitValue`-t is eltárolnánk, elég ha csak a legutoljára szerkesztett `temperature` és `scale` értékeket tároljuk. A másik input értéke mindig kiszámítható ezekből a `render()`metódusban. Ez lehetővé teszi számunkra a másik mező kiürítését vagy értékének a kerekítését a felhasználói input pontosságának elvesztése nélkül.
 
+<<<<<<< HEAD
 Ha valami hibát észlelsz a kezelőfelületben, használhatod a [React Fejlesztői Eszközöket](https://github.com/facebook/react/tree/master/packages/react-devtools) a prop-ok vizsgálatához, valamint egészen addig mozoghatsz felfelé a komponensfában, amíg meg nem találod az állapot frissítéséért felelős komponenst. Ez elvezethet a hibák forrásához:
+=======
+When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+
+<img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
+>>>>>>> b9c33a05520ddc728f15c4eb19a343213309f59f
 
 <img src="../images/docs/react-devtools-state.gif" alt="Állapot monitorozása a React Fejlesztői Eszközökben" max-width="100%" height="100%">
