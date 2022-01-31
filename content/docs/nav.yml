@@ -132,6 +132,7 @@
     - id: testing-recipes
       title: Tesztelői receptek
     - id: testing-environments
+<<<<<<< HEAD
       title: Tesztelői környezetek
 - title: Konkurens mód (kísérleti fázis)
   isOrdered: true
@@ -147,6 +148,10 @@
     - id: concurrent-mode-reference
       title: Konkurens mód API referencia
 - title: Közreműködés
+=======
+      title: Testing Environments
+- title: Contributing
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
   items:
   - id: how-to-contribute
     title: Hogyan segíthetsz
