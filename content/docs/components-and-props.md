@@ -76,7 +76,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/rendering-a-component)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 Foglaljuk össze mi történik ebben a példában:
 
@@ -118,7 +118,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/composing-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 Tipikusan az új React alkalmazásoknak van egy `App` komponensük a legfelsőbb szinten. Azonban ha egy meglévő alkalmazásba integrálod a Reactet, dolgozhatsz lentről felfelé fokozatosan haladva, kezdve kis komponensekkel, mint egy `Button` amíg el nem éred a nézet hierarchia csúcsát.
 
@@ -152,7 +152,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 Ez fogad egy `author` (objektumot), `text` (karakterláncot), és `date` (dátumot) props-ként, és egy kommentet ír le egy közösségi média weblapon.
 
@@ -231,7 +231,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components-continued)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 A komponensek kivonása elsőre morgós munkának tűnhet, de nagyobb alkalmazások esetén gyorsan megtérül, ha egy újrafelhasználható komponenspalettával rendelkezünk. Egy jó ökölszabály, ha a felhasználói kezelőfelületed valamelyik része többször fel van használva (`Button`, `Panel`, `Avatar`), vagy elég bonyolult saját magában is (`App`, `FeedStory`, `Comment`), akkor jó jelölt lehet arra, hogy egy külön komponensbe emeljük ki.
 

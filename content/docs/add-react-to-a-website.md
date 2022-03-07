@@ -123,7 +123,11 @@ Ha nincs kódcsökkentő lépésed a scriptekhez, [itt egy módja, hogyan tudod 
 
 ## Választható: Próbáld ki a Reactet JSX-el {#optional-try-react-with-jsx}
 
+<<<<<<< HEAD
 A fenti példákban csak a böngészők által alapból támogatott funkciókra hagyatkoztunk. Ezért használtunk egy JavaScript függvény meghívást, hogy közöljük a Reacttel, mit jelenítsen meg:
+=======
+In the examples above, we only relied on features that are natively supported by browsers. This is why we used a JavaScript function call to tell React what to display:
+>>>>>>> a08e1fd4b574a4d2d55e292af9eb01d55a526303
 
 ```js
 const e = React.createElement;
@@ -149,7 +153,11 @@ return (
 
 Ez a két kódrészlet ekvivalens egymással. Bár **a JSX [teljesen szabadon választható](/docs/react-without-jsx.html)**, sok ember hasznosnak tartja felhasználói felület kód írásához -- mind a Reacttel és más könyvtárak esetében is.
 
+<<<<<<< HEAD
 A JSX-el [ennek az online konverternek](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3) a segítségével játszadozhatsz egy kicsit.
+=======
+You can play with JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.15.7).
+>>>>>>> a08e1fd4b574a4d2d55e292af9eb01d55a526303
 
 ### Próbáld ki a JSX-et gyorsan {#quickly-try-jsx}
 
@@ -159,7 +167,11 @@ Ha a leggyorsabban akarod kipróbálni a JSX-et a projektedben, add hozzá ezt a
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+<<<<<<< HEAD
 Eztuán bármelyik `<script>` címkében használhatsz JSX-et, amihez hozzáadtad a `type="text/babel"` attribútumot. Itt egy letölthető [HTML példafájl JSX-el](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), játssz vele.
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+>>>>>>> a08e1fd4b574a4d2d55e292af9eb01d55a526303
 
 Ez a megközelítés nem rossz tanulás és egyszerű demók készítése esetén. Azonban lelassítja a weblapodat, és **alkalmatlanná teszi azt publikálásra**. Ha készen állsz a továbblépésre, távolítsd el a `<script>` címkét és a `type="text/babel"` attribútumot, amit az előbb hozzáadtál. Helyette a következő fejezetben beállítasz egy JSX preprocesszort, ami az összes `<script>` címkét automatikusan átalakítja.
 
