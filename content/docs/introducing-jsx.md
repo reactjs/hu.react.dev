@@ -68,7 +68,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://introducing-jsx)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
 
 A JSX-et több sorra bontottuk az olvashatóság érdekében. Bár ez nem kötelező, de ha így csinálod akkor azt javasoljuk, hogy tedd zárójelek közé, hogy elkerüld az [automatikus pontosvessző beillesztésének](https://stackoverflow.com/q/2846283) buktatóit.
 
@@ -92,7 +92,7 @@ function getGreeting(user) {
 Idézőjelek segítségével megadhatsz karakterláncokat attribútumként:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 Kapcsos zárójelekkel beágyazhatsz JavaScript kifejezést egy attribútumba:
