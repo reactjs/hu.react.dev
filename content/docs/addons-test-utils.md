@@ -142,7 +142,11 @@ Adj át egy leutánzott (mocked) komponensmodult ennek a metódusnak, hogy azt k
 
 > Megjegyzés:
 >
+<<<<<<< HEAD
 > A `mockComponent()` egy elavult API. Helyette a [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) használatát ajánljuk.
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) instead.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 * * *
 
