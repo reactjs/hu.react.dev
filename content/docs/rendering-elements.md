@@ -38,7 +38,7 @@ Egy React elem gyökér DOM csomópontba való rendereléséhez, add meg mindket
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 Ez egy "Helló, világ"-ot jelenít meg az oldalon.
 
@@ -52,7 +52,7 @@ Vedd ezt a ketyegő óra példát:
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
 Ez minden másodpercben meghívja a [`ReactDOM.render()`](/docs/react-dom.html#render)-t a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) visszahívó metódusából.
 
@@ -66,7 +66,11 @@ Ez minden másodpercben meghívja a [`ReactDOM.render()`](/docs/react-dom.html#r
 
 A React DOM összehasonlítja az elemeket és azok gyermekeit a korábbiakkal, és csak azokat a változtatásokat eszközöli a DOM-on, amik a DOM kívánt állapotának eléréséhez szükségesek.
 
+<<<<<<< HEAD
 Ezt megerősítheted a [legutolsó példa](codepen://rendering-elements/update-rendered-element) vizsgálatával a böngészői eszközökkel:
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 ![A DOM vizsgáló fokozatos frissítést mutat](../images/docs/granular-dom-updates.gif)
 
