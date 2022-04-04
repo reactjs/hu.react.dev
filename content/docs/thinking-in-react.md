@@ -39,9 +39,15 @@ Honnan tudhatod, hogy miből legyen komponens? Használhatod ugyanazt a módszer
 
 Gyakran kell JSON adatokat megjeleníteni a felhasználónak. Mint ahogyan azt te is tapasztalni fogod, ha a modell helyesen van felépítve, akkor a UI (és így a komponensek struktúrája) szépen le fogja azt képezni. Ez annak köszönhető, hogy általában a UI és az adatmodell is ugyanazon *információs architektúra* alapján készül. Különítsd el a UI komponenseidet úgy, hogy minden komponens az adatmodell egy-egy darabjára illeszkedjen.
 
+<<<<<<< HEAD
 ![Komponens diagram](../images/blog/thinking-in-react-components.png)
 
 Amint látod, az app így öt komponensből áll. Dőlt betűvel emeltük ki az egyes komponensek által képviselt adatokat.
+=======
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
+
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
   1. **`FilterableProductTable` (narancs):** magába foglalja a teljes példánkat
   2. **`SearchBar` (kék):** ez fogadja az *adatbevitelt*
@@ -70,9 +76,15 @@ Az alkalmazás statikus változatának építéséhez - ami az adatmodellt rende
 
 Építkezhetsz felülről lefelé vagy fordítva. Vagyis kezdheted a hierarchiában legmagasabban lévő (esetünkben ez a `FilterableProductTable`) komponenssel vagy alulról is (`ProductRow`). Egyszerűbb példáknál általában egyszerűbb fentről kezdeni, nagyobb projekteknél könnyebb, ha alulról felfelé haladsz, menet közben teszteket is készítve.
 
+<<<<<<< HEAD
 Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható komponensekből, melyek renderelik az adatmodellt. A komponenseknek csak `render()` metódusuk van, mivel ez még mindig a statikus változat. A hierarchia tetején csücsülő komponens (`FilterableProductTable`) egy propként kapja meg az adatmodellt. Ha változtatsz valamit az adatmodellen és újra meghívod a `ReactDOM.render()` metódust a UI frissülni fog. Láthatod, hogyan frissül a UI, hol változik. A React **egyirányú adatáramlása** (*one-way data flow* vagy *one-way binding*) mindent modulárisan és gyorsan kezel.
 
 Fordulj a [React dokumentációhoz](/docs/) ha segítségre van szükséged a fenti lépés elvégzéséhez!
+=======
+At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `root.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+
+Refer to the [React docs](/docs/getting-started.html) if you need help executing this step.
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 ### Egy kis közjáték: props vagy state {#a-brief-interlude-props-vs-state}
 
@@ -84,7 +96,11 @@ Ahhoz, hogy a UI interaktív legyen, képesnek kell lenned változásokat kivál
 
 A helyes felépítéshez először a megváltoztatható állapotok minimális halmazára van szükség. A kulcs itt, hogy [Ne ismételd önmagad](https://hu.wikipedia.org/wiki/Ne_ism%C3%A9teld_%C3%B6nmagad). Találd ki az abszolút minimális reprezentációt és számíttass ki minden mást menet közben igény szerint. Ha például egy TODO listát készítesz, legyen egy tömb a teendőkről, de nem kell egy külön változó a darabszámnak. Inkább mikor meg kell jeleníteni az elemek számát csak használd a *length*-et a tömbödből.
 
+<<<<<<< HEAD
 Vegyük végig a példánkban szereplő adatokat:
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
   * Az eredeti terméklista
   * A szöveg amit a felhasználó megadott a keresésben
@@ -137,7 +153,11 @@ Van tehát egy alkalmazásunk ami helyesen jeleníti meg az adatokat a props és
 
 Reactben ezt nagyon kifejezően ábrázolhatjuk, ami segíti megérteni a program hogyan is működik, de egy kicsit többet kell hozzá gépelni, mint a hagyományos kétirányú adatkapcsolat esetén.
 
+<<<<<<< HEAD
 Ha próbáltál szöveget beírni vagy kipipálni a jelölőnégyzetet a mostani verziónkban, akkor már láttad, hogy a React figyelmen kívül hagyja a bemeneteket. Ez szándékos, mivel így lehetséges, hogy a propsban kapott érték amit átadunk az `input`nak a `value`-ban  mindig azonos legyen a state-ben tárolt értékkel amit a `FilterableProductTable`-ból továbbadunk.
+=======
+If you try to type or check the box in the previous version of the example (step 4), you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 Gondoljuk végig mit szeretnénk, mi történjen. Azt akarjuk, hogy bármikor ha a felhasználó megváltoztatja az űrlapot mi frissíthessük a state-et, hogy az tükrözze a bemeneten kapott adatot. Mivel a komponensek csak a saját state-jüket frissíthetik, a `FilterableProductTable` callback függvényeket ad át a `SearchBar`-nak melyek meghívódnak valahányszor a state-et frissíteni kell. Használhatjuk az input mezők `onChange` eseményét, a `FilterableProductTable` által átadott callback-ek meghívhatják annak `setState()` metódusát és alkalmazásunk frissül majd.
 
