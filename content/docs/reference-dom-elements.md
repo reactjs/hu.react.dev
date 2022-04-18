@@ -116,7 +116,11 @@ Habár nem minden stílustulajdonság van pixel sztringgé átkonvertálva. Néh
 
 Ha szerver oldali React renderelést használsz, általában van egy figyelmeztetés, amikor a szerver és a kliens tartalma eltér. Azonban ritka esetekben nagyon nehéz, vagy lehetetlen a tökéletes egyezést garantálni. Például a időbélyegek várhatóan eltérnek a szerveren és a kliensen.
 
+<<<<<<< HEAD
 Ha a `suppressHydrationWarning`-ot `true`-ra állítod, a React nem fog figyelmeztetni az attribútumok, vagy az elem tartalmának eltérése esetén. Ez csak egy szint mélységig működik, és egy menekülési útnak van szánva. Ne használd túl sokat. A hidrálásról többet olvashatsz a [`ReactDOM.hydrate()` dokumentációban](/docs/react-dom.html#hydrate).
+=======
+If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrateRoot()` documentation](/docs/react-dom-client.html#hydrateroot).
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 ### value {#value}
 

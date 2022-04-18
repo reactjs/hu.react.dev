@@ -39,6 +39,7 @@ A JSX egy JavaScript szintaxis kiegészítés. Hasonló egy sablon nyelvhez, de 
 
 A React DOM camelCase konvenciókat használ tulajdonságok elnevezésére HTML attribútum nevek helyett. Például a `tabindex` JSX-ben `tabIndex`-é válik. A `class` attribútumot is `className`-ként kell írjuk, mivel a `class` a JavaScript-ben egy fenntartott szó:
 
+<<<<<<< HEAD
 ```js
 const name = 'Klaudia';
 ReactDOM.render(
@@ -46,6 +47,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```  
+=======
+```jsx
+<h1 className="hello">My name is Clementine!</h1>
+```
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 ## [Elemek](/docs/rendering-elements.html) {#elements}
 

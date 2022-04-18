@@ -34,11 +34,15 @@ Ezt hívjuk "gyökér" DOM csomópontnak, mert mindent ami benne van azt a React
 
 A React-el készített alkalmazásoknak általában egy gyökér DOM csomópontjuk van. Ha egy már meglévő alkalmazásba akarod a Reactet integrálni, annyi elszigetelt gyökér DOM csomópontot vehetsz fel, amennyit szeretnél.
 
+<<<<<<< HEAD
 Egy React elem gyökér DOM csomópontba való rendereléséhez, add meg mindkettőt paraméterként a [`ReactDOM.render()`](/docs/react-dom.html#render) metódusnak:
+=======
+To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 Ez egy "Helló, világ"-ot jelenít meg az oldalon.
 
@@ -46,19 +50,31 @@ Ez egy "Helló, világ"-ot jelenít meg az oldalon.
 
 A React elemek [megváltoztathatatlanok](https://en.wikipedia.org/wiki/Immutable_object). Ha egyszer készítettél egy elemet, már nem tudod annak gyermekeit vagy attribútumait módosítani. Egy elem olyan mint egy sima képkocka egy filmben: az felhasználói felületet reprezentálja egy adott pillanatban.
 
+<<<<<<< HEAD
 Az eddigi tudásunkkal az egyetlen módja a felhasználói felületünk frissítésének, ha egy új elemet hozunk létre, és megadjuk paraméterként a [`ReactDOM.render()`](/docs/react-dom.html#render)-nek.
+=======
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `root.render()`.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 Vedd ezt a ketyegő óra példát:
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
+<<<<<<< HEAD
 Ez minden másodpercben meghívja a [`ReactDOM.render()`](/docs/react-dom.html#render)-t a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) visszahívó metódusából.
+=======
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 >**Megjegyzés:**
 >
+<<<<<<< HEAD
 >Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a [`ReactDOM.render()`](/docs/react-dom.html#render) metódust. A következő fejezetekben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbe foglalni [állapot-teljes komponensekkel](/docs/state-and-lifecycle.html).
+=======
+>In practice, most React apps only call `root.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 >
 >Ajánljuk, hogy ne ugord át ezeket a témákat, mert egymásra építenek.
 
@@ -66,7 +82,11 @@ Ez minden másodpercben meghívja a [`ReactDOM.render()`](/docs/react-dom.html#r
 
 A React DOM összehasonlítja az elemeket és azok gyermekeit a korábbiakkal, és csak azokat a változtatásokat eszközöli a DOM-on, amik a DOM kívánt állapotának eléréséhez szükségesek.
 
+<<<<<<< HEAD
 Ezt megerősítheted a [legutolsó példa](codepen://rendering-elements/update-rendered-element) vizsgálatával a böngészői eszközökkel:
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 ![A DOM vizsgáló fokozatos frissítést mutat](../images/docs/granular-dom-updates.gif)
 
