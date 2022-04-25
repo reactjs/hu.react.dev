@@ -52,10 +52,17 @@ A következőben adj hozzá három `<script>` címkét közvetlenül a záró `<
 ```html{5,6,9}
   <!-- ... más HTML ... -->
 
+<<<<<<< HEAD
   <!-- A React betöltése. -->
   <!-- Megjegyzés: publikáláskor, cseréld le a "development.js"-t "production.min.js"-re. -->
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
   <!-- A React komponensünk betöltése. -->
   <script src="like_button.js"></script>
@@ -77,14 +84,24 @@ Nyisd meg **[ezt a kezdő kódot](https://gist.github.com/gaearon/0b180827c190fe
 
 Adj hozzá két sort a `like_button.js` alján **[a kezdő kód](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** után:
 
+<<<<<<< HEAD
 ```js{3,4}
 // ... a kezdő kód, amit bemásoltál ...
+=======
+```js{3,4,5}
+// ... the starter code you pasted ...
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
 ```
 
+<<<<<<< HEAD
 Ez a két sor kód megtalálja a `<div>`-et, amit a HTML-hez adtunk az első lépésben, és megjeleníti benne a "Tetszik" React komponens gombunkat.
+=======
+These three lines of code find the `<div>` we added to our HTML in the first step, create a React app with it, and then display our "Like" button React component inside of it.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 ### És ennyi! {#thats-it}
 
@@ -115,15 +132,19 @@ Mielőtt a weboldalt végstádiumba publikálod, tartsd szem előtt, hogy a nem 
 Ha már csökkented az alkalmazásod scriptjeinek a méretét, **az oldalad készen áll a végstádiumra**, amennyiben a publikált HTML oldalad a `production.min.js` végződésű React verziót tölti be:
 
 ```js
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Ha nincs kódcsökkentő lépésed a scriptekhez, [itt egy módja, hogyan tudod ezt beállítani](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
 
 ## Választható: Próbáld ki a Reactet JSX-el {#optional-try-react-with-jsx}
 
+<<<<<<< HEAD
 A fenti példákban csak a böngészők által alapból támogatott funkciókra hagyatkoztunk. Ezért használtunk egy JavaScript függvény meghívást, hogy közöljük a Reacttel, mit jelenítsen meg:
+=======
+In the examples above, we only relied on features that are natively supported by browsers. This is why we used a JavaScript function call to tell React what to display:
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 ```js
 const e = React.createElement;
@@ -149,7 +170,11 @@ return (
 
 Ez a két kódrészlet ekvivalens egymással. Bár **a JSX [teljesen szabadon választható](/docs/react-without-jsx.html)**, sok ember hasznosnak tartja felhasználói felület kód írásához -- mind a Reacttel és más könyvtárak esetében is.
 
+<<<<<<< HEAD
 A JSX-el [ennek az online konverternek](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3) a segítségével játszadozhatsz egy kicsit.
+=======
+You can play with JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.15.7).
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 ### Próbáld ki a JSX-et gyorsan {#quickly-try-jsx}
 
@@ -159,7 +184,11 @@ Ha a leggyorsabban akarod kipróbálni a JSX-et a projektedben, add hozzá ezt a
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+<<<<<<< HEAD
 Eztuán bármelyik `<script>` címkében használhatsz JSX-et, amihez hozzáadtad a `type="text/babel"` attribútumot. Itt egy letölthető [HTML példafájl JSX-el](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), játssz vele.
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 Ez a megközelítés nem rossz tanulás és egyszerű demók készítése esetén. Azonban lelassítja a weblapodat, és **alkalmatlanná teszi azt publikálásra**. Ha készen állsz a továbblépésre, távolítsd el a `<script>` címkét és a `type="text/babel"` attribútumot, amit az előbb hozzáadtál. Helyette a következő fejezetben beállítasz egy JSX preprocesszort, ami az összes `<script>` címkét automatikusan átalakítja.
 

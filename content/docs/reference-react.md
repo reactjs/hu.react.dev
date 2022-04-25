@@ -65,7 +65,18 @@ A Suspense lehetővé teszi hogy a komponensek "várni tudjanak" valamire render
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+<<<<<<< HEAD
 ### Horgok {#hooks}
+=======
+### Transitions {#transitions}
+
+*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+
+- [`React.startTransition`](#starttransition)
+- [`React.useTransition`](/docs/hooks-reference.html#usetransition)
+
+### Hooks {#hooks}
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 A *horgok* a React 16.8 egy új kiegészítései. Lehetővé teszik helyi állapot és egyéb React tulajdonságok használatát osztályok írása nélkül. A horgoknak van egy [saját dokumentáció fejezete](/docs/hooks-intro.html) és egy különálló API referenciája:
 
@@ -81,6 +92,12 @@ A *horgok* a React 16.8 egy új kiegészítései. Lehetővé teszik helyi állap
   - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+  - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
+  - [`useTransition`](/docs/hooks-reference.html#usetransition)
+  - [`useId`](/docs/hooks-reference.html#useid)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+  - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 
@@ -176,12 +193,16 @@ A [JSX](/docs/introducing-jsx.html)-ben írt kód át lesz konvertálva, hogy az
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
 
+<<<<<<< HEAD
 Egy `element`-et alapul véve egy új React elemet klónoz és ad vissza. A keletkezett elem rendelkezni fog az eredeti elem és az új propok sekély összefonásával. Az új gyermekek átveszik a meglévő gyermekek helyét. A `key` és `ref` attribútumok meg lesznek tartva az eredeti elemből.
+=======
+Clone and return a new React element using `element` as the starting point. `config` should contain all new props, `key`, or `ref`. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved if no `key` and `ref` present in the `config`.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 A `React.cloneElement()` majdnem ekvivalens ezzel:
 
@@ -189,7 +210,11 @@ A `React.cloneElement()` majdnem ekvivalens ezzel:
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
+<<<<<<< HEAD
 De a `ref` attribútumokat is megőrzi. Ez azt jelenti, hogy ha egy olyan gyermeket kapsz, ami rendelkezik `ref`-el, akkor azt nem fogod véletlenül sem ellopni az ősöktől. Az új elemhez ugyanaz a `ref` lesz hozzákapcsolva.
+=======
+However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element. The new `ref` or `key` will replace old ones if present.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 Ez az API az elavult `React.addons.cloneWithProps()` leváltására lett létrehozva.
 
@@ -330,6 +355,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Megjegyzendő, hogy a `lazy` komponensek renderelése megköveteli, hogy valahol feljebb a komponensfában legyen egy `<React.Suspense>`. Így tudsz megadni egy betöltés indikátort.
 
+<<<<<<< HEAD
 > **Megjegyzés**
 >
 > A `React.lazy` használata dinamikus import segítségével megköveteli, hogy a Promise objektum elérhető legyen a JS környezetben. Ez IE11 és az alatt egy polyfill használatát követeli meg.
@@ -337,6 +363,13 @@ Megjegyzendő, hogy a `lazy` komponensek renderelése megköveteli, hogy valahol
 ### `React.Suspense` {#reactsuspense}
 
 A `React.Suspense` segítségével egy betöltés indikátort tudsz megadni abban az esetben ha néhány komponens a komponensfában lejjebb még nem áll készen renderelésre. Jelenleg a `<React.Suspense>` **egyetlen** támogatott esete a lustán betöltő komponensek:
+=======
+### `React.Suspense` {#reactsuspense}
+
+`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+
+Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 ```js
 // Ez a komponens dinamikusan van betöltve
@@ -356,8 +389,37 @@ function MyComponent() {
 
 A [kód felvágó útmutatónkban](/docs/code-splitting.html#reactlazy) ez dokumentálva van. Jegyezd meg, hogy a `lazy` (lusta) komponensek lehetnek mélyen a `Suspense` fában -- nem kell mindegyiket egyesével körbevenni. A legjobb gyakorlat ha a `<Suspense>`-t oda helyezed ahol egy betöltés indikátort akarsz látni, a `lazy()`-t pedig oda ahol kódot akarsz felvágni.
 
+<<<<<<< HEAD
 Bár ez jelenleg még nem támogatott, a jövőben a `Suspense` több forgatókönyvet fog támogatni, mint például adatlehívást. Erről az [ütemtervünkben](/blog/2018/11/27/react-16-roadmap.html) olvashatsz.
 
 >Megjegyzés:
 >
 > A `ReactDOMServer` még nem támogatja a `React.lazy()`-t és a `<React.Suspense>`-t. Ez egy köztudott limitáció, ami a jövőben kerül megoldásra.
+=======
+> Note
+> 
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+
+#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at 
+a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+
+### `React.startTransition` {#starttransition}
+
+```js
+React.startTransition(callback)
+```
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+
+> Note:
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transitions will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
