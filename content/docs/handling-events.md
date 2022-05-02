@@ -29,6 +29,7 @@ kissé máshogyan néz ki Reactben:
 </button>
 ```
 
+<<<<<<< HEAD
 Egy másik különbség, hogy Reactben `false` érték visszaadásával nem tudod megakadályozni az alapviselkedést. Határozottan meg kell hívni a `preventDefault`-ot. Egyszerű HTML-ben például egy link alapviselkedésének megváltoztatásához írhatjuk ezt:
 
 ```html
@@ -50,6 +51,29 @@ function ActionLink() {
     <a href="#" onClick={handleClick}>
       Kattints rám
     </a>
+=======
+Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default form behavior of submitting, you can write:
+
+```html
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
+```
+
+In React, this could instead be:
+
+```js{3}
+function Form() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log('You clicked submit.');
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
   );
 }
 ```
@@ -71,8 +95,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 
@@ -84,11 +108,6 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
 
 [**Próbáld ki CodePenen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)

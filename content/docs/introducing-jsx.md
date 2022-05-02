@@ -34,12 +34,16 @@ A következő példában egy `name` változót deklarálunk, majd a JSX-ben hasz
 
 ```js{1,2}
 const name = 'Josh Perez';
+<<<<<<< HEAD
 const element = <h1>Helló, {name}</h1>;
 
 ReactDOM.render(
   element,
   document.getElementById('root')
 );
+=======
+const element = <h1>Hello, {name}</h1>;
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 ```
 
 A JSX-be bármilyen érvényes [JavaScript kifejezést](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) beilleszthetsz kapcsos zárójelek közé. Például a `2 + 2`, `user.firstName`, vagy a `formatName(user)` mind érvényes JavaScript kifejezések.
@@ -61,14 +65,9 @@ const element = (
     Helló, {formatName(user)}!
   </h1>
 );
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
-[](codepen://introducing-jsx)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
 
 A JSX-et több sorra bontottuk az olvashatóság érdekében. Bár ez nem kötelező, de ha így csinálod akkor azt javasoljuk, hogy tedd zárójelek közé, hogy elkerüld az [automatikus pontosvessző beillesztésének](https://stackoverflow.com/q/2846283) buktatóit.
 
@@ -92,7 +91,7 @@ function getGreeting(user) {
 Idézőjelek segítségével megadhatsz karakterláncokat attribútumként:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 Kapcsos zárójelekkel beágyazhatsz JavaScript kifejezést egy attribútumba:
