@@ -8,16 +8,22 @@ next: introducing-jsx.html
 
 A legkisebb React példa így néz ki:
 
+<<<<<<< HEAD
 ```js
 ReactDOM.render(
   <h1>Helló, világ!</h1>,
   document.getElementById('root')
 );
+=======
+```jsx
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Hello, world!</h1>);
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 ```
 
 Ez egy címsort jelenít meg "Helló, világ!" szöveggel a weboldalon.
 
-[](codepen://hello-world)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=1010)**
 
 Kattints a fenti hivatkozásra az online szerkesztő megnyitásához. Bátran végezz változtatásokat, és figyeld meg hogyan befolyásolják a kimenetet. Az útmutató legtöbb oldala ehhez hasonló szerkeszthető példákat tartalmaz.
 
@@ -40,7 +46,11 @@ A React egy JavaScript könyvtár, ezért feltételezzük, hogy van alapvető is
 
 >Megjegyzés
 >
+<<<<<<< HEAD
 >Ez az útmutató esetenként újabb JavaScript szintaxist használ a példákban. Ha az elmúlt években nem foglalkoztál a JavaScript nyelvvel, [ez a három pont](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) segíteni fog eligazodni.
+=======
+>This guide occasionally uses some newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 
 ## Lássunk neki! {#lets-get-started}
