@@ -64,26 +64,39 @@ Ha a React egy olyan elemet lát, ami egy felhasználó által definiált kompon
 
 Például ez a kód a "Helló, Sára" szöveget rendereli az oldalon:
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Helló, {props.name}</h1>;
 }
 
+<<<<<<< HEAD
 const element = <Welcome name="Sára" />;
 ReactDOM.render(
   element,
   document.getElementById('root')
 );
+=======
+const root = ReactDOM.createRoot(document.getElementById('root'));
+const element = <Welcome name="Sara" />;
+root.render(element);
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 ```
 
-[](codepen://components-and-props/rendering-a-component)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 Foglaljuk össze mi történik ebben a példában:
 
+<<<<<<< HEAD
 1. Meghívjuk a `ReactDOM.render()` metódust a `<Welcome name="Sára" />` elemmel.
 2. A React meghívja a `Welcome` komponenst a `{name: 'Sára'}` props objektummal.
 3. A `Welcome` komponensünk visszaadja a `<h1>Helló, Sára</h1>` elemet eredményként.
 4. A React DOM hatékonyan frissíti a DOM-ot hogy az megegyezzen a `<h1>Helló, Sára</h1>`-val.
+=======
+1. We call `root.render()` with the `<Welcome name="Sara" />` element.
+2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
+3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
+4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 >**Megjegyzés:** A komponensek neveit mindig nagybetűvel kezdd.
 >
@@ -111,14 +124,9 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
-[](codepen://components-and-props/composing-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 Tipikusan az új React alkalmazásoknak van egy `App` komponensük a legfelsőbb szinten. Azonban ha egy meglévő alkalmazásba integrálod a Reactet, dolgozhatsz lentről felfelé fokozatosan haladva, kezdve kis komponensekkel, mint egy `Button` amíg el nem éred a nézet hierarchia csúcsát.
 
@@ -152,7 +160,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 Ez fogad egy `author` (objektumot), `text` (karakterláncot), és `date` (dátumot) props-ként, és egy kommentet ír le egy közösségi média weblapon.
 
@@ -231,7 +239,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components-continued)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 A komponensek kivonása elsőre morgós munkának tűnhet, de nagyobb alkalmazások esetén gyorsan megtérül, ha egy újrafelhasználható komponenspalettával rendelkezünk. Egy jó ökölszabály, ha a felhasználói kezelőfelületed valamelyik része többször fel van használva (`Button`, `Panel`, `Avatar`), vagy elég bonyolult saját magában is (`App`, `FeedStory`, `Comment`), akkor jó jelölt lehet arra, hogy egy külön komponensbe emeljük ki.
 
