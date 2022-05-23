@@ -512,7 +512,11 @@ setState(updater, [callback])
 
  A `setState()` egy várakozási sorba helyezi a komponens állapotának változásait és utasítja a Reactet, hogy ez a komponens a gyermekeivel együtt újrarendereljen az új állapottal. Ez az elsődleges metódus a kezelői felület frissítéséhez az eseménykezelők és szerver általi válasz hatására.
 
+<<<<<<< HEAD
 Gondolj a `setState()`-re mint *kérés*, egy azonnali parancs helyett a komponens frissítésére. A jobb észlelt teljesítmény érdekében a React dönthet úgy, hogy késlelteti a végrehajtást, és aztán több komponenst is egyszerre frissít. A React nem garantálja, hogy az állapotfrissítések azonnal megtörténnek.
+=======
+Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. In the rare case that you need to force the DOM update to be applied synchronously, you may wrap it in [`flushSync`](/docs/react-dom.html#flushsync), but this may hurt performance.
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
 
 A `setState()` nem mindig frissíti rögtön a komponenst. Lehet, hogy összevonja más frissítésekkel, vagy késlelteti a frissítést. Emiatt a `this.state` kiolvasása rögtön a `setState()` meghívása után egy potenciális buktató. Ehelyett használd a `componentDidUpdate`-t vagy a `setState` callbackjét (`setState(updater, callback)`), ezek közül bármelyik garantáltan lefut egy frissítés megtörténte után. Ha az állapotot egy előző állapot alapján kell beállítanod, olvass az `updater` argumentumról alább.
 

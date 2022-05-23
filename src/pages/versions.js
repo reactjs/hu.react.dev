@@ -40,8 +40,19 @@ const Versions = ({location}: Props) => (
                 a GitHubon
               </a>
               .<br />
+<<<<<<< HEAD
               Lejjebb a jelenlegi kiadások dokumentációja is megtalálható.
+=======
+              Changelogs for recent releases can also be found below.
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
             </p>
+            <blockquote>
+              <p>Note</p>
+              <p>
+                The current docs are for React 18. For React 17, see{' '}
+                <a href="https://17.reactjs.org">https://17.reactjs.org.</a>
+              </p>
+            </blockquote>
             <p>
               Nézd meg a GY.I.K-et{' '}
               <a href="/docs/faq-versioning.html">
