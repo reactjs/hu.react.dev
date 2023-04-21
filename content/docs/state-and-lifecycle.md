@@ -8,11 +8,25 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
+> - [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
+
+</div>
+
 Ez az oldal az állapot és életciklus fogalmait mutatja be egy React komponensben. A [részletes komponens API referenciát itt](/docs/react-component.html) találod.
 
-Vedd a ketyegő óra példát [az egyik korábbi fejezetből](/docs/rendering-elements.html#updating-the-rendered-element). Az [Elemek renderelése](/docs/rendering-elements.html#rendering-an-element-into-the-dom) fejezetben csak egyetlen módját tanultuk meg a felhasználói felület frissítésének. A `ReactDOM.render()` metódus meghívásával megváltoztatjuk a renderelt kimenetet:
+Vedd a ketyegő óra példát [az egyik korábbi fejezetből](/docs/rendering-elements.html#updating-the-rendered-element). Az [Elemek renderelése](/docs/rendering-elements.html#rendering-an-element-into-the-dom) fejezetben csak egyetlen módját tanultuk meg a felhasználói felület frissítésének. A `root.render()` metódus meghívásával megváltoztatjuk a renderelt kimenetet:
 
-```js{8-11}
+```js{10}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+  
 function tick() {
   const element = (
     <div>
@@ -20,10 +34,7 @@ function tick() {
       <h2>Az idő {new Date().toLocaleTimeString()}.</h2>
     </div>
   );
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  );
+  root.render(element);
 }
 
 setInterval(tick, 1000);
@@ -35,7 +46,9 @@ Ebben a fejezetben megtanuljuk, hogy hogyan tudjuk a `Clock` komponenst igazán 
 
 Kezdhetjük azzal, hogy hogyan foglaljuk egységbe azt, ahogyan az óra kinéz:
 
-```js{3-6,12}
+```js{5-8,13}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 function Clock(props) {
   return (
     <div>
@@ -46,10 +59,7 @@ function Clock(props) {
 }
 
 function tick() {
-  ReactDOM.render(
-    <Clock date={new Date()} />,
-    document.getElementById('root')
-  );
+  root.render(<Clock date={new Date()} />);
 }
 
 setInterval(tick, 1000);
@@ -62,10 +72,7 @@ Azonban ebből hiányzik valami nagyon fontos: Az a tény, hogy a `Clock` kompon
 Ideális esetben ezt egyszer szeretnénk megírni és hagyjuk a `Clock`-ot saját magát frissíteni:
 
 ```js{2}
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+root.render(<Clock />);
 ```
 
 Ennek az implementálásához szükségünk lesz egy "állapot"-ra ("state") a `Clock` komponensben.
@@ -158,10 +165,7 @@ Az osztálykomponensek konstruktorai mindig meg kell hogy hívják az alapkonstr
 3) Töröld ki a `date` prop-ot a `<Clock />` elemből:
 
 ```js{2}
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+root.render(<Clock />);
 ```
 
 Az időzítő kódját később adjuk vissza a komponensbe.
@@ -185,10 +189,8 @@ class Clock extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Clock />);
 ```
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
@@ -294,10 +296,8 @@ class Clock extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Clock />);
 ```
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
@@ -306,7 +306,7 @@ Az óra most már minden másodpercben kettyen.
 
 Vegyük át gyorsan mi is történik és a metódusok milyen sorrendben vannak meghívva:
 
-1) Amikor a `<Clock />`-ot átadjuk a `ReactDOM.render()` metódusnak, a React meghívja a `Clock` komponens konstruktorát. Mivel a `Clock` komponensnek meg kell jelenítenie a jelenlegi időt, ez inicializál egy `this.state`-et, ami egy objektumot tartalmaz a jelenlegi idővel. Később ezt az állapotot frissítjük.
+1) Amikor a `<Clock />`-ot átadjuk a `root.render()` metódusnak, a React meghívja a `Clock` komponens konstruktorát. Mivel a `Clock` komponensnek meg kell jelenítenie a jelenlegi időt, ez inicializál egy `this.state`-et, ami egy objektumot tartalmaz a jelenlegi idővel. Később ezt az állapotot frissítjük.
 
 2) Ezután a React meghívja a `Clock` komponens `render()` metódusát. A React ennek segítségével állapítja meg, hogy mit kell mutatnia a képernyőn. A React ezután frissíti a DOM-ot, hogy az megegyezzen a `Clock` render kimenetével.
 
@@ -447,11 +447,6 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)

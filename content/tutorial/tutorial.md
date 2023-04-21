@@ -12,6 +12,14 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The updated [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe) teaches modern React and includes live examples.
+
+</div>
+
 Ez a tutoriál nem feltételez korábbi React ismereteket.
 
 ## Mielőtt elkezdjük a Tutoriált {#before-we-start-the-tutorial}
@@ -106,7 +114,7 @@ cd ..
 
 ```js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 ```
 
@@ -235,7 +243,7 @@ Először is változtasd meg a button címkét a `render()` metódus visszatér�
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('kattintás'); }}>
+      <button className="square" onClick={function() { console.log('kattintás'); }}>
         {this.props.value}
       </button>
     );
@@ -253,7 +261,7 @@ Ha most kattintasz a Square-re, egy értesítést kell láss a böngésződben.
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('kattintás')}>
+>      <button className="square" onClick={() => console.log('kattintás')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -280,7 +288,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('kattintás')}>
+      <button className="square" onClick={() => console.log('kattintás')}>
         {this.props.value}
       </button>
     );

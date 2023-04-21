@@ -8,6 +8,18 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach how to write JSX and show it on an HTML page:
+>
+> - [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+> - [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project#step-2-render-react-components-anywhere-on-the-page)
+
+</div>
+
 Az elemek a React alkalmazások legkisebb építőegységei.
 
 Egy elem azt írja le amit a képernyőn szeretnél látni:
@@ -34,11 +46,11 @@ Ezt hívjuk "gyökér" DOM csomópontnak, mert mindent ami benne van azt a React
 
 A React-el készített alkalmazásoknak általában egy gyökér DOM csomópontjuk van. Ha egy már meglévő alkalmazásba akarod a Reactet integrálni, annyi elszigetelt gyökér DOM csomópontot vehetsz fel, amennyit szeretnél.
 
-Egy React elem gyökér DOM csomópontba való rendereléséhez, add meg mindkettőt paraméterként a [`ReactDOM.render()`](/docs/react-dom.html#render) metódusnak:
+Egy React elem gyökér DOM csomópontba való rendereléséhez, add meg mindkettőt paraméterként a [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot) metódusnak:
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 Ez egy "Helló, világ"-ot jelenít meg az oldalon.
 
@@ -46,19 +58,19 @@ Ez egy "Helló, világ"-ot jelenít meg az oldalon.
 
 A React elemek [megváltoztathatatlanok](https://en.wikipedia.org/wiki/Immutable_object). Ha egyszer készítettél egy elemet, már nem tudod annak gyermekeit vagy attribútumait módosítani. Egy elem olyan mint egy sima képkocka egy filmben: az felhasználói felületet reprezentálja egy adott pillanatban.
 
-Az eddigi tudásunkkal az egyetlen módja a felhasználói felületünk frissítésének, ha egy új elemet hozunk létre, és megadjuk paraméterként a [`ReactDOM.render()`](/docs/react-dom.html#render)-nek.
+Az eddigi tudásunkkal az egyetlen módja a felhasználói felületünk frissítésének, ha egy új elemet hozunk létre, és megadjuk paraméterként a `root.render()`]-nek.
 
 Vedd ezt a ketyegő óra példát:
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
-Ez minden másodpercben meghívja a [`ReactDOM.render()`](/docs/react-dom.html#render)-t a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) visszahívó metódusából.
+Ez minden másodpercben meghívja a [`root.render()`](/docs/react-dom.html#render)-t a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) visszahívó metódusából.
 
 >**Megjegyzés:**
 >
->Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a [`ReactDOM.render()`](/docs/react-dom.html#render) metódust. A következő fejezetekben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbe foglalni [állapot-teljes komponensekkel](/docs/state-and-lifecycle.html).
+>Gyakorlatban a legtöbb React alkalmazás csak egyszer hívja meg a `root.render()` metódust. A következő fejezetekben megtanuljuk, hogy hogyan tudunk ilyen kódot egységbe foglalni [állapot-teljes komponensekkel](/docs/state-and-lifecycle.html).
 >
 >Ajánljuk, hogy ne ugord át ezeket a témákat, mert egymásra építenek.
 
@@ -66,7 +78,7 @@ Ez minden másodpercben meghívja a [`ReactDOM.render()`](/docs/react-dom.html#r
 
 A React DOM összehasonlítja az elemeket és azok gyermekeit a korábbiakkal, és csak azokat a változtatásokat eszközöli a DOM-on, amik a DOM kívánt állapotának eléréséhez szükségesek.
 
-Ezt megerősítheted a [legutolsó példa](codepen://rendering-elements/update-rendered-element) vizsgálatával a böngészői eszközökkel:
+Ezt megerősítheted a [legutolsó példa](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) vizsgálatával a böngészői eszközökkel:
 
 ![A DOM vizsgáló fokozatos frissítést mutat](../images/docs/granular-dom-updates.gif)
 

@@ -4,6 +4,12 @@ title: React JSX nélkül
 permalink: docs/react-without-jsx.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 Nem kötelező a JSX-et választani, ha Reactet használsz. A React JSX nélkül különösen hasznos, ha nem akarsz külön fordítási lépést létrehozni a build környezetedben.
 
 Minden egyes JSX elem csak egy rövidítés a `React.createElement(component, props, ...children)` metódus hívására. Így, mindent amit JSX-szel le tudsz írni, meg tudod csinálni JSX nélkül is, sima JavaScriptet használva.
@@ -17,10 +23,8 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Hello toWhat="World" />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Hello toWhat="World" />);
 ```
 
 átírható a következő, JSX-szet nem használó kódra:
@@ -32,10 +36,8 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(
-  React.createElement(Hello, {toWhat: 'World'}, null),
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(Hello, {toWhat: 'World'}, null));
 ```
 
 Próbáld ki [az online Babel fordítót](babel://jsx-simple-example), ha szeretnél több példát látni rá, hogyan alakítjuk át a JSXet JavaScriptté.
@@ -47,10 +49,8 @@ Ha úgy érzed, hogy túl időigényes mindig kigépelni a `React.createElement`
 ```js
 const e = React.createElement;
 
-ReactDOM.render(
-  e('div', null, 'Hello World'),
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(e('div', null, 'Hello World'));
 ```
 
 A `React.createElement`-nek ezt a rövidített formáját használva, már sokkal kényelmesebb React kódot írni, még JSX nélkül is.

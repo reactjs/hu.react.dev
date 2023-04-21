@@ -92,6 +92,8 @@
           title: React.Component
     - id: react-dom
       title: ReactDOM
+    - id: react-dom-client
+      title: ReactDOMClient
     - id: react-dom-server
       title: ReactDOMServer
     - id: dom-elements
@@ -127,25 +129,12 @@
         title: Horgok GY.I.K.
 - title: Tesztelés
   items:
-    - id: testing 
+    - id: testing
       title: Tesztelés áttekintés
     - id: testing-recipes
       title: Tesztelői receptek
     - id: testing-environments
       title: Tesztelői környezetek
-- title: Konkurens mód (kísérleti fázis)
-  isOrdered: true
-  items:
-    - id: concurrent-mode-intro
-      title: Konkurens mód bemutatása
-    - id: concurrent-mode-suspense
-      title: Suspense adatlehíváshoz
-    - id: concurrent-mode-patterns
-      title: Konkurens UI minták
-    - id: concurrent-mode-adoption
-      title: Konkurens mód adoptálása
-    - id: concurrent-mode-reference
-      title: Konkurens mód API referencia
 - title: Közreműködés
   items:
   - id: how-to-contribute

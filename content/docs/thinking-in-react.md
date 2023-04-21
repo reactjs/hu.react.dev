@@ -8,6 +8,14 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The updated [Thinking in React](https://react.dev/learn/thinking-in-react) guide teaches modern React and includes live examples.
+
+</div>
+
 A React, véleményünk szerint, elsőrendű módja nagy és gyors JavaScript alapú webalkalmazások készítésének. A Facebook és az Instagram esetében nekünk nagyon jól skálázódott.
 
 Az egyik remek dolog – sok más mellett – ahogy a React átalakítja a gondolkodásodat az alkalmazásaidról miközben készíted őket. Ebben a fejezetben végigvezetünk a folyamaton, miközben megtervezünk és felépítünk egy kereshető terméktáblázatot React használatával.
@@ -41,7 +49,7 @@ Gyakran kell JSON adatokat megjeleníteni a felhasználónak. Mint ahogyan azt t
 
 ![Komponens diagram](../images/blog/thinking-in-react-components.png)
 
-Amint látod, az app így öt komponensből áll. Dőlt betűvel emeltük ki az egyes komponensek által képviselt adatokat.
+Amint látod, az app így öt komponensből áll. Dőlt betűvel emeltük ki az egyes komponensek által képviselt adatokat. The numbers in the image correspond to the numbers below.
 
   1. **`FilterableProductTable` (narancs):** magába foglalja a teljes példánkat
   2. **`SearchBar` (kék):** ez fogadja az *adatbevitelt*
@@ -70,9 +78,9 @@ Az alkalmazás statikus változatának építéséhez - ami az adatmodellt rende
 
 Építkezhetsz felülről lefelé vagy fordítva. Vagyis kezdheted a hierarchiában legmagasabban lévő (esetünkben ez a `FilterableProductTable`) komponenssel vagy alulról is (`ProductRow`). Egyszerűbb példáknál általában egyszerűbb fentről kezdeni, nagyobb projekteknél könnyebb, ha alulról felfelé haladsz, menet közben teszteket is készítve.
 
-Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható komponensekből, melyek renderelik az adatmodellt. A komponenseknek csak `render()` metódusuk van, mivel ez még mindig a statikus változat. A hierarchia tetején csücsülő komponens (`FilterableProductTable`) egy propként kapja meg az adatmodellt. Ha változtatsz valamit az adatmodellen és újra meghívod a `ReactDOM.render()` metódust a UI frissülni fog. Láthatod, hogyan frissül a UI, hol változik. A React **egyirányú adatáramlása** (*one-way data flow* vagy *one-way binding*) mindent modulárisan és gyorsan kezel.
+Ezt a lépést befejezve lesz egy könyvtárad többször hasznosítható komponensekből, melyek renderelik az adatmodellt. A komponenseknek csak `render()` metódusuk van, mivel ez még mindig a statikus változat. A hierarchia tetején csücsülő komponens (`FilterableProductTable`) egy propként kapja meg az adatmodellt. Ha változtatsz valamit az adatmodellen és újra meghívod a `root.render()` metódust a UI frissülni fog. Láthatod, hogyan frissül a UI, hol változik. A React **egyirányú adatáramlása** (*one-way data flow* vagy *one-way binding*) mindent modulárisan és gyorsan kezel.
 
-Fordulj a [React dokumentációhoz](/docs/) ha segítségre van szükséged a fenti lépés elvégzéséhez!
+Fordulj a [React dokumentációhoz](/docs/getting-started.html) ha segítségre van szükséged a fenti lépés elvégzéséhez!
 
 ### Egy kis közjáték: props vagy state {#a-brief-interlude-props-vs-state}
 

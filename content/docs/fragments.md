@@ -4,6 +4,16 @@ title: Töredékek
 permalink: docs/fragments.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`<Fragment>`](https://react.dev/reference/react/Fragment)
+
+</div>
+
 Egy általános minta a React-ben, hogy egy komponens több elemet ad vissza. A töredékek segítenek gyermekek listáját csoportosítani anélkül, hogy új csomópontot adnál a DOM-hoz.
 
 ```js

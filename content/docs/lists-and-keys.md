@@ -6,6 +6,17 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Rendering Lists](https://react.dev/learn/rendering-lists)
+
+</div>
+
+
 Először is vegyük át hogyan alakítunk át listákat JavaScript-ben.
 
 Vegyük az alábbi kódot. A [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) függvény fog egy számokkal teli tömböt (`numbers`) és megduplázza annak értékeit. A `map()` által visszaadott új tömböt hozzárendeljük a `doubled` változóhoz, és kiírjuk a konzolba:
@@ -36,10 +47,7 @@ const listItems = numbers.map((number) =>
 A `listItems` tömböt belefoglaljuk egy `<ul>` elembe, és [azt a DOM-ba rendereljük](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +72,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 Ha ezt a kódot futtatod, egy figyelmeztetést fogsz kapni, hogy minden listaelemnek rendelkeznie kell egy kulccsal. A "key" (kulcs) egy speciális szöveges attribútum, amit fel kell vegyél ha listaelemeket készítesz. A következő szekcióban megbeszéljük hogy ez miért is fontos.
@@ -86,12 +92,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -130,7 +130,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-Ha az elemek sorrendje változhat, akkor nem ajánljuk indexek használatát kulcsként. Ez negatívan hathat ki a teljesítményre és problémákat okozhat a komponens állapotában. Nézd meg Robin Pokorny' cikkét egy [mélyebbre ható magyarázatért, az index mint kulcs használatáról](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Ha úgy döntesz, hogy nem rendelsz egy explicit kulcsot a listaelemekhez, a React automatikusan az indexet fogja kulcsként használni.
+Ha az elemek sorrendje változhat, akkor nem ajánljuk indexek használatát kulcsként. Ez negatívan hathat ki a teljesítményre és problémákat okozhat a komponens állapotában. Nézd meg Robin Pokorny' cikkét egy [mélyebbre ható magyarázatért, az index mint kulcs használatáról](https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/). Ha úgy döntesz, hogy nem rendelsz egy explicit kulcsot a listaelemekhez, a React automatikusan az indexet fogja kulcsként használni.
 
 Itt egy [mélyebbre ható magyarázat, hogy miért is fontosak a kulcsok](/docs/reconciliation.html#recursing-on-children) ha többet szeretnél tanulni.
 
@@ -165,12 +165,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Példa: Helyes kulcshasználat**
@@ -193,12 +187,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -239,10 +227,9 @@ const posts = [
   {id: 1, title: 'Helló, világ', content: 'Üdövzlünk a React tanulói kurzusában!'},
   {id: 2, title: 'Telepítés', content: 'A React-et npm-ből tudod telepíteni.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Próbáld ki a CodePen-en**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
