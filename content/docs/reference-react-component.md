@@ -15,6 +15,16 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`](https://react.dev/reference/react/Component)
+
+</div>
+
 Ez az oldal egy részletes API referenciát tartalmaz a React Component osztálydefiníciójáról. Feltételezzük, hogy már tisztában vagy a React alapkoncepcióival, mint a [Komponensek és Propok](/docs/components-and-props.html), valamint az [Állapot és Életciklus](/docs/state-and-lifecycle.html). Ha még nem, akkor ezeket olvasd el először.
 
 ## Áttekintés {#overview}
@@ -507,7 +517,7 @@ Csak ez a kettő van: `setState()` és `forceUpdate()`.
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
  A `setState()` egy várakozási sorba helyezi a komponens állapotának változásait és utasítja a Reactet, hogy ez a komponens a gyermekeivel együtt újrarendereljen az új állapottal. Ez az elsődleges metódus a kezelői felület frissítéséhez az eseménykezelők és szerver általi válasz hatására.

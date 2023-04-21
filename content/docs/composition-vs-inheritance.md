@@ -8,6 +8,12 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 A React egy erőteljes kompozíciós modellel rendelkezik, és ajánljuk is a kompozíció használatát öröklődés helyett, a kód komponensek közötti újrafelhasználásának érdekében.
 
 Ebben a fejezetben szemügyre veszünk néhány problémát ahol a még új React fejlesztők előszeretettel nyúlnak az örökléshez, és megmutatjuk hogyan lehet ezeket kompozícióval megoldani.

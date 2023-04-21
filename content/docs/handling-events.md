@@ -8,6 +8,16 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Responding to Events](https://react.dev/learn/responding-to-events)
+
+</div>
+
 A React elemek eseményeinek kezelése nagyon hasonló a DOM elemek eseménykezeléséhez. Viszont van néhány szintaxisbeli különbség: 
 
 * A React események elnevezésére camelCase-t használunk kisbetűk helyett.
@@ -32,24 +42,24 @@ kissé máshogyan néz ki Reactben:
 Egy másik különbség, hogy Reactben `false` érték visszaadásával nem tudod megakadályozni az alapviselkedést. Határozottan meg kell hívni a `preventDefault`-ot. Egyszerű HTML-ben például egy link alapviselkedésének megváltoztatásához írhatjuk ezt:
 
 ```html
-<a href="#" onclick="console.log('Rákattintottak a linkre.'); return false">
-  Kattints rám
-</a>
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
 ```
 
 Reactben ez így nézne ki:
 ****
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log('Rákattintottak a linkre.');
+    console.log('You clicked submit.');
   }
 
   return (
-    <a href="#" onClick={handleClick}>
-      Kattints rám
-    </a>
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 ```
@@ -71,8 +81,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 
@@ -84,11 +94,6 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
 
 [**Próbáld ki CodePenen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
@@ -102,10 +107,9 @@ Ha a `bind` hívás zavar téged, kétféle módon is kikerülheted. Ha a kísé
 ```js{2-6}
 class LoggingButton extends React.Component {
   // Ez a szintaxis biztosítja a `this` handleClickhez kötését.
-  // Vigyázat: ez *kísérleti* szintaxis.
   handleClick = () => {
     console.log('this is:', this);
-  }
+  };
 
   render() {
     return (

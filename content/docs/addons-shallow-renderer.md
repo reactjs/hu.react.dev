@@ -59,7 +59,7 @@ A sekély renderelésnek jelenleg vannak korlátai, ugyanis nem támogatja a ref
 
 Gondolhatsz úgy a shallowRenderer-re, mint egy "helyre", ahova a tesztelt komponenst renderelheted és ahonnan ki tudod vonni a komponens kimenetét.
 
-A `shallowRenderer.render()` hasonló a [`ReactDOM.render()`](/docs/react-dom.html#render)-hez, de nincs szüksége DOM-ra, és csak egy szint mélységig renderel. Ez azt jelenti, hogy a komponenseket a gyermekeik implementációjától elzártan tudod tesztelni.
+A `shallowRenderer.render()` hasonló a [`root.render()`](/docs/react-dom-client.html#createroot)-hez, de nincs szüksége DOM-ra, és csak egy szint mélységig renderel. Ez azt jelenti, hogy a komponenseket a gyermekeik implementációjától elzártan tudod tesztelni.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 

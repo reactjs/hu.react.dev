@@ -13,6 +13,19 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react`: Components](https://react.dev/reference/react/components)
+> - [`react`: Hooks](https://react.dev/reference/react/)
+> - [`react`: APIs](https://react.dev/reference/react/apis)
+> - [`react`: Legacy APIs](https://react.dev/reference/react/legacy)
+
+</div>
+
 A `React` a belépési pont a React könyvtárba. Amennyiben a Reactet egy <script> tag segítségével töltöd be, ezek a legfelsőbb szintű API-k a `React` globális változón keresztül lesznek elérhetőek. ES6 és npm esetében írhatod ezt: import React from 'react'. ES5 és npm esetében pedig írhatod az következőt: var React = require('react').
 
 ## Áttekintés {#overview}
@@ -65,6 +78,13 @@ A Suspense lehetővé teszi hogy a komponensek "várni tudjanak" valamire render
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Transitions {#transitions}
+
+*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+
+- [`React.startTransition`](#starttransition)
+- [`React.useTransition`](/docs/hooks-reference.html#usetransition)
+
 ### Horgok {#hooks}
 
 A *horgok* a React 16.8 egy új kiegészítései. Lehetővé teszik helyi állapot és egyéb React tulajdonságok használatát osztályok írása nélkül. A horgoknak van egy [saját dokumentáció fejezete](/docs/hooks-intro.html) és egy különálló API referenciája:
@@ -81,12 +101,26 @@ A *horgok* a React 16.8 egy új kiegészítései. Lehetővé teszik helyi állap
   - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+  - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
+  - [`useTransition`](/docs/hooks-reference.html#usetransition)
+  - [`useId`](/docs/hooks-reference.html#useid)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+  - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 
 ## Referencia {#reference}
 
 ### `React.Component` {#reactcomponent}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Component`](https://react.dev/reference/react/Component).
+
+</div>
 
 A `React.Component` a React komponensek alaposztálya abban az esetben, ha azok [ES6 osztályokkal](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) vannak definiálva:
 
@@ -104,19 +138,35 @@ Ha egy listát szeretnél a `React.Component` osztály metódusairól és tulajd
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`PureComponent`](https://react.dev/reference/react/PureComponent).
+
+</div>
+
 A `React.PureComponent` hasonló a [`React.Component`](#reactcomponent)-hez. A különbség annyi, hogy a [`React.Component`](#reactcomponent) nem implementálja a [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) metódust, míg a `React.PureComponent` igen, egy sekély prop és állapot összehasonlítással.
 
 Ha a React komponensed `render()` függvénye ugyanazt az eredményt rendereli ugyanazon propok és állapot esetében, akkor néhány esetben használhatod a `React.PureComponent`-t a teljesítmény fokozása érdekében.
 
 > Megjegyzés
 >
-> A `React.PureComponent` `shouldComponentUpdate()` metódusa csak sekély objektum összehasonlítást végez. Ha az objektumok komplex adatstruktúrákat tartalmaznak, az hamisan negatívat eredményezhet mélyebb különbségek esetében. Csak akkor terjessz ki a `PureComponent`-el, ha egyszerű propokra és állapotra számítasz, vagy használd a [`forceUpdate()`](/docs/react-component.html#forceupdate) metódust ha tudod, hogy a mély adatstruktúrák megváltoztak. Vagy vedd fontolóra [megváltoztathatatlan objektumok](https://facebook.github.io/immutable-js/) használatát a mélyebb adatstruktúrák gyors összehasonlításának megkönnyítése érdekében.
+> A `React.PureComponent` `shouldComponentUpdate()` metódusa csak sekély objektum összehasonlítást végez. Ha az objektumok komplex adatstruktúrákat tartalmaznak, az hamisan negatívat eredményezhet mélyebb különbségek esetében. Csak akkor terjessz ki a `PureComponent`-el, ha egyszerű propokra és állapotra számítasz, vagy használd a [`forceUpdate()`](/docs/react-component.html#forceupdate) metódust ha tudod, hogy a mély adatstruktúrák megváltoztak. Vagy vedd fontolóra [megváltoztathatatlan objektumok](https://immutable-js.com/) használatát a mélyebb adatstruktúrák gyors összehasonlításának megkönnyítése érdekében.
 >
 > Továbbá a `React.PureComponent` `shouldComponentUpdate()` metódusa kihagyja a prop frissítéseket a komponens teljes alfája esetén. Bizonyosodj meg róla, hogy a komponens minden gyermeke szintúgy "tiszta" (pure).
 
 * * *
 
 ### `React.memo` {#reactmemo}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`memo`](https://react.dev/reference/react/memo).
+
+</div>
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -157,6 +207,14 @@ Ez a metódus csakis **[a teljesítmény optimalizálása](/docs/optimizing-perf
 
 ### `createElement()` {#createelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createElement`](https://react.dev/reference/react/createElement).
+
+</div>
+
 ```javascript
 React.createElement(
   type,
@@ -173,10 +231,18 @@ A [JSX](/docs/introducing-jsx.html)-ben írt kód át lesz konvertálva, hogy az
 
 ### `cloneElement()` {#cloneelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`cloneElement`](https://react.dev/reference/react/cloneElement).
+
+</div>
+
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
@@ -189,13 +255,21 @@ A `React.cloneElement()` majdnem ekvivalens ezzel:
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-De a `ref` attribútumokat is megőrzi. Ez azt jelenti, hogy ha egy olyan gyermeket kapsz, ami rendelkezik `ref`-el, akkor azt nem fogod véletlenül sem ellopni az ősöktől. Az új elemhez ugyanaz a `ref` lesz hozzákapcsolva.
+De a `ref` attribútumokat is megőrzi. Ez azt jelenti, hogy ha egy olyan gyermeket kapsz, ami rendelkezik `ref`-el, akkor azt nem fogod véletlenül sem ellopni az ősöktől. Az új elemhez ugyanaz a `ref` lesz hozzákapcsolva. The new `ref` or `key` will replace old ones if present.
 
 Ez az API az elavult `React.addons.cloneWithProps()` leváltására lett létrehozva.
 
 * * *
 
 ### `createFactory()` {#createfactory}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createFactory`](https://react.dev/reference/react/createFactory).
+
+</div>
 
 ```javascript
 React.createFactory(type)
@@ -211,6 +285,14 @@ Ha JSX-et használsz, a `React.createFactory()`-t általában nem fogod közvetl
 
 ### `isValidElement()` {#isvalidelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`isValidElement`](https://react.dev/reference/react/isValidElement).
+
+</div>
+
 ```javascript
 React.isValidElement(object)
 ```
@@ -220,6 +302,14 @@ Azt ellenőrzi, hogy az objektum érvényes React elemnek minősül-e. `true` va
 * * *
 
 ### `React.Children` {#reactchildren}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Children`](https://react.dev/reference/react/Children).
+
+</div>
 
 A `React.Children` segédeszközként szolgál, ha a nem áttetsző `this.props.children` adatstruktúrával kell dolgozni.
 
@@ -279,6 +369,14 @@ A nem áttetsző `children` adatstruktúrát adja vissza egy lapos tömbként, e
 
 ### `React.Fragment` {#reactfragment}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Fragment`](https://react.dev/reference/react/Fragment).
+
+</div>
+
 A `React.Fragment` komponens több elem visszaadását teszi lehetővé a `render()` metódusban anélkül, hogy új DOM elemet hozna létre.
 
 ```javascript
@@ -297,10 +395,26 @@ Használhatod a gyorsított `<></>` szintaxissal is. Még több információért
 
 ### `React.createRef` {#reactcreateref}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createRef`](https://react.dev/reference/react/createRef).
+
+</div>
+
 A `React.createRef` egy [ref](/docs/refs-and-the-dom.html)-et hoz létre, amit a ref attribútummal csatolhatunk React elemekhez.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`forwardRef`](https://react.dev/reference/react/forwardRef).
+
+</div>
 
 A `React.forwardRef` egy React komponenst hoz létre, ami továbbadja a kapott [ref](/docs/refs-and-the-dom.html) attribútumot egy másik komponensnek lejjebb a komponensfában. Ezt nem gyakran kell alkalmazni, de két speciális esetben hasznos tud lenni:
 
@@ -319,6 +433,14 @@ További információért nézd meg a [refek továbbítása](/docs/forwarding-re
 
 ### `React.lazy` {#reactlazy}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`lazy`](https://react.dev/reference/react/lazy).
+
+</div>
+
 A `React.lazy()` segítségével egy dinamikusan betöltődő komponenst tudsz definiálni. Ez segít csökkenteni az összecsomagolt kód méretét úgy, hogy a kezdetleges renderelés által nem használt komponensek betöltése késleltetve lesz.
 
 A használatáról többet tanulhatsz a [kód felvágás dokumentációban](/docs/code-splitting.html#reactlazy). Valószínűleg [ezt a cikket](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) is megnézheted, ami részletesebben is elmagyarázza a használatot.
@@ -330,11 +452,15 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Megjegyzendő, hogy a `lazy` komponensek renderelése megköveteli, hogy valahol feljebb a komponensfában legyen egy `<React.Suspense>`. Így tudsz megadni egy betöltés indikátort.
 
-> **Megjegyzés**
->
-> A `React.lazy` használata dinamikus import segítségével megköveteli, hogy a Promise objektum elérhető legyen a JS környezetben. Ez IE11 és az alatt egy polyfill használatát követeli meg.
-
 ### `React.Suspense` {#reactsuspense}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Suspense`](https://react.dev/reference/react/Suspense).
+
+</div>
 
 A `React.Suspense` segítségével egy betöltés indikátort tudsz megadni abban az esetben ha néhány komponens a komponensfában lejjebb még nem áll készen renderelésre. Jelenleg a `<React.Suspense>` **egyetlen** támogatott esete a lustán betöltő komponensek:
 
@@ -358,6 +484,36 @@ A [kód felvágó útmutatónkban](/docs/code-splitting.html#reactlazy) ez dokum
 
 Bár ez jelenleg még nem támogatott, a jövőben a `Suspense` több forgatókönyvet fog támogatni, mint például adatlehívást. Erről az [ütemtervünkben](/blog/2018/11/27/react-16-roadmap.html) olvashatsz.
 
->Megjegyzés:
+> Note
 >
-> A `ReactDOMServer` még nem támogatja a `React.lazy()`-t és a `<React.Suspense>`-t. Ez egy köztudott limitáció, ami a jövőben kerül megoldásra.
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+
+#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+
+### `React.startTransition` {#starttransition}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`startTransition`](https://react.dev/reference/react/startTransition).
+
+</div>
+
+```js
+React.startTransition(callback)
+```
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+
+> Note:
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transition will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).

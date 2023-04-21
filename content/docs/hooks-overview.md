@@ -6,6 +6,18 @@ next: hooks-state.html
 prev: hooks-intro.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach React with Hooks:
+>
+> - [Quick Start](https://react.dev/learn)
+> - [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe)
+> - [`react`: Hooks](https://react.dev/reference/react)
+
+</div>
+
 A *Horgok* a React 16.8-as verziójában lettek hozzáadva. Osztályok létrehozása nélkül is lehetőséget kínálnak állapot, és más React funkciók használatához.
 
 A horgok [visszafelé kompatibilisek](/docs/hooks-intro.html#no-breaking-changes). Ez az oldal tapasztalt React felhasználóknak ad egy áttekintést a Horgokról. Ez egy gyorsütemű áttekintés. Ha összezavarodnál, keress egy ilyen sárga dobozt:

@@ -14,6 +14,21 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Common components (e.g. `<div>`)](https://react.dev/reference/react-dom/components/common)
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<option>`](https://react.dev/reference/react-dom/components/option)
+> - [`<progress>`](https://react.dev/reference/react-dom/components/progress)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
+
 A React egy böngészőfüggetlen DOM rendszert implementál a teljesítmény és böngészők közti kompatibilitás érdekében. Éltünk a lehetőséggel és lekerekítettünk néhány érdes sarkot a DOM implementációban.
 
 A Reactben minden DOM tulajdonság és attribútum (az eseménykezelőket beleértve) camelCase formában kell, hogy legyen írva. Például a `tabindex` HTML attribútum a `tabIndex`-szel egyenértékű Reactben. A kivétel az `aria-*` és a `data-*` attribútumok, amik kisbetűsek. Például az `aria-label`-t megtarthatod `aria-label`-ként.
@@ -116,7 +131,7 @@ Habár nem minden stílustulajdonság van pixel sztringgé átkonvertálva. Néh
 
 Ha szerver oldali React renderelést használsz, általában van egy figyelmeztetés, amikor a szerver és a kliens tartalma eltér. Azonban ritka esetekben nagyon nehéz, vagy lehetetlen a tökéletes egyezést garantálni. Például a időbélyegek várhatóan eltérnek a szerveren és a kliensen.
 
-Ha a `suppressHydrationWarning`-ot `true`-ra állítod, a React nem fog figyelmeztetni az attribútumok, vagy az elem tartalmának eltérése esetén. Ez csak egy szint mélységig működik, és egy menekülési útnak van szánva. Ne használd túl sokat. A hidrálásról többet olvashatsz a [`ReactDOM.hydrate()` dokumentációban](/docs/react-dom.html#hydrate).
+Ha a `suppressHydrationWarning`-ot `true`-ra állítod, a React nem fog figyelmeztetni az attribútumok, vagy az elem tartalmának eltérése esetén. Ez csak egy szint mélységig működik, és egy menekülési útnak van szánva. Ne használd túl sokat. A hidrálásról többet olvashatsz a [`ReactDOM.hydrateRoot()` dokumentációban](/docs/react-dom-client.html#hydrateroot).
 
 ### value {#value}
 

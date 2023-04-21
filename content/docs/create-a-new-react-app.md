@@ -8,6 +8,15 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Start a New React Project](https://react.dev/learn/start-a-new-react-project) for the recommended ways to create an app.
+
+</div>
+
 A legjobb felhasználói és fejlesztői élmény érdekében használj egy integrált eszközláncot.
 
 Ez az oldal néhány népszerű React eszközláncot ír le, amik az alábbi feladatokban segítenek:
@@ -76,7 +85,7 @@ A következő eszközláncok több rugalmasságot és lehetőséget biztosítana
 
 - Az **[Nx](https://nx.dev/react)** egy full-stack monorepo fejlesztéshez való eszközkészlet, ami egyebek mellett beépített React, Next.js, [Express](https://expressjs.com/) támogatással is rendelkezik.
 
-- A **[Parcel](https://parceljs.org/)** egy gyors, konfigurálást nem igénylő webalkalmazás csomagoló ami [Reacttel is működik](https://parceljs.org/recipes.html#react).
+- A **[Parcel](https://parceljs.org/)** egy gyors, konfigurálást nem igénylő webalkalmazás csomagoló ami [Reacttel is működik](https://parceljs.org/recipes/react/).
 
 - A **[Razzle](https://github.com/jaredpalmer/razzle)** egy konfigurálást nem igénylő szerveroldali renderelő keretrendszer, de több rugalmasságot biztosít, mint a Next.js.
 

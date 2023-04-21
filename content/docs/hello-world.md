@@ -2,22 +2,29 @@
 id: hello-world
 title: Helló, világ!
 permalink: docs/hello-world.html
-prev: cdn-links.html
+prev: release-channels.html
 next: introducing-jsx.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Quick Start](https://react.dev/learn) for an introduction to React.
+
+</div>
+
 A legkisebb React példa így néz ki:
 
-```js
-ReactDOM.render(
-  <h1>Helló, világ!</h1>,
-  document.getElementById('root')
-);
+```jsx
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Helló, világ!</h1>);
 ```
 
 Ez egy címsort jelenít meg "Helló, világ!" szöveggel a weboldalon.
 
-[](codepen://hello-world)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=1010)**
 
 Kattints a fenti hivatkozásra az online szerkesztő megnyitásához. Bátran végezz változtatásokat, és figyeld meg hogyan befolyásolják a kimenetet. Az útmutató legtöbb oldala ehhez hasonló szerkeszthető példákat tartalmaz.
 

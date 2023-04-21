@@ -18,6 +18,15 @@ redirect_from:
   - "docs/environments.html"
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The new [Quick Start](https://react.dev/learn) teaches modern React and includes live examples.
+
+</div>
+
 Ez az oldal áttekintést nyújt a React dokumentációjához és a kapcsolódó anyagokhoz.
 
 A **React** egy JavaScript könyvtár, amit felhasználói felületek programozására használunk. Tanulj meg mindent a Reactről a [főoldalról kezdve](/) vagy az [útmutatókból](/tutorial/tutorial.html).
@@ -38,7 +47,7 @@ A React folyamatos adaptációra lett tervezve és **pont annyi Reactet használ
 
 Az Online Játszótereken lehetőséged van kipróbálni a React funkcionalitásait. Próbáld ki a Helló Világ sablont [CodePenen](codepen://hello-world), [CodeSandboxon](https://codesandbox.io/s/new), vagy [Stackblitzen](https://stackblitz.com/fork/react).
 
-Ha a saját kódszerkesztődet használnád, [letöltheted ezt a HTML fájlt](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), szerkesztheted és megnyithatod a lokális böngésződben. Ez egy lassú kód transzformációt tartalmaz, így ezt csak a példakód futtatásához ajánljuk.
+Ha a saját kódszerkesztődet használnád, [letöltheted ezt a HTML fájlt](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), szerkesztheted és megnyithatod a lokális böngésződben. Ez egy lassú kód transzformációt tartalmaz, így ezt csak a példakód futtatásához ajánljuk.
 
 ### React hozzáadása egy weboldalhoz {#add-react-to-a-website}
 
@@ -115,7 +124,7 @@ A React csapat közleményeinek a [React blog](/blog/) a hivatalos forrása. Min
 
 Twitteren is követheted a [@reactjs felhasználót](https://twitter.com/reactjs), de akkor sem maradsz le semmiről, ha csak a blogot olvasod.
 
-Nem minden React kiadás érdemli meg a saját blog bejegyzését, de minden kiadásnak van egy saját részletes változási jegyzéke [`CHANGELOG.md` fájl a React repóban](https://github.com/facebook/react/blob/master/CHANGELOG.md), valamint a [Kiadások](https://github.com/facebook/react/releases) oldalon.
+Nem minden React kiadás érdemli meg a saját blog bejegyzését, de minden kiadásnak van egy saját részletes változási jegyzéke [`CHANGELOG.md` fájl a React repóban](https://github.com/facebook/react/blob/main/CHANGELOG.md), valamint a [Kiadások](https://github.com/facebook/react/releases) oldalon.
 
 ## Verzió kezelt dokumentáció {#versioned-documentation}
 
