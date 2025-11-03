@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -13,7 +20,7 @@ function Link({
   className,
   children,
   ...props
-}: JSX.IntrinsicElements['a']) {
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const classes =
     'inline text-link dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal';
   const modifiedChildren = Children.toArray(children).map((child: any) => {
@@ -41,11 +48,8 @@ function Link({
           {modifiedChildren}
         </a>
       ) : (
-        <NextLink href={href}>
-          {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
-          <a className={cn(classes, className)} {...props}>
-            {modifiedChildren}
-          </a>
+        <NextLink href={href} className={cn(classes, className)} {...props}>
+          {modifiedChildren}
         </NextLink>
       )}
     </>
