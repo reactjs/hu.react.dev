@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -37,7 +44,7 @@ interface TagProps {
 function Tag({text, variant, className}: TagProps) {
   const {name, classes} = variantMap[variant];
   return (
-    <span className={cn('mr-2', className)}>
+    <span className={cn('me-2', className)}>
       <span
         className={cn(
           'inline font-bold text-sm uppercase py-1 px-2 rounded',
