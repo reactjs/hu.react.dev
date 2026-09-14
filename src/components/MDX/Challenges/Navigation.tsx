@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -87,7 +94,7 @@ export function Navigation({
           {challenges.map(({name, id, order}, index) => (
             <button
               className={cn(
-                'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap text-ellipsis',
+                'py-2 me-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap text-ellipsis',
                 isRecipes &&
                   currentChallenge.id === id &&
                   'text-purple-50 border-purple-50 hover:text-purple-50 dark:text-purple-30 dark:border-purple-30 dark:hover:text-purple-30',
@@ -103,30 +110,30 @@ export function Navigation({
           ))}
         </div>
       </div>
-      <div className="flex z-10 pb-2 pl-2">
+      <div className="flex z-10 pb-2 ps-2">
         <button
           onClick={handleScrollLeft}
           aria-label="Scroll left"
           className={cn(
-            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l border-gray-20 border-r',
+            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l rtl:rounded-r rtl:rounded-l-none border-gray-20 border-r rtl:border-l rtl:border-r-0',
             {
               'text-primary dark:text-primary-dark': canScrollLeft,
               'text-gray-30': !canScrollLeft,
             }
           )}>
-          <IconChevron displayDirection="left" />
+          <IconChevron displayDirection="start" />
         </button>
         <button
           onClick={handleScrollRight}
           aria-label="Scroll right"
           className={cn(
-            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-r',
+            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-e',
             {
               'text-primary dark:text-primary-dark': canScrollRight,
               'text-gray-30': !canScrollRight,
             }
           )}>
-          <IconChevron displayDirection="right" />
+          <IconChevron displayDirection="end" />
         </button>
       </div>
     </div>
