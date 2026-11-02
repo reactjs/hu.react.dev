@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -29,7 +36,7 @@ function YouWillLearnCard({title, path, children}: YouWillLearnCardProps) {
           size="md"
           label={title}>
           Read More
-          <IconNavArrow displayDirection="right" className="inline ml-1" />
+          <IconNavArrow displayDirection="end" className="inline ms-1" />
         </ButtonLink>
       </div>
     </div>
